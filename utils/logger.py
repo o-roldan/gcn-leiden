@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@Time: 2023/4/27 18:13 
+@Time: 2023/4/27 18:13
 @Author: Marigold
 @Version: 0.0.0
 @Description：
@@ -21,7 +21,8 @@ class MyLogger:
             log_dir = os.path.dirname(log_file_path)
             if not os.path.exists(log_dir):
                 os.makedirs(log_dir)
-            self.file_handler = logging.FileHandler(log_file_path, encoding="utf-8")
+            self.file_handler = logging.FileHandler(
+                log_file_path, encoding="utf-8")
             self.file_handler.setFormatter(self.formatter)
             self.logger.addHandler(self.file_handler)
 

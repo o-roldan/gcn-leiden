@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@Time: 2023/4/27 18:36 
+@Time: 2023/4/27 18:36
 @Author: Marigold
 @Version: 0.0.0
 @Description：
@@ -36,5 +36,6 @@ def get_format_time():
     :return:formatted_time
     """
     current_time = time.time()
-    formatted_time = time.strftime("%m-%d %H%M%S", time.localtime(current_time))
+    formatted_time = time.strftime(
+        "%m-%d %H%M%S", time.localtime(current_time))
     return formatted_time

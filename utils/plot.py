@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@Time: 2023/4/28 18:09 
+@Time: 2023/4/28 18:09
 @Author: Marigold
 @Version: 0.0.0
 @Description：
@@ -14,7 +14,8 @@ plt.rcParams['font.size'] = font['size']
 
 
 def validate_suffix(suffix):
-    support_suffix = [".png", ".pdf", ".jpg", "jpeg", ".bmp", ".tiff", ".gif", ".svg", ".eps"]
+    support_suffix = [".png", ".pdf", ".jpg", "jpeg",
+                      ".bmp", ".tiff", ".gif", ".svg", ".eps"]
     if suffix not in support_suffix:
         return False
     return True
@@ -37,9 +38,11 @@ def plot_clustering_tsne(args, embedding, label, logger, img_suffix=".pdf", desc
     if not validate_suffix(img_suffix):
         logger.error("The suffix is not supported! Skip drawing!")
         return
-    clustering_tsne_filename = f"{args.clustering_tsne_save_path}{args.dataset_name}_{desc}{img_suffix}"
+    clustering_tsne_filename = f"{args.clustering_tsne_save_path}{
+        args.dataset_name}_{desc}{img_suffix}"
     logger.info("==========Start Drawing TSNE==========")
-    X_tsne = TSNE(n_components=2).fit_transform(embedding.cpu().detach().numpy())
+    X_tsne = TSNE(n_components=2).fit_transform(
+        embedding.cpu().detach().numpy())
     plt.scatter(X_tsne[:, 0], X_tsne[:, 1], s=5, c=label)
     if not axis_show:
         plt.axis("off")
@@ -47,7 +50,8 @@ def plot_clustering_tsne(args, embedding, label, logger, img_suffix=".pdf", desc
         plt.title(title)
     plt.savefig(clustering_tsne_filename)
     logger.info("===========End Drawing TSNE===========")
-    logger.info("The clustering tsne visualization image was saved to: " + clustering_tsne_filename)
+    logger.info("The clustering tsne visualization image was saved to: " +
+                clustering_tsne_filename)
     plt.clf()
 
 
@@ -68,9 +72,11 @@ def plot_embedding_heatmap(args, embedding, logger, img_suffix=".pdf", desc="def
     if not validate_suffix(img_suffix):
         logger.error("The suffix is not supported! Skip drawing!")
         return
-    embedding_heatmap_filename = f"{args.embedding_heatmap_save_path}{args.dataset_name}_{desc}{img_suffix}"
+    embedding_heatmap_filename = f"{args.embedding_heatmap_save_path}{
+        args.dataset_name}_{desc}{img_suffix}"
     logger.info("==========Start Drawing Heatmap==========")
-    plt.imshow(embedding.cpu().detach().numpy(), cmap=plt.cm.GnBu, interpolation='nearest')
+    plt.imshow(embedding.cpu().detach().numpy(),
+               cmap=plt.cm.GnBu, interpolation='nearest')
     if color_bar_show:
         plt.colorbar()
     if not axis_show:
@@ -79,5 +85,6 @@ def plot_embedding_heatmap(args, embedding, logger, img_suffix=".pdf", desc="def
         plt.title(title)
     plt.savefig(embedding_heatmap_filename)
     logger.info("===========End Drawing Heatmap===========")
-    logger.info("The embedding heatmap image was saved to: " + embedding_heatmap_filename)
+    logger.info("The embedding heatmap image was saved to: " +
+                embedding_heatmap_filename)
     plt.clf()

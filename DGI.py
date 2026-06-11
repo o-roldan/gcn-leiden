@@ -1,10 +1,7 @@
 import torch
-import numpy as np
-import torch.nn.functional as F
 from torch.nn import Parameter
 from sklearn.linear_model import LogisticRegression
 from torch_geometric.nn.inits import reset, uniform
-from sklearn.metrics.pairwise import euclidean_distances
 
 EPS = 1e-15
 
@@ -42,7 +39,8 @@ class DeepGraphInfomax(torch.nn.Module):
         uniform(self.hidden_channels, self.weight)
 
     def forward(self, *args, **kwargs):
-        pos_z = self.encoder(*args, **kwargs)  # GCN learns node representations
+        # GCN learns node representations
+        pos_z = self.encoder(*args, **kwargs)
         pos_z = torch.diag(1. / torch.norm(pos_z, p=2, dim=1)
                            ) @ pos_z  # L2 normalization for node representations
 
@@ -74,9 +72,9 @@ class DeepGraphInfomax(torch.nn.Module):
     def modularity(self, mu, r, embeds, dist, bin_adj, mod, args):
         # bin_adj_nodiag = bin_adj * (torch.ones(bin_adj.shape[0], bin_adj.shape[0]) - torch.eye(bin_adj.shape[0]))
         # loss = (1. / bin_adj_nodiag.sum()) * (r.t() @ mod @ r).trace()
-        device = bin_adj.device  # Ensure computation on the same device
         bin_adj_nodiag = bin_adj.clone()
-        bin_adj_nodiag.fill_diagonal_(0)  # Directly set diagonal to 0 to avoid extra matrix computation
+        # Directly set diagonal to 0 to avoid extra matrix computation
+        bin_adj_nodiag.fill_diagonal_(0)
         adj_sum = bin_adj_nodiag.sum()
 
         if adj_sum == 0:

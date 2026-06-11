@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@Time: 2023/4/28 9:11 
+@Time: 2023/4/28 9:11
 @Author: Marigold
 @Version: 0.0.0
 @Description：
@@ -55,9 +55,11 @@ def get_path(args):
     args.embedding_heatmap_save_path = "./img/heatmap/" + directory_structure
 
     if pretrain_type == "pretrain_ae":
-        args.pretrain_save_path = "./pretrain/pretrain_ae/" + pretrain_for + "/" + args.dataset_name + "/"
+        args.pretrain_save_path = "./pretrain/pretrain_ae/" + \
+            pretrain_for + "/" + args.dataset_name + "/"
     elif pretrain_type == "pretrain_gat":
-        args.pretrain_save_path = "./pretrain/pretrain_gat/" + pretrain_for + "/" + args.dataset_name + "/"
+        args.pretrain_save_path = "./pretrain/pretrain_gat/" + \
+            pretrain_for + "/" + args.dataset_name + "/"
     elif pretrain_type is None:
         pass
     elif pretrain_type == "multi":
@@ -71,15 +73,18 @@ def get_path(args):
             raise FileNotFoundError(f"{root} not Found!")
         args.log_save_path = replace_relative_path(args.log_save_path, root)
         args.dataset_path = replace_relative_path(args.dataset_path, root)
-        args.clustering_tsne_save_path = replace_relative_path(args.clustering_tsne_save_path, root)
-        args.embedding_heatmap_save_path = replace_relative_path(args.embedding_heatmap_save_path, root)
+        args.clustering_tsne_save_path = replace_relative_path(
+            args.clustering_tsne_save_path, root)
+        args.embedding_heatmap_save_path = replace_relative_path(
+            args.embedding_heatmap_save_path, root)
         if pretrain_type == "multi":
             for item in pretrain_type_list:
                 type_name = item.split("_")[-1]
                 exec(f"args.pretrain_{type_name}_save_path = "
                      f"replace_relative_path(args.pretrain_{type_name}_save_path, args.root)")
         elif pretrain_type is not None:
-            args.pretrain_save_path = replace_relative_path(args.pretrain_save_path, root)
+            args.pretrain_save_path = replace_relative_path(
+                args.pretrain_save_path, root)
     if not os.path.exists(args.log_save_path):
         os.makedirs(args.log_save_path)
     if not os.path.exists(args.dataset_path):

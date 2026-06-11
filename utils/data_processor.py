@@ -136,7 +136,8 @@ def construct_graph(feat, k=5, metric="euclidean"):
     # top k
     distance_matrix = numpy_to_torch(distance_matrix)
     top_k, index = torch.topk(distance_matrix, k)
-    top_k_min = torch.min(top_k, dim=-1).values.unsqueeze(-1).repeat(1, distance_matrix.shape[-1])
+    top_k_min = torch.min(
+        top_k, dim=-1).values.unsqueeze(-1).repeat(1, distance_matrix.shape[-1])
     ones = torch.ones_like(distance_matrix)
     zeros = torch.zeros_like(distance_matrix)
     knn_graph = torch.where(torch.ge(distance_matrix, top_k_min), ones, zeros)
@@ -155,7 +156,8 @@ def get_M(adj, t=2):
     :return: M
     """
     tran_prob = normalize(adj, norm="l1", axis=0)
-    M_numpy = sum([np.linalg.matrix_power(tran_prob, i) for i in range(1, t + 1)]) / t
+    M_numpy = sum([np.linalg.matrix_power(tran_prob, i)
+                  for i in range(1, t + 1)]) / t
     return torch.Tensor(M_numpy)
 
 
@@ -214,7 +216,8 @@ def square_euclid_distance(Z, center):
 
 
 def high_confidence(Z, center, tao):
-    distance_norm = torch.min(F.softmax(square_euclid_distance(Z, center), dim=1), dim=1).values
+    distance_norm = torch.min(
+        F.softmax(square_euclid_distance(Z, center), dim=1), dim=1).values
     value, _ = torch.topk(distance_norm, int(Z.shape[0] * (1 - tao)))
     index = torch.where(distance_norm <= value[-1],
                         torch.ones_like(distance_norm), torch.zeros_like(distance_norm))
@@ -232,7 +235,8 @@ def pseudo_matrix(P, S, node_num, beta, device="cuda"):
     Q = (P == P.unsqueeze(1)).float().to(device)
     S_norm = (S - S.min()) / (S.max() - S.min())
     M_mat = torch.abs(Q - S_norm) ** beta
-    M = torch.cat([torch.diag(M_mat, node_num), torch.diag(M_mat, -node_num)], dim=0)
+    M = torch.cat([torch.diag(M_mat, node_num),
+                  torch.diag(M_mat, -node_num)], dim=0)
     return M, M_mat
 
 
@@ -259,7 +263,9 @@ def diffusion_adj(adj, mode="ppr", transport_rate=0.2):
 
     # calculate graph diffusion
     if mode == "ppr":
-        diff_adj = transport_rate * np.linalg.inv((np.eye(d.shape[0]) - (1 - transport_rate) * norm_adj))
+        diff_adj = transport_rate * \
+            np.linalg.inv(
+                (np.eye(d.shape[0]) - (1 - transport_rate) * norm_adj))
     else:
         diff_adj = None
     return diff_adj
@@ -279,7 +285,8 @@ def remove_edge(A, similarity, remove_rate=0.1, device="cuda"):
     # remove edges based on cosine similarity of embedding
     n_node = A.shape[0]
     for i in range(n_node):
-        A[i, torch.argsort(similarity[i].cpu())[:int(round(remove_rate * n_node))]] = 0
+        A[i, torch.argsort(similarity[i].cpu())[
+            :int(round(remove_rate * n_node))]] = 0
 
     # normalize adj
     A = A + torch.eye(A.shape[0])

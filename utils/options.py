@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@Time: 2023/5/8 9:06 
+@Time: 2023/5/8 9:06
 @Author: Marigold
 @Version: 0.0.0
 @Description：
@@ -8,7 +8,8 @@
 """
 import argparse
 
-parser = argparse.ArgumentParser(description='Scalable Unified Framework of Deep Graph Clustering')
+parser = argparse.ArgumentParser(
+    description='Scalable Unified Framework of Deep Graph Clustering')
 # Sometimes when faced with many experimental result files, we don't remember which experiment it was.
 # So, join me in forming the habit of recording the key points of the experiment!
 # Describe the key points of this experiment in brief words with --desc balabala.

@@ -10,15 +10,12 @@ import logging
 import numpy as np
 from torch.utils.data import Dataset
 
-from utils.data_processor import numpy_to_torch, construct_graph, normalize_adj, get_M
-
 
 class Data:
     def __init__(self, feature, label, adj):
         self.feature = feature
         self.label = label
         self.adj = adj
-
 
     def __getattr__(self, name):
         if name == 'feature':
@@ -40,7 +37,7 @@ class LoadDataset(Dataset):
 
     def __getitem__(self, idx):
         return torch.from_numpy(np.array(self.x[idx])).float(), \
-               torch.from_numpy(np.array(idx))
+            torch.from_numpy(np.array(idx))
 
 
 def load_graph_data(root_path=".", dataset_name="dblp", show_details=False):

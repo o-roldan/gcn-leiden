@@ -2,7 +2,6 @@ import numpy as np
 from sklearn import metrics
 import sklearn.metrics as Metrics
 import networkx as nx
-import scipy.sparse as sp
 from collections import defaultdict
 
 def process_set(sets):
@@ -60,7 +59,7 @@ def cal_F_score(found_sets, GT_sets, verbose=False):
     GT_sets = process_set(GT_sets)
     d1,d2 = cal_F_score_helper(found_sets, GT_sets)
 
-    if d1 == None:
+    if d1 is None:
         return [0]*6
 
     vals1 = sum(d1.values())/len(d1)
@@ -89,7 +88,7 @@ def matched(true,pred):
         label_map[p] = t
     unmatched = list(unmatched)
     for i in range(cm.shape[0],cm.shape[0]*2):
-        if not i in label_map:
+        if i not in label_map:
             label_map[i] = unmatched[-1]
             unmatched.pop()
    

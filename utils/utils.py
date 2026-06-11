@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@Time: 2023/5/8 14:04 
+@Time: 2023/5/8 14:04
 @Author: Marigold
 @Version: 0.0.0
 @Description：
@@ -28,7 +28,8 @@ def cal_mean_std(acc_list, nmi_list, ari_list, f1_list):
     ari_std = np.std(ari_list)
     f1_std = np.std(f1_list)
     result = f"acc: {acc_mean:0>.4f}±{acc_std:0>.4f}\t\tnmi: {nmi_mean:0>.4f}±{nmi_std:0>.4f}\t\t" \
-             f"ari: {ari_mean:0>.4f}±{ari_std:0>.4f}\t\tf1: {f1_mean:0>.4f}±{f1_std:0>.4f}"
+        f"ari: {ari_mean:0>.4f}±{ari_std:0>.4f}\t\tf1: {
+            f1_mean:0>.4f}±{f1_std:0>.4f}"
     return result
 
 

@@ -6,8 +6,10 @@ from torch_geometric.nn import GCNConv, GATConv, APPNP
 import math
 import sklearn
 
+
 def GELU(x):
     return x * 0.5 * (1.0 + torch.erf(x / math.sqrt(2.0)))
+
 
 class GAT(torch.nn.Module):
     def __init__(self):
@@ -40,51 +42,56 @@ class APPNP_model(torch.nn.Module):
         x = self.prop1(x, edge_index)
         return F.log_softmax(x, dim=1)
 
+
 class Encoder(nn.Module):
     def __init__(self, in_channels, hidden_channels):
         super(Encoder, self).__init__()
-        self.conv = GCNConv(in_channels, hidden_channels) # , cached=True)
+        self.conv = GCNConv(in_channels, hidden_channels)  # , cached=True)
         self.prelu = nn.PReLU(hidden_channels)
-
 
     def forward(self, x, edge_index, structrue_center):
         x = self.conv(x, edge_index)
         x = self.prelu(x)
         return x
 
+
 class Summarizer(nn.Module):
     def __init__(self):
         super(Summarizer, self).__init__()
-    
+
     def forward(self, z):
         return torch.sigmoid(z.mean(dim=0))
+
 
 def corruption(x, edge_index, structrue_center):
     return x[torch.randperm(x.size(0))], edge_index
 
-def cluster_net(data, k, temp, num_iter, cluster_temp,init):
+
+def cluster_net(data, k, temp, num_iter, cluster_temp, init):
     if init is None:
         data_np = data.detach().numpy()
         norm = (data_np**2).sum(axis=1)
-        init = sklearn.cluster.k_means_._k_init(data_np, k, norm, sklearn.utils.check_random_state(None))
+        init = sklearn.cluster.k_means_._k_init(
+            data_np, k, norm, sklearn.utils.check_random_state(None))
         init = torch.tensor(init, requires_grad=True)
-        if num_iter == 0: return init
+        if num_iter == 0:
+            return init
     mu = init
     n = data.shape[0]
     d = data.shape[1]
     data = torch.diag(1./torch.norm(data, dim=1, p=2))@data
     for t in range(num_iter):
         dist = data @ mu.t()
-        #cluster responsibilities via softmax
+        # cluster responsibilities via softmax
         r = torch.softmax(cluster_temp*dist, 1)
-        #total responsibility of each cluster
+        # total responsibility of each cluster
         cluster_r = r.sum(dim=0)
-        #mean of points in each cluster weighted by responsibility
-        cluster_mean = (r.t().unsqueeze(1) @ data.expand(k, *data.shape)).squeeze(1)
-        #update cluster means
+        # mean of points in each cluster weighted by responsibility
+        cluster_mean = (r.t().unsqueeze(
+            1) @ data.expand(k, *data.shape)).squeeze(1)
+        # update cluster means
         new_mu = torch.diag(1/cluster_r) @ cluster_mean
         mu = new_mu
     dist = data @ mu.t()
     r = torch.softmax(cluster_temp*dist, 1)
     return mu, r, dist
-
