@@ -166,9 +166,9 @@ def target_distribution(q):
 
 def pairwise_euclidean_distance(X):
     n, d = X.shape
-    X = X.view(n, 1, d)  # 将X的形状调整为(n, 1, d)，以便进行广播计算
+    X = X.view(n, 1, d)  # Reshape X to (n, 1, d) for broadcast computation
 
-    # 计算每对特征向量之间的欧氏距离
+    # Calculate euclidean distance between each pair of feature vectors
     distances = torch.sum((X - X.transpose(0, 1)) ** 2, dim=2)
 
     return distances

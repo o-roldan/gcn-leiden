@@ -8,6 +8,7 @@ from sklearn.metrics.pairwise import euclidean_distances
 
 EPS = 1e-15
 
+
 class DeepGraphInfomax(torch.nn.Module):
     r"""The Deep Graph Infomax model from the
     `"Deep Graph Infomax" <https://arxiv.org/abs/1809.10341>`_
@@ -32,7 +33,7 @@ class DeepGraphInfomax(torch.nn.Module):
         self.reset_parameters()
         self.K = args.K
         self.cluster_temp = args.clustertemp
-        self.init = torch.rand(self.K,hidden_channels)
+        self.init = torch.rand(self.K, hidden_channels)
         self.cluster = cluster
 
     def reset_parameters(self):
@@ -41,11 +42,14 @@ class DeepGraphInfomax(torch.nn.Module):
         uniform(self.hidden_channels, self.weight)
 
     def forward(self, *args, **kwargs):
-        pos_z = self.encoder(*args, **kwargs)  # GCN学习节点表示
-        pos_z = torch.diag(1. / torch.norm(pos_z, p=2, dim=1)) @ pos_z  # 节点表示进行L2归一化处理
+        pos_z = self.encoder(*args, **kwargs)  # GCN learns node representations
+        pos_z = torch.diag(1. / torch.norm(pos_z, p=2, dim=1)
+                           ) @ pos_z  # L2 normalization for node representations
 
-        community_tensors = [torch.tensor(list(comm), dtype=torch.long) for comm in args[2]]
-        center = [torch.mean(pos_z.index_select(0, comm_tensor), dim=0) for comm_tensor in community_tensors]
+        community_tensors = [torch.tensor(
+            list(comm), dtype=torch.long) for comm in args[2]]
+        center = [torch.mean(pos_z.index_select(0, comm_tensor), dim=0)
+                  for comm_tensor in community_tensors]
         mu = torch.stack(center, dim=0)
 
         dist = pos_z @ mu.t()
@@ -62,21 +66,21 @@ class DeepGraphInfomax(torch.nn.Module):
             self.discriminate(pos_z, summary, sigmoid=True) + EPS).mean()
         neg_loss = -torch.log(
             1 - self.discriminate(neg_z, summary, sigmoid=True) + EPS).mean()
-        return pos_loss + neg_loss #+ modularity
+        return pos_loss + neg_loss  # + modularity
 
-    def comm_loss(self,pos_z,mu):
-        return -torch.log(self.discriminate(pos_z,self.summary(mu), sigmoid=True) + EPS).mean()
+    def comm_loss(self, pos_z, mu):
+        return -torch.log(self.discriminate(pos_z, self.summary(mu), sigmoid=True) + EPS).mean()
 
     def modularity(self, mu, r, embeds, dist, bin_adj, mod, args):
         # bin_adj_nodiag = bin_adj * (torch.ones(bin_adj.shape[0], bin_adj.shape[0]) - torch.eye(bin_adj.shape[0]))
         # loss = (1. / bin_adj_nodiag.sum()) * (r.t() @ mod @ r).trace()
-        device = bin_adj.device  # 确保计算在相同设备上
+        device = bin_adj.device  # Ensure computation on the same device
         bin_adj_nodiag = bin_adj.clone()
-        bin_adj_nodiag.fill_diagonal_(0)  # 直接将对角线设置为 0，避免额外的矩阵计算
+        bin_adj_nodiag.fill_diagonal_(0)  # Directly set diagonal to 0 to avoid extra matrix computation
         adj_sum = bin_adj_nodiag.sum()
 
         if adj_sum == 0:
-            return 0  # 防止除以零
+            return 0  # Prevent division by zero
 
         loss = (1. / adj_sum) * (r.t() @ mod @ r).trace()
         return -loss

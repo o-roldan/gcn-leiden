@@ -114,13 +114,13 @@ def adjusted_rand_score(pred,true):
     return ari_score
 
 def compute_modularity(graph, labels):
-    # 使用 defaultdict 自动处理新社区
+    # Use defaultdict to automatically handle new communities
     communities = defaultdict(list)
     for node, label in enumerate(labels):
         communities[label.item()].append(node)
 
-    # 使用列表生成式直接生成社区列表
+    # Use list comprehension to directly generate community list
     community_list = list(communities.values())
 
-    # 计算并返回模块度
+    # Calculate and return modularity
     return nx.community.modularity(graph, community_list)

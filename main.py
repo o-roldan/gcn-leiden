@@ -48,7 +48,8 @@ args = parser.parse_args()
 
 
 def make_modularity_matrix(adj):
-    adj = adj*(torch.ones(adj.shape[0], adj.shape[0]) - torch.eye(adj.shape[0]))
+    adj = adj*(torch.ones(adj.shape[0],
+               adj.shape[0]) - torch.eye(adj.shape[0]))
     degrees = adj.sum(dim=0).unsqueeze(1)
     mod = adj - degrees@degrees.t()/adj.sum()
     return mod
@@ -68,14 +69,15 @@ def result(graph, pred, labels):
     f1 = evaluation.cal_F_score(pred_np, labels)[0]
     ari = evaluation.adjusted_rand_score(pred_np, labels)
     q = evaluation.compute_modularity(graph, pred)
-    return nmi, ac, f1, ari,q
+    return nmi, ac, f1, ari, q
 
 
 def train():
     model.train()
     optimizer.zero_grad()
     pos_z, mu, r, dist = model(feat, edge, selected_communities)
-    modularity_loss = model.modularity(mu, r, pos_z, dist, adj, test_object, args)
+    modularity_loss = model.modularity(
+        mu, r, pos_z, dist, adj, test_object, args)
     loss = b * modularity_loss
     loss.backward()
     optimizer.step()
@@ -98,6 +100,7 @@ def test(model):
     print("New Center Metrics: ", r_nmi, r_ac, r_f1, r_ari, DBI, q)
     return node_emb, r_assign, r_nmi, r_ac, r_f1, r_ari, DBI, q
 
+
 device = torch.device('cpu')
 a = 0.0
 b = 0.001
@@ -107,9 +110,11 @@ file_name = "result.csv"
 
 start_time = time.perf_counter()
 
-print("****************************", args.dataset, "dataset ******************************")
+print("****************************", args.dataset,
+      "dataset ******************************")
 file = open(file_name, "a+")
-print("****************************", args.dataset, "dataset ******************************", file=file)
+print("****************************", args.dataset,
+      "dataset ******************************", file=file)
 file.close()
 
 data = load_data("./", args.dataset,
@@ -130,14 +135,16 @@ label = data.label
 num_features = feat.shape[1]
 
 graph = nx.from_numpy_array(A)
-structure_community = nx.community.louvain_communities(graph, resolution=0.3, threshold=1e-09, seed=123)  # re=0.3
+structure_community = nx.community.louvain_communities(
+    graph, resolution=0.3, threshold=1e-09, seed=123)  # re=0.3
 
 structure_community_node_number = [len(i) for i in structure_community]
 mean_size = np.mean(structure_community_node_number)
 std_deviation = np.std(structure_community_node_number)
 threshold = mean_size + 0.5*std_deviation
 
-selected_communities = [community for community in structure_community if len(community) > threshold]
+selected_communities = [
+    community for community in structure_community if len(community) > threshold]
 
 K = len(selected_communities)
 print(f"The Number of Selected Structural Communities: {K}", end='')
@@ -169,7 +176,8 @@ max_f1 = 0
 min_dbi = 3
 max_q = 0
 
-print(f"Start training {a}_{b}_{c} loss para!!!=================================")
+print(f"Start training {a}_{b}_{
+      c} loss para!!!=================================")
 stop_cnt = 0
 best_idx = 0
 patience = 200
@@ -180,7 +188,8 @@ for epoch in range(1, 301):
     loss = train()
     if epoch % 2 == 0 and epoch > 0:
         print('epoch = {}'.format(epoch))
-        final_z, final_r, tmp_max_nmi, tmp_max_ac, tmp_max_f1, tmp_max_ari, tmp_max_dbi, tmp_max_q = test(model)
+        final_z, final_r, tmp_max_nmi, tmp_max_ac, tmp_max_f1, tmp_max_ari, tmp_max_dbi, tmp_max_q = test(
+            model)
 
         max_nmi = max(max_nmi, tmp_max_nmi)
         max_ac = max(max_ac, tmp_max_ac)
@@ -204,11 +213,11 @@ print('Loading {}th epoch'.format(best_idx))
 model.load_state_dict(torch.load('best_model.pkl'))
 print('Start testing !!!')
 test(model)
-print("max nmi为", max_nmi)
-print("max ac为:", max_ac)
-print("max f1为:", max_f1)
-print("max ari为:", max_ari)
-print("min dbi为", min_dbi)
+print("max nmi is", max_nmi)
+print("max ac is:", max_ac)
+print("max f1 is:", max_f1)
+print("max ari is:", max_ari)
+print("min dbi is", min_dbi)
 print("max q:", max_q)
 
 
