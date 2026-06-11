@@ -1,7 +1,7 @@
 [project]
-name = "less-is-more"
-version = "0.1.0"
-description = "Add your description here"
+name = "gcn-leiden"
+version = "0.0.1"
+description = "Base Wang architecture with teaks"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
