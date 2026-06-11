@@ -1,5 +1,5 @@
 from model import Encoder, corruption, Summarizer, cluster_net
-from utils.load_data import load_data
+from utils.pyg_data import load_data
 from DGI import DeepGraphInfomax
 
 import evaluation
