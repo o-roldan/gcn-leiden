@@ -9,6 +9,7 @@ import torch
 import logging
 import numpy as np
 from torch.utils.data import Dataset
+from utils.data_processor import numpy_to_torch, normalize_adj, get_M
 
 
 class Data:
