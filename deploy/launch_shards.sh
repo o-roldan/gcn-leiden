@@ -30,28 +30,34 @@ CPU_MACHINE=${CPU_MACHINE:-n2-standard-8}
 
 ALL_SHARDS="cora citeseer amap film wikics sbm gpu"
 
-# shard -> "machine_type;gpu(0/1);dataset:eval_every ..."
+# shard -> "machine_type;gpu(0/1);driver;dataset:eval_every ..."
 spec_for() {
   case $1 in
-    cora)      echo "${CPU_MACHINE};0;cora:2" ;;
-    citeseer)  echo "${CPU_MACHINE};0;citeseer:2" ;;
-    amap)      echo "${CPU_MACHINE};0;amap:2" ;;
-    film)      echo "${CPU_MACHINE};0;film:2" ;;
-    wikics)    echo "${CPU_MACHINE};0;wikics:5" ;;
-    sbm)       echo "${CPU_MACHINE};0;sbm_1000_5:5 sbm_5000_10:5 sbm_10000_20:5" ;;
+    cora)      echo "${CPU_MACHINE};0;run_all.py;cora:2" ;;
+    citeseer)  echo "${CPU_MACHINE};0;run_all.py;citeseer:2" ;;
+    amap)      echo "${CPU_MACHINE};0;run_all.py;amap:2" ;;
+    film)      echo "${CPU_MACHINE};0;run_all.py;film:2" ;;
+    wikics)    echo "${CPU_MACHINE};0;run_all.py;wikics:5" ;;
+    sbm)       echo "${CPU_MACHINE};0;run_all.py;sbm_1000_5:5 sbm_5000_10:5 sbm_10000_20:5" ;;
     # single-GPU shard: all CUDA datasets sequentially on one L4
-    gpu)       echo "g2-standard-16;1;amac:5 pubmed:10 cocs:10 cophysics:10" ;;
+    gpu)       echo "g2-standard-16;1;run_all.py;amac:5 pubmed:10 cocs:10 cophysics:10" ;;
     # split GPU shards: need GPUS_ALL_REGIONS + regional L4 quota >= 4
-    amac)      echo "g2-standard-8;1;amac:5" ;;
-    pubmed)    echo "g2-standard-8;1;pubmed:10" ;;
-    cocs)      echo "g2-standard-8;1;cocs:10" ;;
-    cophysics) echo "g2-standard-16;1;cophysics:10" ;;
+    amac)      echo "g2-standard-8;1;run_all.py;amac:5" ;;
+    pubmed)    echo "g2-standard-8;1;run_all.py;pubmed:10" ;;
+    cocs)      echo "g2-standard-8;1;run_all.py;cocs:10" ;;
+    cophysics) echo "g2-standard-16;1;run_all.py;cophysics:10" ;;
+    # recalibration sweep (Objetivo 2): beta x gamma grid via run_recal.py
+    recal-cite)  echo "${CPU_MACHINE};0;run_recal.py;cora:2 citeseer:2" ;;
+    recal-film)  echo "${CPU_MACHINE};0;run_recal.py;film:2" ;;
+    recal-sbm1k) echo "${CPU_MACHINE};0;run_recal.py;sbm_1000_5:5" ;;
+    recal-sbm5k) echo "${CPU_MACHINE};0;run_recal.py;sbm_5000_10:5" ;;
+    recal-sbm10k) echo "${CPU_MACHINE};0;run_recal.py;sbm_10000_20:10" ;;
     *)         return 1 ;;
   esac
 }
 
 make_startup() {
-  local datasets=$1 device=$2 shard=$3
+  local datasets=$1 device=$2 shard=$3 driver=$4
   cat <<EOF
 #!/bin/bash
 set -x
@@ -67,7 +73,7 @@ cd /opt/gcn-leiden
 uv sync
 for PAIR in ${datasets}; do
   DS=\${PAIR%%:*}; EV=\${PAIR##*:}
-  uv run python run_all.py --dataset \$DS --seeds ${SEEDS} \\
+  uv run python ${driver} --dataset \$DS --seeds ${SEEDS} \\
     --device ${device} --eval-every \$EV || true
 done
 gsutil cp results/runs_*.csv ${BUCKET}/results/ || true
@@ -79,7 +85,7 @@ EOF
 launch() {
   local shard=$1 spec
   spec=$(spec_for "$shard") || { echo "unknown shard: $shard" >&2; exit 1; }
-  IFS=';' read -r machine gpu datasets <<<"$spec"
+  IFS=';' read -r machine gpu driver datasets <<<"$spec"
   local name="gcnl-${shard}" device="cpu" image_flags
 
   if [[ $gpu == 1 ]]; then
@@ -97,7 +103,7 @@ launch() {
     $image_flags \
     --boot-disk-size=100GB \
     --scopes=storage-rw,compute-rw \
-    --metadata-from-file=startup-script=<(make_startup "$datasets" "$device" "$name")
+    --metadata-from-file=startup-script=<(make_startup "$datasets" "$device" "$name" "$driver")
 }
 
 shards=("$@")
