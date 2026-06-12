@@ -38,6 +38,10 @@ def parse_args():
     parser.add_argument("--resolution", type=float, default=0.3)
     parser.add_argument("--beta", type=float, default=0.5,
                         help="deviation coefficient of the size filter T")
+    parser.add_argument("--filter-variant", default="wang",
+                        choices=["wang", "recalibrado"],
+                        help="wang: strict > of the official code; "
+                             "recalibrado: dispersion-gated >= (thesis)")
     parser.add_argument("--prior-seed", type=int, default=123)
     parser.add_argument("--hidden", type=int, default=512)
     parser.add_argument("--temperature", type=float, default=30.0)
@@ -63,7 +67,8 @@ def main():
     graph = nx.from_numpy_array(data.adj)
     prior = build_prior(graph, method=args.prior, resolution=args.resolution,
                         beta=args.beta, seed=args.prior_seed,
-                        objective=args.prior_objective)
+                        objective=args.prior_objective,
+                        filter_variant=args.filter_variant)
     print(f"[{method} | {args.dataset}] n={data.num_nodes} "
           f"F={data.num_features} | prior: {prior.initial_count} -> "
           f"k={prior.k} (T={prior.threshold:.1f})")
@@ -93,7 +98,8 @@ def main():
 
     config = config_string(
         prior_objective=args.prior_objective, resolution=args.resolution,
-        beta=args.beta, prior_seed=args.prior_seed, hidden=args.hidden,
+        beta=args.beta, filter_variant=args.filter_variant,
+        prior_seed=args.prior_seed, hidden=args.hidden,
         temperature=args.temperature, lr=args.lr,
         weight_decay=args.weight_decay, loss_scale=args.loss_scale,
         k0=prior.initial_count, threshold=round(prior.threshold, 2))

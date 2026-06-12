@@ -52,6 +52,8 @@ spec_for() {
     recal-sbm1k) echo "${CPU_MACHINE};0;run_recal.py;sbm_1000_5:5" ;;
     recal-sbm5k) echo "${CPU_MACHINE};0;run_recal.py;sbm_5000_10:5" ;;
     recal-sbm10k) echo "${CPU_MACHINE};0;run_recal.py;sbm_10000_20:10" ;;
+    # dispersion-gated filter validation (no cophysics: dense loss OOMs)
+    validate)  echo "${CPU_MACHINE};0;run_validate.py;cora:2 citeseer:2 sbm_1000_5:5 sbm_5000_10:5 sbm_10000_20:10" ;;
     *)         return 1 ;;
   esac
 }

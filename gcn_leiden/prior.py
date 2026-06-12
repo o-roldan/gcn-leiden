@@ -62,17 +62,36 @@ def _leiden_communities(graph, resolution, seed, objective):
     return [set(community) for community in partition]
 
 
-def filter_by_size(communities, beta=0.5):
-    """Keep communities larger than T = mean + beta * std (Wang et al. Eq. 6)."""
+def filter_by_size(communities, beta=0.5, variant="wang", cv_threshold=0.25):
+    """Apply the dynamic size filter T = mean + beta * std (Wang et al. Eq. 6).
+
+    Variants:
+      * "wang" .......... strict comparison len(c) > T, replicating Wang's
+                          published code (the paper text prints >=; the
+                          discrepancy is documented in the thesis).
+      * "recalibrado" ... the thesis' dispersion-gated filter: when the size
+                          distribution is near-uniform (coefficient of
+                          variation below cv_threshold) there are no noise
+                          micro-communities to purge and the filter
+                          deactivates; otherwise it applies the paper's
+                          len(c) >= T. Real networks sit at CV >~ 1 and SBM
+                          partitions at ~1e-2, so cv_threshold is uncritical.
+    """
     sizes = np.array([len(c) for c in communities], dtype=np.float64)
     threshold = sizes.mean() + beta * sizes.std()
-    return [c for c in communities if len(c) > threshold], threshold
+    if variant == "wang":
+        return [c for c in communities if len(c) > threshold], threshold
+    if variant == "recalibrado":
+        if sizes.std() / sizes.mean() < cv_threshold:
+            return list(communities), threshold
+        return [c for c in communities if len(c) >= threshold], threshold
+    raise ValueError(f"Unknown filter variant: {variant}")
 
 
 def build_prior(graph, method="louvain", resolution=0.3, beta=0.5, seed=123,
-                objective="modularity"):
+                objective="modularity", filter_variant="wang"):
     initial = detect_communities(graph, method, resolution, seed, objective)
-    selected, threshold = filter_by_size(initial, beta)
+    selected, threshold = filter_by_size(initial, beta, filter_variant)
     if not selected:
         raise RuntimeError(
             f"Size filter (beta={beta}) discarded every community; "
