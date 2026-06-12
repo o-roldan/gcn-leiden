@@ -1,5 +1,0 @@
-timestamp,method,dataset,seed,k,epochs,runtime_s,nmi,ari,q,dbi,peak_nmi,peak_ari,peak_q,peak_dbi,ram_peak_mb,vram_peak_mb,config
-2026-06-11T17:50:52,louvain,cora,24,103,,0.18,0.4582,0.259,0.814,nan,,,,,426.9,nan,objective=modularity;resolution=1.0
-2026-06-11T17:50:59,louvain,cora,24,87,,0.29,0.4834,0.369,0.7785,nan,,,,,426.7,nan,objective=modularity;resolution=0.3
-2026-06-11T17:51:05,leiden,cora,24,103,,0.16,0.4693,0.2622,0.8209,nan,,,,,423.9,nan,objective=modularity;resolution=1.0
-2026-06-11T17:51:10,leiden,cora,24,89,,0.15,0.4859,0.3543,0.7818,nan,,,,,424.4,nan,objective=modularity;resolution=0.3

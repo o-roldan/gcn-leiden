@@ -15,3 +15,5 @@ result.csv
 
 # OS
 .DS_Store
+results/runs_*.csv
+results/history_*/
