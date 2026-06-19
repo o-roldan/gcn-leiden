@@ -1,20 +1,37 @@
 [project]
 name = "gcn-leiden"
 version = "0.0.1"
-description = "Base Wang architecture with teaks"
+description = "One-layer GCN community detection with a Leiden structural prior (Wang et al. 2025 architecture with tweaks)"
 readme = "README.md"
 requires-python = ">=3.12"
+# Core dependencies of the gcn_leiden architecture only. The experiment
+# harness (experiments/) reuses these same deps; analysis-only tooling lives
+# in the optional `analysis` extra below.
 dependencies = [
-    "clusteval>=2.2.7",
     "leidenalg>=0.12.0",
-    "matplotlib>=3.10.9",
-    "munkres>=1.1.4",
     "networkx>=3.6.1",
     "numpy<2.0.0",
-    "openpyxl>=3.1.5",
     "python-igraph>=1.0.0",
     "scikit-learn>=1.9.0",
-    "scipy>=1.17.1",
     "torch<2.3",
     "torch-geometric>=2.8.0",
 ]
+
+[project.optional-dependencies]
+# Reporting / notebook tooling, not imported by the library or harness.
+analysis = [
+    "clusteval>=2.2.7",
+    "matplotlib>=3.10.9",
+    "munkres>=1.1.4",
+    "openpyxl>=3.1.5",
+    "scipy>=1.17.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# The distributable is the architecture only. `experiments/` is repo-local
+# research code, run via `python -m experiments...` from the repo root.
+packages = ["gcn_leiden"]

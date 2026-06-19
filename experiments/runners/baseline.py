@@ -2,12 +2,12 @@
 """Run one baseline: method x dataset x seed.
 
 Examples:
-    python run_baseline.py --method louvain --dataset cora                  # canonical (resolution 1.0)
-    python run_baseline.py --method leiden --dataset cora --resolution 0.3  # prior-alone ablation
-    python run_baseline.py --method dgi --dataset cora --epochs 300
-    python run_baseline.py --method dmon --dataset amap
+    python -m experiments.runners.baseline --method louvain --dataset cora                  # canonical (resolution 1.0)
+    python -m experiments.runners.baseline --method leiden --dataset cora --resolution 0.3  # prior-alone ablation
+    python -m experiments.runners.baseline --method dgi --dataset cora --epochs 300
+    python -m experiments.runners.baseline --method dmon --dataset amap
 
-Appends one row to the same unified results CSV as run_experiment.py.
+Appends one row to the same unified results CSV as the gcn runner.
 """
 
 import argparse
@@ -15,10 +15,11 @@ import time
 
 import networkx as nx
 
-from gcn_leiden.baselines import RUNNERS
 from gcn_leiden.datasets import load_dataset
-from gcn_leiden.results import append_result
-from gcn_leiden.telemetry import peak_ram_mb, peak_vram_mb
+
+from experiments.baselines import RUNNERS
+from experiments.harness.results import append_result
+from experiments.harness.telemetry import peak_ram_mb, peak_vram_mb
 
 
 def parse_args():

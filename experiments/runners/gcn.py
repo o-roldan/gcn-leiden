@@ -2,8 +2,8 @@
 """Run one GCN experiment: dataset x prior x seed.
 
 Examples:
-    python run_experiment.py --dataset cora --prior leiden
-    python run_experiment.py --dataset sbm_5000_10 --prior louvain --seed 7
+    python -m experiments.runners.gcn --dataset cora --prior leiden
+    python -m experiments.runners.gcn --dataset sbm_5000_10 --prior louvain --seed 7
 
 Appends one row to the unified results CSV and dumps the training history
 (loss + metrics per evaluation) for the convergence study.
@@ -20,9 +20,10 @@ import torch
 from gcn_leiden.datasets import load_dataset
 from gcn_leiden.model import CommunityAffiliation, communities_to_index
 from gcn_leiden.prior import build_prior
-from gcn_leiden.results import append_result, config_string
-from gcn_leiden.telemetry import peak_ram_mb, peak_vram_mb
 from gcn_leiden.trainer import TrainConfig, train
+
+from experiments.harness.results import append_result, config_string
+from experiments.harness.telemetry import peak_ram_mb, peak_vram_mb
 
 
 def parse_args():

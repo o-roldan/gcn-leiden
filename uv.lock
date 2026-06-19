@@ -537,37 +537,42 @@ wheels = [
 [[package]]
 name = "gcn-leiden"
 version = "0.0.1"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
-    { name = "clusteval" },
     { name = "leidenalg" },
-    { name = "matplotlib" },
-    { name = "munkres" },
     { name = "networkx" },
     { name = "numpy" },
-    { name = "openpyxl" },
     { name = "python-igraph" },
     { name = "scikit-learn" },
-    { name = "scipy" },
     { name = "torch" },
     { name = "torch-geometric" },
 ]
 
+[package.optional-dependencies]
+analysis = [
+    { name = "clusteval" },
+    { name = "matplotlib" },
+    { name = "munkres" },
+    { name = "openpyxl" },
+    { name = "scipy" },
+]
+
 [package.metadata]
 requires-dist = [
-    { name = "clusteval", specifier = ">=2.2.7" },
+    { name = "clusteval", marker = "extra == 'analysis'", specifier = ">=2.2.7" },
     { name = "leidenalg", specifier = ">=0.12.0" },
-    { name = "matplotlib", specifier = ">=3.10.9" },
-    { name = "munkres", specifier = ">=1.1.4" },
+    { name = "matplotlib", marker = "extra == 'analysis'", specifier = ">=3.10.9" },
+    { name = "munkres", marker = "extra == 'analysis'", specifier = ">=1.1.4" },
     { name = "networkx", specifier = ">=3.6.1" },
     { name = "numpy", specifier = "<2.0.0" },
-    { name = "openpyxl", specifier = ">=3.1.5" },
+    { name = "openpyxl", marker = "extra == 'analysis'", specifier = ">=3.1.5" },
     { name = "python-igraph", specifier = ">=1.0.0" },
     { name = "scikit-learn", specifier = ">=1.9.0" },
-    { name = "scipy", specifier = ">=1.17.1" },
+    { name = "scipy", marker = "extra == 'analysis'", specifier = ">=1.17.1" },
     { name = "torch", specifier = "<2.3" },
     { name = "torch-geometric", specifier = ">=2.8.0" },
 ]
+provides-extras = ["analysis"]
 
 [[package]]
 name = "idna"

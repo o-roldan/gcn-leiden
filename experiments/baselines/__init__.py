@@ -9,10 +9,10 @@ Protocol notes (thesis experimental design):
     conservative.
 """
 
-from gcn_leiden.baselines.classical import run_classical
-from gcn_leiden.baselines.deepwalk import run_deepwalk
-from gcn_leiden.baselines.dgi import run_dgi
-from gcn_leiden.baselines.dmon import run_dmon
+from experiments.baselines.classical import run_classical
+from experiments.baselines.deepwalk import run_deepwalk
+from experiments.baselines.dgi import run_dgi
+from experiments.baselines.dmon import run_dmon
 
 RUNNERS = {
     "louvain": run_classical,

@@ -14,7 +14,7 @@ from torch import nn
 from torch_geometric.nn import DeepGraphInfomax, GCNConv
 
 from gcn_leiden.metrics import evaluate_partition
-from gcn_leiden.results import config_string
+from experiments.harness.results import config_string
 
 _DEFAULTS = {"hidden": 512, "lr": 1e-3, "patience": 20}
 

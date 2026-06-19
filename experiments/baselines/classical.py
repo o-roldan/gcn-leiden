@@ -9,7 +9,7 @@ import numpy as np
 
 from gcn_leiden.metrics import evaluate_partition
 from gcn_leiden.prior import detect_communities
-from gcn_leiden.results import config_string
+from experiments.harness.results import config_string
 
 
 def run_classical(method, data, graph, seed=123, resolution=1.0,

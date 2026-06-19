@@ -14,7 +14,7 @@ from sklearn.cluster import KMeans
 from torch import nn
 
 from gcn_leiden.metrics import evaluate_partition
-from gcn_leiden.results import config_string
+from experiments.harness.results import config_string
 
 _DEFAULTS = {"embedding_dim": 128, "walk_length": 80, "context_size": 10,
              "walks_per_node": 10, "lr": 0.01, "batch_size": 8192}
