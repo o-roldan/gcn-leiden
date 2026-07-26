@@ -70,13 +70,19 @@ def train(model, feat, edge_index, adj, graph, labels, community_index,
         _, _, p = model(feat, edge_index, community_index)
         loss = cfg.loss_scale * soft_modularity_loss(p, mod, two_m)
         loss.backward()
+        # Global L2 norm of the gradient (convergence diagnostic). max_norm=inf
+        # makes the clip a no-op, so this only reads the norm — training is
+        # unchanged.
+        grad_norm = torch.nn.utils.clip_grad_norm_(
+            model.parameters(), float("inf")).item()
         optimizer.step()
         loss_value = loss.item()
 
         if epoch % cfg.eval_every == 0:
             snapshot = _evaluate(
                 model, feat, edge_index, community_index, graph, labels)
-            history.append({"epoch": epoch, "loss": loss_value, **snapshot})
+            history.append({"epoch": epoch, "loss": loss_value,
+                            "grad_norm": grad_norm, **snapshot})
             _update_peak(peak, snapshot)
 
         if loss_value < min_loss:

@@ -18,8 +18,11 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Reporting / notebook tooling, not imported by the library or harness.
+# Reporting tooling for experiments/analysis (tables + figures); not imported
+# by the gcn_leiden library or the runners/sweeps.
 analysis = [
+    "pandas>=2.0.0",
+    "seaborn>=0.13.0",
     "clusteval>=2.2.7",
     "matplotlib>=3.10.9",
     "munkres>=1.1.4",

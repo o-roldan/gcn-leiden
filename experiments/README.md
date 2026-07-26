@@ -12,7 +12,9 @@ experiments/
 │                 sweep.py (shared run-loop for every sweep driver)
 ├── runners/      gcn.py, baseline.py — one run -> one CSV row
 ├── sweeps/       full.py, recal.py, validate.py — grids of runner commands
-└── deploy/       launch_shards.sh — one GCE instance per dataset shard
+├── analysis/     load tidy CSVs -> LaTeX tables + multi-panel figures
+├── deploy/       launch_shards.sh — one GCE instance per dataset shard
+└── fetch_results.sh   rsync results back from the GCS bucket
 ```
 
 ## Single runs
@@ -61,7 +63,35 @@ determines machine size); all methods x seeds run inside, each instance writes
 ```bash
 PROJECT=my-project BUCKET=gs://my-bucket REPO=https://github.com/<user>/gcn-leiden.git \
   ./experiments/deploy/launch_shards.sh           # all shards
+
+# when the shards finish, pull their CSVs back down (rsync from the bucket):
+BUCKET=gs://my-bucket ./experiments/fetch_results.sh
 ```
+
+## Analysis (tables + figures)
+
+Install the reporting deps once (`uv sync --extra analysis`), then turn the
+CSVs into the results section with a few calls. Seeds are aggregated
+automatically (mean ± std); figures are multi-panel (faceted), so you get a
+handful of artifacts, not one image per dataset.
+
+```python
+from experiments.analysis import (load_runs, load_history, latex_table,
+                                   convergence_figure, scalability_figure,
+                                   recal_figure)
+
+runs = load_runs()                                   # results/runs*.csv
+print(latex_table(runs, metric="nmi", caption="NMI", label="tab:nmi"))
+convergence_figure(load_history(), savepath="fig_convergence.pdf")  # loss + grad-norm
+scalability_figure(runs, savepath="fig_scaling.pdf")                # RAM/VRAM/runtime vs n
+
+recal = load_runs(pattern="runs_recal_*.csv", exclude=())           # unpacks beta/gamma
+recal_figure(recal, savepath="fig_recal.pdf")
+```
+
+`load_runs` unpacks the packed `config` column into real columns (so `beta`,
+`resolution`, etc. are filterable/plottable) and adds `n_nodes`. `latex_table`
+bold-faces the best method per dataset.
 
 ## Experiment matrix (thesis Objetivo 3-4)
 

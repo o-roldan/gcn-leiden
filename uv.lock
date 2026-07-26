@@ -554,7 +554,10 @@ analysis = [
     { name = "matplotlib" },
     { name = "munkres" },
     { name = "openpyxl" },
+    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "pandas", version = "3.0.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
     { name = "scipy" },
+    { name = "seaborn" },
 ]
 
 [package.metadata]
@@ -566,9 +569,11 @@ requires-dist = [
     { name = "networkx", specifier = ">=3.6.1" },
     { name = "numpy", specifier = "<2.0.0" },
     { name = "openpyxl", marker = "extra == 'analysis'", specifier = ">=3.1.5" },
+    { name = "pandas", marker = "extra == 'analysis'", specifier = ">=2.0.0" },
     { name = "python-igraph", specifier = ">=1.0.0" },
     { name = "scikit-learn", specifier = ">=1.9.0" },
     { name = "scipy", marker = "extra == 'analysis'", specifier = ">=1.17.1" },
+    { name = "seaborn", marker = "extra == 'analysis'", specifier = ">=0.13.0" },
     { name = "torch", specifier = "<2.3" },
     { name = "torch-geometric", specifier = ">=2.8.0" },
 ]
