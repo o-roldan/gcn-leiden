@@ -39,14 +39,32 @@ per-epoch history to `results/history/` for the convergence study.
 ## Sweeps
 
 Each sweep runs every configuration for ONE dataset (one cloud shard) and
-writes `results/runs_<dataset>.csv`; merging shards = concatenation.
+writes into its own **batch** directory, `results/<batch>/runs_<dataset>.csv`
+(plus `history_<dataset>/`); merging shards = concatenation. `--batch`
+defaults to the launch timestamp, so a new sweep never touches earlier
+results; pass the same name to group several sweeps.
 
 ```bash
 uv run python -m experiments.sweeps.full --dataset cora                  # full method x seed sweep
-uv run python -m experiments.sweeps.full --dataset amap --dry-run        # show planned runs
+uv run python -m experiments.sweeps.full --dataset amap --dry-run        # show planned runs + output dir
+uv run python -m experiments.sweeps.full --dataset cora --batch rerun-v2 # named batch
 uv run python -m experiments.sweeps.recal --dataset sbm_1000_5           # beta x gamma prior sweep
 uv run python -m experiments.sweeps.validate --dataset cora              # dispersion-gated filter check
 ```
+
+```
+results/
+├── runs.csv, history/          ad-hoc single runs (tracked in git)
+├── runs_*.csv, history/...     pre-batch cloud results (batch "unbatched")
+└── <batch>/                    one sweep or one cloud launch
+    └── <shard>/                cloud only: one prefix per instance
+        ├── runs_<dataset>.csv
+        └── history_<dataset>/
+```
+
+Nothing overwrites: run CSVs are append-only, a rerun's history is written
+as `..._seed<N>-2.csv`, cloud shards upload to their own prefix with
+`--no-clobber`, and fetching never replaces local files.
 
 **Adding an experiment:** drop a new module in `experiments/sweeps/` that
 builds a list of runner commands (use `gcn_command` / `baseline_command` from
@@ -62,11 +80,16 @@ determines machine size); all methods x seeds run inside, each instance writes
 
 ```bash
 PROJECT=my-project BUCKET=gs://my-bucket REPO=https://github.com/<user>/gcn-leiden.git \
-  ./experiments/deploy/launch_shards.sh           # all shards
+  ./experiments/deploy/launch_shards.sh           # all shards, BATCH=<timestamp>
+BATCH=sbm-fix PROJECT=... BUCKET=... REPO=... \
+  ./experiments/deploy/launch_shards.sh sbm       # named batch
 
-# when the shards finish, pull their CSVs back down (rsync from the bucket):
+# when the shards finish, pull their CSVs back down (no-clobber rsync):
 BUCKET=gs://my-bucket ./experiments/fetch_results.sh
 ```
+
+Each shard uploads to `$BUCKET/results/<BATCH>/<shard>/`. The launcher
+refuses, before creating any instance, a shard whose prefix already exists.
 
 ## Analysis (tables + figures)
 
@@ -80,7 +103,8 @@ from experiments.analysis import (load_runs, load_history, latex_table,
                                    convergence_figure, scalability_figure,
                                    recal_figure)
 
-runs = load_runs()                                   # results/runs*.csv
+runs = load_runs()                                   # results/**/runs*.csv, every batch
+sbm = load_runs(batches="sbm-fix")                   # only one batch (and its shards)
 print(latex_table(runs, metric="nmi", caption="NMI", label="tab:nmi"))
 convergence_figure(load_history(), savepath="fig_convergence.pdf")  # loss + grad-norm
 scalability_figure(runs, savepath="fig_scaling.pdf")                # RAM/VRAM/runtime vs n
@@ -90,7 +114,9 @@ recal_figure(recal, savepath="fig_recal.pdf")
 ```
 
 `load_runs` unpacks the packed `config` column into real columns (so `beta`,
-`resolution`, etc. are filterable/plottable) and adds `n_nodes`. `latex_table`
+`resolution`, etc. are filterable/plottable) and adds `n_nodes` and `batch`
+(`load_history` adds `batch` too, and skips recal/validate histories by
+default). `latex_table`
 bold-faces the best method per dataset.
 
 ## Experiment matrix (thesis Objetivo 3-4)

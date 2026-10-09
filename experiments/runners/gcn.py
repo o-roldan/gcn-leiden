@@ -128,12 +128,22 @@ def _dump_history(history_dir, method, args, history):
     if not history:
         return
     history_dir.mkdir(parents=True, exist_ok=True)
-    path = history_dir / f"{method}_{args.dataset}_seed{args.seed}.csv"
-    with path.open("w", newline="") as handle:
+    path = _free_path(history_dir, f"{method}_{args.dataset}_seed{args.seed}")
+    with path.open("x", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(history[0].keys()))
         writer.writeheader()
         writer.writerows(history)
     print(f"history  -> {path}")
+
+
+def _free_path(directory, stem):
+    """First unused ``stem.csv``, ``stem-2.csv``, ... so reruns never clobber."""
+    path = directory / f"{stem}.csv"
+    rerun = 2
+    while path.exists():
+        path = directory / f"{stem}-{rerun}.csv"
+        rerun += 1
+    return path
 
 
 if __name__ == "__main__":

@@ -15,8 +15,8 @@ Arms per dataset family:
                            (Traag et al. 2019: intra-density > gamma >
                            inter-density; generator defaults 0.05/0.005).
 
-Results land in results/runs_recal_<dataset>.csv; histories are split per
-configuration so grid points do not overwrite each other.
+Results land in results/<batch>/runs_recal_<dataset>.csv; histories are
+split per configuration so grid points do not overwrite each other.
 
 Examples:
     python -m experiments.sweeps.recal --dataset film --dry-run
@@ -27,6 +27,7 @@ import argparse
 
 from experiments.harness.sweep import (
     add_common_sweep_args,
+    batch_dir,
     gcn_command,
     parse_seeds,
     run_sweep,
@@ -56,12 +57,13 @@ def grid_for(dataset):
 
 def build_commands(args):
     seeds = parse_seeds(args.seeds)
-    results = args.results or f"results/runs_recal_{args.dataset}.csv"
+    out = batch_dir(args)
+    results = args.results or str(out / f"runs_recal_{args.dataset}.csv")
 
     commands = []
     for prior, objective, gamma, beta in grid_for(args.dataset):
         tag = f"{objective}_g{gamma}_b{beta}"
-        history = f"results/history_recal_{args.dataset}/{tag}"
+        history = out / f"history_recal_{args.dataset}" / tag
         for seed in seeds:
             commands.append(gcn_command(
                 "--dataset", args.dataset, "--results", results,
@@ -78,7 +80,7 @@ def main():
     add_common_sweep_args(parser)
     args = parser.parse_args()
     run_sweep(f"recal {args.dataset}", build_commands(args),
-              dry_run=args.dry_run)
+              dry_run=args.dry_run, output=batch_dir(args))
 
 
 if __name__ == "__main__":

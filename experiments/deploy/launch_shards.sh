@@ -4,7 +4,14 @@
 #
 # Usage:
 #   PROJECT=my-project BUCKET=gs://my-bucket REPO=https://github.com/<user>/gcn-leiden.git \
-#     ./experiments/deploy/launch_shards.sh [shard ...]        # default: all of ALL_SHARDS
+#     [BATCH=sbm-fix] ./experiments/deploy/launch_shards.sh [shard ...]   # default: all of ALL_SHARDS
+#
+# Results layout: every shard writes to its own prefix,
+#   $BUCKET/results/$BATCH/<shard>/{runs_*.csv,history_*/}
+# BATCH defaults to the launch timestamp. Shards whose prefix already exists
+# are refused before any instance is created, and uploads use --no-clobber,
+# so a launch can never overwrite earlier results. Reuse a BATCH to add
+# shards to an existing batch later.
 #
 # Notes:
 #   * CPU shards use n2-standard-8 (E2 quota is 24 vCPUs on fresh projects;
@@ -27,6 +34,7 @@ SEEDS=${SEEDS:-0,1,2,3,4}
 # CPU machine type; override when a zone runs out of stock
 # (quota note: N2_CPUS=200, C2D_CPUS=100, E2_CPUS=24 on this project)
 CPU_MACHINE=${CPU_MACHINE:-n2-standard-8}
+BATCH=${BATCH:-$(date +%Y%m%d-%H%M%S)}
 
 ALL_SHARDS="cora citeseer amap film wikics sbm gpu"
 
@@ -59,7 +67,8 @@ spec_for() {
 }
 
 make_startup() {
-  local datasets=$1 device=$2 shard=$3 driver=$4
+  local datasets=$1 device=$2 name=$3 driver=$4 shard=$5
+  local out="${BATCH}/${shard}"
   cat <<EOF
 #!/bin/bash
 set -x
@@ -76,11 +85,10 @@ uv sync
 for PAIR in ${datasets}; do
   DS=\${PAIR%%:*}; EV=\${PAIR##*:}
   uv run python ${driver} --dataset \$DS --seeds ${SEEDS} \\
-    --device ${device} --eval-every \$EV || true
+    --device ${device} --eval-every \$EV --batch ${out} || true
 done
-gsutil cp results/runs_*.csv ${BUCKET}/results/ || true
-gsutil cp -r results/history_* ${BUCKET}/results/history/ || true
-gcloud compute instances delete ${shard} --zone=${ZONE} --quiet
+gcloud storage rsync -r --no-clobber results/${out} ${BUCKET}/results/${out} || true
+gcloud compute instances delete ${name} --zone=${ZONE} --quiet
 EOF
 }
 
@@ -105,12 +113,25 @@ launch() {
     $image_flags \
     --boot-disk-size=100GB \
     --scopes=storage-rw,compute-rw \
-    --metadata-from-file=startup-script=<(make_startup "$datasets" "$device" "$name" "$driver")
+    --metadata-from-file=startup-script=<(make_startup "$datasets" "$device" "$name" "$driver" "$shard")
 }
 
 shards=("$@")
 [[ ${#shards[@]} -eq 0 ]] && shards=($ALL_SHARDS)
+
+# Pre-flight: validate every shard and refuse any whose results prefix
+# already exists, before a single instance is created.
+for shard in "${shards[@]}"; do
+  spec_for "$shard" >/dev/null || { echo "unknown shard: $shard" >&2; exit 1; }
+  if gcloud storage ls "${BUCKET}/results/${BATCH}/${shard}/" >/dev/null 2>&1; then
+    echo "refusing: ${BUCKET}/results/${BATCH}/${shard}/ already has results;" \
+         "pick another BATCH" >&2
+    exit 1
+  fi
+done
+
+echo ">>> batch ${BATCH}"
 for shard in "${shards[@]}"; do
   launch "$shard"
 done
-echo "launched ${#shards[@]} shards; results will land in ${BUCKET}/results/"
+echo "launched ${#shards[@]} shards; results will land in ${BUCKET}/results/${BATCH}/<shard>/"

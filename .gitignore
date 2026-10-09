@@ -15,5 +15,10 @@ result.csv
 
 # OS
 .DS_Store
-results/runs_*.csv
-results/history_*/
+
+# Sweep/cloud results (results/<batch>/..., fetched bucket files) stay
+# local; only the ad-hoc runs.csv and its flat history/ are tracked.
+results/*
+!results/runs.csv
+!results/history/
+results/history/*/

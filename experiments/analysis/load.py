@@ -2,15 +2,22 @@
 
 Two artifact families are produced by the runners:
 
-  * runs CSVs  (results/runs*.csv) -- one row per run; the per-method
+  * runs CSVs  (results/**/runs*.csv) -- one row per run; the per-method
     hyperparameters live packed in the ``config`` column.
-  * history CSVs (results/history*/**/*.csv) -- one row per evaluated epoch,
-    named ``{method}_{dataset}_seed{seed}.csv``.
+  * history CSVs (results/**/history*/**/*.csv) -- one row per evaluated
+    epoch, named ``{method}_{dataset}_seed{seed}[-rerun].csv``.
+
+Sweeps write each batch under its own directory (``results/<batch>/``, or
+``results/<batch>/<shard>/`` for cloud shards); files directly under
+``results/`` (pre-batch cloud results and ad-hoc single runs) belong to the
+``unbatched`` batch. Both loaders read every batch, add a ``batch`` column,
+and accept ``batches=`` to restrict to some of them.
 
 ``load_runs`` unpacks ``config`` into real columns and tags each row with the
 graph size; ``load_history`` recovers method/dataset/seed from the filename.
 """
 
+import fnmatch
 import re
 from pathlib import Path
 
@@ -24,45 +31,81 @@ REAL_NODE_COUNTS = {
     "amac": 13752, "amap": 7650, "film": 7600, "wikics": 11701,
 }
 
-_HISTORY_RE = re.compile(r"(?P<method>[^_]+)_(?P<dataset>.+)_seed(?P<seed>\d+)\.csv$")
+_HISTORY_RE = re.compile(
+    r"(?P<method>[^_]+)_(?P<dataset>.+)_seed(?P<seed>\d+)(?:-\d+)?\.csv$")
 _SBM_RE = re.compile(r"sbm_(\d+)_\d+")
+UNBATCHED = "unbatched"
 
 
 def load_runs(results_dir="results", pattern="runs*.csv",
-              exclude=("recal", "validate")):
-    """Concatenate matching run CSVs into one tidy DataFrame.
+              exclude=("recal", "validate"), batches=None):
+    """Concatenate matching run CSVs from every batch into one DataFrame.
 
     The default skips the recal/validate sweeps (different grids); load those
     explicitly, e.g. ``load_runs(pattern="runs_recal_*.csv", exclude=())``.
+    ``batches`` keeps only the named batches (a batch also matches its
+    per-shard sub-batches, so "20261009-1530" includes "20261009-1530/sbm").
     """
-    paths = [p for p in sorted(Path(results_dir).glob(pattern))
-             if not any(tok in p.name for tok in exclude)]
+    root = Path(results_dir)
+    paths = [p for p in sorted(root.glob(f"**/{pattern}"))
+             if not any(tok in p.name for tok in exclude)
+             and _in_batches(_batch_of(p.parent, root), batches)]
     if not paths:
         raise FileNotFoundError(
-            f"no run CSVs matched {results_dir}/{pattern} (exclude={exclude})")
-    df = pd.concat([pd.read_csv(p) for p in paths], ignore_index=True)
+            f"no run CSVs matched {results_dir}/**/{pattern} "
+            f"(exclude={exclude}, batches={batches})")
+    df = pd.concat([pd.read_csv(p).assign(batch=_batch_of(p.parent, root))
+                    for p in paths], ignore_index=True)
     return add_node_counts(parse_config(df))
 
 
-def load_history(results_dir="results", pattern="history*/**/*.csv"):
+def load_history(results_dir="results", pattern="history*",
+                 exclude=("recal", "validate"), batches=None):
     """Concatenate per-epoch history CSVs into one long-form DataFrame.
 
-    method/dataset/seed are parsed from each filename and added as columns.
+    Reads every CSV below a directory matching ``pattern`` in any batch;
+    ``exclude`` and ``batches`` work as in ``load_runs`` (``exclude`` is
+    matched against the history directory names). method/dataset/seed are
+    parsed from each filename and added as columns.
     """
+    root = Path(results_dir)
     frames = []
-    for path in sorted(Path(results_dir).glob(pattern)):
+    for path in sorted(root.glob("**/*.csv")):
+        parts = path.relative_to(root).parts[:-1]
+        top = next((i for i, part in enumerate(parts)
+                    if fnmatch.fnmatch(part, pattern)), None)
         match = _HISTORY_RE.search(path.name)
-        if match is None:
+        if top is None or match is None:
+            continue
+        batch = "/".join(parts[:top]) or UNBATCHED
+        if (any(tok in part for part in parts[top:] for tok in exclude)
+                or not _in_batches(batch, batches)):
             continue
         frame = pd.read_csv(path)
         frame["method"] = match["method"]
         frame["dataset"] = match["dataset"]
         frame["seed"] = int(match["seed"])
+        frame["batch"] = batch
         frames.append(frame)
     if not frames:
         raise FileNotFoundError(
-            f"no history CSVs matched {results_dir}/{pattern}")
+            f"no history CSVs matched {results_dir}/**/{pattern}/ "
+            f"(exclude={exclude}, batches={batches})")
     return pd.concat(frames, ignore_index=True)
+
+
+def _batch_of(directory, root):
+    """Batch name of a results directory: its path relative to the root."""
+    batch = directory.relative_to(root).as_posix()
+    return UNBATCHED if batch == "." else batch
+
+
+def _in_batches(batch, batches):
+    if batches is None:
+        return True
+    if isinstance(batches, str):
+        batches = (batches,)
+    return any(batch == b or batch.startswith(b + "/") for b in batches)
 
 
 def parse_config(df):
