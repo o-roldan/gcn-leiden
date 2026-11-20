@@ -29,7 +29,7 @@ Las cifras de todas las tablas (≈600 celdas) se recalcularon desde los CSV y l
 | 17 | Convergencia | p=0.009; k distinto; niveles de Q' | ⚠️ | Sin WikiCS, p>0.1; las semillas comparten el prior; k solo difiere en Cora y PubMed; hay diferencias por grafo | Se añadieron las salvedades |
 | 18 | Leyendas y protocolo | Negritas en DBI; β en SBM; fila k; pico; trayectorias | ⚠️ | Contradicciones internas y omisiones | Ajustado |
 | 19 | Cap. 4 (Traag) | Hasta 25 %/16 % | ⚠️ | Son los máximos al iterar; en la primera iteración rondan el 1 % | Matizado |
-| 20 | Trabajo relacionado:44, Trabajo futuro, Intro | "el prior reduce el costo"; la descomposición de B permitiría Physics; CLIQUE | ⚠️ | El costo no se mide; A y la diagonal siguen densas; la cita de CLIQUE no la respalda | Suavizado. Por decisión del autor, no se añadió una cita de Karp |
+| 20 | Trabajo relacionado:44, Trabajo futuro, Intro | "el prior reduce el costo"; la descomposición de B permitiría Physics; CLIQUE | ⚠️ | El costo no se mide; A y la diagonal siguen densas; la cita de CLIQUE no la respalda | Suavizado. Para CLIQUE se añadió después la cita de Karp (1972), con metadatos verificados en Crossref |
 
 ### Verificado como correcto (✅)
 

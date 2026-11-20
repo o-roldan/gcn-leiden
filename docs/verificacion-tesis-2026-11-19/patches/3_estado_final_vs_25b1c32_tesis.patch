@@ -1,7 +1,16 @@
 diff --git a/chapters/chapter01/chap01.tex b/chapters/chapter01/chap01.tex
-index e7ea77a..9e9dd8c 100644
+index e7ea77a..79eaaba 100644
 --- a/chapters/chapter01/chap01.tex
 +++ b/chapters/chapter01/chap01.tex
+@@ -23,7 +23,7 @@ Buscar la solución del agrupamiento por fuerza bruta implica evaluar un número
+ 
+ En el caso extremo de comunidad, la teoría de la complejidad demuestra
+ que \textit{decidir} si un grafo contiene un \textit{clique} de tamaño
+-$k$, cuando $k$ forma parte de la entrada, constituye un problema \textsc{np}-completo. No obstante, pese
++$k$, cuando $k$ forma parte de la entrada, constituye un problema \textsc{np}-completo \cite{Karp1972}. No obstante, pese
+ a esta complejidad, existen algoritmos exactos capaces de resolver
+ instancias de tamaño moderado en la práctica mediante técnicas de
+ ramificación y acotamiento \cite{Prosser2012}.
 @@ -93,7 +93,7 @@ De esta hipótesis se derivan las siguientes hipótesis específicas:
  \begin{enumerate}
      \item Usar Leiden en lugar de Louvain como \textit{prior} mejora
@@ -383,3 +392,26 @@ index 621afab..1b99a56 100644
  $\mu_s$
    & Media de los tamaños de comunidad \\
  $\sigma_s$
+diff --git a/references.bib b/references.bib
+index bd49c35..b5e84b8 100644
+--- a/references.bib
++++ b/references.bib
+@@ -592,6 +592,18 @@
+   note         = {Accessed: 2026-06-10}
+ }
+ 
++@incollection{Karp1972,
++  author    = {Karp, Richard M.},
++  title     = {Reducibility among Combinatorial Problems},
++  booktitle = {Complexity of Computer Computations},
++  publisher = {Springer US},
++  address   = {Boston, MA},
++  pages     = {85--103},
++  year      = {1972},
++  doi       = {10.1007/978-1-4684-2001-2_9},
++  isbn      = {978-1-4684-2003-6}
++}
++
+ @article{Prosser2012,
+   author       = {Patrick Prosser},
+   title        = {Exact Algorithms for Maximum Clique: a computational study},
