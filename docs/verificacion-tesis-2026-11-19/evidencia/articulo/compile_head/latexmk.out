@@ -1,0 +1,1389 @@
+Rc files read (in order):
+  NONE
+Latexmk: This is Latexmk, John Collins, 9 March 2026. Version 4.88.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -recorder  "main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/locale/es/babel-spanish.t
+ex) (/usr/local/texlive/2026/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/abstract/abstract.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/titlesec/titlesec.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ragged2e/ragged2e.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/newtxtext.sty
+`newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes a
+nd its extensions (msharpe)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xpatch/xpatch.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/figureversions/figureversions.sty
+))) (/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/trimclip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/collectbox/collectbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/varwidth/varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/preprint/balance.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-dm.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-compat.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-bibtex.def
+
+Package biblatex Warning: Using fall-back bibtex backend:
+(biblatex)                functionality may be reduced/unavailable.
+
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/standard.bbx))))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.cbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/cbx/numeric-verb.cbx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/t1ntxtlf.fd) (./main.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx)
+No file main.bbl.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)
+Underfull \hbox (badness 7595) in paragraph at lines 173--174
+[]\T1/ntxtlf/m/n/10 Existen mu-chos pro-ble-mas re-la-cio-na-dos con las
+
+LaTeX Warning: Citation 'tsitsulin2023' on page 1 undefined on input line 175.
+
+
+LaTeX Warning: Citation 'harenberg2014community' on page 1 undefined on input l
+ine 177.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+
+LaTeX Warning: Citation 'Traag2019' on page 1 undefined on input line 191.
+
+[1{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/l
+ocal/texlive/2026/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/local/t
+exlive/2026/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
+Underfull \hbox (badness 3514) in paragraph at lines 216--217
+[]\T1/ntxtlf/b/n/10 Experimentación con di-fe-ren-tes se-mi-llas\T1/ntxtlf/m/n/
+10 . La
+
+LaTeX Warning: Reference `sec:fases-2-4' on page 2 undefined on input line 218.
+
+
+
+LaTeX Warning: Citation 'Lobov2019' on page 2 undefined on input line 226.
+
+
+LaTeX Warning: Citation 'tsitsulin2023' on page 2 undefined on input line 226.
+
+
+LaTeX Warning: Citation 'tsitsulin2023' on page 2 undefined on input line 226.
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 226--227
+[]\T1/ntxtlf/m/n/10 Un mo-de-lo de aten-ción ti-po Trans-for-mer va-li-da la
+
+Underfull \hbox (badness 2932) in paragraph at lines 226--227
+\T1/ntxtlf/m/n/10 mo-du-la-ri-dad sua-ve $\OML/cmm/m/it/10 Q[]$ \T1/ntxtlf/m/n/
+10 co-mo ob-je-ti-vo di-fe-ren-cia-ble
+
+Underfull \hbox (badness 1521) in paragraph at lines 226--227
+\T1/ntxtlf/m/n/10 cu-yo pa-pel es im-pe-dir el co-lap-so ha-cia so-lu-cio-nes
+
+Underfull \hbox (badness 1168) in paragraph at lines 226--227
+\T1/ntxtlf/m/n/10 de-ge-ne-ra-das (asig-nar to-dos los no-dos a una mis-ma
+
+LaTeX Warning: Citation 'Wang2025' on page 2 undefined on input line 231.
+
+
+LaTeX Warning: Citation 'Traag2019' on page 2 undefined on input line 231.
+
+
+LaTeX Warning: Citation 'Wang2025' on page 2 undefined on input line 334.
+
+
+LaTeX Warning: Citation 'Wang2025' on page 2 undefined on input line 334.
+
+
+LaTeX Warning: Citation 'Newman2004' on page 2 undefined on input line 343.
+
+
+LaTeX Warning: Citation 'Wang2025' on page 2 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'Traag2019' on page 2 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'Traag2019' on page 2 undefined on input line 347.
+
+
+Underfull \hbox (badness 3058) in paragraph at lines 347--348
+[]\T1/ntxtlf/m/n/10 Por eso, es-te tra-ba-jo usa Lei-den []. Su
+
+LaTeX Warning: Citation 'Traag2019' on page 2 undefined on input line 349.
+
+
+LaTeX Warning: Citation 'Traag2019' on page 2 undefined on input line 353.
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 361--361
+[]|\T1/ntxtlf/m/it/10 es el nú-me-ro de aris-tas in-ter-nas de la
+
+Underfull \hbox (badness 1960) in paragraph at lines 361--361
+\T1/ntxtlf/m/it/10 den-si-dad in-ter-na mí-ni-ma exi-gi-da a ca-da
+
+Underfull \vbox (badness 10000) has occurred while \output is active [2]
+
+LaTeX Warning: Citation 'Traag2019' on page 3 undefined on input line 364.
+
+
+LaTeX Warning: Citation 'Wang2025' on page 3 undefined on input line 364.
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 364--365
+[]\T1/ntxtlf/m/n/10 Leiden no im-po-ne un ta-ma-ño mí-ni-mo, así que $\OMS/cmsy
+/m/n/10 P$
+
+Underfull \hbox (badness 3449) in paragraph at lines 364--365
+\T1/ntxtlf/m/n/10 in-clu-ye mu-chas co-mu-ni-da-des pe-que-ñas [].
+
+LaTeX Warning: Citation 'Wang2025' on page 3 undefined on input line 370.
+
+
+LaTeX Warning: Citation 'Wang2025' on page 3 undefined on input line 377.
+
+
+Underfull \hbox (badness 6510) in paragraph at lines 383--384
+[] []\T1/ntxtlf/b/n/10 Fil-tro con-di-cio-na-do.[] \T1/ntxtlf/m/n/10 El um-bral
+ $\OML/cmm/m/it/10 T$ \T1/ntxtlf/m/n/10 su-po-ne una
+
+LaTeX Warning: Reference `sec:estudio-recalibracion' on page 3 undefined on inp
+ut line 396.
+
+
+LaTeX Warning: Citation 'Wang2025' on page 3 undefined on input line 407.
+
+
+Underfull \hbox (badness 4156) in paragraph at lines 407--408
+[]\T1/ntxtlf/m/n/10 Las pun-tua-cio-nes de si-mi-li-tud bru-tas ca-re-cen de
+
+LaTeX Warning: Citation 'Wang2025' on page 3 undefined on input line 411.
+
+
+Underfull \hbox (badness 1082) in paragraph at lines 411--412
+[]\T1/ntxtlf/b/n/10 Definición 3 \T1/ntxtlf/m/n/10 (Afi-lia-ción sua-ve)\T1/ntx
+tlf/b/n/10 . []\T1/ntxtlf/m/it/10 La pro-ba-bi-li-dad de
+
+LaTeX Warning: Citation 'Wang2025' on page 3 undefined on input line 417.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/t1ntxtt.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 417--417
+[][]\T1/ntxtlf/m/n/8 En el re-po-si-to-rio ofi-cial ($\T1/ntxtt/m/n/8 https : /
+ / github . com /
+
+Underfull \hbox (badness 10000) in paragraph at lines 417--417
+\T1/ntxtt/m/n/8 wuanghoong / Less-[]is-[]More$\T1/ntxtlf/m/n/8 ), la afi-lia-ci
+ón se cal-cu-la co-mo
+
+Underfull \hbox (badness 5374) in paragraph at lines 417--417
+\T1/ntxtt/m/n/8 torch.softmax(cluster_temp * dist, 1) \T1/ntxtlf/m/n/8 con \T1/
+ntxtt/m/n/8 cluster_temp
+[3]
+
+LaTeX Warning: Citation 'Mothe2017' on page 4 undefined on input line 428.
+
+
+Underfull \hbox (badness 2809) in paragraph at lines 428--429
+[]\T1/ntxtlf/m/n/10 Esta in-ves-ti-ga-ción em-plea cua-tro mé-tri-cas es-tán-da
+r
+
+Underfull \hbox (badness 4467) in paragraph at lines 428--429
+[]\T1/ntxtlf/m/n/10 : la \T1/ntxtlf/b/n/10 In-for-ma-ción Mu-tua Nor-ma-li-za-d
+a
+
+LaTeX Warning: Reference `tab:conjuntos-datos' on page 4 undefined on input lin
+e 433.
+
+
+Underfull \hbox (badness 1057) in paragraph at lines 433--434
+[]\T1/ntxtlf/m/n/10 La eva-lua-ción abar-ca nue-ve gra-fos reales de cua-tro
+
+LaTeX Warning: Citation 'Wang2025' on page 4 undefined on input line 469.
+
+
+Underfull \hbox (badness 1028) in paragraph at lines 469--470
+[]\T1/ntxtlf/m/n/10 Cabe una sal-ve-dad de com-pa-ra-bi-li-dad: las ver-sio-nes
+
+
+LaTeX Warning: Citation 'Wang2025' on page 4 undefined on input line 474.
+
+
+LaTeX Warning: Reference `sec:estudio-recalibracion' on page 4 undefined on inp
+ut line 474.
+
+
+LaTeX Warning: Citation 'blondel2008' on page 4 undefined on input line 479.
+
+
+LaTeX Warning: Citation 'Traag2019' on page 4 undefined on input line 479.
+
+
+LaTeX Warning: Citation 'Perozzi2014' on page 4 undefined on input line 479.
+
+
+LaTeX Warning: Citation 'Velickovic2019' on page 4 undefined on input line 479.
+
+
+
+LaTeX Warning: Citation 'tsitsulin2023' on page 4 undefined on input line 479.
+
+
+LaTeX Warning: Citation 'Wang2025' on page 4 undefined on input line 479.
+
+
+Underfull \hbox (badness 2088) in paragraph at lines 479--480
+\T1/ntxtlf/m/n/10 pro-fun-dos no su-per-vi-sa-dos (Deep-Walk [],
+
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
+\T1/ntxtlf/m/sc/10 dgi [] \T1/ntxtlf/m/n/10 y DMoN []), la
+
+LaTeX Warning: Reference `tab:resultados-citas-coautoria' on page 4 undefined o
+n input line 487.
+
+
+LaTeX Warning: Reference `tab:resultados-compra-web' on page 4 undefined on inp
+ut line 487.
+
+
+LaTeX Warning: Reference `tab:resultados-sbm' on page 4 undefined on input line
+ 487.
+
+
+LaTeX Warning: Reference `sec:estudio-recalibracion' on page 4 undefined on inp
+ut line 571.
+
+
+LaTeX Warning: Reference `sec:estudio-recalibracion' on page 4 undefined on inp
+ut line 571.
+
+
+LaTeX Warning: Reference `tab:resultados-sbm' on page 4 undefined on input line
+ 600.
+
+
+Underfull \vbox (badness 2717) has occurred while \output is active [4]
+
+LaTeX Warning: Reference `sec:estudio-recalibracion' on page 5 undefined on inp
+ut line 607.
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 607--608
+\T1/ntxtlf/m/n/10 ma-ti-za-do. Lei-den ga-na en Co-ra ($\OT1/cmr/m/n/10 +0\OML/
+cmm/m/it/10 :\OT1/cmr/m/n/10 013$ \T1/ntxtlf/m/n/10 de $\OML/cmm/m/it/10 NMI$\T
+1/ntxtlf/m/n/10 ,
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+
+LaTeX Warning: Reference `sec:estudio-recalibracion' on page 5 undefined on inp
+ut line 614.
+
+[5]
+
+LaTeX Warning: Reference `tab:telemetria-memoria' on page 6 undefined on input 
+line 644.
+
+
+LaTeX Warning: Reference `subsec:implementacion-paridad' on page 6 undefined on
+ input line 651.
+
+
+LaTeX Warning: Reference `def:cpm' on page 6 undefined on input line 651.
+
+
+LaTeX Warning: Citation 'Traag2019' on page 6 undefined on input line 651.
+
+
+LaTeX Warning: Reference `tab:resultados-sbm' on page 6 undefined on input line
+ 651.
+
+
+LaTeX Warning: Reference `eq:filtro-condicionado' on page 6 undefined on input 
+line 653.
+
+
+LaTeX Warning: Citation 'Traag2019' on page 6 undefined on input line 655.
+
+
+LaTeX Warning: Reference `subsec:analisis-ablacion-prior' on page 6 undefined o
+n input line 664.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active [6]
+
+LaTeX Warning: Reference `sec:estudio-recalibracion' on page 7 undefined on inp
+ut line 667.
+
+
+LaTeX Warning: Reference `eq:filtro-condicionado' on page 7 undefined on input 
+line 667.
+
+
+LaTeX Warning: Reference `subsec:analisis-telemetria' on page 7 undefined on in
+put line 675.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 674--676
+[] []\T1/ntxtlf/b/n/10 4. Efi-cien-cia de me-mo-ria.[] \T1/ntxtlf/m/n/10 No del
+ to-do. La
+
+LaTeX Warning: Empty bibliography on input line 687.
+
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[7] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+ )
+(see the transcript file for additional information)</usr/local/texlive/2026/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/local/texlive/2026/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist
+/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2026/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msam10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/txfont
+s/t1xtt.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmb.p
+fb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr
+/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/te
+xlive/2026/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (7 pages, 441436 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Missing bbl file 'main.bbl' in following:
+ No file main.bbl.
+Latexmk: References changed.
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Create bibtex main
+Latexmk: Found bibliography file(s):
+  ./main-blx.bib
+  ./references.bib
+Latexmk: applying rule 'bibtex main'...
+Rule 'bibtex main':  Reasons for rerun
+Category 'other':
+  Rerun of 'bibtex main' forced or previously required:
+    Reason or flag: 'Initial set up of rule'
+
+------------
+Run number 1 of rule 'bibtex main'
+------------
+------------
+Running 'bibtex  "main.aux"'
+------------
+This is BibTeX, Version 0.99e (TeX Live 2026)
+The top-level auxiliary file: main.aux
+The style file: biblatex.bst
+Database file #1: main-blx.bib
+Database file #2: references.bib
+Biblatex version: 3.21
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main.aux
+  main.bbl
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -recorder  "main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/locale/es/babel-spanish.t
+ex) (/usr/local/texlive/2026/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/abstract/abstract.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/titlesec/titlesec.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ragged2e/ragged2e.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/newtxtext.sty
+`newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes a
+nd its extensions (msharpe)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xpatch/xpatch.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/figureversions/figureversions.sty
+))) (/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/trimclip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/collectbox/collectbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/varwidth/varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/preprint/balance.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-dm.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-compat.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-bibtex.def
+
+Package biblatex Warning: Using fall-back bibtex backend:
+(biblatex)                functionality may be reduced/unavailable.
+
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/standard.bbx))))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.cbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/cbx/numeric-verb.cbx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/t1ntxtlf.fd) (./main.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx)
+(./main.bbl) (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)
+Underfull \hbox (badness 7595) in paragraph at lines 173--174
+[]\T1/ntxtlf/m/n/10 Existen mu-chos pro-ble-mas re-la-cio-na-dos con las
+
+Underfull \vbox (badness 10000) has occurred while \output is active [1{/usr/lo
+cal/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texli
+ve/2026/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/local/texlive/202
+6/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
+Underfull \hbox (badness 3514) in paragraph at lines 216--217
+[]\T1/ntxtlf/b/n/10 Experimentación con di-fe-ren-tes se-mi-llas\T1/ntxtlf/m/n/
+10 . La
+
+Underfull \hbox (badness 1484) in paragraph at lines 226--227
+[]\T1/ntxtlf/m/n/10 Un mo-de-lo de aten-ción ti-po Trans-for-mer va-li-da la
+
+Underfull \vbox (badness 2717) has occurred while \output is active
+Underfull \hbox (badness 2065) in paragraph at lines 361--361
+[]|\T1/ntxtlf/m/it/10 es el nú-me-ro de aris-tas in-ter-nas de la
+
+Underfull \hbox (badness 1960) in paragraph at lines 361--361
+\T1/ntxtlf/m/it/10 den-si-dad in-ter-na mí-ni-ma exi-gi-da a ca-da
+[2]
+Underfull \hbox (badness 1484) in paragraph at lines 364--365
+[]\T1/ntxtlf/m/n/10 Leiden no im-po-ne un ta-ma-ño mí-ni-mo, así que $\OMS/cmsy
+/m/n/10 P$
+
+Underfull \hbox (badness 4819) in paragraph at lines 364--365
+\T1/ntxtlf/m/n/10 in-clu-ye mu-chas co-mu-ni-da-des pe-que-ñas [3]. Es-tas
+
+Underfull \hbox (badness 10000) in paragraph at lines 364--365
+\T1/ntxtlf/m/n/10 mi-cro-co-mu-ni-da-des son de-ma-sia-do pe-que-ñas pa-ra
+
+Underfull \hbox (badness 1436) in paragraph at lines 364--365
+\T1/ntxtlf/m/n/10 re-pre-sen-tar es-truc-tu-ra me-sos-có-pi-ca. Wang et al. [5]
+
+
+Underfull \hbox (badness 6510) in paragraph at lines 383--384
+[] []\T1/ntxtlf/b/n/10 Fil-tro con-di-cio-na-do.[] \T1/ntxtlf/m/n/10 El um-bral
+ $\OML/cmm/m/it/10 T$ \T1/ntxtlf/m/n/10 su-po-ne una
+
+Underfull \vbox (badness 1931) has occurred while \output is active
+Underfull \hbox (badness 4156) in paragraph at lines 407--408
+[]\T1/ntxtlf/m/n/10 Las pun-tua-cio-nes de si-mi-li-tud bru-tas ca-re-cen de
+
+Underfull \hbox (badness 1082) in paragraph at lines 411--412
+[]\T1/ntxtlf/b/n/10 Definición 3 \T1/ntxtlf/m/n/10 (Afi-lia-ción sua-ve)\T1/ntx
+tlf/b/n/10 . []\T1/ntxtlf/m/it/10 La pro-ba-bi-li-dad de
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/t1ntxtt.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 417--417
+[][]\T1/ntxtlf/m/n/8 En el re-po-si-to-rio ofi-cial ($\T1/ntxtt/m/n/8 https : /
+ / github . com /
+
+Underfull \hbox (badness 10000) in paragraph at lines 417--417
+\T1/ntxtt/m/n/8 wuanghoong / Less-[]is-[]More$\T1/ntxtlf/m/n/8 ), la afi-lia-ci
+ón se cal-cu-la co-mo
+
+Underfull \hbox (badness 5374) in paragraph at lines 417--417
+\T1/ntxtt/m/n/8 torch.softmax(cluster_temp * dist, 1) \T1/ntxtlf/m/n/8 con \T1/
+ntxtt/m/n/8 cluster_temp
+[3]
+Underfull \hbox (badness 1478) in paragraph at lines 428--429
+\T1/ntxtlf/b/n/10 Rand Ajus-ta-do \T1/ntxtlf/m/n/10 ($\OML/cmm/m/it/10 ARI$\T1/
+ntxtlf/m/n/10 ), que mi-den la coin-ci-den-cia
+
+Underfull \hbox (badness 1939) in paragraph at lines 428--429
+\T1/ntxtlf/m/n/10 con una par-ti-ción de re-fe-ren-cia (\T1/ntxtlf/m/it/10 grou
+nd truth\T1/ntxtlf/m/n/10 ); la
+
+Underfull \hbox (badness 1275) in paragraph at lines 428--429
+\T1/ntxtlf/b/n/10 Mo-du-la-ri-dad $\OML/cmm/m/it/10 Q$ \T1/ntxtlf/m/n/10 de New
+man-Girvan, que eva-lúa la
+
+Underfull \hbox (badness 1057) in paragraph at lines 433--434
+[]\T1/ntxtlf/m/n/10 La eva-lua-ción abar-ca nue-ve gra-fos reales de cua-tro
+
+Underfull \hbox (badness 1028) in paragraph at lines 469--470
+[]\T1/ntxtlf/m/n/10 Cabe una sal-ve-dad de com-pa-ra-bi-li-dad: las ver-sio-nes
+
+[4]
+Underfull \hbox (badness 1033) in paragraph at lines 607--608
+\T1/ntxtlf/m/n/10 ma-ti-za-do. Lei-den ga-na en Co-ra ($\OT1/cmr/m/n/10 +0\OML/
+cmm/m/it/10 :\OT1/cmr/m/n/10 013$ \T1/ntxtlf/m/n/10 de $\OML/cmm/m/it/10 NMI$\T
+1/ntxtlf/m/n/10 ,
+
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 674--676
+[] []\T1/ntxtlf/b/n/10 4. Efi-cien-cia de me-mo-ria.[] \T1/ntxtlf/m/n/10 No del
+ to-do. La
+
+Underfull \hbox (badness 1205) in paragraph at lines 688--688
+[]\T1/ntxtlf/m/n/8 J. Mothe, K. Mkhi-tar-yan y M. Ha-rou-tu-nian, ^^S  Com-mu-n
+ity
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[7] [8] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+ )
+(see the transcript file for additional information)</usr/local/texlive/2026/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/local/texlive/2026/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist
+/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2026/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msam10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/txfont
+s/t1xtt.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmb.p
+fb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr
+/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/te
+xlive/2026/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (8 pages, 449088 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: References changed.
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  ./main-blx.bib
+  ./references.bib
+Latexmk: applying rule 'bibtex main'...
+Rule 'bibtex main':  Reasons for rerun
+Changed files or newly in use/created:
+  main.aux
+
+------------
+Run number 2 of rule 'bibtex main'
+------------
+------------
+Running 'bibtex  "main.aux"'
+------------
+This is BibTeX, Version 0.99e (TeX Live 2026)
+The top-level auxiliary file: main.aux
+The style file: biblatex.bst
+Database file #1: main-blx.bib
+Database file #2: references.bib
+Biblatex version: 3.21
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  main.aux
+  main.run.xml
+
+------------
+Run number 3 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -recorder  "main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/locale/es/babel-spanish.t
+ex) (/usr/local/texlive/2026/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/csquotes/csquotes.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/abstract/abstract.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/titlesec/titlesec.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ragged2e/ragged2e.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/newtxtext.sty
+`newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes a
+nd its extensions (msharpe)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xpatch/xpatch.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/figureversions/figureversions.sty
+))) (/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/trimclip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/collectbox/collectbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/varwidth/varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/preprint/balance.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/logreq/logreq.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-dm.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-compat.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-bibtex.def
+
+Package biblatex Warning: Using fall-back bibtex backend:
+(biblatex)                functionality may be reduced/unavailable.
+
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/standard.bbx))))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex-ieee/ieee.cbx
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/cbx/numeric-verb.cbx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/biblatex.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/t1ntxtlf.fd) (./main.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx)
+(./main.bbl) (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)
+Underfull \hbox (badness 7595) in paragraph at lines 173--174
+[]\T1/ntxtlf/m/n/10 Existen mu-chos pro-ble-mas re-la-cio-na-dos con las
+
+Underfull \vbox (badness 10000) has occurred while \output is active [1{/usr/lo
+cal/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texli
+ve/2026/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/local/texlive/202
+6/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
+Underfull \hbox (badness 3514) in paragraph at lines 216--217
+[]\T1/ntxtlf/b/n/10 Experimentación con di-fe-ren-tes se-mi-llas\T1/ntxtlf/m/n/
+10 . La
+
+Underfull \hbox (badness 1484) in paragraph at lines 226--227
+[]\T1/ntxtlf/m/n/10 Un mo-de-lo de aten-ción ti-po Trans-for-mer va-li-da la
+
+Underfull \vbox (badness 2717) has occurred while \output is active
+Underfull \hbox (badness 2065) in paragraph at lines 361--361
+[]|\T1/ntxtlf/m/it/10 es el nú-me-ro de aris-tas in-ter-nas de la
+
+Underfull \hbox (badness 1960) in paragraph at lines 361--361
+\T1/ntxtlf/m/it/10 den-si-dad in-ter-na mí-ni-ma exi-gi-da a ca-da
+[2]
+Underfull \hbox (badness 1484) in paragraph at lines 364--365
+[]\T1/ntxtlf/m/n/10 Leiden no im-po-ne un ta-ma-ño mí-ni-mo, así que $\OMS/cmsy
+/m/n/10 P$
+
+Underfull \hbox (badness 4819) in paragraph at lines 364--365
+\T1/ntxtlf/m/n/10 in-clu-ye mu-chas co-mu-ni-da-des pe-que-ñas [3]. Es-tas
+
+Underfull \hbox (badness 10000) in paragraph at lines 364--365
+\T1/ntxtlf/m/n/10 mi-cro-co-mu-ni-da-des son de-ma-sia-do pe-que-ñas pa-ra
+
+Underfull \hbox (badness 1436) in paragraph at lines 364--365
+\T1/ntxtlf/m/n/10 re-pre-sen-tar es-truc-tu-ra me-sos-có-pi-ca. Wang et al. [5]
+
+
+Underfull \hbox (badness 6510) in paragraph at lines 383--384
+[] []\T1/ntxtlf/b/n/10 Fil-tro con-di-cio-na-do.[] \T1/ntxtlf/m/n/10 El um-bral
+ $\OML/cmm/m/it/10 T$ \T1/ntxtlf/m/n/10 su-po-ne una
+
+Underfull \vbox (badness 1931) has occurred while \output is active
+Underfull \hbox (badness 4156) in paragraph at lines 407--408
+[]\T1/ntxtlf/m/n/10 Las pun-tua-cio-nes de si-mi-li-tud bru-tas ca-re-cen de
+
+Underfull \hbox (badness 1082) in paragraph at lines 411--412
+[]\T1/ntxtlf/b/n/10 Definición 3 \T1/ntxtlf/m/n/10 (Afi-lia-ción sua-ve)\T1/ntx
+tlf/b/n/10 . []\T1/ntxtlf/m/it/10 La pro-ba-bi-li-dad de
+(/usr/local/texlive/2026/texmf-dist/tex/latex/newtx/t1ntxtt.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 417--417
+[][]\T1/ntxtlf/m/n/8 En el re-po-si-to-rio ofi-cial ($\T1/ntxtt/m/n/8 https : /
+ / github . com /
+
+Underfull \hbox (badness 10000) in paragraph at lines 417--417
+\T1/ntxtt/m/n/8 wuanghoong / Less-[]is-[]More$\T1/ntxtlf/m/n/8 ), la afi-lia-ci
+ón se cal-cu-la co-mo
+
+Underfull \hbox (badness 5374) in paragraph at lines 417--417
+\T1/ntxtt/m/n/8 torch.softmax(cluster_temp * dist, 1) \T1/ntxtlf/m/n/8 con \T1/
+ntxtt/m/n/8 cluster_temp
+[3]
+Underfull \hbox (badness 1478) in paragraph at lines 428--429
+\T1/ntxtlf/b/n/10 Rand Ajus-ta-do \T1/ntxtlf/m/n/10 ($\OML/cmm/m/it/10 ARI$\T1/
+ntxtlf/m/n/10 ), que mi-den la coin-ci-den-cia
+
+Underfull \hbox (badness 1939) in paragraph at lines 428--429
+\T1/ntxtlf/m/n/10 con una par-ti-ción de re-fe-ren-cia (\T1/ntxtlf/m/it/10 grou
+nd truth\T1/ntxtlf/m/n/10 ); la
+
+Underfull \hbox (badness 1275) in paragraph at lines 428--429
+\T1/ntxtlf/b/n/10 Mo-du-la-ri-dad $\OML/cmm/m/it/10 Q$ \T1/ntxtlf/m/n/10 de New
+man-Girvan, que eva-lúa la
+
+Underfull \hbox (badness 1057) in paragraph at lines 433--434
+[]\T1/ntxtlf/m/n/10 La eva-lua-ción abar-ca nue-ve gra-fos reales de cua-tro
+
+Underfull \hbox (badness 1028) in paragraph at lines 469--470
+[]\T1/ntxtlf/m/n/10 Cabe una sal-ve-dad de com-pa-ra-bi-li-dad: las ver-sio-nes
+
+[4]
+Underfull \hbox (badness 1033) in paragraph at lines 607--608
+\T1/ntxtlf/m/n/10 ma-ti-za-do. Lei-den ga-na en Co-ra ($\OT1/cmr/m/n/10 +0\OML/
+cmm/m/it/10 :\OT1/cmr/m/n/10 013$ \T1/ntxtlf/m/n/10 de $\OML/cmm/m/it/10 NMI$\T
+1/ntxtlf/m/n/10 ,
+
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 674--676
+[] []\T1/ntxtlf/b/n/10 4. Efi-cien-cia de me-mo-ria.[] \T1/ntxtlf/m/n/10 No del
+ to-do. La
+
+Underfull \hbox (badness 1205) in paragraph at lines 688--688
+[]\T1/ntxtlf/m/n/8 J. Mothe, K. Mkhi-tar-yan y M. Ha-rou-tu-nian, ^^S  Com-mu-n
+ity
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[7] [8] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+ )
+(see the transcript file for additional information)</usr/local/texlive/2026/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/local/texlive/2026/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist
+/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2026/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msam10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/txfont
+s/t1xtt.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmb.p
+fb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr
+/local/texlive/2026/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/te
+xlive/2026/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (8 pages, 449088 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  ./main-blx.bib
+  ./references.bib
+Latexmk: All targets (main.pdf) are up-to-date
+

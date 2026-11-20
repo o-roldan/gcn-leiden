@@ -1,3 +1,47 @@
+diff --git a/chapters/appendices/app0A.tex b/chapters/appendices/app0A.tex
+index fb8196f..37fb0fb 100644
+--- a/chapters/appendices/app0A.tex
++++ b/chapters/appendices/app0A.tex
+@@ -157,4 +157,37 @@ Esta sección reúne las mallas experimentales completas del estudio de recalibr
+  & Louvain, modularidad $\gamma=1.0$ & $0.5$ & 0.000{\scriptsize$\pm$0.000} & 1 \\
+ \bottomrule
+ \end{tabular}
+-\end{table}
+\ No newline at end of file
++\end{table}
++
++% -----------------------------------------------------------------------
++\section{Índice Davies-Bouldin por método}
++\label{app:dbi}
++% -----------------------------------------------------------------------
++
++La Tabla~\ref{tab:dbi} reporta el índice Davies-Bouldin de los métodos que producen representaciones latentes; Louvain y Leiden clásicos no las producen. Cada método calcula el $DBI$ en su propio espacio de representaciones, por lo que el índice solo es comparable dentro de un mismo método y no se marca un mejor valor.
++
++\begin{table}[H]
++\centering
++\renewcommand{\arraystretch}{1.25}
++\mycaption[Índice Davies-Bouldin por método]{Índice Davies-Bouldin ($DBI$, menor es más compacto) en el espacio de representaciones de cada método: media$\pm$desviación estándar sobre cinco semillas, con el mismo criterio de reporte que la Tabla~\ref{tab:resultados-citas-coautoria}. No es comparable entre métodos. ---: no definido ($k=1$) o corrida no completada.}
++\label{tab:dbi}
++\resizebox{\textwidth}{!}{%
++\begin{tabular}{@{}lccccc@{}}
++\toprule
++\textbf{Red} & DeepWalk & DGI & DMoN & GCN-Louvain & GCN-Leiden \\
++\midrule
++Cora & 2.912{\scriptsize$\pm$0.095} & 2.960{\scriptsize$\pm$0.302} & 0.923{\scriptsize$\pm$0.027} & 1.029{\scriptsize$\pm$0.492} & 0.699{\scriptsize$\pm$0.225} \\
++CiteSeer & 3.716{\scriptsize$\pm$0.236} & 4.932{\scriptsize$\pm$1.367} & 0.742{\scriptsize$\pm$0.011} & 0.757{\scriptsize$\pm$0.052} & 1.002{\scriptsize$\pm$0.547} \\
++PubMed & 3.990{\scriptsize$\pm$0.120} & 1.910{\scriptsize$\pm$0.020} & 0.738{\scriptsize$\pm$0.049} & 0.577{\scriptsize$\pm$0.017} & 0.609{\scriptsize$\pm$0.018} \\
++Coauthor CS & 3.985{\scriptsize$\pm$0.037} & 1.619{\scriptsize$\pm$0.408} & 0.998{\scriptsize$\pm$0.032} & 0.500{\scriptsize$\pm$0.068} & 0.392{\scriptsize$\pm$0.091} \\
++Coauthor Physics & 3.884{\scriptsize$\pm$0.020} & 1.523{\scriptsize$\pm$0.037} & 0.705{\scriptsize$\pm$0.019} & --- & --- \\
++Amazon Computers & 3.199{\scriptsize$\pm$0.142} & 1.146{\scriptsize$\pm$0.506} & 1.531{\scriptsize$\pm$0.092} & 0.783{\scriptsize$\pm$0.252} & 0.824{\scriptsize$\pm$0.403} \\
++Amazon Photo & 2.374{\scriptsize$\pm$0.184} & 0.812{\scriptsize$\pm$0.009} & 1.250{\scriptsize$\pm$0.056} & 0.987{\scriptsize$\pm$0.040} & 0.726{\scriptsize$\pm$0.203} \\
++Actor & 4.431{\scriptsize$\pm$0.050} & 4.539{\scriptsize$\pm$0.089} & 1.211{\scriptsize$\pm$0.038} & 0.593{\scriptsize$\pm$0.084} & --- \\
++WikiCS & 3.323{\scriptsize$\pm$0.072} & 1.433{\scriptsize$\pm$0.052} & 1.358{\scriptsize$\pm$0.022} & 0.554{\scriptsize$\pm$0.051} & 0.566{\scriptsize$\pm$0.043} \\
++SBM-1k & 3.631{\scriptsize$\pm$0.030} & 0.482{\scriptsize$\pm$0.015} & 0.393{\scriptsize$\pm$0.004} & 0.338{\scriptsize$\pm$0.007} & 0.340{\scriptsize$\pm$0.007} \\
++SBM-5k & 3.931{\scriptsize$\pm$0.021} & 0.439{\scriptsize$\pm$0.006} & 0.366{\scriptsize$\pm$0.001} & 0.362{\scriptsize$\pm$0.023} & 0.361{\scriptsize$\pm$0.023} \\
++SBM-10k & 5.672{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.002} & 0.543{\scriptsize$\pm$0.003} & --- & 0.521{\scriptsize$\pm$0.005} \\
++\bottomrule
++\end{tabular}}%
++\end{table}
 diff --git a/chapters/chapter01/chap01.tex b/chapters/chapter01/chap01.tex
 index e7ea77a..79eaaba 100644
 --- a/chapters/chapter01/chap01.tex
@@ -87,7 +131,7 @@ index 3f4db26..a167e5c 100644
  \end{enumerate}
  
 diff --git a/chapters/propuesta_solucion/propuesta_solucion.tex b/chapters/propuesta_solucion/propuesta_solucion.tex
-index 725f1b4..9dd8ab2 100644
+index 725f1b4..cd17856 100644
 --- a/chapters/propuesta_solucion/propuesta_solucion.tex
 +++ b/chapters/propuesta_solucion/propuesta_solucion.tex
 @@ -145,7 +145,7 @@
@@ -116,141 +160,201 @@ index 725f1b4..9dd8ab2 100644
 +La arquitectura se reimplementó a partir del código oficial de Wang et al. \cite{Wang2025}. Se conservó cada detalle numérico del original, como la inicialización de pesos y la normalización de las representaciones. Con la misma semilla, la reimplementación reproduce las métricas del código original sobre Cora, con \emph{paridad bit a bit}. Así, las diferencias entre GCN-Louvain y GCN-Leiden vienen del cambio de \textit{prior}, no de la reimplementación. Los hiperparámetros son los del artículo original: dimensión latente $512$, temperatura $\delta = 30$, escala de pérdida $\alpha = 10^{-3}$, optimizador Adam con tasa de aprendizaje $10^{-3}$ y decaimiento de pesos $5 \times 10^{-3}$, durante $300$ épocas. También se encontró una diferencia entre el artículo y su código. Wang et al. definen el umbral en su Ecuación~6 y conservan las comunidades con $|C_i| \geq T$, pero su código usa la desigualdad estricta $|C_i| > T$. Esta tesis sigue el código, y sus consecuencias se analizan en la Sección~\ref{sec:estudio-recalibracion}.
  
 -En los grafos reales, el \textit{prior} usa la configuración del código original para Louvain y para Leiden: modularidad con resolución $\gamma = 0.3$, semilla $123$ y $\beta = 0.5$. En los grafos \textsc{sbm} esa resolución fusiona todos los bloques (Sección~\ref{subsec:recal-sbm}), por lo que se usa modularidad con $\gamma = 1.0$ y, solo para Leiden, \textsc{cpm} con $\gamma = 0.0275$. Este último valor es el punto medio de $p_{in}$ y $p_{out}$ del generador, es decir, usa información del modelo generativo que no estaría disponible en un grafo real. Las heurísticas clásicas de las tablas de resultados se reportan a la resolución canónica $\gamma = 1.0$.
-+En los grafos reales, el \textit{prior} usa la configuración del código original para Louvain y para Leiden: modularidad con resolución $\gamma = 0.3$, semilla $123$ y $\beta = 0.5$. En los grafos \textsc{sbm} esa resolución fusiona todos los bloques (Sección~\ref{subsec:recal-sbm}), por lo que se usa modularidad con $\gamma = 1.0$ y, solo para Leiden, \textsc{cpm} con $\gamma = 0.0275$, en ambos casos con $\beta = 0.5$. La resolución $\gamma = 0.0275$ es el punto medio de $p_{in}$ y $p_{out}$ del generador, es decir, usa información del modelo generativo que no estaría disponible en un grafo real. Las heurísticas clásicas de las tablas de resultados se reportan a la resolución canónica $\gamma = 1.0$.
++En los grafos reales, el \textit{prior} usa la configuración del código original para Louvain y para Leiden: modularidad con resolución $\gamma = 0.3$, semilla $123$ y $\beta = 0.5$. En los grafos \textsc{sbm} esa resolución fusiona todos los bloques (Sección~\ref{subsec:recal-sbm}), por lo que se usa modularidad con $\gamma = 1.0$ y, solo para Leiden, \textsc{cpm} con $\gamma = 0.0275$, en ambos casos con $\beta = 0.5$. La resolución $\gamma = 0.0275$ es el punto medio de $p_{in}$ y $p_{out}$ del generador, es decir, usa información del modelo generativo que no estaría disponible en un grafo real.
  
  \subsection{\textit{Baselines} y protocolo}
  \label{subsec:lineas-base-protocolo}
  
 -Se comparan siete métodos: dos heurísticas modulares clásicas (Louvain \cite{blondel2008} y Leiden \cite{Traag2019}, reportadas a resolución canónica $\gamma=1.0$), tres modelos profundos no supervisados (DeepWalk \cite{Perozzi2014}, \textsc{dgi} \cite{Velickovic2019} y DMoN \cite{tsitsulin2023}), la arquitectura base GCN-Louvain \cite{Wang2025} y la propuesta GCN-Leiden. A los modelos profundos que requieren el número de clústeres se les entrega el $k$ de referencia, mientras que la propuesta estima su $k$ sin supervisión desde el \textit{prior}. Esto difiere de Wang et al., que entregan a sus \textit{baselines} el $k$ que detecta su propio método \cite{Wang2025}. Conocer $k$ no favorece necesariamente a un método en todas las métricas: el $NMI$ tiende a crecer con el número de clústeres, mientras que el $ARI$ corrige el acuerdo por azar. Por eso las tablas de resultados reportan el $k$ de cada método, y las comparaciones se apoyan sobre todo en el $ARI$.
-+Se comparan siete métodos: dos heurísticas modulares clásicas (Louvain \cite{blondel2008} y Leiden \cite{Traag2019}, reportadas a resolución canónica $\gamma=1.0$), tres modelos profundos no supervisados (DeepWalk \cite{Perozzi2014}, \textsc{dgi} \cite{Velickovic2019} y DMoN \cite{tsitsulin2023}), la arquitectura base GCN-Louvain \cite{Wang2025} y la propuesta GCN-Leiden. A los modelos profundos que requieren el número de clústeres se les entrega el $k$ de referencia, mientras que la propuesta estima su $k$ sin supervisión desde el \textit{prior}. Esto difiere de Wang et al., que entregan a sus \textit{baselines} el $k$ que detecta su propio método \cite{Wang2025}. Conocer $k$ no favorece necesariamente a un método en todas las métricas: el $NMI$ tiende a crecer con el número de clústeres, mientras que el $ARI$ corrige el acuerdo por azar. Por eso las tablas de resultados reportan el $k$ de cada método junto con el $NMI$ y el $ARI$, y cuando dos configuraciones difieren mucho en $k$, como al activar o desactivar el filtro, la comparación se apoya en el $ARI$ (Sección~\ref{subsec:recal-redes-reales}).
++Se comparan siete métodos: dos heurísticas modulares clásicas (Louvain \cite{blondel2008} y Leiden \cite{Traag2019}, reportadas a resolución canónica $\gamma=1.0$), tres modelos profundos no supervisados (DeepWalk \cite{Perozzi2014}, \textsc{dgi} \cite{Velickovic2019} y DMoN \cite{tsitsulin2023}), la arquitectura base GCN-Louvain \cite{Wang2025} y la propuesta GCN-Leiden. A los modelos profundos que requieren el número de clústeres se les entrega el $k$ de referencia, mientras que la propuesta estima su $k$ sin supervisión desde el \textit{prior}. Esto difiere de Wang et al., que entregan a sus \textit{baselines} el $k$ que detecta su propio método \cite{Wang2025}. Conocer $k$ no favorece necesariamente a un método: como el $NMI$ tiende a crecer con el número de clústeres y el $ARI$ corrige el acuerdo por azar, las tablas reportan el $k$ de cada método, y cuando $k$ difiere mucho entre configuraciones (por ejemplo, al activar o desactivar el filtro) la comparación se apoya en el $ARI$ (Sección~\ref{subsec:recal-redes-reales}).
  
 -A diferencia de Wang et al., que publican una única ejecución por configuración, cada experimento de esta tesis se repite con \textbf{cinco semillas} y se reporta media $\pm$ desviación estándar. La semilla controla los componentes estocásticos del entrenamiento (inicialización de pesos, caminatas aleatorias, muestreo contrastivo), de modo que la dispersión resultante separa los efectos reales del azar de inicialización. El código de Wang et al. evalúa cada corrida de dos maneras. Por un lado, cada dos épocas registra el máximo de cada métrica (el mínimo en el caso de $DBI$); este valor \emph{pico} es el que publica el artículo \cite{Wang2025}. Por otro, al terminar restaura el \textit{checkpoint} de pérdida mínima, es decir, el de máxima $Q'$, y lo evalúa. El pico elige la época consultando las etiquetas, y cada métrica puede provenir de una época distinta, por lo que es una cota optimista; el \textit{checkpoint} de pérdida mínima no usa etiquetas. Esta tesis conserva ambas vistas y emplea cada una donde la comparación es simétrica. Las comparaciones internas de la arquitectura (GCN-Leiden frente a GCN-Louvain y el estudio de recalibración) reportan el pico, como el protocolo original, porque ambos brazos se miden con la misma regla. Las comparaciones contra los demás métodos (Tablas~\ref{tab:resultados-citas-coautoria}--\ref{tab:resultados-sbm}) reportan el \textit{checkpoint} de pérdida mínima, ya que DeepWalk, \textsc{dgi} y DMoN se evalúan sobre su modelo entrenado, sin seleccionar épocas con las etiquetas. Cada corrida se ejecuta en un subproceso aislado; las trayectorias completas de entrenamiento se almacenan para el estudio de convergencia.
-+A diferencia de Wang et al., que publican una única ejecución por configuración, cada experimento de esta tesis se repite con \textbf{cinco semillas} y se reporta media $\pm$ desviación estándar. La semilla controla los componentes estocásticos del entrenamiento (inicialización de pesos, caminatas aleatorias, muestreo contrastivo), de modo que la dispersión resultante separa los efectos reales del azar de inicialización. El código de Wang et al. evalúa cada corrida de dos maneras. Por un lado, cada dos épocas registra el máximo de cada métrica (el mínimo en el caso de $DBI$); este valor \emph{pico} es el que publica el artículo \cite{Wang2025}. Por otro, al terminar restaura el \textit{checkpoint} de pérdida mínima (el estado guardado tras el paso de optimización de la época de máxima $Q'$) y lo evalúa. El pico elige la época consultando las etiquetas, y cada métrica puede provenir de una época distinta, por lo que es una cota optimista; el \textit{checkpoint} de pérdida mínima no usa etiquetas. Esta tesis conserva ambas vistas y emplea cada una donde la comparación es simétrica. Las comparaciones internas de la arquitectura (GCN-Leiden frente a GCN-Louvain y el estudio de recalibración) reportan el pico, como el protocolo original, porque ambos brazos se miden con la misma regla. A diferencia del original, que evalúa cada dos épocas, aquí la evaluación se hace cada 2, 5 o 10 épocas según el grafo (5 en Amazon Computers, WikiCS, \textsc{sbm}-1k y \textsc{sbm}-5k; 10 en PubMed, Coauthor CS y \textsc{sbm}-10k), y el pico se toma sobre esa rejilla. Las comparaciones contra los demás métodos (Tablas~\ref{tab:resultados-citas-coautoria}--\ref{tab:resultados-sbm}) reportan el \textit{checkpoint} de pérdida mínima, ya que DeepWalk, \textsc{dgi} y DMoN se evalúan sobre su modelo entrenado, sin seleccionar épocas con las etiquetas. Cada corrida se ejecuta en un subproceso aislado. De las variantes \textsc{gcn} se almacenan las trayectorias de entrenamiento, muestreadas en cada evaluación, para el estudio de convergencia.
++A diferencia de Wang et al., que publican una única ejecución por configuración, cada experimento de esta tesis se repite con \textbf{cinco semillas} y se reporta media $\pm$ desviación estándar. La semilla controla los componentes estocásticos del entrenamiento (inicialización de pesos, caminatas aleatorias, muestreo contrastivo). El código de Wang et al. evalúa cada corrida de dos maneras. Por un lado, cada dos épocas registra el máximo de cada métrica (el mínimo en el caso de $DBI$); este valor \emph{pico} es el que publica el artículo \cite{Wang2025}. Por otro, al terminar evalúa el \textit{checkpoint} de pérdida mínima (el estado tras el paso de optimización de la época de máxima $Q'$). El pico elige la época consultando las etiquetas, y cada métrica puede provenir de una época distinta, por lo que es una cota optimista; el \textit{checkpoint} de pérdida mínima no usa etiquetas. Esta tesis emplea cada vista donde la comparación es simétrica: las comparaciones internas de la arquitectura (GCN-Leiden frente a GCN-Louvain y el estudio de recalibración) reportan el pico, como el protocolo original, porque ambos brazos se miden con la misma regla. A diferencia del original, aquí se evalúa cada 2, 5 o 10 épocas según el grafo (5 en Amazon Computers, WikiCS, \textsc{sbm}-1k y \textsc{sbm}-5k; 10 en PubMed, Coauthor CS y \textsc{sbm}-10k), y el pico se toma sobre esa rejilla. Las comparaciones contra los demás métodos (Tablas~\ref{tab:resultados-citas-coautoria}--\ref{tab:resultados-sbm}) reportan el \textit{checkpoint} de pérdida mínima, ya que DeepWalk, \textsc{dgi} y DMoN se evalúan sobre su modelo entrenado, sin seleccionar épocas con las etiquetas. De las variantes \textsc{gcn} se almacenan las trayectorias de entrenamiento, muestreadas en cada evaluación, para el estudio de convergencia.
  
  Los experimentos se ejecutaron en \textit{Google Compute Engine}: los grafos pequeños y medianos sobre instancias \texttt{c2d-standard-8} (\textsc{cpu}, 8 núcleos), y los conjuntos grandes (PubMed, Coauthor CS, Coauthor Physics, Amazon Computers) sobre una instancia \texttt{g2-standard-16} con \textsc{gpu} NVIDIA L4 de 24~\textsc{gb}.
  
 diff --git a/chapters/resultados/resultados.tex b/chapters/resultados/resultados.tex
-index 010748d..09d7144 100644
+index 010748d..39dc126 100644
 --- a/chapters/resultados/resultados.tex
 +++ b/chapters/resultados/resultados.tex
-@@ -12,7 +12,7 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
- \begin{table}[H]
+@@ -9,113 +9,119 @@
+ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web} y \ref{tab:resultados-sbm} presentan la comparativa completa.
+ 
+ 
+-\begin{table}[H]
++\begin{table}[tbp]
  \centering
- \renewcommand{\arraystretch}{1.25}
+-\renewcommand{\arraystretch}{1.25}
 -\mycaption[Resultados en grafos de citas y coautoría]{Resultados en grafos de citas y coautoría: media$\pm$desviación estándar sobre cinco semillas. Las columnas GCN corresponden al \textit{checkpoint} de pérdida mínima y los demás métodos entrenables a su modelo entrenado; ninguno selecciona épocas con las etiquetas (Sección~\ref{subsec:lineas-base-protocolo}). Fila $k$: número de comunidades; DeepWalk, \textsc{dgi} y DMoN reciben el $k$ de referencia. El $DBI$ se calcula en el espacio de representaciones de cada método, por lo que solo es comparable dentro de un mismo método. Negritas: mejor valor por fila. Louvain y Leiden clásicos a resolución $\gamma=1.0$. ---: métrica no aplicable o corrida no completada.}
-+\mycaption[Resultados en grafos de citas y coautoría]{Resultados en grafos de citas y coautoría: media$\pm$desviación estándar sobre cinco semillas. Las columnas GCN corresponden al \textit{checkpoint} de pérdida mínima y los demás métodos entrenables a su modelo entrenado; ninguno selecciona épocas con las etiquetas (Sección~\ref{subsec:lineas-base-protocolo}). Fila $k$: número de comunidades; en las columnas GCN son las comunidades ancla del \textit{prior} tras el filtro, y DeepWalk, \textsc{dgi} y DMoN reciben el $k$ de referencia. El $DBI$ se calcula en el espacio de representaciones de cada método, por lo que solo es comparable dentro de un mismo método y no se marca en negritas. Negritas: mejor media por fila en $NMI$, $ARI$ y $Q$, calculada sin redondear. Louvain y Leiden clásicos a resolución $\gamma=1.0$. ---: métrica no aplicable o corrida no completada.}
++\renewcommand{\arraystretch}{1.1}
++\mycaption[Resultados en grafos de citas y coautoría]{Resultados en grafos de citas y coautoría: media$\pm$desviación estándar sobre cinco semillas. Las columnas GCN corresponden al \textit{checkpoint} de pérdida mínima y los demás métodos entrenables a su modelo entrenado; ninguno selecciona épocas con las etiquetas (Sección~\ref{subsec:lineas-base-protocolo}). Fila $k$: número de comunidades; en las columnas GCN son las comunidades ancla del \textit{prior} tras el filtro, y DeepWalk, \textsc{dgi} y DMoN reciben el $k$ de referencia. En Louvain y Leiden clásicos, $k$ varía con la semilla y se muestra su rango. El $DBI$, que solo es comparable dentro de un mismo método, se reporta en la Tabla~\ref{tab:dbi} (Apéndice~\ref{app:dbi}). Negritas: mejor media por fila en $NMI$, $ARI$ y $Q$, calculada sin redondear. Louvain y Leiden clásicos a resolución $\gamma=1.0$. ---: corrida no completada.}
  \label{tab:resultados-citas-coautoria}
  \resizebox{\textwidth}{!}{%
  \begin{tabular}{@{}llccccccc@{}}
-@@ -22,31 +22,31 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
- \multirow{5}{*}{Cora} & $NMI$ & 0.452{\scriptsize$\pm$0.010} & 0.465{\scriptsize$\pm$0.004} & 0.432{\scriptsize$\pm$0.020} & \textbf{0.553{\scriptsize$\pm$0.016}} & 0.401{\scriptsize$\pm$0.042} & 0.521{\scriptsize$\pm$0.028} & 0.530{\scriptsize$\pm$0.008} \\
-  & $ARI$ & 0.246{\scriptsize$\pm$0.023} & 0.258{\scriptsize$\pm$0.005} & 0.349{\scriptsize$\pm$0.035} & \textbf{0.488{\scriptsize$\pm$0.037}} & 0.299{\scriptsize$\pm$0.040} & 0.424{\scriptsize$\pm$0.068} & 0.442{\scriptsize$\pm$0.015} \\
+ \toprule
++& & \multicolumn{2}{c}{Heurísticas} & \multicolumn{3}{c}{Profundos (reciben $k$)} & \multicolumn{2}{c}{GCN de una capa} \\
++\cmidrule(lr){3-4}\cmidrule(lr){5-7}\cmidrule(l){8-9}
+ \textbf{Red} & \textbf{Métrica} & Louvain & Leiden & DeepWalk & DGI & DMoN & GCN-Louvain & GCN-Leiden \\
+ \midrule
+-\multirow{5}{*}{Cora} & $NMI$ & 0.452{\scriptsize$\pm$0.010} & 0.465{\scriptsize$\pm$0.004} & 0.432{\scriptsize$\pm$0.020} & \textbf{0.553{\scriptsize$\pm$0.016}} & 0.401{\scriptsize$\pm$0.042} & 0.521{\scriptsize$\pm$0.028} & 0.530{\scriptsize$\pm$0.008} \\
+- & $ARI$ & 0.246{\scriptsize$\pm$0.023} & 0.258{\scriptsize$\pm$0.005} & 0.349{\scriptsize$\pm$0.035} & \textbf{0.488{\scriptsize$\pm$0.037}} & 0.299{\scriptsize$\pm$0.040} & 0.424{\scriptsize$\pm$0.068} & 0.442{\scriptsize$\pm$0.015} \\
++\multirow{4}{*}{Cora} & $k$ & 102--105 & 106--109 & 7 & 7 & 7 & 9 & 10 \\
++\addlinespace[2pt]
   & $Q$ & 0.815{\scriptsize$\pm$0.001} & \textbf{0.821{\scriptsize$\pm$0.001}} & 0.710{\scriptsize$\pm$0.006} & 0.699{\scriptsize$\pm$0.010} & 0.704{\scriptsize$\pm$0.010} & 0.762{\scriptsize$\pm$0.005} & 0.770{\scriptsize$\pm$0.007} \\
 - & $DBI$ & --- & --- & 2.912{\scriptsize$\pm$0.095} & 2.960{\scriptsize$\pm$0.302} & 0.923{\scriptsize$\pm$0.027} & 1.029{\scriptsize$\pm$0.492} & \textbf{0.699{\scriptsize$\pm$0.225}} \\
-+ & $DBI$ & --- & --- & 2.912{\scriptsize$\pm$0.095} & 2.960{\scriptsize$\pm$0.302} & 0.923{\scriptsize$\pm$0.027} & 1.029{\scriptsize$\pm$0.492} & 0.699{\scriptsize$\pm$0.225} \\
-  & $k$ & 103.6{\scriptsize$\pm$1.1} & 107.2{\scriptsize$\pm$1.3} & 7 & 7 & 7 & 9 & 10 \\
+- & $k$ & 103.6{\scriptsize$\pm$1.1} & 107.2{\scriptsize$\pm$1.3} & 7 & 7 & 7 & 9 & 10 \\
++ & $NMI$ & 0.452{\scriptsize$\pm$0.010} & 0.465{\scriptsize$\pm$0.004} & 0.432{\scriptsize$\pm$0.020} & \textbf{0.553{\scriptsize$\pm$0.016}} & 0.401{\scriptsize$\pm$0.042} & 0.521{\scriptsize$\pm$0.028} & 0.530{\scriptsize$\pm$0.008} \\
++ & $ARI$ & 0.246{\scriptsize$\pm$0.023} & 0.258{\scriptsize$\pm$0.005} & 0.349{\scriptsize$\pm$0.035} & \textbf{0.488{\scriptsize$\pm$0.037}} & 0.299{\scriptsize$\pm$0.040} & 0.424{\scriptsize$\pm$0.068} & 0.442{\scriptsize$\pm$0.015} \\
  \midrule
- \multirow{5}{*}{CiteSeer} & $NMI$ & 0.328{\scriptsize$\pm$0.003} & 0.328{\scriptsize$\pm$0.001} & 0.223{\scriptsize$\pm$0.011} & \textbf{0.377{\scriptsize$\pm$0.056}} & 0.251{\scriptsize$\pm$0.042} & 0.342{\scriptsize$\pm$0.013} & 0.338{\scriptsize$\pm$0.022} \\
-  & $ARI$ & 0.091{\scriptsize$\pm$0.006} & 0.087{\scriptsize$\pm$0.007} & 0.187{\scriptsize$\pm$0.009} & \textbf{0.354{\scriptsize$\pm$0.057}} & 0.219{\scriptsize$\pm$0.053} & 0.317{\scriptsize$\pm$0.019} & 0.315{\scriptsize$\pm$0.025} \\
+-\multirow{5}{*}{CiteSeer} & $NMI$ & 0.328{\scriptsize$\pm$0.003} & 0.328{\scriptsize$\pm$0.001} & 0.223{\scriptsize$\pm$0.011} & \textbf{0.377{\scriptsize$\pm$0.056}} & 0.251{\scriptsize$\pm$0.042} & 0.342{\scriptsize$\pm$0.013} & 0.338{\scriptsize$\pm$0.022} \\
+- & $ARI$ & 0.091{\scriptsize$\pm$0.006} & 0.087{\scriptsize$\pm$0.007} & 0.187{\scriptsize$\pm$0.009} & \textbf{0.354{\scriptsize$\pm$0.057}} & 0.219{\scriptsize$\pm$0.053} & 0.317{\scriptsize$\pm$0.019} & 0.315{\scriptsize$\pm$0.025} \\
++\multirow{4}{*}{CiteSeer} & $k$ & 469--472 & 470--474 & 6 & 6 & 6 & 11 & 11 \\
++\addlinespace[2pt]
   & $Q$ & 0.889{\scriptsize$\pm$0.001} & \textbf{0.891{\scriptsize$\pm$0.001}} & 0.725{\scriptsize$\pm$0.002} & 0.611{\scriptsize$\pm$0.155} & 0.740{\scriptsize$\pm$0.005} & 0.800{\scriptsize$\pm$0.006} & 0.779{\scriptsize$\pm$0.009} \\
 - & $DBI$ & --- & --- & 3.716{\scriptsize$\pm$0.236} & 4.932{\scriptsize$\pm$1.367} & \textbf{0.742{\scriptsize$\pm$0.011}} & 0.757{\scriptsize$\pm$0.052} & 1.002{\scriptsize$\pm$0.547} \\
-+ & $DBI$ & --- & --- & 3.716{\scriptsize$\pm$0.236} & 4.932{\scriptsize$\pm$1.367} & 0.742{\scriptsize$\pm$0.011} & 0.757{\scriptsize$\pm$0.052} & 1.002{\scriptsize$\pm$0.547} \\
-  & $k$ & 470.4{\scriptsize$\pm$1.1} & 471.8{\scriptsize$\pm$2.0} & 6 & 6 & 6 & 11 & 11 \\
+- & $k$ & 470.4{\scriptsize$\pm$1.1} & 471.8{\scriptsize$\pm$2.0} & 6 & 6 & 6 & 11 & 11 \\
++ & $NMI$ & 0.328{\scriptsize$\pm$0.003} & 0.328{\scriptsize$\pm$0.001} & 0.223{\scriptsize$\pm$0.011} & \textbf{0.377{\scriptsize$\pm$0.056}} & 0.251{\scriptsize$\pm$0.042} & 0.342{\scriptsize$\pm$0.013} & 0.338{\scriptsize$\pm$0.022} \\
++ & $ARI$ & 0.091{\scriptsize$\pm$0.006} & 0.087{\scriptsize$\pm$0.007} & 0.187{\scriptsize$\pm$0.009} & \textbf{0.354{\scriptsize$\pm$0.057}} & 0.219{\scriptsize$\pm$0.053} & 0.317{\scriptsize$\pm$0.019} & 0.315{\scriptsize$\pm$0.025} \\
  \midrule
- \multirow{5}{*}{PubMed} & $NMI$ & 0.202{\scriptsize$\pm$0.002} & 0.204{\scriptsize$\pm$0.004} & 0.267{\scriptsize$\pm$0.008} & \textbf{0.339{\scriptsize$\pm$0.009}} & 0.221{\scriptsize$\pm$0.019} & 0.265{\scriptsize$\pm$0.021} & 0.275{\scriptsize$\pm$0.021} \\
-  & $ARI$ & 0.105{\scriptsize$\pm$0.009} & 0.110{\scriptsize$\pm$0.008} & 0.301{\scriptsize$\pm$0.007} & \textbf{0.305{\scriptsize$\pm$0.005}} & 0.193{\scriptsize$\pm$0.012} & 0.223{\scriptsize$\pm$0.023} & 0.234{\scriptsize$\pm$0.026} \\
+-\multirow{5}{*}{PubMed} & $NMI$ & 0.202{\scriptsize$\pm$0.002} & 0.204{\scriptsize$\pm$0.004} & 0.267{\scriptsize$\pm$0.008} & \textbf{0.339{\scriptsize$\pm$0.009}} & 0.221{\scriptsize$\pm$0.019} & 0.265{\scriptsize$\pm$0.021} & 0.275{\scriptsize$\pm$0.021} \\
+- & $ARI$ & 0.105{\scriptsize$\pm$0.009} & 0.110{\scriptsize$\pm$0.008} & 0.301{\scriptsize$\pm$0.007} & \textbf{0.305{\scriptsize$\pm$0.005}} & 0.193{\scriptsize$\pm$0.012} & 0.223{\scriptsize$\pm$0.023} & 0.234{\scriptsize$\pm$0.026} \\
++\multirow{4}{*}{PubMed} & $k$ & 35--44 & 41--47 & 3 & 3 & 3 & 4 & 5 \\
++\addlinespace[2pt]
   & $Q$ & 0.767{\scriptsize$\pm$0.004} & \textbf{0.776{\scriptsize$\pm$0.002}} & 0.537{\scriptsize$\pm$0.006} & 0.509{\scriptsize$\pm$0.002} & 0.540{\scriptsize$\pm$0.021} & 0.653{\scriptsize$\pm$0.003} & 0.659{\scriptsize$\pm$0.007} \\
 - & $DBI$ & --- & --- & 3.990{\scriptsize$\pm$0.120} & 1.910{\scriptsize$\pm$0.020} & 0.738{\scriptsize$\pm$0.049} & \textbf{0.577{\scriptsize$\pm$0.017}} & 0.609{\scriptsize$\pm$0.018} \\
-+ & $DBI$ & --- & --- & 3.990{\scriptsize$\pm$0.120} & 1.910{\scriptsize$\pm$0.020} & 0.738{\scriptsize$\pm$0.049} & 0.577{\scriptsize$\pm$0.017} & 0.609{\scriptsize$\pm$0.018} \\
-  & $k$ & 39.0{\scriptsize$\pm$3.9} & 43.6{\scriptsize$\pm$2.2} & 3 & 3 & 3 & 4 & 5 \\
+- & $k$ & 39.0{\scriptsize$\pm$3.9} & 43.6{\scriptsize$\pm$2.2} & 3 & 3 & 3 & 4 & 5 \\
++ & $NMI$ & 0.202{\scriptsize$\pm$0.002} & 0.204{\scriptsize$\pm$0.004} & 0.267{\scriptsize$\pm$0.008} & \textbf{0.339{\scriptsize$\pm$0.009}} & 0.221{\scriptsize$\pm$0.019} & 0.265{\scriptsize$\pm$0.021} & 0.275{\scriptsize$\pm$0.021} \\
++ & $ARI$ & 0.105{\scriptsize$\pm$0.009} & 0.110{\scriptsize$\pm$0.008} & 0.301{\scriptsize$\pm$0.007} & \textbf{0.305{\scriptsize$\pm$0.005}} & 0.193{\scriptsize$\pm$0.012} & 0.223{\scriptsize$\pm$0.023} & 0.234{\scriptsize$\pm$0.026} \\
  \midrule
- \multirow{5}{*}{Coauthor CS} & $NMI$ & 0.583{\scriptsize$\pm$0.013} & 0.588{\scriptsize$\pm$0.007} & 0.622{\scriptsize$\pm$0.003} & \textbf{0.693{\scriptsize$\pm$0.059}} & 0.663{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.009} & 0.623{\scriptsize$\pm$0.009} \\
-  & $ARI$ & 0.427{\scriptsize$\pm$0.023} & 0.420{\scriptsize$\pm$0.016} & 0.460{\scriptsize$\pm$0.007} & \textbf{0.547{\scriptsize$\pm$0.087}} & 0.450{\scriptsize$\pm$0.016} & 0.493{\scriptsize$\pm$0.008} & 0.494{\scriptsize$\pm$0.007} \\
+-\multirow{5}{*}{Coauthor CS} & $NMI$ & 0.583{\scriptsize$\pm$0.013} & 0.588{\scriptsize$\pm$0.007} & 0.622{\scriptsize$\pm$0.003} & \textbf{0.693{\scriptsize$\pm$0.059}} & 0.663{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.009} & 0.623{\scriptsize$\pm$0.009} \\
+- & $ARI$ & 0.427{\scriptsize$\pm$0.023} & 0.420{\scriptsize$\pm$0.016} & 0.460{\scriptsize$\pm$0.007} & \textbf{0.547{\scriptsize$\pm$0.087}} & 0.450{\scriptsize$\pm$0.016} & 0.493{\scriptsize$\pm$0.008} & 0.494{\scriptsize$\pm$0.007} \\
++\multirow{4}{*}{Coauthor CS} & $k$ & 26--30 & 27--37 & 15 & 15 & 15 & 4 & 4 \\
++\addlinespace[2pt]
   & $Q$ & 0.738{\scriptsize$\pm$0.002} & \textbf{0.746{\scriptsize$\pm$0.002}} & 0.706{\scriptsize$\pm$0.001} & 0.555{\scriptsize$\pm$0.068} & 0.695{\scriptsize$\pm$0.007} & 0.651{\scriptsize$\pm$0.005} & 0.653{\scriptsize$\pm$0.003} \\
 - & $DBI$ & --- & --- & 3.985{\scriptsize$\pm$0.037} & 1.619{\scriptsize$\pm$0.408} & 0.998{\scriptsize$\pm$0.032} & 0.500{\scriptsize$\pm$0.068} & \textbf{0.392{\scriptsize$\pm$0.091}} \\
-+ & $DBI$ & --- & --- & 3.985{\scriptsize$\pm$0.037} & 1.619{\scriptsize$\pm$0.408} & 0.998{\scriptsize$\pm$0.032} & 0.500{\scriptsize$\pm$0.068} & 0.392{\scriptsize$\pm$0.091} \\
-  & $k$ & 26.8{\scriptsize$\pm$1.8} & 29.2{\scriptsize$\pm$4.4} & 15 & 15 & 15 & 4 & 4 \\
+- & $k$ & 26.8{\scriptsize$\pm$1.8} & 29.2{\scriptsize$\pm$4.4} & 15 & 15 & 15 & 4 & 4 \\
++ & $NMI$ & 0.583{\scriptsize$\pm$0.013} & 0.588{\scriptsize$\pm$0.007} & 0.622{\scriptsize$\pm$0.003} & \textbf{0.693{\scriptsize$\pm$0.059}} & 0.663{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.009} & 0.623{\scriptsize$\pm$0.009} \\
++ & $ARI$ & 0.427{\scriptsize$\pm$0.023} & 0.420{\scriptsize$\pm$0.016} & 0.460{\scriptsize$\pm$0.007} & \textbf{0.547{\scriptsize$\pm$0.087}} & 0.450{\scriptsize$\pm$0.016} & 0.493{\scriptsize$\pm$0.008} & 0.494{\scriptsize$\pm$0.007} \\
  \midrule
- \multirow{5}{*}{Coauthor Physics} & $NMI$ & 0.449{\scriptsize$\pm$0.012} & 0.474{\scriptsize$\pm$0.009} & \textbf{0.677{\scriptsize$\pm$0.009}} & 0.674{\scriptsize$\pm$0.015} & 0.508{\scriptsize$\pm$0.029} & --- & --- \\
-  & $ARI$ & 0.217{\scriptsize$\pm$0.007} & 0.232{\scriptsize$\pm$0.013} & \textbf{0.771{\scriptsize$\pm$0.012}} & 0.698{\scriptsize$\pm$0.042} & 0.350{\scriptsize$\pm$0.032} & --- & --- \\
+-\multirow{5}{*}{Coauthor Physics} & $NMI$ & 0.449{\scriptsize$\pm$0.012} & 0.474{\scriptsize$\pm$0.009} & \textbf{0.677{\scriptsize$\pm$0.009}} & 0.674{\scriptsize$\pm$0.015} & 0.508{\scriptsize$\pm$0.029} & --- & --- \\
+- & $ARI$ & 0.217{\scriptsize$\pm$0.007} & 0.232{\scriptsize$\pm$0.013} & \textbf{0.771{\scriptsize$\pm$0.012}} & 0.698{\scriptsize$\pm$0.042} & 0.350{\scriptsize$\pm$0.032} & --- & --- \\
++\multirow{4}{*}{Coauthor Physics} & $k$ & 23--24 & 24--28 & 5 & 5 & 5 & --- & --- \\
++\addlinespace[2pt]
   & $Q$ & 0.667{\scriptsize$\pm$0.003} & \textbf{0.683{\scriptsize$\pm$0.003}} & 0.474{\scriptsize$\pm$0.001} & 0.517{\scriptsize$\pm$0.011} & 0.615{\scriptsize$\pm$0.007} & --- & --- \\
 - & $DBI$ & --- & --- & 3.884{\scriptsize$\pm$0.020} & 1.523{\scriptsize$\pm$0.037} & \textbf{0.705{\scriptsize$\pm$0.019}} & --- & --- \\
-+ & $DBI$ & --- & --- & 3.884{\scriptsize$\pm$0.020} & 1.523{\scriptsize$\pm$0.037} & 0.705{\scriptsize$\pm$0.019} & --- & --- \\
-  & $k$ & 23.6{\scriptsize$\pm$0.5} & 25.8{\scriptsize$\pm$1.6} & 5 & 5 & 5 & --- & --- \\
+- & $k$ & 23.6{\scriptsize$\pm$0.5} & 25.8{\scriptsize$\pm$1.6} & 5 & 5 & 5 & --- & --- \\
++ & $NMI$ & 0.449{\scriptsize$\pm$0.012} & 0.474{\scriptsize$\pm$0.009} & \textbf{0.677{\scriptsize$\pm$0.009}} & 0.674{\scriptsize$\pm$0.015} & 0.508{\scriptsize$\pm$0.029} & --- & --- \\
++ & $ARI$ & 0.217{\scriptsize$\pm$0.007} & 0.232{\scriptsize$\pm$0.013} & \textbf{0.771{\scriptsize$\pm$0.012}} & 0.698{\scriptsize$\pm$0.042} & 0.350{\scriptsize$\pm$0.032} & --- & --- \\
  \bottomrule
  \end{tabular}}%
-@@ -55,7 +55,7 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
- \begin{table}[H]
+ \end{table}
+ 
+-\begin{table}[H]
++\begin{table}[tbp]
  \centering
- \renewcommand{\arraystretch}{1.25}
+-\renewcommand{\arraystretch}{1.25}
 -\mycaption[Resultados en grafos de compra conjunta, coocurrencia e hipervínculos]{Resultados en grafos de compra conjunta (Amazon), coocurrencia (Actor) e hipervínculos (WikiCS): media$\pm$desviación estándar sobre cinco semillas, con el mismo criterio de reporte que la Tabla~\ref{tab:resultados-citas-coautoria}. Negritas: mejor valor por fila.}
++\renewcommand{\arraystretch}{1.1}
 +\mycaption[Resultados en grafos de compra conjunta, coocurrencia e hipervínculos]{Resultados en grafos de compra conjunta (Amazon), coocurrencia (Actor) e hipervínculos (WikiCS): media$\pm$desviación estándar sobre cinco semillas, con el mismo criterio de reporte que la Tabla~\ref{tab:resultados-citas-coautoria}. Negritas: como en la Tabla~\ref{tab:resultados-citas-coautoria}.}
  \label{tab:resultados-compra-web}
  \resizebox{\textwidth}{!}{%
  \begin{tabular}{@{}llccccccc@{}}
-@@ -65,25 +65,25 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
- \multirow{5}{*}{Amazon Computers} & $NMI$ & 0.519{\scriptsize$\pm$0.015} & 0.524{\scriptsize$\pm$0.014} & 0.500{\scriptsize$\pm$0.008} & 0.094{\scriptsize$\pm$0.124} & 0.466{\scriptsize$\pm$0.015} & \textbf{0.529{\scriptsize$\pm$0.016}} & 0.503{\scriptsize$\pm$0.072} \\
-  & $ARI$ & 0.300{\scriptsize$\pm$0.029} & 0.290{\scriptsize$\pm$0.012} & 0.378{\scriptsize$\pm$0.010} & 0.067{\scriptsize$\pm$0.083} & 0.254{\scriptsize$\pm$0.019} & \textbf{0.439{\scriptsize$\pm$0.013}} & 0.394{\scriptsize$\pm$0.091} \\
+ \toprule
++& & \multicolumn{2}{c}{Heurísticas} & \multicolumn{3}{c}{Profundos (reciben $k$)} & \multicolumn{2}{c}{GCN de una capa} \\
++\cmidrule(lr){3-4}\cmidrule(lr){5-7}\cmidrule(l){8-9}
+ \textbf{Red} & \textbf{Métrica} & Louvain & Leiden & DeepWalk & DGI & DMoN & GCN-Louvain & GCN-Leiden \\
+ \midrule
+-\multirow{5}{*}{Amazon Computers} & $NMI$ & 0.519{\scriptsize$\pm$0.015} & 0.524{\scriptsize$\pm$0.014} & 0.500{\scriptsize$\pm$0.008} & 0.094{\scriptsize$\pm$0.124} & 0.466{\scriptsize$\pm$0.015} & \textbf{0.529{\scriptsize$\pm$0.016}} & 0.503{\scriptsize$\pm$0.072} \\
+- & $ARI$ & 0.300{\scriptsize$\pm$0.029} & 0.290{\scriptsize$\pm$0.012} & 0.378{\scriptsize$\pm$0.010} & 0.067{\scriptsize$\pm$0.083} & 0.254{\scriptsize$\pm$0.019} & \textbf{0.439{\scriptsize$\pm$0.013}} & 0.394{\scriptsize$\pm$0.091} \\
++\multirow{4}{*}{Amazon Computers} & $k$ & 329--332 & 328--331 & 10 & 10 & 10 & 5 & 5 \\
++\addlinespace[2pt]
   & $Q$ & 0.637{\scriptsize$\pm$0.001} & \textbf{0.639{\scriptsize$\pm$0.001}} & 0.590{\scriptsize$\pm$0.009} & 0.053{\scriptsize$\pm$0.092} & 0.555{\scriptsize$\pm$0.015} & 0.550{\scriptsize$\pm$0.002} & 0.548{\scriptsize$\pm$0.003} \\
 - & $DBI$ & --- & --- & 3.199{\scriptsize$\pm$0.142} & 1.146{\scriptsize$\pm$0.506} & 1.531{\scriptsize$\pm$0.092} & \textbf{0.783{\scriptsize$\pm$0.252}} & 0.824{\scriptsize$\pm$0.403} \\
-+ & $DBI$ & --- & --- & 3.199{\scriptsize$\pm$0.142} & 1.146{\scriptsize$\pm$0.506} & 1.531{\scriptsize$\pm$0.092} & 0.783{\scriptsize$\pm$0.252} & 0.824{\scriptsize$\pm$0.403} \\
-  & $k$ & 330.8{\scriptsize$\pm$1.3} & 330.0{\scriptsize$\pm$1.2} & 10 & 10 & 10 & 5 & 5 \\
+- & $k$ & 330.8{\scriptsize$\pm$1.3} & 330.0{\scriptsize$\pm$1.2} & 10 & 10 & 10 & 5 & 5 \\
++ & $NMI$ & 0.519{\scriptsize$\pm$0.015} & 0.524{\scriptsize$\pm$0.014} & 0.500{\scriptsize$\pm$0.008} & 0.094{\scriptsize$\pm$0.124} & 0.466{\scriptsize$\pm$0.015} & \textbf{0.529{\scriptsize$\pm$0.016}} & 0.503{\scriptsize$\pm$0.072} \\
++ & $ARI$ & 0.300{\scriptsize$\pm$0.029} & 0.290{\scriptsize$\pm$0.012} & 0.378{\scriptsize$\pm$0.010} & 0.067{\scriptsize$\pm$0.083} & 0.254{\scriptsize$\pm$0.019} & \textbf{0.439{\scriptsize$\pm$0.013}} & 0.394{\scriptsize$\pm$0.091} \\
  \midrule
- \multirow{5}{*}{Amazon Photo} & $NMI$ & \textbf{0.659{\scriptsize$\pm$0.003}} & 0.655{\scriptsize$\pm$0.005} & 0.630{\scriptsize$\pm$0.031} & 0.061{\scriptsize$\pm$0.000} & 0.569{\scriptsize$\pm$0.036} & 0.648{\scriptsize$\pm$0.002} & 0.649{\scriptsize$\pm$0.005} \\
-  & $ARI$ & \textbf{0.564{\scriptsize$\pm$0.011}} & 0.560{\scriptsize$\pm$0.012} & 0.461{\scriptsize$\pm$0.081} & 0.025{\scriptsize$\pm$0.000} & 0.427{\scriptsize$\pm$0.033} & 0.487{\scriptsize$\pm$0.003} & 0.485{\scriptsize$\pm$0.007} \\
+-\multirow{5}{*}{Amazon Photo} & $NMI$ & \textbf{0.659{\scriptsize$\pm$0.003}} & 0.655{\scriptsize$\pm$0.005} & 0.630{\scriptsize$\pm$0.031} & 0.061{\scriptsize$\pm$0.000} & 0.569{\scriptsize$\pm$0.036} & 0.648{\scriptsize$\pm$0.002} & 0.649{\scriptsize$\pm$0.005} \\
+- & $ARI$ & \textbf{0.564{\scriptsize$\pm$0.011}} & 0.560{\scriptsize$\pm$0.012} & 0.461{\scriptsize$\pm$0.081} & 0.025{\scriptsize$\pm$0.000} & 0.427{\scriptsize$\pm$0.033} & 0.487{\scriptsize$\pm$0.003} & 0.485{\scriptsize$\pm$0.007} \\
++\multirow{4}{*}{Amazon Photo} & $k$ & 150--151 & 149--150 & 8 & 8 & 8 & 7 & 7 \\
++\addlinespace[2pt]
   & $Q$ & 0.737{\scriptsize$\pm$0.001} & \textbf{0.739{\scriptsize$\pm$0.001}} & 0.647{\scriptsize$\pm$0.044} & 0.044{\scriptsize$\pm$0.000} & 0.652{\scriptsize$\pm$0.019} & 0.646{\scriptsize$\pm$0.001} & 0.646{\scriptsize$\pm$0.001} \\
 - & $DBI$ & --- & --- & 2.374{\scriptsize$\pm$0.184} & 0.812{\scriptsize$\pm$0.009} & 1.250{\scriptsize$\pm$0.056} & 0.987{\scriptsize$\pm$0.040} & \textbf{0.726{\scriptsize$\pm$0.203}} \\
-+ & $DBI$ & --- & --- & 2.374{\scriptsize$\pm$0.184} & 0.812{\scriptsize$\pm$0.009} & 1.250{\scriptsize$\pm$0.056} & 0.987{\scriptsize$\pm$0.040} & 0.726{\scriptsize$\pm$0.203} \\
-  & $k$ & 150.2{\scriptsize$\pm$0.4} & 149.6{\scriptsize$\pm$0.5} & 8 & 8 & 8 & 7 & 7 \\
+- & $k$ & 150.2{\scriptsize$\pm$0.4} & 149.6{\scriptsize$\pm$0.5} & 8 & 8 & 8 & 7 & 7 \\
++ & $NMI$ & \textbf{0.659{\scriptsize$\pm$0.003}} & 0.655{\scriptsize$\pm$0.005} & 0.630{\scriptsize$\pm$0.031} & 0.061{\scriptsize$\pm$0.000} & 0.569{\scriptsize$\pm$0.036} & 0.648{\scriptsize$\pm$0.002} & 0.649{\scriptsize$\pm$0.005} \\
++ & $ARI$ & \textbf{0.564{\scriptsize$\pm$0.011}} & 0.560{\scriptsize$\pm$0.012} & 0.461{\scriptsize$\pm$0.081} & 0.025{\scriptsize$\pm$0.000} & 0.427{\scriptsize$\pm$0.033} & 0.487{\scriptsize$\pm$0.003} & 0.485{\scriptsize$\pm$0.007} \\
  \midrule
- \multirow{5}{*}{Actor} & $NMI$ & 0.005{\scriptsize$\pm$0.001} & 0.004{\scriptsize$\pm$0.001} & 0.001{\scriptsize$\pm$0.000} & 0.002{\scriptsize$\pm$0.000} & \textbf{0.007{\scriptsize$\pm$0.002}} & 0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
-  & $ARI$ & -0.000{\scriptsize$\pm$0.000} & -0.000{\scriptsize$\pm$0.000} & 0.001{\scriptsize$\pm$0.000} & -0.001{\scriptsize$\pm$0.000} & \textbf{0.005{\scriptsize$\pm$0.002}} & -0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
+-\multirow{5}{*}{Actor} & $NMI$ & 0.005{\scriptsize$\pm$0.001} & 0.004{\scriptsize$\pm$0.001} & 0.001{\scriptsize$\pm$0.000} & 0.002{\scriptsize$\pm$0.000} & \textbf{0.007{\scriptsize$\pm$0.002}} & 0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
+- & $ARI$ & -0.000{\scriptsize$\pm$0.000} & -0.000{\scriptsize$\pm$0.000} & 0.001{\scriptsize$\pm$0.000} & -0.001{\scriptsize$\pm$0.000} & \textbf{0.005{\scriptsize$\pm$0.002}} & -0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
++\multirow{4}{*}{Actor} & $k$ & 33--41 & 29--43 & 5 & 5 & 5 & 2 & 1 \\
++\addlinespace[2pt]
   & $Q$ & 0.507{\scriptsize$\pm$0.003} & \textbf{0.516{\scriptsize$\pm$0.003}} & 0.456{\scriptsize$\pm$0.001} & 0.014{\scriptsize$\pm$0.009} & 0.172{\scriptsize$\pm$0.009} & 0.320{\scriptsize$\pm$0.017} & 0.000{\scriptsize$\pm$0.000} \\
 - & $DBI$ & --- & --- & 4.431{\scriptsize$\pm$0.050} & 4.539{\scriptsize$\pm$0.089} & 1.211{\scriptsize$\pm$0.038} & \textbf{0.593{\scriptsize$\pm$0.084}} & --- \\
-+ & $DBI$ & --- & --- & 4.431{\scriptsize$\pm$0.050} & 4.539{\scriptsize$\pm$0.089} & 1.211{\scriptsize$\pm$0.038} & 0.593{\scriptsize$\pm$0.084} & --- \\
-  & $k$ & 36.2{\scriptsize$\pm$3.4} & 33.4{\scriptsize$\pm$5.7} & 5 & 5 & 5 & 2 & 1 \\
+- & $k$ & 36.2{\scriptsize$\pm$3.4} & 33.4{\scriptsize$\pm$5.7} & 5 & 5 & 5 & 2 & 1 \\
++ & $NMI$ & 0.005{\scriptsize$\pm$0.001} & 0.004{\scriptsize$\pm$0.001} & 0.001{\scriptsize$\pm$0.000} & 0.002{\scriptsize$\pm$0.000} & \textbf{0.007{\scriptsize$\pm$0.002}} & 0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
++ & $ARI$ & -0.000{\scriptsize$\pm$0.000} & -0.000{\scriptsize$\pm$0.000} & 0.001{\scriptsize$\pm$0.000} & -0.001{\scriptsize$\pm$0.000} & \textbf{0.005{\scriptsize$\pm$0.002}} & -0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
  \midrule
- \multirow{5}{*}{WikiCS} & $NMI$ & 0.459{\scriptsize$\pm$0.006} & \textbf{0.467{\scriptsize$\pm$0.005}} & 0.466{\scriptsize$\pm$0.009} & 0.270{\scriptsize$\pm$0.016} & 0.362{\scriptsize$\pm$0.022} & 0.407{\scriptsize$\pm$0.002} & 0.401{\scriptsize$\pm$0.009} \\
-  & $ARI$ & 0.406{\scriptsize$\pm$0.015} & \textbf{0.415{\scriptsize$\pm$0.009}} & 0.404{\scriptsize$\pm$0.009} & 0.130{\scriptsize$\pm$0.032} & 0.235{\scriptsize$\pm$0.026} & 0.361{\scriptsize$\pm$0.002} & 0.357{\scriptsize$\pm$0.007} \\
+-\multirow{5}{*}{WikiCS} & $NMI$ & 0.459{\scriptsize$\pm$0.006} & \textbf{0.467{\scriptsize$\pm$0.005}} & 0.466{\scriptsize$\pm$0.009} & 0.270{\scriptsize$\pm$0.016} & 0.362{\scriptsize$\pm$0.022} & 0.407{\scriptsize$\pm$0.002} & 0.401{\scriptsize$\pm$0.009} \\
+- & $ARI$ & 0.406{\scriptsize$\pm$0.015} & \textbf{0.415{\scriptsize$\pm$0.009}} & 0.404{\scriptsize$\pm$0.009} & 0.130{\scriptsize$\pm$0.032} & 0.235{\scriptsize$\pm$0.026} & 0.361{\scriptsize$\pm$0.002} & 0.357{\scriptsize$\pm$0.007} \\
++\multirow{4}{*}{WikiCS} & $k$ & 370--372 & 370--373 & 10 & 10 & 10 & 4 & 4 \\
++\addlinespace[2pt]
   & $Q$ & 0.647{\scriptsize$\pm$0.003} & \textbf{0.651{\scriptsize$\pm$0.001}} & 0.542{\scriptsize$\pm$0.003} & 0.355{\scriptsize$\pm$0.017} & 0.551{\scriptsize$\pm$0.010} & 0.555{\scriptsize$\pm$0.001} & 0.552{\scriptsize$\pm$0.002} \\
 - & $DBI$ & --- & --- & 3.323{\scriptsize$\pm$0.072} & 1.433{\scriptsize$\pm$0.052} & 1.358{\scriptsize$\pm$0.022} & \textbf{0.554{\scriptsize$\pm$0.051}} & 0.566{\scriptsize$\pm$0.043} \\
-+ & $DBI$ & --- & --- & 3.323{\scriptsize$\pm$0.072} & 1.433{\scriptsize$\pm$0.052} & 1.358{\scriptsize$\pm$0.022} & 0.554{\scriptsize$\pm$0.051} & 0.566{\scriptsize$\pm$0.043} \\
-  & $k$ & 371.2{\scriptsize$\pm$0.8} & 371.2{\scriptsize$\pm$1.1} & 10 & 10 & 10 & 4 & 4 \\
+- & $k$ & 371.2{\scriptsize$\pm$0.8} & 371.2{\scriptsize$\pm$1.1} & 10 & 10 & 10 & 4 & 4 \\
++ & $NMI$ & 0.459{\scriptsize$\pm$0.006} & \textbf{0.467{\scriptsize$\pm$0.005}} & 0.466{\scriptsize$\pm$0.009} & 0.270{\scriptsize$\pm$0.016} & 0.362{\scriptsize$\pm$0.022} & 0.407{\scriptsize$\pm$0.002} & 0.401{\scriptsize$\pm$0.009} \\
++ & $ARI$ & 0.406{\scriptsize$\pm$0.015} & \textbf{0.415{\scriptsize$\pm$0.009}} & 0.404{\scriptsize$\pm$0.009} & 0.130{\scriptsize$\pm$0.032} & 0.235{\scriptsize$\pm$0.026} & 0.361{\scriptsize$\pm$0.002} & 0.357{\scriptsize$\pm$0.007} \\
  \bottomrule
  \end{tabular}}%
-@@ -92,7 +92,7 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
- \begin{table}[H]
+ \end{table}
+ 
+-\begin{table}[H]
++\begin{table}[tbp]
  \centering
- \renewcommand{\arraystretch}{1.25}
+-\renewcommand{\arraystretch}{1.25}
 -\mycaption[Resultados en grafos sintéticos SBM]{Resultados en grafos sintéticos \textsc{sbm} ($p_{in}=0.05$, $p_{out}=0.005$): media$\pm$desviación estándar sobre cinco semillas, con el mismo criterio de reporte que la Tabla~\ref{tab:resultados-citas-coautoria}. GCN-Louvain usa \textit{prior} de modularidad ($\gamma=1.0$) con el filtro condicionado, sin el cual estas corridas no son ejecutables (Sección~\ref{sec:estudio-recalibracion}); en \textsc{sbm}-10k ese filtro reduce el \textit{prior} a una sola comunidad (Sección~\ref{subsec:recal-validacion}). GCN-Leiden usa \textsc{cpm} con $\gamma = (p_{in}+p_{out})/2$, tomado del generador, por lo que sus resultados no son estrictamente no supervisados; con \textsc{cpm} ambos filtros coinciden. Por esta diferencia de \textit{prior}, las dos columnas \textsc{gcn} no comparan Louvain con Leiden.}
++\renewcommand{\arraystretch}{1.1}
 +\mycaption[Resultados en grafos sintéticos SBM]{Resultados en grafos sintéticos \textsc{sbm} ($p_{in}=0.05$, $p_{out}=0.005$): media$\pm$desviación estándar sobre cinco semillas, con el mismo criterio de reporte que la Tabla~\ref{tab:resultados-citas-coautoria}. GCN-Louvain usa \textit{prior} de modularidad ($\gamma=1.0$, $\beta=0.5$) con el filtro condicionado; sin él, la corrida no es ejecutable en \textsc{sbm}-5k y en \textsc{sbm}-1k el \textit{prior} conserva solo 2 de los 5 bloques (Sección~\ref{sec:estudio-recalibracion}). En \textsc{sbm}-10k ese filtro reduce el \textit{prior} a una sola comunidad (Sección~\ref{subsec:recal-validacion}). GCN-Leiden usa \textsc{cpm} con $\beta = 0.5$ y una resolución $\gamma = (p_{in}+p_{out})/2$ tomada del generador, por lo que sus resultados no son estrictamente no supervisados; con \textsc{cpm} ambos filtros coinciden. Por esta diferencia de \textit{prior}, las dos columnas \textsc{gcn} no comparan Louvain con Leiden.}
  \label{tab:resultados-sbm}
  \resizebox{\textwidth}{!}{%
  \begin{tabular}{@{}llccccccc@{}}
-@@ -102,19 +102,19 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
- \multirow{5}{*}{SBM-1k} & $NMI$ & 0.983{\scriptsize$\pm$0.003} & 0.983{\scriptsize$\pm$0.003} & 0.947{\scriptsize$\pm$0.012} & 0.987{\scriptsize$\pm$0.003} & \textbf{0.991{\scriptsize$\pm$0.002}} & 0.988{\scriptsize$\pm$0.000} & 0.988{\scriptsize$\pm$0.000} \\
-  & $ARI$ & 0.989{\scriptsize$\pm$0.002} & 0.989{\scriptsize$\pm$0.002} & 0.964{\scriptsize$\pm$0.009} & 0.992{\scriptsize$\pm$0.002} & \textbf{0.994{\scriptsize$\pm$0.001}} & 0.993{\scriptsize$\pm$0.000} & 0.993{\scriptsize$\pm$0.000} \\
+ \toprule
++& & \multicolumn{2}{c}{Heurísticas} & \multicolumn{3}{c}{Profundos (reciben $k$)} & \multicolumn{2}{c}{GCN de una capa} \\
++\cmidrule(lr){3-4}\cmidrule(lr){5-7}\cmidrule(l){8-9}
+ \textbf{Red} & \textbf{Métrica} & Louvain & Leiden & DeepWalk & DGI & DMoN & GCN-Louvain & GCN-Leiden \\
+ \midrule
+-\multirow{5}{*}{SBM-1k} & $NMI$ & 0.983{\scriptsize$\pm$0.003} & 0.983{\scriptsize$\pm$0.003} & 0.947{\scriptsize$\pm$0.012} & 0.987{\scriptsize$\pm$0.003} & \textbf{0.991{\scriptsize$\pm$0.002}} & 0.988{\scriptsize$\pm$0.000} & 0.988{\scriptsize$\pm$0.000} \\
+- & $ARI$ & 0.989{\scriptsize$\pm$0.002} & 0.989{\scriptsize$\pm$0.002} & 0.964{\scriptsize$\pm$0.009} & 0.992{\scriptsize$\pm$0.002} & \textbf{0.994{\scriptsize$\pm$0.001}} & 0.993{\scriptsize$\pm$0.000} & 0.993{\scriptsize$\pm$0.000} \\
++\multirow{4}{*}{SBM-1k} & $k$ & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
++\addlinespace[2pt]
   & $Q$ & \textbf{0.518{\scriptsize$\pm$0.000}} & \textbf{0.518{\scriptsize$\pm$0.000}} & 0.514{\scriptsize$\pm$0.001} & 0.518{\scriptsize$\pm$0.000} & 0.518{\scriptsize$\pm$0.000} & \textbf{0.518{\scriptsize$\pm$0.000}} & \textbf{0.518{\scriptsize$\pm$0.000}} \\
 - & $DBI$ & --- & --- & 3.631{\scriptsize$\pm$0.030} & 0.482{\scriptsize$\pm$0.015} & 0.393{\scriptsize$\pm$0.004} & \textbf{0.338{\scriptsize$\pm$0.007}} & 0.340{\scriptsize$\pm$0.007} \\
-+ & $DBI$ & --- & --- & 3.631{\scriptsize$\pm$0.030} & 0.482{\scriptsize$\pm$0.015} & 0.393{\scriptsize$\pm$0.004} & 0.338{\scriptsize$\pm$0.007} & 0.340{\scriptsize$\pm$0.007} \\
-  & $k$ & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+- & $k$ & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
++ & $NMI$ & 0.983{\scriptsize$\pm$0.003} & 0.983{\scriptsize$\pm$0.003} & 0.947{\scriptsize$\pm$0.012} & 0.987{\scriptsize$\pm$0.003} & \textbf{0.991{\scriptsize$\pm$0.002}} & 0.988{\scriptsize$\pm$0.000} & 0.988{\scriptsize$\pm$0.000} \\
++ & $ARI$ & 0.989{\scriptsize$\pm$0.002} & 0.989{\scriptsize$\pm$0.002} & 0.964{\scriptsize$\pm$0.009} & 0.992{\scriptsize$\pm$0.002} & \textbf{0.994{\scriptsize$\pm$0.001}} & 0.993{\scriptsize$\pm$0.000} & 0.993{\scriptsize$\pm$0.000} \\
  \midrule
- \multirow{5}{*}{SBM-5k} & $NMI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.981{\scriptsize$\pm$0.004} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
-  & $ARI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.986{\scriptsize$\pm$0.003} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+-\multirow{5}{*}{SBM-5k} & $NMI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.981{\scriptsize$\pm$0.004} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+- & $ARI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.986{\scriptsize$\pm$0.003} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
++\multirow{4}{*}{SBM-5k} & $k$ & 10 & 10 & 10 & 10 & 10 & 10 & 10 \\
++\addlinespace[2pt]
   & $Q$ & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} & 0.424{\scriptsize$\pm$0.001} & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} \\
 - & $DBI$ & --- & --- & 3.931{\scriptsize$\pm$0.021} & 0.439{\scriptsize$\pm$0.006} & 0.366{\scriptsize$\pm$0.001} & 0.362{\scriptsize$\pm$0.023} & \textbf{0.361{\scriptsize$\pm$0.023}} \\
-+ & $DBI$ & --- & --- & 3.931{\scriptsize$\pm$0.021} & 0.439{\scriptsize$\pm$0.006} & 0.366{\scriptsize$\pm$0.001} & 0.362{\scriptsize$\pm$0.023} & 0.361{\scriptsize$\pm$0.023} \\
-  & $k$ & 10 & 10 & 10 & 10 & 10 & 10 & 10 \\
+- & $k$ & 10 & 10 & 10 & 10 & 10 & 10 & 10 \\
++ & $NMI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.981{\scriptsize$\pm$0.004} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
++ & $ARI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.986{\scriptsize$\pm$0.003} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
  \midrule
- \multirow{5}{*}{SBM-10k} & $NMI$ & 0.958{\scriptsize$\pm$0.025} & 0.970{\scriptsize$\pm$0.017} & 0.567{\scriptsize$\pm$0.010} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
-  & $ARI$ & 0.837{\scriptsize$\pm$0.091} & 0.881{\scriptsize$\pm$0.064} & 0.535{\scriptsize$\pm$0.012} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+-\multirow{5}{*}{SBM-10k} & $NMI$ & 0.958{\scriptsize$\pm$0.025} & 0.970{\scriptsize$\pm$0.017} & 0.567{\scriptsize$\pm$0.010} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+- & $ARI$ & 0.837{\scriptsize$\pm$0.091} & 0.881{\scriptsize$\pm$0.064} & 0.535{\scriptsize$\pm$0.012} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
++\multirow{4}{*}{SBM-10k} & $k$ & 15--19 & 16--19 & 20 & 20 & 20 & 1 & 20 \\
++\addlinespace[2pt]
   & $Q$ & 0.288{\scriptsize$\pm$0.004} & 0.290{\scriptsize$\pm$0.002} & 0.173{\scriptsize$\pm$0.004} & \textbf{0.294{\scriptsize$\pm$0.000}} & \textbf{0.294{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{0.294{\scriptsize$\pm$0.000}} \\
 - & $DBI$ & --- & --- & 5.672{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.002} & 0.543{\scriptsize$\pm$0.003} & --- & \textbf{0.521{\scriptsize$\pm$0.005}} \\
-+ & $DBI$ & --- & --- & 5.672{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.002} & 0.543{\scriptsize$\pm$0.003} & --- & 0.521{\scriptsize$\pm$0.005} \\
-  & $k$ & 16.8{\scriptsize$\pm$1.8} & 17.6{\scriptsize$\pm$1.3} & 20 & 20 & 20 & 1 & 20 \\
+- & $k$ & 16.8{\scriptsize$\pm$1.8} & 17.6{\scriptsize$\pm$1.3} & 20 & 20 & 20 & 1 & 20 \\
++ & $NMI$ & 0.958{\scriptsize$\pm$0.025} & 0.970{\scriptsize$\pm$0.017} & 0.567{\scriptsize$\pm$0.010} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
++ & $ARI$ & 0.837{\scriptsize$\pm$0.091} & 0.881{\scriptsize$\pm$0.064} & 0.535{\scriptsize$\pm$0.012} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
  \bottomrule
  \end{tabular}}%
-@@ -123,19 +123,19 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
+ \end{table}
+@@ -123,19 +129,19 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
  \subsection{Calidad de partición}
  \label{subsec:analisis-calidad}
  
@@ -274,7 +378,7 @@ index 010748d..09d7144 100644
  \label{tab:prior-pico}
  \begin{tabular}{@{}lcccc@{}}
  \toprule
-@@ -155,19 +155,19 @@ WikiCS & 0.419{\scriptsize$\pm$0.001} & 0.410{\scriptsize$\pm$0.003} & 0.373{\sc
+@@ -155,19 +161,19 @@ WikiCS & 0.419{\scriptsize$\pm$0.001} & 0.410{\scriptsize$\pm$0.003} & 0.373{\sc
  \end{tabular}
  \end{table}
  
@@ -297,7 +401,7 @@ index 010748d..09d7144 100644
  \label{tab:convergencia-prior}
  \begin{tabular}{@{}lccc@{}}
  \toprule
-@@ -184,7 +184,7 @@ WikiCS & 0.522 & 79.0{\scriptsize$\pm$2.2} & 94.0{\scriptsize$\pm$4.2} \\
+@@ -184,7 +190,7 @@ WikiCS & 0.522 & 79.0{\scriptsize$\pm$2.2} & 94.0{\scriptsize$\pm$4.2} \\
  \end{tabular}
  \end{table}
  
@@ -306,7 +410,7 @@ index 010748d..09d7144 100644
  
  Las trayectorias muestran también que maximizar $Q'$ no equivale a recuperar las etiquetas. En 56 de 70 corridas el pico de $NMI$ precede al máximo de $Q'$, y la pérdida media de $NMI$ entre ambos puntos va de $0.003$ (Amazon Photo) a $0.054$ (CiteSeer). Esto explica por qué el valor pico del protocolo de Wang et al. es optimista frente al \textit{checkpoint} de pérdida mínima (Sección~\ref{subsec:lineas-base-protocolo}).
  
-@@ -201,7 +201,7 @@ En Actor, con la configuración de Wang ($\gamma=0.3$, $\beta=0.5$), el \textit{
+@@ -201,7 +207,7 @@ En Actor, con la configuración de Wang ($\gamma=0.3$, $\beta=0.5$), el \textit{
  \subsection{Transferencia de $\beta$ en grafos reales}
  \label{subsec:recal-redes-reales}
  
@@ -315,7 +419,7 @@ index 010748d..09d7144 100644
  
  \subsection{Tamaños uniformes en grafos SBM}
  \label{subsec:recal-sbm}
-@@ -216,7 +216,7 @@ En Actor se evalúa el barrido completo sobre $\gamma \in \{0.3, 1.0\}$ y $\beta
+@@ -216,7 +222,7 @@ En Actor se evalúa el barrido completo sobre $\gamma \in \{0.3, 1.0\}$ y $\beta
  \subsection{Validación del filtro condicionado}
  \label{subsec:recal-validacion}
  
@@ -380,11 +484,30 @@ index 5cd99f5..4980b0c 100644
  
  \clearpage
 diff --git a/frontmatter/simbolos.tex b/frontmatter/simbolos.tex
-index 621afab..1b99a56 100644
+index 621afab..d3901a4 100644
 --- a/frontmatter/simbolos.tex
 +++ b/frontmatter/simbolos.tex
-@@ -72,7 +72,7 @@ $\gamma \in (0,1]$
-   & Parámetro de ponderación del suavizado laplaciano \\
+@@ -59,7 +59,7 @@ $Q'$
+   & Modularidad suave (diferenciable) \\
+ $s_i = |C_i|$
+   & Número de nodos de la comunidad $C_i$ \\
+-$T = \mu_s - 0.5\,\sigma_s$
++$T = \mu_s + \beta\,\sigma_s$
+   & Umbral de tamaño mínimo para comunidades \\
+ \hline
+ 
+@@ -68,17 +68,23 @@ $\alpha$
+   & (1) Parámetro del operador de suavizado, $\alpha \in (0,1]$;
+     (2) factor de escala de la función de pérdida%
+     \footnote{Contextos separados: (1) en el teorema de \textit{over-smoothing}; (2) en $\mathcal{L} = -\alpha Q'$.} \\
+-$\gamma \in (0,1]$
+-  & Parámetro de ponderación del suavizado laplaciano \\
++$\beta$
++  & Coeficiente del filtro dinámico de tamaño en $T = \mu_s + \beta\,\sigma_s$; Wang et al. lo fijan en $0.5$ \\
++$\gamma$
++  & (1) Parámetro de ponderación del suavizado laplaciano, $\gamma \in (0,1]$;
++    (2) parámetro de resolución de Louvain, Leiden y \textsc{cpm}%
++    \footnote{Contextos separados: (1) en el marco teórico; (2) en el \textit{prior} estructural (Capítulos~\ref{chap:propuesta-solucion} y~\ref{chap:resultados}).} \\
  $\delta$
    & Hiperparámetro de temperatura inversa en la \textit{softmax} de afiliación%
 -    \footnote{No confundir con la función delta de Kronecker $\delta(c_i, c_j)$ de la Sección~5.} \\
@@ -392,6 +515,15 @@ index 621afab..1b99a56 100644
  $\mu_s$
    & Media de los tamaños de comunidad \\
  $\sigma_s$
+   & Desviación estándar de los tamaños de comunidad \\
+ $\tau$
+-  & Parámetro de temperatura en las pérdidas InfoNCE y SupCon \\
++  & (1) Parámetro de temperatura en las pérdidas InfoNCE y SupCon;
++    (2) umbral de dispersión $\sigma_s/\mu_s$ que activa el filtro condicionado%
++    \footnote{Contextos separados: (1) en el marco teórico; (2) en el filtro condicionado (Capítulo~\ref{chap:propuesta-solucion}).} \\
+ \hline
+ 
+ % ════════════════════════════════════════════════════════════════════════════
 diff --git a/references.bib b/references.bib
 index bd49c35..b5e84b8 100644
 --- a/references.bib

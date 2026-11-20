@@ -1,0 +1,424 @@
+====================================================================================================
+PAPER L148  best=frontmatter/resumen.tex:4  ratio=0.933
+  [replace] THESIS: \initial{L}a
+         PAPER : \section*{\hspace{-1.5mm}Resumen} \fontsize{10}{12}\selectfont \justifying \noindent La
+====================================================================================================
+PAPER L154  best=frontmatter/resumen.tex:7  ratio=0.986
+  [replace] THESIS: Esta tesis
+         PAPER : Este trabajo
+====================================================================================================
+PAPER L156  best=frontmatter/resumen.tex:9  ratio=0.987
+  [replace] THESIS: cuatro
+         PAPER : tres
+  [replace] THESIS: \textsc{ari},
+         PAPER : \textsc{ari} y
+  [replace] THESIS: $Q$ y \textsc{dbi}).
+         PAPER : $Q$).
+====================================================================================================
+PAPER L158  best=chapters/marco_teorico/marco_teorico.tex:298  ratio=0.363
+  [replace] THESIS: Aunque teóricamente puro, este concepto tiene aplicación limitada: las comunidades
+         PAPER : \vspace{0.3cm} \noindent\textbf{Palabras clave:} Detección de comunidades, Redes Convolucionales
+  [replace] THESIS: grafos reales rara vez forman subgrafos completos, y los algoritmos basados en similitudes locales tienden a identificar solo los núcleos densos, omitiendo nodos periféricos \cite{Newman2004}.
+         PAPER : Grafos, Algoritmo de Leiden, Modularidad Suave, Aprendizaje no supervisado
+====================================================================================================
+PAPER L169  best=chapters/conclusiones/conclusiones.tex:41  ratio=0.598
+  [replace] THESIS: \section{Contribuciones} \label{sec:contribuciones}
+         PAPER : \section{Introducción} \label{sec:introduccion} \fontsize{10}{12}\selectfont
+====================================================================================================
+PAPER L175  best=chapters/chapter01/chap01.tex:61  ratio=0.581
+  [delete] THESIS: (Definición~\ref{def:regla-propagacion-gcn})
+         PAPER : 
+  [delete] THESIS: Debido a que la optimización por gradiente requiere variables continuas, el modelo no opera directamente sobre $\mathbf{S}$, sino sobre una matriz de afiliación suave $\mathbf{P} \in \mathbb{R}^{n \times k}$. No obstante, se puede regresar a la forma discreta $\mathbf{S}$ mediante $\arg\max$ sobre cada fila de $\mathbf{P}$.
+         PAPER : 
+====================================================================================================
+PAPER L178  best=chapters/conclusiones/conclusiones.tex:5  ratio=0.760
+  [replace] THESIS: \section{Respuestas a las preguntas
+         PAPER : \subsection{Preguntas
+  [replace] THESIS: \label{sec:respuestas-preguntas}
+         PAPER : \label{subsec:preguntas}
+====================================================================================================
+PAPER L181  best=chapters/chapter01/chap01.tex:66  ratio=0.974
+  [delete] THESIS: \section{Preguntas de investigación}
+         PAPER : 
+====================================================================================================
+PAPER L198  best=chapters/conclusiones/conclusiones.tex:45  ratio=0.979
+  [replace] THESIS: (Capítulo~\ref{chap:propuesta-solucion})
+         PAPER : (Sección~\ref{sec:fases-2-4})
+====================================================================================================
+PAPER L206  best=chapters/trabajos_relacionados/trabajos_relacionados.tex:1  ratio=0.688
+  [replace] THESIS: \chapter{Trabajo
+         PAPER : \section{Trabajo
+  [replace] THESIS: \label{chap:trabajos-relacionados}
+         PAPER : \label{sec:trabajo-relacionado} \fontsize{10}{12}\selectfont
+====================================================================================================
+PAPER L210  best=chapters/trabajos_relacionados/trabajos_relacionados.tex:112  ratio=0.947
+  [replace] THESIS: \section{Trabajo
+         PAPER : \subsection{Trabajo
+  [replace] THESIS: modularidad suave} \label{sec:trabajo-base-wang}
+         PAPER : Modularidad Suave} \label{subsec:trabajo-base-wang}
+====================================================================================================
+PAPER L213  best=chapters/trabajos_relacionados/trabajos_relacionados.tex:116  ratio=0.982
+  [replace] THESIS: Esta tesis
+         PAPER : Este trabajo
+  [replace] THESIS: Esta tesis
+         PAPER : Este trabajo
+====================================================================================================
+PAPER L215  best=chapters/conclusiones/conclusiones.tex:5  ratio=0.571
+  [replace] THESIS: \section{Respuestas a las preguntas
+         PAPER : \section{Propuesta
+  [replace] THESIS: investigación} \label{sec:respuestas-preguntas}
+         PAPER : solución} \label{sec:propuesta} \fontsize{10}{12}\selectfont
+====================================================================================================
+PAPER L222  best=chapters/propuesta_solucion/propuesta_solucion.tex:7  ratio=0.977
+  [replace] THESIS: \begin{figure}[H]
+         PAPER : \begin{figure*}[t]
+  [replace] THESIS: \resizebox{\textwidth}{!}{
+         PAPER : \adjustbox{max width=\textwidth}{
+====================================================================================================
+PAPER L242  best=chapters/propuesta_solucion/propuesta_solucion.tex:27  ratio=1.000
+====================================================================================================
+PAPER L249  best=chapters/propuesta_solucion/propuesta_solucion.tex:34  ratio=1.000
+====================================================================================================
+PAPER L261  best=chapters/propuesta_solucion/propuesta_solucion.tex:46  ratio=1.000
+====================================================================================================
+PAPER L273  best=chapters/propuesta_solucion/propuesta_solucion.tex:58  ratio=0.975
+  [replace] THESIS: $p_{ic}=\operatorname{softmax}(\delta\cdot\operatorname{sim}(\mathbf{h}_i,\mathbf{u}_c))$%
+         PAPER : $p_{ic}=\mathrm{Softmax}(\delta\cdot\mathrm{sim}(\mathbf{h}_i,\mathbf{u}_c))$%
+====================================================================================================
+PAPER L285  best=chapters/propuesta_solucion/propuesta_solucion.tex:70  ratio=1.000
+====================================================================================================
+PAPER L298  best=chapters/propuesta_solucion/propuesta_solucion.tex:83  ratio=1.000
+====================================================================================================
+PAPER L314  best=chapters/propuesta_solucion/propuesta_solucion.tex:99  ratio=0.934
+  [replace] THESIS: \mycaption[Fases del método propuesto]{Diagrama
+         PAPER : \caption{Diagrama
+  [replace] THESIS: \end{figure}
+         PAPER : \end{figure*}
+====================================================================================================
+PAPER L320  best=chapters/propuesta_solucion/propuesta_solucion.tex:140  ratio=0.703
+  [replace] THESIS: \label{sec:fase-1-extraccion-de-estructura-global-y-control-estadistico}
+         PAPER : \label{sec:fase-1}
+====================================================================================================
+PAPER L323  best=chapters/propuesta_solucion/propuesta_solucion.tex:146  ratio=0.942
+  [delete] THESIS: (Definición~\ref{def:modularidad})
+         PAPER : 
+====================================================================================================
+PAPER L325  best=chapters/propuesta_solucion/propuesta_solucion.tex:148  ratio=0.966
+  [replace] THESIS: desconectadas (Definición~\ref{def:comunidades-desconectadas}).
+         PAPER : desconectadas.
+====================================================================================================
+PAPER L327  best=chapters/propuesta_solucion/propuesta_solucion.tex:150  ratio=0.914
+  [replace] THESIS: esta tesis
+         PAPER : este trabajo
+  [replace] THESIS: esta tesis
+         PAPER : este trabajo
+  [replace] THESIS: (Capítulo~\ref{chap:resultados}).
+         PAPER : (Sección~\ref{sec:resultados}).
+  [delete] THESIS: Esa partición aún incluye comunidades pequeñas que la siguiente sección depura.
+         PAPER : 
+====================================================================================================
+PAPER L329  best=chapters/marco_teorico/marco_teorico.tex:393  ratio=0.931
+  [delete] THESIS: (Definición~\ref{def:limite-resolucion})
+         PAPER : 
+====================================================================================================
+PAPER L331  best=chapters/marco_teorico/marco_teorico.tex:395  ratio=0.919
+  [replace] THESIS: CPM
+         PAPER : \textsc{cpm}
+  [delete] THESIS: $\binom{n_c}{2}$ & es el número de pares de nodos posibles dentro de la comunidad, \\
+         PAPER : 
+====================================================================================================
+PAPER L344  best=chapters/propuesta_solucion/propuesta_solucion.tex:155  ratio=1.000
+====================================================================================================
+PAPER L346  best=chapters/propuesta_solucion/propuesta_solucion.tex:157  ratio=1.000
+====================================================================================================
+PAPER L348  best=chapters/propuesta_solucion/propuesta_solucion.tex:159  ratio=1.000
+====================================================================================================
+PAPER L360  best=chapters/propuesta_solucion/propuesta_solucion.tex:171  ratio=0.959
+  [replace] THESIS: Esta tesis
+         PAPER : Este trabajo
+  [replace] THESIS: recalibrar, según el segundo objetivo.
+         PAPER : recalibrar.
+====================================================================================================
+PAPER L362  best=chapters/propuesta_solucion/propuesta_solucion.tex:173  ratio=0.965
+  [replace] THESIS: esta tesis
+         PAPER : este trabajo
+  [replace] THESIS: esta tesis
+         PAPER : este trabajo
+  [replace] THESIS: El Capítulo~\ref{chap:resultados}
+         PAPER : La Sección~\ref{sec:estudio-recalibracion}
+====================================================================================================
+PAPER L378  best=chapters/propuesta_solucion/propuesta_solucion.tex:192  ratio=0.912
+  [delete] THESIS: Con $k$ y $\mathcal{P}'$, la extracción de estructura queda completa.
+         PAPER : 
+====================================================================================================
+PAPER L384  best=chapters/propuesta_solucion/propuesta_solucion.tex:199  ratio=0.643
+  [replace] THESIS: \subsection{Fase 2:
+         PAPER : \subsection{Fases 2--4:
+  [replace] THESIS: latente} \label{sec:fase-2-construccion-de-centroides}
+         PAPER : latente, afiliación suave y modularidad suave} \label{sec:fases-2-4}
+====================================================================================================
+PAPER L387  best=chapters/propuesta_solucion/propuesta_solucion.tex:261  ratio=0.934
+  [delete] THESIS: (Definición~\ref{def:softmax-temperatura})
+         PAPER : 
+====================================================================================================
+PAPER L389  best=chapters/propuesta_solucion/propuesta_solucion.tex:263  ratio=0.827
+  [delete] THESIS: \begin{where} $k$ & es el número total de comunidades, \\ $\delta$ & es un hiperparámetro que controla la nitidez de la distribución de probabilidad \cite{Wang2025}. \end{where}
+         PAPER : 
+====================================================================================================
+PAPER L397  best=chapters/propuesta_solucion/propuesta_solucion.tex:275  ratio=0.991
+  [replace] THESIS: esta tesis
+         PAPER : este trabajo
+====================================================================================================
+PAPER L399  best=chapters/propuesta_solucion/propuesta_solucion.tex:277  ratio=0.904
+  [delete] THESIS: (Definición~\ref{def:distribucion-discreta})
+         PAPER : 
+====================================================================================================
+PAPER L401  best=chapters/propuesta_solucion/propuesta_solucion.tex:594  ratio=0.822
+  [insert] THESIS: 
+         PAPER : \fontsize{10}{12}\selectfont
+====================================================================================================
+PAPER L405  best=chapters/propuesta_solucion/propuesta_solucion.tex:476  ratio=0.977
+  [replace] THESIS: \section{Métricas
+         PAPER : \subsection{Métricas
+====================================================================================================
+PAPER L408  best=chapters/propuesta_solucion/propuesta_solucion.tex:480  ratio=0.814
+  [replace] THESIS: cuatro
+         PAPER : tres
+  [replace] THESIS: truth});
+         PAPER : truth}), y
+  [replace] THESIS: externa; y el \textbf{índice Davies-Bouldin} ($DBI$), que diagnostica la geometría del espacio latente. La Tabla~\ref{tab:resumen-metricas} resume estas métricas.
+         PAPER : externa.
+====================================================================================================
+PAPER L410  best=chapters/propuesta_solucion/propuesta_solucion.tex:598  ratio=1.000
+====================================================================================================
+PAPER L413  best=chapters/propuesta_solucion/propuesta_solucion.tex:601  ratio=0.980
+  [replace] THESIS: bloques (Definición~\ref{def:sbm}).
+         PAPER : bloques.
+====================================================================================================
+PAPER L418  best=chapters/propuesta_solucion/propuesta_solucion.tex:603  ratio=0.935
+  [replace] THESIS: \begin{table}[H]
+         PAPER : \begin{table}[htbp]
+  [replace] THESIS: \renewcommand{\arraystretch}{1.25} \mycaption[Conjuntos de datos]{Conjuntos
+         PAPER : \caption{Conjuntos
+  [insert] THESIS: 
+         PAPER : \renewcommand{\arraystretch}{1.05} \adjustbox{max width=\columnwidth}{%
+  [replace] THESIS: \end{tabular}
+         PAPER : \end{tabular}% }
+====================================================================================================
+PAPER L449  best=chapters/propuesta_solucion/propuesta_solucion.tex:634  ratio=1.000
+====================================================================================================
+PAPER L452  best=chapters/propuesta_solucion/propuesta_solucion.tex:637  ratio=0.994
+  [replace] THESIS: Esta tesis
+         PAPER : Este trabajo
+====================================================================================================
+PAPER L454  best=chapters/propuesta_solucion/propuesta_solucion.tex:639  ratio=0.985
+  [replace] THESIS: (Sección~\ref{subsec:recal-sbm}),
+         PAPER : (Sección~\ref{sec:estudio-recalibracion}),
+====================================================================================================
+PAPER L456  best=chapters/propuesta_solucion/propuesta_solucion.tex:641  ratio=1.000
+====================================================================================================
+PAPER L459  best=chapters/propuesta_solucion/propuesta_solucion.tex:644  ratio=0.987
+  [replace] THESIS: (Sección~\ref{subsec:recal-redes-reales}).
+         PAPER : (Sección~\ref{sec:estudio-recalibracion}).
+====================================================================================================
+PAPER L461  best=chapters/propuesta_solucion/propuesta_solucion.tex:646  ratio=0.994
+  [replace] THESIS: esta tesis
+         PAPER : este trabajo
+  [replace] THESIS: Esta tesis
+         PAPER : Este trabajo
+====================================================================================================
+PAPER L463  best=chapters/resultados/resultados.tex:5  ratio=0.662
+  [replace] THESIS: \section{Resultados principales} \label{sec:resultados-principales}
+         PAPER : \section{Resultados} \label{sec:resultados} \fontsize{10}{12}\selectfont
+====================================================================================================
+PAPER L467  best=chapters/resultados/resultados.tex:9  ratio=1.000
+====================================================================================================
+PAPER L472  best=chapters/resultados/resultados.tex:12  ratio=0.814
+  [replace] THESIS: \begin{table}[H]
+         PAPER : \begin{table*}[t]
+  [replace] THESIS: \renewcommand{\arraystretch}{1.25} \mycaption[Resultados en grafos de citas y coautoría]{Resultados
+         PAPER : \caption{Resultados
+  [delete] THESIS: El $DBI$ se calcula en el espacio de representaciones de cada método, por lo que solo es comparable dentro de un mismo método y no se marca en negritas.
+         PAPER : 
+  [replace] THESIS: ---: métrica
+         PAPER : Coauthor Physics se omite porque las corridas de las variantes \textsc{gcn}
+  [replace] THESIS: aplicable o corrida no completada.}
+         PAPER : completaron (Sección~\ref{subsec:analisis-calidad}).}
+  [replace] THESIS: \resizebox{\textwidth}{!}{%
+         PAPER : \renewcommand{\arraystretch}{1.05} \adjustbox{max width=\textwidth}{%
+  [replace] THESIS: \multirow{5}{*}{Cora}
+         PAPER : \multirow{4}{*}{Cora}
+  [delete] THESIS: $DBI$ & --- & --- & 2.912{\scriptsize$\pm$0.095} & 2.960{\scriptsize$\pm$0.302} & 0.923{\scriptsize$\pm$0.027} & 1.029{\scriptsize$\pm$0.492} & 0.699{\scriptsize$\pm$0.225} \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{CiteSeer}
+         PAPER : \multirow{4}{*}{CiteSeer}
+  [delete] THESIS: $DBI$ & --- & --- & 3.716{\scriptsize$\pm$0.236} & 4.932{\scriptsize$\pm$1.367} & 0.742{\scriptsize$\pm$0.011} & 0.757{\scriptsize$\pm$0.052} & 1.002{\scriptsize$\pm$0.547} \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{PubMed}
+         PAPER : \multirow{4}{*}{PubMed}
+  [delete] THESIS: $DBI$ & --- & --- & 3.990{\scriptsize$\pm$0.120} & 1.910{\scriptsize$\pm$0.020} & 0.738{\scriptsize$\pm$0.049} & 0.577{\scriptsize$\pm$0.017} & 0.609{\scriptsize$\pm$0.018} \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{Coauthor
+         PAPER : \multirow{4}{*}{Coauthor
+  [delete] THESIS: $DBI$ & --- & --- & 3.985{\scriptsize$\pm$0.037} & 1.619{\scriptsize$\pm$0.408} & 0.998{\scriptsize$\pm$0.032} & 0.500{\scriptsize$\pm$0.068} & 0.392{\scriptsize$\pm$0.091} \\ &
+         PAPER : 
+  [delete] THESIS: \midrule \multirow{5}{*}{Coauthor Physics} & $NMI$ & 0.449{\scriptsize$\pm$0.012} & 0.474{\scriptsize$\pm$0.009} & \textbf{0.677{\scriptsize$\pm$0.009}} & 0.674{\scriptsize$\pm$0.015} & 0.508{\scriptsize$\pm$0.029} & --- & --- \\ & $ARI$ & 0.217{\scriptsize$\pm$0.007} & 0.232{\scriptsize$\pm$0.013} & \textbf{0.771{\scriptsize$\pm$0.012}} & 0.698{\scriptsize$\pm$0.042} & 0.350{\scriptsize$\pm$0.032} & --- & --- \\ & $Q$ & 0.667{\scriptsize$\pm$0.003} & \textbf{0.683{\scriptsize$\pm$0.003}} & 0.474{\scriptsize$\pm$0.001} & 0.517{\scriptsize$\pm$0.011} & 0.615{\scriptsize$\pm$0.007} & --- & --- \\ & $DBI$ & --- & --- & 3.884{\scriptsize$\pm$0.020} & 1.523{\scriptsize$\pm$0.037} & 0.705{\scripts
+         PAPER : 
+  [replace] THESIS: \end{table}
+         PAPER : \end{table*}
+====================================================================================================
+PAPER L508  best=chapters/resultados/resultados.tex:55  ratio=0.901
+  [replace] THESIS: \begin{table}[H]
+         PAPER : \begin{table*}[t]
+  [replace] THESIS: \renewcommand{\arraystretch}{1.25} \mycaption[Resultados en grafos de compra conjunta, coocurrencia e hipervínculos]{Resultados
+         PAPER : \caption{Resultados
+  [replace] THESIS: \resizebox{\textwidth}{!}{%
+         PAPER : \renewcommand{\arraystretch}{1.05} \adjustbox{max width=\textwidth}{%
+  [replace] THESIS: \multirow{5}{*}{Amazon
+         PAPER : \multirow{4}{*}{Amazon
+  [delete] THESIS: $DBI$ & --- & --- & 3.199{\scriptsize$\pm$0.142} & 1.146{\scriptsize$\pm$0.506} & 1.531{\scriptsize$\pm$0.092} & 0.783{\scriptsize$\pm$0.252} & 0.824{\scriptsize$\pm$0.403} \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{Amazon
+         PAPER : \multirow{4}{*}{Amazon
+  [delete] THESIS: $DBI$ & --- & --- & 2.374{\scriptsize$\pm$0.184} & 0.812{\scriptsize$\pm$0.009} & 1.250{\scriptsize$\pm$0.056} & 0.987{\scriptsize$\pm$0.040} & 0.726{\scriptsize$\pm$0.203} \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{Actor}
+         PAPER : \multirow{4}{*}{Actor}
+  [delete] THESIS: $DBI$ & --- & --- & 4.431{\scriptsize$\pm$0.050} & 4.539{\scriptsize$\pm$0.089} & 1.211{\scriptsize$\pm$0.038} & 0.593{\scriptsize$\pm$0.084} & --- \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{WikiCS}
+         PAPER : \multirow{4}{*}{WikiCS}
+  [delete] THESIS: $DBI$ & --- & --- & 3.323{\scriptsize$\pm$0.072} & 1.433{\scriptsize$\pm$0.052} & 1.358{\scriptsize$\pm$0.022} & 0.554{\scriptsize$\pm$0.051} & 0.566{\scriptsize$\pm$0.043} \\ &
+         PAPER : 
+  [replace] THESIS: \end{table}
+         PAPER : \end{table*}
+====================================================================================================
+PAPER L544  best=chapters/resultados/resultados.tex:92  ratio=0.920
+  [replace] THESIS: \begin{table}[H]
+         PAPER : \begin{table*}[t]
+  [replace] THESIS: \renewcommand{\arraystretch}{1.25} \mycaption[Resultados en grafos sintéticos SBM]{Resultados
+         PAPER : \caption{Resultados
+  [replace] THESIS: (Sección~\ref{subsec:recal-validacion}).
+         PAPER : (Sección~\ref{sec:estudio-recalibracion}).
+  [replace] THESIS: \resizebox{\textwidth}{!}{%
+         PAPER : \renewcommand{\arraystretch}{1.05} \adjustbox{max width=\textwidth}{%
+  [replace] THESIS: \multirow{5}{*}{SBM-1k}
+         PAPER : \multirow{4}{*}{SBM-1k}
+  [delete] THESIS: $DBI$ & --- & --- & 3.631{\scriptsize$\pm$0.030} & 0.482{\scriptsize$\pm$0.015} & 0.393{\scriptsize$\pm$0.004} & 0.338{\scriptsize$\pm$0.007} & 0.340{\scriptsize$\pm$0.007} \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{SBM-5k}
+         PAPER : \multirow{4}{*}{SBM-5k}
+  [delete] THESIS: $DBI$ & --- & --- & 3.931{\scriptsize$\pm$0.021} & 0.439{\scriptsize$\pm$0.006} & 0.366{\scriptsize$\pm$0.001} & 0.362{\scriptsize$\pm$0.023} & 0.361{\scriptsize$\pm$0.023} \\ &
+         PAPER : 
+  [replace] THESIS: \multirow{5}{*}{SBM-10k}
+         PAPER : \multirow{4}{*}{SBM-10k}
+  [delete] THESIS: $DBI$ & --- & --- & 5.672{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.002} & 0.543{\scriptsize$\pm$0.003} & --- & 0.521{\scriptsize$\pm$0.005} \\ &
+         PAPER : 
+  [replace] THESIS: \end{table}
+         PAPER : \end{table*}
+====================================================================================================
+PAPER L572  best=chapters/resultados/resultados.tex:123  ratio=1.000
+====================================================================================================
+PAPER L575  best=chapters/resultados/resultados.tex:126  ratio=1.000
+====================================================================================================
+PAPER L577  best=chapters/resultados/resultados.tex:128  ratio=1.000
+====================================================================================================
+PAPER L579  best=chapters/resultados/resultados.tex:130  ratio=1.000
+====================================================================================================
+PAPER L582  best=chapters/resultados/resultados.tex:133  ratio=1.000
+====================================================================================================
+PAPER L584  best=chapters/resultados/resultados.tex:135  ratio=0.968
+  [replace] THESIS: \begin{table}[H]
+         PAPER : \begin{table}[htbp]
+  [replace] THESIS: \renewcommand{\arraystretch}{1.25} \mycaption[Comparación controlada del \textit{prior} (valor pico)]{GCN-Louvain
+         PAPER : \renewcommand{\arraystretch}{1.05} \caption{GCN-Louvain
+  [insert] THESIS: 
+         PAPER : \adjustbox{max width=\columnwidth}{%
+  [replace] THESIS: \end{tabular}
+         PAPER : \end{tabular}% }
+====================================================================================================
+PAPER L609  best=chapters/resultados/resultados.tex:158  ratio=0.985
+  [replace] THESIS: empatan (Tabla~\ref{tab:recal-beta}).
+         PAPER : empatan.
+====================================================================================================
+PAPER L611  best=chapters/resultados/resultados.tex:160  ratio=1.000
+====================================================================================================
+PAPER L613  best=chapters/resultados/resultados.tex:162  ratio=1.000
+====================================================================================================
+PAPER L616  best=chapters/resultados/resultados.tex:165  ratio=1.000
+====================================================================================================
+PAPER L618  best=chapters/resultados/resultados.tex:167  ratio=0.956
+  [replace] THESIS: \begin{table}[H]
+         PAPER : \begin{table}[htbp]
+  [replace] THESIS: \renewcommand{\arraystretch}{1.25} \mycaption[Convergencia de $Q'$ según el \textit{prior}]{Épocas
+         PAPER : \renewcommand{\arraystretch}{1.05} \caption{Épocas
+  [insert] THESIS: 
+         PAPER : \adjustbox{max width=\columnwidth}{%
+  [replace] THESIS: \end{tabular}
+         PAPER : \end{tabular}% }
+====================================================================================================
+PAPER L640  best=chapters/resultados/resultados.tex:187  ratio=1.000
+====================================================================================================
+PAPER L642  best=chapters/resultados/resultados.tex:189  ratio=1.000
+====================================================================================================
+PAPER L644  best=chapters/resultados/resultados.tex:191  ratio=1.000
+====================================================================================================
+PAPER L647  best=chapters/resultados/resultados.tex:194  ratio=0.977
+  [replace] THESIS: esta tesis
+         PAPER : este trabajo
+  [replace] THESIS: futuro (Sección~\ref{sec:trabajo-futuro}).
+         PAPER : futuro.
+====================================================================================================
+PAPER L649  best=chapters/resultados/resultados.tex:197  ratio=0.981
+  [replace] THESIS: \section{Recalibración
+         PAPER : \subsection{Recalibración
+====================================================================================================
+PAPER L652  best=chapters/resultados/resultados.tex:204  ratio=0.980
+  [replace] THESIS: CiteSeer (Tabla~\ref{tab:recal-beta}, Apéndice~\ref{app:recal-completo}),
+         PAPER : CiteSeer,
+====================================================================================================
+PAPER L654  best=chapters/resultados/resultados.tex:209  ratio=0.989
+  [replace] THESIS: (Tabla~\ref{tab:recal-sbm}).
+         PAPER : (valores pico).
+====================================================================================================
+PAPER L656  best=chapters/resultados/resultados.tex:219  ratio=0.993
+  [replace] THESIS: esta tesis,
+         PAPER : este trabajo,
+====================================================================================================
+PAPER L658  best=chapters/resultados/resultados.tex:221  ratio=0.966
+  [replace] THESIS: (Tabla~\ref{tab:recal-sbm},
+         PAPER : (con
+  [replace] THESIS: generador (Sección~\ref{subsec:recal-sbm}),
+         PAPER : generador,
+====================================================================================================
+PAPER L660  best=chapters/conclusiones/conclusiones.tex:41  ratio=0.646
+  [replace] THESIS: \section{Contribuciones} \label{sec:contribuciones}
+         PAPER : \section{Conclusiones} \label{sec:conclusiones} \fontsize{10}{12}\selectfont
+====================================================================================================
+PAPER L666  best=chapters/conclusiones/conclusiones.tex:28  ratio=0.932
+  [delete] THESIS: Por tanto, la primera hipótesis específica (H1) se rechaza.
+         PAPER : 
+====================================================================================================
+PAPER L669  best=chapters/conclusiones/conclusiones.tex:31  ratio=0.939
+  [replace] THESIS: (Sección~\ref{subsec:recal-redes-reales}).
+         PAPER : (Sección~\ref{sec:estudio-recalibracion}).
+  [replace] THESIS: La segunda hipótesis específica (H2) se acepta en
+         PAPER : En
+  [replace] THESIS: CiteSeer:
+         PAPER : CiteSeer,
+  [replace] THESIS: (Sección~\ref{subsec:recal-redes-reales}). Se rechaza con
+         PAPER : (Sección~\ref{sec:estudio-recalibracion}). Con
+  [replace] THESIS: donde
+         PAPER : en cambio,
+  [replace] THESIS: (Tabla~\ref{tab:recal-sbm}; por
+         PAPER : (por
+====================================================================================================
+PAPER L672  best=chapters/conclusiones/conclusiones.tex:34  ratio=0.932
+  [delete] THESIS: La tercera hipótesis específica (H3) se rechaza.
+         PAPER : 
+====================================================================================================
+PAPER L675  best=chapters/conclusiones/conclusiones.tex:37  ratio=0.969
+  [replace] THESIS: parte, por lo que la hipótesis central se acepta parcialmente.
+         PAPER : parte.
+====================================================================================================
+PAPER L680  best=chapters/conclusiones/conclusiones.tex:58  ratio=1.000

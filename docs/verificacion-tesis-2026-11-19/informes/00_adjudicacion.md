@@ -75,3 +75,27 @@ La comprobación final de las líneas de esta ronda la hizo quien editó, no un 
 
 - `frontmatter/simbolos.tex:75`: "Sección~5" estaba escrito a mano y apuntaba al capítulo de Resultados. Ahora es `Definición~\ref{def:modularidad}` (Definición 16, Sección 2.5).
 - `propuesta_solucion.tex:637`: decía "La Ecuación~6 conserva las comunidades con |C_i| ≥ T", lo que se podía confundir con la numeración de la tesis. En el artículo, la Ec. 6 define T y la condición ≥ aparece en la frase siguiente. Ahora dice: "Wang et al. definen el umbral en su Ecuación~6 y conservan las comunidades con |C_i| ≥ T, pero su código usa la desigualdad estricta |C_i| > T". Se verificó que la Ec. 6 es T = μ + 0.5σ también en la versión publicada (Sci. Rep., PMC12603060, `<label>6</label>`).
+
+## Cambios posteriores (2026-11-20)
+
+### Tesis
+- **`simbolos.tex`:** T = μ_s + βσ_s. El signo menos no tenía respaldo: el artículo y el código de Wang, igual que el código propio, usan +. Se añadió β, y γ y τ tienen ahora sus dos contextos (marco teórico frente a *prior*/filtro).
+- **Fila k:** en Louvain y Leiden clásicos se muestra el rango entre semillas (por ejemplo, Cora 102–105), no media ± desviación. La explicación está en `../../hallazgos/k-heuristicas-clasicas.md`.
+- **Tablas 5.1–5.3:**
+  - filas en orden k → Q → NMI → ARI, con encabezados de grupo (Heurísticas | Profundos, que reciben k | GCN de una capa) y un espacio tras k;
+  - el DBI, que no es comparable entre métodos, se movió a la Tabla A.4;
+  - las tablas flotan (`[tbp]`) con interlineado 1.1.
+- **Sección 4.3:** se quitó "Cada corrida se ejecuta en un subproceso aislado" y se condensaron cuatro frases (C1–C4) sin perder información. La tesis pasó de 90 a 88 páginas.
+
+### Artículo (`gnn-paper/main.tex`)
+- Se sincronizó con la tesis revisada mediante `scripts_revision/sync_paper.py`, que lo reproduce exactamente a partir del commit original.
+- Cambios aprobados por el autor:
+  - "tres métricas";
+  - la nota de que Coauthor Physics se omite;
+  - "(valores pico)";
+  - las frases de veredicto de hipótesis quitadas;
+  - el recorte de la opción B;
+  - la cita de la Figura 1 (P-03) y la malla de β (P-06).
+- Correcciones mecánicas tras la verificación (P-01, P-02, P-04, P-05).
+- Sin filas DBI ni Physics; 8 páginas.
+- La verificación (`06_articulo.md`) no encontró ningún ❌ ni ❓. P-07 y P-08 se dejaron sin cambio por decisión del autor.

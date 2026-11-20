@@ -1,0 +1,486 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global/global}
+  \entry{tsitsulin2023}{article}{}{}
+    \name{author}{4}{}{%
+      {{hash=TA}{%
+         family={Tsitsulin},
+         familyi={T\bibinitperiod},
+         given={Anton},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Palowitch},
+         familyi={P\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={Perozzi},
+         familyi={P\bibinitperiod},
+         given={Bryan},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=ME}{%
+         family={M{\"u}ller},
+         familyi={M\bibinitperiod},
+         given={Emmanuel},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TA+1}
+    \strng{fullhash}{TAPJPBME1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{pages}{1\bibrangedash 21}
+    \field{title}{Graph Clustering with Graph Neural Networks}
+    \verb{url}
+    \verb https://arxiv.org/abs/2006.16904
+    \endverb
+    \field{volume}{24}
+    \field{journaltitle}{Journal of Machine Learning Research}
+    \field{year}{2023}
+  \endentry
+
+  \entry{harenberg2014community}{article}{}{}
+    \name{author}{8}{}{%
+      {{hash=HS}{%
+         family={Harenberg},
+         familyi={H\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BG}{%
+         family={Bello},
+         familyi={B\bibinitperiod},
+         given={G.},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=GL}{%
+         family={Gjeltema},
+         familyi={G\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=RS}{%
+         family={Ranshous},
+         familyi={R\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Harlalka},
+         familyi={H\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Seay},
+         familyi={S\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PK}{%
+         family={Padmanabhan},
+         familyi={P\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=SN}{%
+         family={Samatova},
+         familyi={S\bibinitperiod},
+         given={N.},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HS+1}
+    \strng{fullhash}{HSBGGLRSHJSRPKSN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1002/wics.1319
+    \endverb
+    \field{number}{6}
+    \field{pages}{426\bibrangedash 439}
+    \field{title}{Community detection in large-scale networks: a survey and
+  empirical evaluation}
+    \field{volume}{6}
+    \field{journaltitle}{WIREs Comput Stat}
+    \field{year}{2014}
+  \endentry
+
+  \entry{Traag2019}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=TVA}{%
+         family={Traag},
+         familyi={T\bibinitperiod},
+         given={V.\bibnamedelima A.},
+         giveni={V\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Waltman},
+         familyi={W\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=vENJ}{%
+         prefix={van},
+         prefixi={v\bibinitperiod},
+         family={Eck},
+         familyi={E\bibinitperiod},
+         given={N.\bibnamedelima J.},
+         giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business Media LLC}%
+    }
+    \strng{namehash}{TVA+1}
+    \strng{fullhash}{TVAWLENJv1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1038/s41598-019-41695-z
+    \endverb
+    \field{issn}{2045-2322}
+    \field{number}{1}
+    \field{title}{From {Louvain} to {Leiden}: guaranteeing well-connected
+  communities}
+    \verb{url}
+    \verb http://dx.doi.org/10.1038/s41598-019-41695-z
+    \endverb
+    \field{volume}{9}
+    \field{journaltitle}{Scientific Reports}
+    \field{month}{03}
+    \field{year}{2019}
+  \endentry
+
+  \entry{Lobov2019}{misc}{}{}
+    \name{author}{2}{}{%
+      {{hash=LI}{%
+         family={Lobov},
+         familyi={L\bibinitperiod},
+         given={Ivan},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=IS}{%
+         family={Ivanov},
+         familyi={I\bibinitperiod},
+         given={Sergey},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LIIS1}
+    \strng{fullhash}{LIIS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 1905.10350
+    \endverb
+    \field{title}{Unsupervised community detection with modularity-based
+  attention model}
+    \verb{url}
+    \verb https://arxiv.org/abs/1905.10350
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.SI}
+    \field{year}{2019}
+  \endentry
+
+  \entry{Wang2025}{article}{}{}
+    \name{author}{6}{}{%
+      {{hash=WH}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Hong},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yinglong},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZZ}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Zhangqi},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=CZ}{%
+         family={Cai},
+         familyi={C\bibinitperiod},
+         given={Zhicong},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=XX}{%
+         family={Xia},
+         familyi={X\bibinitperiod},
+         given={Xuewen},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=XX}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Xing},
+         giveni={X\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business Media LLC}%
+    }
+    \strng{namehash}{WH+1}
+    \strng{fullhash}{WHZYZZCZXXXX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1038/s41598-025-22860-z
+    \endverb
+    \field{issn}{2045-2322}
+    \field{number}{1}
+    \field{pages}{39249}
+    \field{title}{Simple yet effective heuristic community detection with graph
+  convolution network}
+    \verb{url}
+    \verb http://dx.doi.org/10.1038/s41598-025-22860-z
+    \endverb
+    \field{volume}{15}
+    \field{journaltitle}{Scientific Reports}
+    \field{month}{11}
+    \field{year}{2025}
+  \endentry
+
+  \entry{Newman2004}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=NMEJ}{%
+         family={Newman},
+         familyi={N\bibinitperiod},
+         given={M.\bibnamedelima E.\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim
+  J\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Girvan},
+         familyi={G\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Physical Society (APS)}%
+    }
+    \strng{namehash}{NMEJGM1}
+    \strng{fullhash}{NMEJGM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1103/PhysRevE.69.026113
+    \endverb
+    \field{issn}{1550-2376}
+    \field{number}{2}
+    \field{pages}{026113}
+    \field{title}{Finding and evaluating community structure in networks}
+    \verb{url}
+    \verb http://dx.doi.org/10.1103/PhysRevE.69.026113
+    \endverb
+    \field{volume}{69}
+    \field{journaltitle}{Physical Review E}
+    \field{month}{02}
+    \field{year}{2004}
+  \endentry
+
+  \entry{Mothe2017}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=MJ}{%
+         family={Mothe},
+         familyi={M\bibinitperiod},
+         given={Josiane},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Mkhitaryan},
+         familyi={M\bibinitperiod},
+         given={Karen},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Haroutunian},
+         familyi={H\bibinitperiod},
+         given={Mariam},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Detection algorithms, Partitioning algorithms, Clustering algorithms,
+  Benchmark testing, Network Science, Community Detection, Stochastic Block
+  Model}
+    \strng{namehash}{MJ+1}
+    \strng{fullhash}{MJMKHM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{2017 Computer Science and Information Technologies
+  (CSIT)}
+    \verb{doi}
+    \verb 10.1109/CSITechnol.2017.8312155
+    \endverb
+    \field{pages}{125\bibrangedash 129}
+    \field{title}{Community detection: Comparison of state of the art
+  algorithms}
+    \field{year}{2017}
+  \endentry
+
+  \entry{blondel2008}{article}{}{}
+    \name{author}{4}{}{%
+      {{hash=BV}{%
+         family={Blondel},
+         familyi={B\bibinitperiod},
+         given={V.D.},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=GJ}{%
+         family={Guillaume},
+         familyi={G\bibinitperiod},
+         given={J.L.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LR}{%
+         family={Lambiotte},
+         familyi={L\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=LE}{%
+         family={Lefebvre},
+         familyi={L\bibinitperiod},
+         given={E.},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BV+1}
+    \strng{fullhash}{BVGJLRLE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1088/1742-5468/2008/10/P10008
+    \endverb
+    \field{number}{10}
+    \field{pages}{P10008}
+    \field{title}{Fast Unfolding of Communities in Large Networks}
+    \field{volume}{2008}
+    \field{journaltitle}{Journal of Statistical Mechanics: Theory and
+  Experiment}
+    \field{year}{2008}
+  \endentry
+
+  \entry{Perozzi2014}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=PB}{%
+         family={Perozzi},
+         familyi={P\bibinitperiod},
+         given={Bryan},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=ARR}{%
+         family={Al-Rfou},
+         familyi={A\bibinithyphendelim R\bibinitperiod},
+         given={Rami},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Skiena},
+         familyi={S\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PB+1}
+    \strng{fullhash}{PBARRSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{Proceedings of the 20th ACM SIGKDD International
+  Conference on Knowledge Discovery and Data Mining (KDD)}
+    \verb{doi}
+    \verb 10.1145/2623330.2623732
+    \endverb
+    \field{pages}{701\bibrangedash 710}
+    \field{title}{DeepWalk: Online Learning of Social Representations}
+    \verb{url}
+    \verb https://arxiv.org/abs/1403.6652
+    \endverb
+    \field{year}{2014}
+  \endentry
+
+  \entry{Velickovic2019}{inproceedings}{}{}
+    \name{author}{6}{}{%
+      {{hash=VP}{%
+         family={Veli{\v{c}}kovi{\'c}},
+         familyi={V\bibinitperiod},
+         given={Petar},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=FW}{%
+         family={Fedus},
+         familyi={F\bibinitperiod},
+         given={William},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=HWL}{%
+         family={Hamilton},
+         familyi={H\bibinitperiod},
+         given={William\bibnamedelima L.},
+         giveni={W\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Li{\`o}},
+         familyi={L\bibinitperiod},
+         given={Pietro},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=BY}{%
+         family={Bengio},
+         familyi={B\bibinitperiod},
+         given={Yoshua},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=HRD}{%
+         family={Hjelm},
+         familyi={H\bibinitperiod},
+         given={R.\bibnamedelima Devon},
+         giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VP+1}
+    \strng{fullhash}{VPFWHWLLPBYHRD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{International Conference on Learning Representations
+  (ICLR)}
+    \verb{eprint}
+    \verb 1809.10341
+    \endverb
+    \field{title}{Deep Graph Infomax}
+    \verb{url}
+    \verb https://arxiv.org/abs/1809.10341
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{year}{2019}
+  \endentry
+\enddatalist
+\endinput
