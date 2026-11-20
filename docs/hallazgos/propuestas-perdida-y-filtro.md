@@ -184,6 +184,15 @@ Lectura:
    - En los grafos conexos, el filtro descarta comunidades reales: 9 de 13 en CS y 11 de 16 en PubMed.
 3. **El umbral depende de un accidente estructural.** μ y σ mezclan componentes sueltas con comunidades reales, así que el umbral depende también de cuántas componentes sueltas tenga el grafo.
 
+#### Por qué quitar tantas comunidades no daña la calidad
+
+- **Sí la afecta, y para bien, pero no en el NMI.** En el barrido de arriba, filtrar sube el ARI (Cora: de 0.378 a 0.442; CiteSeer: de 0.146 a 0.315), mientras que el NMI no mejora (Cora: 0.530 en ambos casos; CiteSeer: de 0.352 a 0.338).
+- **El filtro no borra nodos, borra anclas.** Las comunidades descartadas dejan de ser centroides, pero sus nodos siguen en el grafo, y la GCN los asigna al ancla más parecida según sus características y sus vecinos.
+- **Lo descartado pesa poco en nodos.** Con la configuración de la tesis, las anclas de Leiden cubren el 89 % de los nodos en Cora y el 63 % en CiteSeer. El resto son sobre todo componentes sueltas y grupos diminutos.
+- **Por qué ayuda.** Si esos grupos quedaran como comunidades propias, la partición quedaría fragmentada. El ARI lo castiga, porque separa nodos del mismo tema; el NMI no lo nota, porque premia fragmentar (Sección 4). Al quitarlos, la GCN asigna esos nodos a las anclas por sus características, y el ARI sube.
+- **Cuándo perjudica.** Cuando descarta comunidades reales. En CS conserva 4 de 13 (*k* = 4 frente a 15 clases) y en PubMed 5 de 16. En Actor deja una sola comunidad y el *pipeline* degenera.
+- **No es una cuestión de eficiencia.** Con menos anclas, la matriz P (n × k) es más chica, pero eso es despreciable frente a las matrices densas de n × n que dominan el costo. El filtro existe por calidad: decide *k* y qué comunidades sirven de referencia.
+
 ### 5.2 Principio
 
 - **El filtro no puede aprender del ARI.** Sin etiquetas no tiene esa señal, y la única señal interna, Q′, apunta al lado contrario: con todas las anclas (β = −0.5), el ARI fue el peor en ambos grafos.
@@ -271,7 +280,50 @@ Protocolo para cualquier versión futura del filtro:
 - **Referencia fija de k-means**, es decir, que k-means elija su propio *k* por estabilidad y γ se elija por acuerdo con esa referencia: solo traslada el problema, porque la estabilidad de k-means también suele favorecer *k* pequeño. No se probó.
 - **Estabilidad entre semillas:** es viable y no usa etiquetas, pero es más costosa. Sigue sin probar.
 
-## 6. Qué haría falta para pasar a la práctica
+## 6. Memoria y telemetría
+
+### 6.1 Por qué la memoria crece con n²
+
+La implementación replica operación por operación el código de Wang, para lograr paridad bit a bit, y guarda matrices densas de n × n:
+- **La adyacencia** (`gcn_leiden/datasets.py:105`). En Cora, el 99.86 % de sus entradas son ceros.
+- **La matriz de modularidad B y sus temporales** (`gcn_leiden/loss.py:12–15`, llamada en `gcn_leiden/trainer.py:53`). Al construirla hay hasta 4 matrices n × n vivas, y B se queda en memoria todo el entrenamiento.
+- **La normalización L2**, escrita como `torch.diag(1/‖z‖) @ z` (`gcn_leiden/model.py:61`). Crea una matriz diagonal n × n en cada pasada, más su gradiente en el *backward*.
+
+En float32, cada matriz n × n ocupa 28 MiB en Cora, 1.45 GiB en PubMed y 4.4 GiB en Coauthor Physics.
+
+Nada de eso hace falta. Basta un formato disperso en memoria (el que PyTorch Geometric ya usa en `edge_index`), no una base de datos externa. Con A dispersa, la identidad de la Sección 2.2 y la normalización fila por fila (`z / ‖z‖`), la memoria crece con el número de aristas y con n × k. El costo del cambio es perder la paridad bit a bit con Wang, así que habría que revalidar.
+
+### 6.2 Por qué medimos RAM y VRAM, y Wang solo RAM
+
+**Wang entrena en CPU.** Su código fija `device = torch.device('cpu')` (`main.py:101`); `cuda` solo se usa para la semilla. Su artículo reporta una máquina con Intel i9 y 128 GB de RAM, sin GPU. No publica mediciones de memoria, solo tiempos (Fig. 4).
+
+**Nosotros repartimos los grafos entre dos tipos de máquina** (`experiments/deploy/launch_shards.sh:44–51`):
+
+| Grupo | Grafos | Máquina | Dónde se entrena |
+|---|---|---|---|
+| CPU | Cora, CiteSeer, Photo, Actor, WikiCS y SBM | c2d-standard-8, según los registros de auditoría de GCP; el script dice n2-standard-8 | RAM |
+| GPU | Computers, PubMed, CS y Physics | g2-standard-16 con una L4 | VRAM |
+
+Los grafos grandes fueron a GPU porque las matrices densas de n × n los hacían lentos o enormes en CPU.
+
+### 6.3 Qué midió la telemetría
+
+Fuente: `experiments/harness/telemetry.py`.
+- **`ram_peak_mb`:** el pico de memoria residente de todo el proceso (`ru_maxrss`). Cada corrida fue un subproceso propio, así que el pico es limpio.
+- **`vram_peak_mb`:** `torch.cuda.max_memory_allocated`, es decir, solo los tensores de PyTorch en la GPU. No incluye el contexto de CUDA ni la caché reservada, así que el uso real de la GPU es mayor. En las corridas CPU vale NaN.
+
+**La misma columna de RAM mide cosas distintas según el grupo:**
+- **En CPU** incluye todo: la carga de datos, el grafo de networkx, el *prior* y el entrenamiento (A, B, la matriz diagonal y las activaciones).
+- **En GPU** incluye solo la preparación: la adyacencia densa en numpy, que se crea en el host antes de copiarse a la GPU, el grafo de networkx y el *prior*. El entrenamiento aparece en la VRAM.
+
+### 6.4 Cómo explicarlo
+
+- **La memoria no era comparable entre grafos.** Los grupos CPU y GPU miden fases distintas, en máquinas distintas.
+- **Tampoco hay contra qué comparar con Wang,** porque no publicó mediciones de memoria.
+- **Por eso se quitó de la tesis.** En noviembre de 2026 se decidió eliminar la memoria de la tesis.
+- **Lo único sólido es el diagnóstico estructural:** la memoria crece con n² por las matrices densas. Las mediciones de VRAM lo confirman: el pico de PubMed (6 154 MiB) y el de CS equivalen a unas 4 matrices n × n más lo demás (`docs/verificacion-tesis-2026-11-19/informes/04_metodo.md`).
+
+## 7. Qué haría falta para pasar a la práctica
 
 - **Corridas nuevas de la GCN** para Q′_γ y para la Etapa 1 del filtro. Cora y CiteSeer son baratos localmente. PubMed, CS, Computers y WikiCS son pesados con matrices densas y sin nube: requieren la forma dispersa (Sección 2.2) o una GPU.
 - **Etapa 2 del filtro:** hace falta otro criterio sin etiquetas. Evaluar un criterio es barato (minutos por grafo, sin entrenar la GCN), pero los grafos de diseño ya se usaron.
@@ -279,10 +331,10 @@ Protocolo para cualquier versión futura del filtro:
 - **Verificación pendiente:** si las clases de referencia son conexas dentro de la componente gigante. Si no lo son, imponer conectividad podría costar ARI.
 - **Destino:** si algo de esto pasa al artículo, debe entrar primero en la tesis, porque el artículo se regenera desde ella con `sync_paper.py`.
 
-## 7. Fuentes y cómo verificar
+## 8. Fuentes y cómo verificar
 
 - **Traag, Waltman y van Eck (2019).** *Sci. Rep.* 9:5233, DOI 10.1038/s41598-019-41695-z, e información suplementaria. Leídos completos.
-- **Código de Wang et al.** (`github.com/wuanghoong/Less-is-More`, rama `master`): `main.py:51`, `main.py:133` y `DGI.py:80`.
+- **Código de Wang et al.** (`github.com/wuanghoong/Less-is-More`, rama `master`): `main.py:51`, `main.py:101`, `main.py:133` y `DGI.py:80`. El artículo, en la versión de *Sci. Rep.*, se leyó completo.
 - **networkx** (`louvain.py:285–311`) y **leidenalg** 0.12: docstring de `RBConfigurationVertexPartition`, `Optimiser.merge_nodes_constrained` y `CPMVertexPartition(node_sizes=…)`.
 - **Datos.** Barrido de β en `results/runs_recal_cora.csv` y `results/runs_recal_citeseer.csv` (filas `gcn-leiden` con `modularity` y `resolution=0.3`). Tablas principales en `../gnn-paper/main.tex`.
 - **Cálculos sin entrenamiento:**
