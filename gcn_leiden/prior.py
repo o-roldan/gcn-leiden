@@ -74,8 +74,13 @@ def filter_by_size(communities, beta=0.5, variant="wang", cv_threshold=0.25):
                           variation below cv_threshold) there are no noise
                           micro-communities to purge and the filter
                           deactivates; otherwise it applies the paper's
-                          len(c) >= T. Real networks sit at CV >~ 1 and SBM
-                          partitions at ~1e-2, so cv_threshold is uncritical.
+                          len(c) >= T. In the thesis priors the CV is
+                          1.2-11.5 on real networks, 1.4-1.8 on CPM priors of
+                          the SBM graphs, <= 0.0071 on modularity SBM priors
+                          that recover every block, and 0.41-0.45 on
+                          modularity priors of SBM-10k (a few merged blocks),
+                          so any cv_threshold in [0.01, 0.4] gives the same
+                          decisions.
     """
     sizes = np.array([len(c) for c in communities], dtype=np.float64)
     threshold = sizes.mean() + beta * sizes.std()

@@ -113,6 +113,10 @@ recal = load_runs(pattern="runs_recal_*.csv", exclude=())           # unpacks be
 recal_figure(recal, savepath="fig_recal.pdf")
 ```
 
+Leiden-vs-Louvain convergence of Q' (thesis P3: fixed-target and relative
+epochs, paired Wilcoxon, NMI-vs-Q' misalignment, LaTeX rows):
+`uv run --extra analysis python -m experiments.analysis.convergence results`.
+
 `load_runs` unpacks the packed `config` column into real columns (so `beta`,
 `resolution`, etc. are filterable/plottable) and adds `n_nodes` and `batch`
 (`load_history` adds `batch` too, and skips recal/validate histories by

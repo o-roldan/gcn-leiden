@@ -3,10 +3,10 @@
 Protocol notes (thesis experimental design):
   * Classical heuristics report their full partition (no size filter --
     the filter belongs to the proposed architecture, not to them).
-  * Deep baselines that need a cluster count receive the ground-truth k,
-    mirroring the protocol of Wang et al. (2025) and the deep-clustering
-    literature; this favors the baselines, making our comparisons
-    conservative.
+  * Deep baselines that need a cluster count receive the ground-truth k
+    (number of label classes). Wang et al. (2025) instead give their
+    baselines the k detected by their own method. Knowing k does not favor a
+    method on every metric (NMI tends to grow with the number of clusters).
 """
 
 from experiments.baselines.classical import run_classical

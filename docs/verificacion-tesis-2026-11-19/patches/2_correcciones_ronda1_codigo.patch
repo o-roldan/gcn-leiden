@@ -1,0 +1,52 @@
+diff --git a/experiments/baselines/__init__.py b/experiments/baselines/__init__.py
+index b38a944..9568a83 100644
+--- a/experiments/baselines/__init__.py
++++ b/experiments/baselines/__init__.py
+@@ -3,10 +3,10 @@
+ Protocol notes (thesis experimental design):
+   * Classical heuristics report their full partition (no size filter --
+     the filter belongs to the proposed architecture, not to them).
+-  * Deep baselines that need a cluster count receive the ground-truth k,
+-    mirroring the protocol of Wang et al. (2025) and the deep-clustering
+-    literature; this favors the baselines, making our comparisons
+-    conservative.
++  * Deep baselines that need a cluster count receive the ground-truth k
++    (number of label classes). Wang et al. (2025) instead give their
++    baselines the k detected by their own method. Knowing k does not favor a
++    method on every metric (NMI tends to grow with the number of clusters).
+ """
+ 
+ from experiments.baselines.classical import run_classical
+diff --git a/experiments/baselines/deepwalk.py b/experiments/baselines/deepwalk.py
+index d67c8cf..694cbde 100644
+--- a/experiments/baselines/deepwalk.py
++++ b/experiments/baselines/deepwalk.py
+@@ -4,7 +4,7 @@ Implemented without pyg-lib/torch-cluster (no macOS wheels for this torch
+ version): walks are sampled with numpy over the adjacency lists and the
+ skip-gram objective with negative sampling is optimized in plain torch.
+ Embeddings are clustered with k-means using the ground-truth k
+-(protocol of Wang et al. 2025; see baselines/__init__.py).
++(see baselines/__init__.py).
+ """
+ 
+ import numpy as np
+diff --git a/gcn_leiden/prior.py b/gcn_leiden/prior.py
+index 2e1fab0..649b39f 100644
+--- a/gcn_leiden/prior.py
++++ b/gcn_leiden/prior.py
+@@ -74,8 +74,13 @@ def filter_by_size(communities, beta=0.5, variant="wang", cv_threshold=0.25):
+                           variation below cv_threshold) there are no noise
+                           micro-communities to purge and the filter
+                           deactivates; otherwise it applies the paper's
+-                          len(c) >= T. Real networks sit at CV >~ 1 and SBM
+-                          partitions at ~1e-2, so cv_threshold is uncritical.
++                          len(c) >= T. In the thesis priors the CV is
++                          1.2-11.5 on real networks, 1.4-1.8 on CPM priors of
++                          the SBM graphs, ~0.007 on modularity SBM priors
++                          that recover every block, and 0.41-0.45 on
++                          modularity priors of SBM-10k (a few merged blocks),
++                          so any cv_threshold in [0.01, 0.4] gives the same
++                          decisions.
+     """
+     sizes = np.array([len(c) for c in communities], dtype=np.float64)
+     threshold = sizes.mean() + beta * sizes.std()

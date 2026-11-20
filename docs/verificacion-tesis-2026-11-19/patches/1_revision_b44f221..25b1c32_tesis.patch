@@ -1,0 +1,630 @@
+diff --git a/chapters/chapter01/chap01.tex b/chapters/chapter01/chap01.tex
+index 03e5687..e7ea77a 100644
+--- a/chapters/chapter01/chap01.tex
++++ b/chapters/chapter01/chap01.tex
+@@ -22,8 +22,8 @@ Existen muchos problemas relacionados con las comunidades. Para este trabajo, el
+ Buscar la solución del agrupamiento por fuerza bruta implica evaluar un número exponencial de combinaciones con respecto al tamaño del grafo. De hecho, la detección de comunidades es un problema \textsc{np}-difícil \cite{tsitsulin2023}. De esto se derivan dos obstáculos: la imposibilidad de calcular soluciones exactas para instancias arbitrarias y el límite de su escalabilidad.
+ 
+ En el caso extremo de comunidad, la teoría de la complejidad demuestra
+-que \textit{decidir} la existencia de \textit{cliques} de tamaño
+-$k \ge 3$ constituye un problema \textsc{np}-completo. No obstante, pese
++que \textit{decidir} si un grafo contiene un \textit{clique} de tamaño
++$k$, cuando $k$ forma parte de la entrada, constituye un problema \textsc{np}-completo. No obstante, pese
+ a esta complejidad, existen algoritmos exactos capaces de resolver
+ instancias de tamaño moderado en la práctica mediante técnicas de
+ ramificación y acotamiento \cite{Prosser2012}.
+@@ -49,7 +49,7 @@ Las investigaciones integran técnicas de aprendizaje automático (\textit{machi
+ 
+ El aprendizaje sobre grafos ofrece herramientas para particionar entradas de gran escala. Sin embargo, como ya se mencionó, existe un \textit{trade-off} entre calidad de partición y costo computacional.
+ 
+-Los modelos profundos generan una proyección del grafo de entrada hacia un espacio continuo, pero esto puede derivar en costos prohibitivos de \textsc{ram} y tiempo de ejecución \cite{tsitsulin2023}. Por otra parte, los enfoques heurísticos y espectrales operan en tiempo lineal o cuasilineal, pero padecen límites de resolución (Definición~\ref{def:limite-resolucion}) \cite{fortunato2007resolution}, además de que carecen de la capacidad de separar ruido de señal topológica. Actualmente, este cuello de botella sigue sin resolverse de manera definitiva, si bien existen aproximaciones cada vez mejores.
++Los modelos profundos generan una proyección del grafo de entrada hacia un espacio continuo, pero la mayoría requiere fijar de antemano el número de comunidades $k$ \cite{Wang2025}. Por otra parte, los enfoques heurísticos y espectrales operan en tiempo lineal o cuasilineal, pero padecen límites de resolución (Definición~\ref{def:limite-resolucion}) \cite{fortunato2007resolution}, además de que carecen de la capacidad de separar ruido de señal topológica. Actualmente, este cuello de botella sigue sin resolverse de manera definitiva, si bien existen aproximaciones cada vez mejores.
+ 
+ El aprendizaje automático en grafos formula la detección de comunidades como un problema de optimización no supervisada. La red neuronal debe inferir clústeres densos a partir únicamente de la matriz de adyacencia y la matriz de características de los nodos, sin un vector de etiquetas. Formalmente, sea un grafo $G=(V,E)$ descrito por su matriz de adyacencia $\mathbf{A} \in \mathbb{R}^{n \times n}$ y su matriz de características de los nodos $\mathbf{X} \in \mathbb{R}^{n \times F}$. El objetivo matemático consiste en encontrar una partición del conjunto de nodos $V$ en $k$ subconjuntos $\{C_1, C_2, \dots, C_k\}$. Dicha partición exige que no exista solapamiento entre las comunidades ($C_i \cap C_j = \emptyset$ para todo $i \neq j$) y que su unión recupere el conjunto completo de nodos:
+ \begin{equation}
+@@ -66,9 +66,9 @@ La arquitectura propuesta emplea el algoritmo de Leiden \cite{Traag2019} como \t
+ \section{Preguntas de investigación}
+ Las siguientes preguntas guían el desarrollo de este trabajo:
+ \begin{enumerate}
+-    \item ¿En qué medida el algoritmo de Leiden, frente a Louvain,
+-    mejora la calidad de los centroides iniciales ($\mathbf{u}_j$) utilizados
+-    como \textit{prior} estructural?
++    \item ¿En qué medida sustituir Louvain por Leiden como
++    \textit{prior} estructural mejora la calidad de la partición final
++    (\textsc{nmi}, \textsc{ari})?
+     \item ¿Cómo debe calibrarse el filtro dinámico ($T$) ante la
+     distribución de particiones generada por el \textit{prior} de
+     Leiden?
+@@ -77,9 +77,6 @@ Las siguientes preguntas guían el desarrollo de este trabajo:
+     \item ¿Puede una \textsc{gcn} de una sola capa, guiada por dicho
+     \textit{prior}, equiparar la calidad de partición (\textsc{nmi},
+     \textsc{ari}, $Q$) de los modelos profundos?
+-    \item ¿Se sostiene la eficiencia en tiempo y memoria (\textsc{ram},
+-    \textsc{vram}) del método propuesto al escalar a grafos reales de
+-    hasta 34\,493 nodos y grafos sintéticos de hasta 10\,000?
+ \end{enumerate}
+ 
+ 
+@@ -89,16 +86,16 @@ Las siguientes preguntas guían el desarrollo de este trabajo:
+ por un \textit{prior} estructural de alta calidad generado por el
+ algoritmo de Leiden y refinado mediante un filtro dinámico, alcanza
+ una calidad de partición (\textsc{nmi}, \textsc{ari}, $Q$) comparable a
+-la de los modelos profundos de detección de comunidades, con un consumo
+-de memoria (\textsc{ram}, \textsc{vram}) significativamente menor, en
+-grafos de decenas de miles de nodos.
++la de los modelos profundos de detección de comunidades, sin recibir el
++número de comunidades como entrada.
+ 
+ De esta hipótesis se derivan las siguientes hipótesis específicas:
+ \begin{enumerate}
+-    \item El \textit{prior} de Leiden produce centroides iniciales de
+-    mayor calidad que el de Louvain.
+-    \item El filtro dinámico ($T$) mejora la cohesión de las
+-    particiones utilizadas como ancla de los vectores latentes.
++    \item Usar Leiden en lugar de Louvain como \textit{prior} mejora
++    el \textsc{nmi} y el \textsc{ari} de la partición final.
++    \item El filtro dinámico ($T$) mejora el \textsc{nmi} de la
++    partición final respecto a no filtrar las comunidades del
++    \textit{prior}.
+     \item Un \textit{prior} de alta calidad acelera 
+     la optimización de la modularidad suave ($Q'$).
+ \end{enumerate}
+@@ -111,8 +108,7 @@ cuantitativamente el desempeño de una red convolucional de grafos
+ (\textsc{gcn}) de una capa para detección de comunidades. Para esto, se utiliza el algoritmo de
+ Leiden como \textit{prior} estructural en vez de Louvain. Se busca
+ reunir las condiciones que hacen viables a las 
+-redes neuronales en grafos cuando no hay etiquetas y mantener un
+-costo espacial eficiente.
++redes neuronales en grafos cuando no hay etiquetas.
+ 
+ \subsection{Objetivos específicos}
+ 
+@@ -132,11 +128,6 @@ clásicos, modelos profundos y la arquitectura base, sobre grafos
+ sintéticos y reales.
+ 
+ \paragraph{Objetivo 4.}
+-Medir el consumo de \textsc{ram}/\textsc{vram} del modelo y de los demás
+-\textit{baselines} sobre grafos sintéticos de hasta
+-10\,000 nodos y grafos reales de hasta 34\,493 nodos.
+-
+-\paragraph{Objetivo 5.}
+ Comparar Leiden frente a Louvain como \textit{prior} estructural e iniciador de 
+ centroides ($\mathbf{u}_j$). Medir el impacto en la convergencia de la
+ optimización.
+@@ -148,18 +139,14 @@ comunitarias. Algunos ejemplos de esto son redes sociales y biológicas
+ \cite{Girvan_2002} así como la detección de fraude financiero
+ \cite{Sarma2020BankFD}.
+ 
+-En la literatura de referencia para este trabajo, no se identificó
+-una medición o comparación de la memoria (\textsc{ram}, \textsc{vram})
+-de las \textsc{gcn} simplificadas frente a heurísticas del estado del
+-arte y modelos profundos. En ese sentido, este proyecto aporta un marco
+-cuantitativo para encontrar las condiciones operativas bajo las cuales
+-una \textsc{gcn} de una sola capa, guiada por un \textit{prior} de
+-Leiden, hace viable la detección de comunidades con recursos de cómputo
+-limitados. 
++La arquitectura de referencia de Wang et al. \cite{Wang2025} publica
++una sola ejecución por configuración y usa Louvain como \textit{prior}.
++Este proyecto la evalúa con varias semillas, lo que separa los efectos
++reales del azar de inicialización, y aísla el efecto del \textit{prior}
++al sustituir Louvain por Leiden sin cambiar el resto de la arquitectura.
+ Además, el trabajo aporta evidencia para saber si la profundidad de la arquitectura es
+ indispensable, o si un \textit{prior} estructural de alta calidad puede
+ sustituirla en la detección de comunidades.
+-Finalmente, en lo práctico, este trabajo plantea la adopción de arquitecturas
+-livianas sobre grafos, lo cual resulta especialmente relevante en un
+-contexto de encarecimiento del \textit{hardware} de cómputo y de acceso desigual
+-a \textsc{gpu} de gran tamaño.
++Finalmente, en lo práctico, una arquitectura con una sola matriz de
++pesos que estima $k$ desde la topología resulta útil cuando no se
++conoce el número de comunidades.
+diff --git a/chapters/conclusiones/conclusiones.tex b/chapters/conclusiones/conclusiones.tex
+index 26b9d16..3f4db26 100644
+--- a/chapters/conclusiones/conclusiones.tex
++++ b/chapters/conclusiones/conclusiones.tex
+@@ -6,23 +6,36 @@
+ \label{sec:respuestas-preguntas}
+ % -----------------------------------------------------------------------
+ 
++La Tabla~\ref{tab:veredictos} resume la relación entre preguntas, hipótesis y objetivos, junto con el veredicto de cada hipótesis.
++
++\begin{table}[H]
++\centering
++\renewcommand{\arraystretch}{1.3}
++\mycaption[Veredicto de las hipótesis]{Relación entre preguntas de investigación, hipótesis, objetivos y veredicto de cada hipótesis.}
++\label{tab:veredictos}
++\begin{tabular}{@{}cccc p{7.2cm}@{}}
++\toprule
++\textbf{Pregunta} & \textbf{Hipótesis} & \textbf{Objetivo} & \textbf{Sección} & \textbf{Veredicto} \\
++\midrule
++1 & H1 & 4 & \ref{subsec:analisis-ablacion-prior} & Rechazada: la ventaja de Leiden depende del grafo. \\
++2 & H2 & 2 & \ref{sec:estudio-recalibracion} & Aceptada con tamaños sesgados (Cora, CiteSeer); rechazada con tamaños uniformes (\textsc{sbm} con modularidad). \\
++3 & H3 & 4 & \ref{subsec:analisis-convergencia} & Rechazada: Leiden no acelera la optimización de $Q'$. \\
++4 & Central & 1, 3 & \ref{subsec:analisis-calidad} & Aceptada parcialmente: calidad comparable, pero no superior, a la de los modelos profundos. \\
++\bottomrule
++\end{tabular}
++\end{table}
++
+ \paragraph{1. Leiden frente a Louvain.}
+-Sí existe una ventaja sobre la configuración base, pero depende del grafo de entrada. En concreto, Leiden supera a Louvain en Cora, PubMed y Coauthor CS, además de que empata en los grafos de compra conjunta. Sin embargo, pierde en CiteSeer. En este último incluso en todo el barrido de $\beta$ (Sección~\ref{subsec:analisis-ablacion-prior}). Esto sugiere que la ventaja depende de si la partición inicial es rica en comunidades bien conectadas. 
++La ventaja de Leiden depende del grafo y no es sistemática. Con el valor pico, Leiden supera a Louvain en Cora y PubMed, y por un margen mínimo en Amazon Photo; empata en Coauthor CS y Amazon Computers, y pierde en CiteSeer, WikiCS y Actor (Sección~\ref{subsec:analisis-ablacion-prior}). Por tanto, la primera hipótesis específica (H1) se rechaza. 
+ 
+ \paragraph{2. Calibración del filtro.}
+-De acuerdo con la sección~\ref{sec:estudio-recalibracion}, en grafos reales $\beta = 0.5$ funciona tanto con Louvain como con Leiden. En grafos balanceados (generados sintéticamente) el filtro elimina todo, por lo que se propuso y validó el filtro condicionado (Ecuación~\ref{eq:filtro-condicionado}) que en grafos \textsc{sbm} de menos de 10k nodos funciona. Sin embargo, cuando el grafo crece más, se requiere además elegir la función de calidad \textsc{cpm}. Con esto se asegura una densidad interna mínima $\gamma$ 
+- que recupera los bloques exactos.
++En Cora y CiteSeer, $\beta = 0.5$ es el mejor de los valores probados tanto con Louvain como con Leiden, por lo que no hace falta recalibrarlo al cambiar de \textit{prior} (Sección~\ref{subsec:recal-redes-reales}). En grafos con comunidades de tamaño uniforme, como los \textsc{sbm} balanceados, el filtro descarta estructura legítima. El filtro condicionado (Ecuación~\ref{eq:filtro-condicionado}) lo resuelve cuando el \textit{prior} recupera los bloques completos (\textsc{sbm}-1k y \textsc{sbm}-5k), pero no cuando unas pocas fusiones introducen dispersión (\textsc{sbm}-10k). El \textit{prior} \textsc{cpm} recupera los bloques en los tres \textsc{sbm}, aunque con una resolución tomada del generador. La segunda hipótesis específica (H2) se acepta cuando la distribución de tamaños es sesgada: en Cora y CiteSeer, filtrar con $\beta = 0.5$ eleva el $NMI$ frente a no filtrar ($\beta = -0.5$) con ambos \textit{priors} (Tabla~\ref{tab:recal-beta}). Se rechaza con tamaños uniformes, donde el filtro reduce el $NMI$ del \textit{prior} de modularidad (Tabla~\ref{tab:recal-sbm}).
+ 
+ \paragraph{3. Convergencia según el \textit{prior}.}
+-No se encontró una respuesta concluyente, ya que hace falta un análisis sistemático. Más detalles en la sección~\ref{sec:trabajo-futuro}.
+-Las observaciones de resultados sugieren que la calidad del \textit{prior} condiciona la optimización. A su vez, la topología del grafo de entrada condiciona qué tan adecuado es un \textit{prior}.
++No. El \textit{prior} de Leiden no acelera la optimización de $Q'$: para alcanzar un mismo nivel de $Q'$ requiere las mismas épocas que Louvain o, en grafos como WikiCS, más (Sección~\ref{subsec:analisis-convergencia}). Tampoco cambia el $Q'$ inicial ni el máximo. La tercera hipótesis específica (H3) se rechaza.
+ 
+ \paragraph{4. Una capa frente a modelos profundos.}
+-Sí, ya que la arquitectura propuesta alcanza el mejor $NMI$ y $ARI$ en Cora y el mejor $ARI$ en ambos grafos de Amazon. Además de que al igual que la arquitectura base, estima $k$ sin supervisión a diferencia de los \textit{baselines} profundos. Adicionalmente, los métodos contrastivos tienen mayor fragilidad entre semillas. 
+-
+-\paragraph{5. Eficiencia de memoria.}
+-No del todo. La implementación consume en el rango de \textsc{dgi} y DMoN, que están lejos de DeepWalk. 
+-Sin embargo, como se mostró en la sección~\ref{subsec:analisis-telemetria}, no se logró completar en Coauthor Physics, ya que falta optimizar la implementación de las activaciones de la función de pérdida.
++Es comparable, pero no superior, por lo que la hipótesis central se acepta parcialmente. Con el \textit{checkpoint} de pérdida mínima, la arquitectura propuesta se acerca a \textsc{dgi} en Cora e iguala o supera a los modelos profundos en los dos grafos de Amazon, pero queda por debajo de \textsc{dgi} en CiteSeer, PubMed y Coauthor CS, y de las heurísticas clásicas en Amazon Photo y WikiCS. Al igual que la arquitectura base, estima $k$ sin supervisión, a diferencia de los \textit{baselines} profundos, y es más estable entre semillas que \textsc{dgi}, que colapsa en los grafos de Amazon. 
+ 
+ % -----------------------------------------------------------------------
+ \section{Contribuciones}
+@@ -32,9 +45,9 @@ Sin embargo, como se mostró en la sección~\ref{subsec:analisis-telemetria}, no
+ \begin{enumerate}
+     \item \textbf{Comparación del \textit{prior} estructural.} La sustitución Louvain~$\to$~Leiden ayudó a caracterizar el efecto de la primera fase. 
+     \item \textbf{Experimentación con diferentes semillas}. La experimentación con cinco semillas permite observar barras de error que no existen en la literatura de referencia.
+-    \item \textbf{Caracterización del filtro.} El barrido de valores sobre el umbral $T = \mu_s + \beta\sigma_s$ muestra que se conserva el comportamiento original aun con otro \textit{prior}.
++    \item \textbf{Caracterización del filtro.} El barrido de valores sobre el umbral $T = \mu_s + \beta\sigma_s$ muestra, en Cora y CiteSeer, que el valor original sigue siendo el mejor de los probados con otro \textit{prior}, e identifica el modo de fallo del filtro con tamaños uniformes.
+     \item \textbf{Discrepancias artículo/código base.} Se encontraron dos discrepancias: el signo de la temperatura $\delta$ (Capítulo~\ref{chap:propuesta-solucion}) y la desigualdad del filtro ($\geq$ frente a $>$).
+-    \item \textbf{Infraestructura reproducible.} Código versionado, semillas controladas y memoria de cada proceso guardada en la nube.
++    \item \textbf{Infraestructura reproducible.} Código versionado, semillas controladas y resultados de cada corrida guardados en la nube.
+ \end{enumerate}
+ 
+ % -----------------------------------------------------------------------
+@@ -43,9 +56,12 @@ Sin embargo, como se mostró en la sección~\ref{subsec:analisis-telemetria}, no
+ % -----------------------------------------------------------------------
+ 
+ \begin{enumerate}
+-    \item La implementación de $Q'$ consume demasiada \textsc{vram}, lo que impidió evaluar Coauthor Physics.
++    \item La implementación de $Q'$ materializa la matriz $\mathbf{B}$ densa, de tamaño $n \times n$, lo que impidió evaluar la propuesta en Coauthor Physics.
+     \item Las versiones \textit{PyTorch} de donde se obtienen los conjuntos difieren de las de la arquitectura base. 
+-    \item Falta un análisis más sistemático para evaluar la convergencia de la optimización de $Q'$.
++    \item No se aisló el aporte de la \textsc{gcn} sobre el \textit{prior}: no se evaluó una variante que use solo Leiden y el filtro dinámico, sin entrenamiento.
++    \item El barrido de $\beta$ en grafos reales cubre solo Cora y CiteSeer, y su mejor valor está en el extremo de la malla.
++    \item Los resultados \textsc{sbm} de GCN-Leiden usan una resolución \textsc{cpm} tomada del generador, por lo que no son estrictamente no supervisados.
++    \item En PubMed, Coauthor CS y WikiCS el máximo de $Q'$ llega cerca del límite de 300 épocas del protocolo de Wang et al., por lo que esas corridas podrían no haber convergido por completo.
+ \end{enumerate}
+ 
+ % -----------------------------------------------------------------------
+@@ -54,8 +70,9 @@ Sin embargo, como se mostró en la sección~\ref{subsec:analisis-telemetria}, no
+ % -----------------------------------------------------------------------
+ 
+ \begin{enumerate}
+-    \item \textbf{Convergencia.} Obtener las épocas necesarias para alcanzar una $Q'$ fija de acuerdo con el \textit{prior}.
+-    \item \textbf{Calibración automática.} En \textsc{sbm}-10k el límite de resolución llega antes que el filtro falle. La solución fue posible solo porque ya se conocía el generador. Esto requiere más trabajo y pruebas, ya que se busca que no sea necesario cambiar entre modularidad y \textsc{cpm} según la estructura, y se requiere un filtro estadísticamente más robusto. 
++    \item \textbf{Calibración automática.} En \textsc{sbm}-10k, unas pocas fusiones del \textit{prior} activan el filtro condicionado, que descarta bloques legítimos, y la solución con \textsc{cpm} fue posible solo porque se conocía el generador. Se requiere un criterio de filtrado más robusto y una forma de elegir la función de calidad y su resolución sin información externa.
++    \item \textbf{Aporte de la \textsc{gcn} sobre el \textit{prior}.} Evaluar una variante que use solo Leiden y el filtro dinámico, sin entrenamiento, para aislar el aporte de la \textsc{gcn}.
++    \item \textbf{Escalabilidad de $Q'$.} Calcular $\operatorname{tr}(\mathbf{P}^T \mathbf{B} \mathbf{P})$ mediante la descomposición $\mathbf{B} = \mathbf{A} - \mathbf{d}\mathbf{d}^T/2m$, que opera sobre la adyacencia dispersa y un producto de rango uno, evitaría materializar $\mathbf{B}$ y permitiría evaluar grafos como Coauthor Physics.
+     \item \textbf{Grafos heterofílicos.} El \textit{dataset} Actor resultó ser una frontera para todos los \textit{baselines} (incluido el propuesto). Esto abre un nuevo campo de investigación y experimentación para la arquitectura propuesta.
+ \end{enumerate}
+ 
+diff --git a/chapters/propuesta_solucion/propuesta_solucion.tex b/chapters/propuesta_solucion/propuesta_solucion.tex
+index 2b395d7..725f1b4 100644
+--- a/chapters/propuesta_solucion/propuesta_solucion.tex
++++ b/chapters/propuesta_solucion/propuesta_solucion.tex
+@@ -145,9 +145,9 @@
+ 
+ La arquitectura necesita estimar el número de comunidades $k$ sin supervisión, directamente desde la topología. Las heurísticas que maximizan la modularidad $Q$ (Definición~\ref{def:modularidad}) cumplen ese papel, ya que particionan el grafo sin etiquetas y su número de comunidades sirve como estimación inicial de $k$.
+ 
+-El marco de Wang et al. usa Louvain \cite{Wang2025}, que produce comunidades mal conectadas o desconectadas (Definición~\ref{def:comunidades-desconectadas}) hasta en el 16\% de los casos en grafos reales \cite{Traag2019}. Esto daña el diseño. Cada centroide $\mathbf{u}_j$ es el promedio de los miembros de $C_j$. Si la comunidad agrupa fragmentos desconexos, el promedio cae en una zona que no representa a ninguno y el error se propaga a $\mathbf{P}$.
++El marco de Wang et al. usa Louvain \cite{Wang2025}, que puede producir comunidades mal conectadas e incluso desconectadas (Definición~\ref{def:comunidades-desconectadas}). En los experimentos de Traag et al. sobre grafos reales, hasta el 25\% de las comunidades de Louvain resultaron mal conectadas y hasta el 16\% desconectadas \cite{Traag2019}. Esto puede afectar al diseño. Cada centroide $\mathbf{u}_j$ es el promedio de los miembros de $C_j$. Si la comunidad agrupa fragmentos desconexos, el promedio puede caer en una zona que no representa a ninguno, y el error se propagaría a $\mathbf{P}$.
+ 
+-Por eso, esta tesis usa Leiden \cite{Traag2019}. Su refinamiento garantiza la conectividad interna de cada comunidad, mejora la calidad de la partición y reduce el tiempo en grafos reales grandes. Así, cada centroide se promedia sobre un subgrafo conexo y el desplazamiento anterior desaparece. Leiden produce la partición inicial $\mathcal{P} = \{C_1, \dots, C_{K_0}\}$, cuya cardinalidad $K_0$ aproxima $k$. Esa partición aún incluye comunidades pequeñas que la siguiente sección depura.
++Por eso, esta tesis usa Leiden \cite{Traag2019}. Su refinamiento garantiza que cada comunidad sea internamente conexa y, en los experimentos de sus autores, mejora la calidad de la partición y reduce el tiempo en grafos reales grandes \cite{Traag2019}. Así, cada centroide se promedia sobre un subgrafo conexo. La garantía aplica a las comunidades ancla del \textit{prior}, no a la partición final que produce la \textsc{gcn}, y esta tesis no mide su efecto directo sobre los centroides, sino sobre la calidad de la partición final (Capítulo~\ref{chap:resultados}). Leiden produce la partición inicial $\mathcal{P} = \{C_1, \dots, C_{K_0}\}$, cuya cardinalidad $K_0$ aproxima $k$. Esa partición aún incluye comunidades pequeñas que la siguiente sección depura.
+ 
+ \subsubsection{Filtro dinámico}
+ \label{subsec:filtro-dinamico-de-relevancia-estructural}
+@@ -168,7 +168,7 @@ T = \mu_s + \beta \sigma_s
+ \end{where}
+ \end{definition}
+ 
+-El umbral se adapta a la escala del grafo sin ajuste manual. El análisis de sensibilidad de Wang et al. halla las mejores métricas con $\beta$ entre $0.4$ y $0.6$ \cite{Wang2025}. Ese análisis usó particiones de Louvain. Leiden produce una distribución de tamaños distinta, por lo que el $\beta$ óptimo no es transferible. Esta tesis parte de $\beta = 0.5$ y lo trata como hiperparámetro a recalibrar, según el segundo objetivo.
++El umbral se adapta a la escala del grafo sin ajuste manual. Wang et al. fijan el coeficiente en $0.5$ sin reportar un análisis de sensibilidad sobre él \cite{Wang2025}, y lo emplean con particiones de Louvain. Leiden produce una distribución de tamaños distinta, por lo que no hay garantía de que el mismo valor sea adecuado. Esta tesis parte de $\beta = 0.5$ y lo trata como hiperparámetro a recalibrar, según el segundo objetivo.
+ 
+ \paragraph{Filtro condicionado.}
+ El umbral $T$ supone una distribución de tamaños \emph{sesgada a la derecha}. Si los tamaños son uniformes, como en grafos \textsc{sbm} balanceados, se tiene $\sigma_s \approx 0$ y $T \approx \mu_s$, y el filtro elimina estructura legítima. Por eso esta tesis no cambia $\beta$, sino que condiciona la aplicación del filtro a que su supuesto se cumpla. El criterio usa la dispersión relativa $\sigma_s/\mu_s$.
+@@ -182,7 +182,7 @@ El umbral $T$ supone una distribución de tamaños \emph{sesgada a la derecha}.
+ \end{equation}
+ \begin{where}
+     $\sigma_s / \mu_s$ & es el coeficiente de variación de los tamaños, \\
+-    $\tau$ & es el umbral de dispersión que activa el filtro; cualquier $\tau \in [0.1,\, 0.5]$ produce la misma decisión.
++    $\tau$ & es el umbral de dispersión que activa el filtro; esta tesis usa $\tau = 0.25$.
+ \end{where}
+ Si la dispersión es despreciable, el filtro se desactiva. El Capítulo~\ref{chap:resultados} valida este criterio.
+ 
+@@ -636,12 +636,14 @@ Cabe una salvedad de comparabilidad: las versiones de \textit{PyTorch Geometric}
+ 
+ La arquitectura se reimplementó a partir del código oficial de Wang et al. \cite{Wang2025}. Se conservó cada detalle numérico del original, como la inicialización de pesos y la normalización de las representaciones. Con la misma semilla, la reimplementación reproduce las métricas del código original sobre Cora, con \emph{paridad bit a bit}. Así, las diferencias entre GCN-Louvain y GCN-Leiden vienen del cambio de \textit{prior}, no de la reimplementación. Los hiperparámetros son los del artículo original: dimensión latente $512$, temperatura $\delta = 30$, escala de pérdida $\alpha = 10^{-3}$, optimizador Adam con tasa de aprendizaje $10^{-3}$ y decaimiento de pesos $5 \times 10^{-3}$, durante $300$ épocas. También se encontró una diferencia entre el artículo y su código. La Ecuación~6 conserva las comunidades con $|C_i| \geq T$, pero el código usa la desigualdad estricta $|C_i| > T$. Esta tesis sigue el código, y sus consecuencias se analizan en la Sección~\ref{sec:estudio-recalibracion}.
+ 
++En los grafos reales, el \textit{prior} usa la configuración del código original para Louvain y para Leiden: modularidad con resolución $\gamma = 0.3$, semilla $123$ y $\beta = 0.5$. En los grafos \textsc{sbm} esa resolución fusiona todos los bloques (Sección~\ref{subsec:recal-sbm}), por lo que se usa modularidad con $\gamma = 1.0$ y, solo para Leiden, \textsc{cpm} con $\gamma = 0.0275$. Este último valor es el punto medio de $p_{in}$ y $p_{out}$ del generador, es decir, usa información del modelo generativo que no estaría disponible en un grafo real. Las heurísticas clásicas de las tablas de resultados se reportan a la resolución canónica $\gamma = 1.0$.
++
+ \subsection{\textit{Baselines} y protocolo}
+ \label{subsec:lineas-base-protocolo}
+ 
+-Se comparan siete métodos: dos heurísticas modulares clásicas (Louvain \cite{blondel2008} y Leiden \cite{Traag2019}, reportadas a resolución canónica $\gamma=1.0$), tres modelos profundos no supervisados (DeepWalk \cite{Perozzi2014}, \textsc{dgi} \cite{Velickovic2019} y DMoN \cite{tsitsulin2023}), la arquitectura base GCN-Louvain \cite{Wang2025} y la propuesta GCN-Leiden. A los modelos profundos que requieren el número de clústeres se les entrega el $k$ de referencia, una concesión que los favorece y vuelve conservadora cualquier ventaja de la propuesta, cuyo $k$ se estima sin supervisión desde el \textit{prior}.
++Se comparan siete métodos: dos heurísticas modulares clásicas (Louvain \cite{blondel2008} y Leiden \cite{Traag2019}, reportadas a resolución canónica $\gamma=1.0$), tres modelos profundos no supervisados (DeepWalk \cite{Perozzi2014}, \textsc{dgi} \cite{Velickovic2019} y DMoN \cite{tsitsulin2023}), la arquitectura base GCN-Louvain \cite{Wang2025} y la propuesta GCN-Leiden. A los modelos profundos que requieren el número de clústeres se les entrega el $k$ de referencia, mientras que la propuesta estima su $k$ sin supervisión desde el \textit{prior}. Esto difiere de Wang et al., que entregan a sus \textit{baselines} el $k$ que detecta su propio método \cite{Wang2025}. Conocer $k$ no favorece necesariamente a un método en todas las métricas: el $NMI$ tiende a crecer con el número de clústeres, mientras que el $ARI$ corrige el acuerdo por azar. Por eso las tablas de resultados reportan el $k$ de cada método, y las comparaciones se apoyan sobre todo en el $ARI$.
+ 
+-A diferencia de Wang et al., que publican una única ejecución por configuración, cada experimento de esta tesis se repite con \textbf{cinco semillas} y se reporta media $\pm$ desviación estándar. La semilla controla los componentes estocásticos del entrenamiento (inicialización de pesos, caminatas aleatorias, muestreo contrastivo), de modo que la dispersión resultante separa los efectos reales del azar de inicialización. En los métodos entrenables, cada métrica se toma en su valor \emph{pico} durante el entrenamiento, como en el protocolo original. Cada corrida se ejecuta en un subproceso aislado, lo que permite medir su consumo pico de \textsc{ram} y \textsc{vram} sin contaminación entre métodos; las trayectorias completas de entrenamiento se almacenan para el estudio de convergencia.
++A diferencia de Wang et al., que publican una única ejecución por configuración, cada experimento de esta tesis se repite con \textbf{cinco semillas} y se reporta media $\pm$ desviación estándar. La semilla controla los componentes estocásticos del entrenamiento (inicialización de pesos, caminatas aleatorias, muestreo contrastivo), de modo que la dispersión resultante separa los efectos reales del azar de inicialización. El código de Wang et al. evalúa cada corrida de dos maneras. Por un lado, cada dos épocas registra el máximo de cada métrica (el mínimo en el caso de $DBI$); este valor \emph{pico} es el que publica el artículo \cite{Wang2025}. Por otro, al terminar restaura el \textit{checkpoint} de pérdida mínima, es decir, el de máxima $Q'$, y lo evalúa. El pico elige la época consultando las etiquetas, y cada métrica puede provenir de una época distinta, por lo que es una cota optimista; el \textit{checkpoint} de pérdida mínima no usa etiquetas. Esta tesis conserva ambas vistas y emplea cada una donde la comparación es simétrica. Las comparaciones internas de la arquitectura (GCN-Leiden frente a GCN-Louvain y el estudio de recalibración) reportan el pico, como el protocolo original, porque ambos brazos se miden con la misma regla. Las comparaciones contra los demás métodos (Tablas~\ref{tab:resultados-citas-coautoria}--\ref{tab:resultados-sbm}) reportan el \textit{checkpoint} de pérdida mínima, ya que DeepWalk, \textsc{dgi} y DMoN se evalúan sobre su modelo entrenado, sin seleccionar épocas con las etiquetas. Cada corrida se ejecuta en un subproceso aislado; las trayectorias completas de entrenamiento se almacenan para el estudio de convergencia.
+ 
+ Los experimentos se ejecutaron en \textit{Google Compute Engine}: los grafos pequeños y medianos sobre instancias \texttt{c2d-standard-8} (\textsc{cpu}, 8 núcleos), y los conjuntos grandes (PubMed, Coauthor CS, Coauthor Physics, Amazon Computers) sobre una instancia \texttt{g2-standard-16} con \textsc{gpu} NVIDIA L4 de 24~\textsc{gb}.
+ 
+diff --git a/chapters/resultados/resultados.tex b/chapters/resultados/resultados.tex
+index e61a903..010748d 100644
+--- a/chapters/resultados/resultados.tex
++++ b/chapters/resultados/resultados.tex
+@@ -12,37 +12,42 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
+ \begin{table}[H]
+ \centering
+ \renewcommand{\arraystretch}{1.25}
+-\mycaption[Resultados en grafos de citas y coautoría]{Resultados en grafos de citas y coautoría: media$\pm$desviación estándar sobre cinco semillas (valor pico durante el entrenamiento para los métodos profundos). Negritas: mejor valor por fila. Louvain y Leiden clásicos a resolución $\gamma=1.0$.}
++\mycaption[Resultados en grafos de citas y coautoría]{Resultados en grafos de citas y coautoría: media$\pm$desviación estándar sobre cinco semillas. Las columnas GCN corresponden al \textit{checkpoint} de pérdida mínima y los demás métodos entrenables a su modelo entrenado; ninguno selecciona épocas con las etiquetas (Sección~\ref{subsec:lineas-base-protocolo}). Fila $k$: número de comunidades; DeepWalk, \textsc{dgi} y DMoN reciben el $k$ de referencia. El $DBI$ se calcula en el espacio de representaciones de cada método, por lo que solo es comparable dentro de un mismo método. Negritas: mejor valor por fila. Louvain y Leiden clásicos a resolución $\gamma=1.0$. ---: métrica no aplicable o corrida no completada.}
+ \label{tab:resultados-citas-coautoria}
+ \resizebox{\textwidth}{!}{%
+ \begin{tabular}{@{}llccccccc@{}}
+ \toprule
+ \textbf{Red} & \textbf{Métrica} & Louvain & Leiden & DeepWalk & DGI & DMoN & GCN-Louvain & GCN-Leiden \\
+ \midrule
+-\multirow{4}{*}{Cora} & $NMI$ & 0.452{\scriptsize$\pm$0.010} & 0.465{\scriptsize$\pm$0.004} & 0.432{\scriptsize$\pm$0.020} & 0.553{\scriptsize$\pm$0.016} & 0.401{\scriptsize$\pm$0.042} & 0.541{\scriptsize$\pm$0.007} & \textbf{0.554{\scriptsize$\pm$0.009}} \\
+- & $ARI$ & 0.246{\scriptsize$\pm$0.023} & 0.258{\scriptsize$\pm$0.005} & 0.349{\scriptsize$\pm$0.035} & 0.488{\scriptsize$\pm$0.037} & 0.299{\scriptsize$\pm$0.040} & 0.480{\scriptsize$\pm$0.022} & \textbf{0.492{\scriptsize$\pm$0.020}} \\
+- & $Q$ & 0.815{\scriptsize$\pm$0.001} & \textbf{0.821{\scriptsize$\pm$0.001}} & 0.710{\scriptsize$\pm$0.006} & 0.699{\scriptsize$\pm$0.010} & 0.704{\scriptsize$\pm$0.010} & 0.763{\scriptsize$\pm$0.006} & 0.771{\scriptsize$\pm$0.006} \\
+- & $DBI$ & --- & --- & 2.912{\scriptsize$\pm$0.095} & 2.960{\scriptsize$\pm$0.302} & 0.923{\scriptsize$\pm$0.027} & \textbf{0.400{\scriptsize$\pm$0.045}} & 0.452{\scriptsize$\pm$0.050} \\
+-\midrule
+-\multirow{4}{*}{CiteSeer} & $NMI$ & 0.328{\scriptsize$\pm$0.003} & 0.328{\scriptsize$\pm$0.001} & 0.223{\scriptsize$\pm$0.011} & 0.377{\scriptsize$\pm$0.056} & 0.251{\scriptsize$\pm$0.042} & \textbf{0.401{\scriptsize$\pm$0.008}} & 0.388{\scriptsize$\pm$0.012} \\
+- & $ARI$ & 0.091{\scriptsize$\pm$0.006} & 0.087{\scriptsize$\pm$0.007} & 0.187{\scriptsize$\pm$0.009} & 0.354{\scriptsize$\pm$0.057} & 0.219{\scriptsize$\pm$0.053} & \textbf{0.391{\scriptsize$\pm$0.014}} & 0.375{\scriptsize$\pm$0.020} \\
+- & $Q$ & 0.889{\scriptsize$\pm$0.001} & \textbf{0.891{\scriptsize$\pm$0.001}} & 0.725{\scriptsize$\pm$0.002} & 0.611{\scriptsize$\pm$0.155} & 0.740{\scriptsize$\pm$0.005} & 0.800{\scriptsize$\pm$0.006} & 0.780{\scriptsize$\pm$0.009} \\
+- & $DBI$ & --- & --- & 3.716{\scriptsize$\pm$0.236} & 4.932{\scriptsize$\pm$1.367} & 0.742{\scriptsize$\pm$0.011} & 0.552{\scriptsize$\pm$0.066} & \textbf{0.515{\scriptsize$\pm$0.091}} \\
+-\midrule
+-\multirow{4}{*}{PubMed} & $NMI$ & 0.202{\scriptsize$\pm$0.002} & 0.204{\scriptsize$\pm$0.004} & 0.267{\scriptsize$\pm$0.008} & \textbf{0.339{\scriptsize$\pm$0.009}} & 0.221{\scriptsize$\pm$0.019} & 0.291{\scriptsize$\pm$0.014} & 0.313{\scriptsize$\pm$0.004} \\
+- & $ARI$ & 0.105{\scriptsize$\pm$0.009} & 0.110{\scriptsize$\pm$0.008} & 0.301{\scriptsize$\pm$0.007} & \textbf{0.305{\scriptsize$\pm$0.005}} & 0.193{\scriptsize$\pm$0.012} & 0.250{\scriptsize$\pm$0.011} & 0.274{\scriptsize$\pm$0.005} \\
+- & $Q$ & 0.767{\scriptsize$\pm$0.004} & \textbf{0.776{\scriptsize$\pm$0.002}} & 0.537{\scriptsize$\pm$0.006} & 0.509{\scriptsize$\pm$0.002} & 0.540{\scriptsize$\pm$0.021} & 0.654{\scriptsize$\pm$0.003} & 0.661{\scriptsize$\pm$0.006} \\
+- & $DBI$ & --- & --- & 3.990{\scriptsize$\pm$0.120} & 1.910{\scriptsize$\pm$0.020} & 0.738{\scriptsize$\pm$0.049} & \textbf{0.557{\scriptsize$\pm$0.009}} & 0.581{\scriptsize$\pm$0.021} \\
+-\midrule
+-\multirow{4}{*}{Coauthor CS} & $NMI$ & 0.583{\scriptsize$\pm$0.013} & 0.588{\scriptsize$\pm$0.007} & 0.622{\scriptsize$\pm$0.003} & \textbf{0.693{\scriptsize$\pm$0.059}} & 0.663{\scriptsize$\pm$0.012} & 0.625{\scriptsize$\pm$0.008} & 0.629{\scriptsize$\pm$0.008} \\
+- & $ARI$ & 0.427{\scriptsize$\pm$0.023} & 0.420{\scriptsize$\pm$0.016} & 0.460{\scriptsize$\pm$0.007} & \textbf{0.547{\scriptsize$\pm$0.087}} & 0.450{\scriptsize$\pm$0.016} & 0.497{\scriptsize$\pm$0.005} & 0.500{\scriptsize$\pm$0.004} \\
+- & $Q$ & 0.738{\scriptsize$\pm$0.002} & \textbf{0.746{\scriptsize$\pm$0.002}} & 0.706{\scriptsize$\pm$0.001} & 0.555{\scriptsize$\pm$0.068} & 0.695{\scriptsize$\pm$0.007} & 0.653{\scriptsize$\pm$0.001} & 0.654{\scriptsize$\pm$0.001} \\
+- & $DBI$ & --- & --- & 3.985{\scriptsize$\pm$0.037} & 1.619{\scriptsize$\pm$0.408} & 0.998{\scriptsize$\pm$0.032} & 0.366{\scriptsize$\pm$0.068} & \textbf{0.349{\scriptsize$\pm$0.026}} \\
+-\midrule
+-\multirow{4}{*}{Coauthor Physics} & $NMI$ & 0.449{\scriptsize$\pm$0.012} & 0.474{\scriptsize$\pm$0.009} & \textbf{0.677{\scriptsize$\pm$0.009}} & 0.674{\scriptsize$\pm$0.015} & 0.508{\scriptsize$\pm$0.029} & --- & --- \\
++\multirow{5}{*}{Cora} & $NMI$ & 0.452{\scriptsize$\pm$0.010} & 0.465{\scriptsize$\pm$0.004} & 0.432{\scriptsize$\pm$0.020} & \textbf{0.553{\scriptsize$\pm$0.016}} & 0.401{\scriptsize$\pm$0.042} & 0.521{\scriptsize$\pm$0.028} & 0.530{\scriptsize$\pm$0.008} \\
++ & $ARI$ & 0.246{\scriptsize$\pm$0.023} & 0.258{\scriptsize$\pm$0.005} & 0.349{\scriptsize$\pm$0.035} & \textbf{0.488{\scriptsize$\pm$0.037}} & 0.299{\scriptsize$\pm$0.040} & 0.424{\scriptsize$\pm$0.068} & 0.442{\scriptsize$\pm$0.015} \\
++ & $Q$ & 0.815{\scriptsize$\pm$0.001} & \textbf{0.821{\scriptsize$\pm$0.001}} & 0.710{\scriptsize$\pm$0.006} & 0.699{\scriptsize$\pm$0.010} & 0.704{\scriptsize$\pm$0.010} & 0.762{\scriptsize$\pm$0.005} & 0.770{\scriptsize$\pm$0.007} \\
++ & $DBI$ & --- & --- & 2.912{\scriptsize$\pm$0.095} & 2.960{\scriptsize$\pm$0.302} & 0.923{\scriptsize$\pm$0.027} & 1.029{\scriptsize$\pm$0.492} & \textbf{0.699{\scriptsize$\pm$0.225}} \\
++ & $k$ & 103.6{\scriptsize$\pm$1.1} & 107.2{\scriptsize$\pm$1.3} & 7 & 7 & 7 & 9 & 10 \\
++\midrule
++\multirow{5}{*}{CiteSeer} & $NMI$ & 0.328{\scriptsize$\pm$0.003} & 0.328{\scriptsize$\pm$0.001} & 0.223{\scriptsize$\pm$0.011} & \textbf{0.377{\scriptsize$\pm$0.056}} & 0.251{\scriptsize$\pm$0.042} & 0.342{\scriptsize$\pm$0.013} & 0.338{\scriptsize$\pm$0.022} \\
++ & $ARI$ & 0.091{\scriptsize$\pm$0.006} & 0.087{\scriptsize$\pm$0.007} & 0.187{\scriptsize$\pm$0.009} & \textbf{0.354{\scriptsize$\pm$0.057}} & 0.219{\scriptsize$\pm$0.053} & 0.317{\scriptsize$\pm$0.019} & 0.315{\scriptsize$\pm$0.025} \\
++ & $Q$ & 0.889{\scriptsize$\pm$0.001} & \textbf{0.891{\scriptsize$\pm$0.001}} & 0.725{\scriptsize$\pm$0.002} & 0.611{\scriptsize$\pm$0.155} & 0.740{\scriptsize$\pm$0.005} & 0.800{\scriptsize$\pm$0.006} & 0.779{\scriptsize$\pm$0.009} \\
++ & $DBI$ & --- & --- & 3.716{\scriptsize$\pm$0.236} & 4.932{\scriptsize$\pm$1.367} & \textbf{0.742{\scriptsize$\pm$0.011}} & 0.757{\scriptsize$\pm$0.052} & 1.002{\scriptsize$\pm$0.547} \\
++ & $k$ & 470.4{\scriptsize$\pm$1.1} & 471.8{\scriptsize$\pm$2.0} & 6 & 6 & 6 & 11 & 11 \\
++\midrule
++\multirow{5}{*}{PubMed} & $NMI$ & 0.202{\scriptsize$\pm$0.002} & 0.204{\scriptsize$\pm$0.004} & 0.267{\scriptsize$\pm$0.008} & \textbf{0.339{\scriptsize$\pm$0.009}} & 0.221{\scriptsize$\pm$0.019} & 0.265{\scriptsize$\pm$0.021} & 0.275{\scriptsize$\pm$0.021} \\
++ & $ARI$ & 0.105{\scriptsize$\pm$0.009} & 0.110{\scriptsize$\pm$0.008} & 0.301{\scriptsize$\pm$0.007} & \textbf{0.305{\scriptsize$\pm$0.005}} & 0.193{\scriptsize$\pm$0.012} & 0.223{\scriptsize$\pm$0.023} & 0.234{\scriptsize$\pm$0.026} \\
++ & $Q$ & 0.767{\scriptsize$\pm$0.004} & \textbf{0.776{\scriptsize$\pm$0.002}} & 0.537{\scriptsize$\pm$0.006} & 0.509{\scriptsize$\pm$0.002} & 0.540{\scriptsize$\pm$0.021} & 0.653{\scriptsize$\pm$0.003} & 0.659{\scriptsize$\pm$0.007} \\
++ & $DBI$ & --- & --- & 3.990{\scriptsize$\pm$0.120} & 1.910{\scriptsize$\pm$0.020} & 0.738{\scriptsize$\pm$0.049} & \textbf{0.577{\scriptsize$\pm$0.017}} & 0.609{\scriptsize$\pm$0.018} \\
++ & $k$ & 39.0{\scriptsize$\pm$3.9} & 43.6{\scriptsize$\pm$2.2} & 3 & 3 & 3 & 4 & 5 \\
++\midrule
++\multirow{5}{*}{Coauthor CS} & $NMI$ & 0.583{\scriptsize$\pm$0.013} & 0.588{\scriptsize$\pm$0.007} & 0.622{\scriptsize$\pm$0.003} & \textbf{0.693{\scriptsize$\pm$0.059}} & 0.663{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.009} & 0.623{\scriptsize$\pm$0.009} \\
++ & $ARI$ & 0.427{\scriptsize$\pm$0.023} & 0.420{\scriptsize$\pm$0.016} & 0.460{\scriptsize$\pm$0.007} & \textbf{0.547{\scriptsize$\pm$0.087}} & 0.450{\scriptsize$\pm$0.016} & 0.493{\scriptsize$\pm$0.008} & 0.494{\scriptsize$\pm$0.007} \\
++ & $Q$ & 0.738{\scriptsize$\pm$0.002} & \textbf{0.746{\scriptsize$\pm$0.002}} & 0.706{\scriptsize$\pm$0.001} & 0.555{\scriptsize$\pm$0.068} & 0.695{\scriptsize$\pm$0.007} & 0.651{\scriptsize$\pm$0.005} & 0.653{\scriptsize$\pm$0.003} \\
++ & $DBI$ & --- & --- & 3.985{\scriptsize$\pm$0.037} & 1.619{\scriptsize$\pm$0.408} & 0.998{\scriptsize$\pm$0.032} & 0.500{\scriptsize$\pm$0.068} & \textbf{0.392{\scriptsize$\pm$0.091}} \\
++ & $k$ & 26.8{\scriptsize$\pm$1.8} & 29.2{\scriptsize$\pm$4.4} & 15 & 15 & 15 & 4 & 4 \\
++\midrule
++\multirow{5}{*}{Coauthor Physics} & $NMI$ & 0.449{\scriptsize$\pm$0.012} & 0.474{\scriptsize$\pm$0.009} & \textbf{0.677{\scriptsize$\pm$0.009}} & 0.674{\scriptsize$\pm$0.015} & 0.508{\scriptsize$\pm$0.029} & --- & --- \\
+  & $ARI$ & 0.217{\scriptsize$\pm$0.007} & 0.232{\scriptsize$\pm$0.013} & \textbf{0.771{\scriptsize$\pm$0.012}} & 0.698{\scriptsize$\pm$0.042} & 0.350{\scriptsize$\pm$0.032} & --- & --- \\
+  & $Q$ & 0.667{\scriptsize$\pm$0.003} & \textbf{0.683{\scriptsize$\pm$0.003}} & 0.474{\scriptsize$\pm$0.001} & 0.517{\scriptsize$\pm$0.011} & 0.615{\scriptsize$\pm$0.007} & --- & --- \\
+  & $DBI$ & --- & --- & 3.884{\scriptsize$\pm$0.020} & 1.523{\scriptsize$\pm$0.037} & \textbf{0.705{\scriptsize$\pm$0.019}} & --- & --- \\
++ & $k$ & 23.6{\scriptsize$\pm$0.5} & 25.8{\scriptsize$\pm$1.6} & 5 & 5 & 5 & --- & --- \\
+ \bottomrule
+ \end{tabular}}%
+ \end{table}
+@@ -50,32 +55,36 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
+ \begin{table}[H]
+ \centering
+ \renewcommand{\arraystretch}{1.25}
+-\mycaption[Resultados en grafos de compra conjunta, coocurrencia e hipervínculos]{Resultados en grafos de compra conjunta (Amazon), coocurrencia (Actor) e hipervínculos (WikiCS): media$\pm$desviación estándar sobre cinco semillas. Negritas: mejor valor por fila.}
++\mycaption[Resultados en grafos de compra conjunta, coocurrencia e hipervínculos]{Resultados en grafos de compra conjunta (Amazon), coocurrencia (Actor) e hipervínculos (WikiCS): media$\pm$desviación estándar sobre cinco semillas, con el mismo criterio de reporte que la Tabla~\ref{tab:resultados-citas-coautoria}. Negritas: mejor valor por fila.}
+ \label{tab:resultados-compra-web}
+ \resizebox{\textwidth}{!}{%
+ \begin{tabular}{@{}llccccccc@{}}
+ \toprule
+ \textbf{Red} & \textbf{Métrica} & Louvain & Leiden & DeepWalk & DGI & DMoN & GCN-Louvain & GCN-Leiden \\
+ \midrule
+-\multirow{4}{*}{Amazon Computers} & $NMI$ & 0.519{\scriptsize$\pm$0.015} & 0.524{\scriptsize$\pm$0.014} & 0.500{\scriptsize$\pm$0.008} & 0.094{\scriptsize$\pm$0.124} & 0.466{\scriptsize$\pm$0.015} & \textbf{0.543{\scriptsize$\pm$0.008}} & 0.541{\scriptsize$\pm$0.003} \\
+- & $ARI$ & 0.300{\scriptsize$\pm$0.029} & 0.290{\scriptsize$\pm$0.012} & 0.378{\scriptsize$\pm$0.010} & 0.067{\scriptsize$\pm$0.083} & 0.254{\scriptsize$\pm$0.019} & \textbf{0.494{\scriptsize$\pm$0.018}} & 0.489{\scriptsize$\pm$0.008} \\
+- & $Q$ & 0.637{\scriptsize$\pm$0.001} & \textbf{0.639{\scriptsize$\pm$0.001}} & 0.590{\scriptsize$\pm$0.009} & 0.053{\scriptsize$\pm$0.092} & 0.555{\scriptsize$\pm$0.015} & 0.550{\scriptsize$\pm$0.002} & 0.550{\scriptsize$\pm$0.002} \\
+- & $DBI$ & --- & --- & 3.199{\scriptsize$\pm$0.142} & 1.146{\scriptsize$\pm$0.506} & 1.531{\scriptsize$\pm$0.092} & \textbf{0.541{\scriptsize$\pm$0.077}} & 0.544{\scriptsize$\pm$0.077} \\
+-\midrule
+-\multirow{4}{*}{Amazon Photo} & $NMI$ & \textbf{0.659{\scriptsize$\pm$0.003}} & 0.655{\scriptsize$\pm$0.005} & 0.630{\scriptsize$\pm$0.031} & 0.061{\scriptsize$\pm$0.000} & 0.569{\scriptsize$\pm$0.036} & 0.649{\scriptsize$\pm$0.002} & 0.653{\scriptsize$\pm$0.003} \\
+- & $ARI$ & \textbf{0.564{\scriptsize$\pm$0.011}} & 0.560{\scriptsize$\pm$0.012} & 0.461{\scriptsize$\pm$0.081} & 0.025{\scriptsize$\pm$0.000} & 0.427{\scriptsize$\pm$0.033} & 0.489{\scriptsize$\pm$0.002} & 0.492{\scriptsize$\pm$0.001} \\
+- & $Q$ & 0.737{\scriptsize$\pm$0.001} & \textbf{0.739{\scriptsize$\pm$0.001}} & 0.647{\scriptsize$\pm$0.044} & 0.044{\scriptsize$\pm$0.000} & 0.652{\scriptsize$\pm$0.019} & 0.646{\scriptsize$\pm$0.001} & 0.646{\scriptsize$\pm$0.000} \\
+- & $DBI$ & --- & --- & 2.374{\scriptsize$\pm$0.184} & 0.812{\scriptsize$\pm$0.009} & 1.250{\scriptsize$\pm$0.056} & 0.539{\scriptsize$\pm$0.082} & \textbf{0.497{\scriptsize$\pm$0.059}} \\
+-\midrule
+-\multirow{4}{*}{Actor} & $NMI$ & 0.005{\scriptsize$\pm$0.001} & 0.004{\scriptsize$\pm$0.001} & 0.001{\scriptsize$\pm$0.000} & 0.002{\scriptsize$\pm$0.000} & 0.007{\scriptsize$\pm$0.002} & \textbf{0.007{\scriptsize$\pm$0.007}} & 0.000{\scriptsize$\pm$0.000} \\
+- & $ARI$ & -0.000{\scriptsize$\pm$0.000} & -0.000{\scriptsize$\pm$0.000} & 0.001{\scriptsize$\pm$0.000} & -0.001{\scriptsize$\pm$0.000} & 0.005{\scriptsize$\pm$0.002} & \textbf{0.009{\scriptsize$\pm$0.009}} & 0.000{\scriptsize$\pm$0.000} \\
+- & $Q$ & 0.507{\scriptsize$\pm$0.003} & \textbf{0.516{\scriptsize$\pm$0.003}} & 0.456{\scriptsize$\pm$0.001} & 0.014{\scriptsize$\pm$0.009} & 0.172{\scriptsize$\pm$0.009} & 0.328{\scriptsize$\pm$0.003} & 0.000{\scriptsize$\pm$0.000} \\
+- & $DBI$ & --- & --- & 4.431{\scriptsize$\pm$0.050} & 4.539{\scriptsize$\pm$0.089} & 1.211{\scriptsize$\pm$0.038} & \textbf{0.519{\scriptsize$\pm$0.032}} & --- \\
+-\midrule
+-\multirow{4}{*}{WikiCS} & $NMI$ & 0.459{\scriptsize$\pm$0.006} & \textbf{0.467{\scriptsize$\pm$0.005}} & 0.466{\scriptsize$\pm$0.009} & 0.270{\scriptsize$\pm$0.016} & 0.362{\scriptsize$\pm$0.022} & 0.419{\scriptsize$\pm$0.001} & 0.410{\scriptsize$\pm$0.003} \\
+- & $ARI$ & 0.406{\scriptsize$\pm$0.015} & \textbf{0.415{\scriptsize$\pm$0.009}} & 0.404{\scriptsize$\pm$0.009} & 0.130{\scriptsize$\pm$0.032} & 0.235{\scriptsize$\pm$0.026} & 0.373{\scriptsize$\pm$0.004} & 0.369{\scriptsize$\pm$0.002} \\
++\multirow{5}{*}{Amazon Computers} & $NMI$ & 0.519{\scriptsize$\pm$0.015} & 0.524{\scriptsize$\pm$0.014} & 0.500{\scriptsize$\pm$0.008} & 0.094{\scriptsize$\pm$0.124} & 0.466{\scriptsize$\pm$0.015} & \textbf{0.529{\scriptsize$\pm$0.016}} & 0.503{\scriptsize$\pm$0.072} \\
++ & $ARI$ & 0.300{\scriptsize$\pm$0.029} & 0.290{\scriptsize$\pm$0.012} & 0.378{\scriptsize$\pm$0.010} & 0.067{\scriptsize$\pm$0.083} & 0.254{\scriptsize$\pm$0.019} & \textbf{0.439{\scriptsize$\pm$0.013}} & 0.394{\scriptsize$\pm$0.091} \\
++ & $Q$ & 0.637{\scriptsize$\pm$0.001} & \textbf{0.639{\scriptsize$\pm$0.001}} & 0.590{\scriptsize$\pm$0.009} & 0.053{\scriptsize$\pm$0.092} & 0.555{\scriptsize$\pm$0.015} & 0.550{\scriptsize$\pm$0.002} & 0.548{\scriptsize$\pm$0.003} \\
++ & $DBI$ & --- & --- & 3.199{\scriptsize$\pm$0.142} & 1.146{\scriptsize$\pm$0.506} & 1.531{\scriptsize$\pm$0.092} & \textbf{0.783{\scriptsize$\pm$0.252}} & 0.824{\scriptsize$\pm$0.403} \\
++ & $k$ & 330.8{\scriptsize$\pm$1.3} & 330.0{\scriptsize$\pm$1.2} & 10 & 10 & 10 & 5 & 5 \\
++\midrule
++\multirow{5}{*}{Amazon Photo} & $NMI$ & \textbf{0.659{\scriptsize$\pm$0.003}} & 0.655{\scriptsize$\pm$0.005} & 0.630{\scriptsize$\pm$0.031} & 0.061{\scriptsize$\pm$0.000} & 0.569{\scriptsize$\pm$0.036} & 0.648{\scriptsize$\pm$0.002} & 0.649{\scriptsize$\pm$0.005} \\
++ & $ARI$ & \textbf{0.564{\scriptsize$\pm$0.011}} & 0.560{\scriptsize$\pm$0.012} & 0.461{\scriptsize$\pm$0.081} & 0.025{\scriptsize$\pm$0.000} & 0.427{\scriptsize$\pm$0.033} & 0.487{\scriptsize$\pm$0.003} & 0.485{\scriptsize$\pm$0.007} \\
++ & $Q$ & 0.737{\scriptsize$\pm$0.001} & \textbf{0.739{\scriptsize$\pm$0.001}} & 0.647{\scriptsize$\pm$0.044} & 0.044{\scriptsize$\pm$0.000} & 0.652{\scriptsize$\pm$0.019} & 0.646{\scriptsize$\pm$0.001} & 0.646{\scriptsize$\pm$0.001} \\
++ & $DBI$ & --- & --- & 2.374{\scriptsize$\pm$0.184} & 0.812{\scriptsize$\pm$0.009} & 1.250{\scriptsize$\pm$0.056} & 0.987{\scriptsize$\pm$0.040} & \textbf{0.726{\scriptsize$\pm$0.203}} \\
++ & $k$ & 150.2{\scriptsize$\pm$0.4} & 149.6{\scriptsize$\pm$0.5} & 8 & 8 & 8 & 7 & 7 \\
++\midrule
++\multirow{5}{*}{Actor} & $NMI$ & 0.005{\scriptsize$\pm$0.001} & 0.004{\scriptsize$\pm$0.001} & 0.001{\scriptsize$\pm$0.000} & 0.002{\scriptsize$\pm$0.000} & \textbf{0.007{\scriptsize$\pm$0.002}} & 0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
++ & $ARI$ & -0.000{\scriptsize$\pm$0.000} & -0.000{\scriptsize$\pm$0.000} & 0.001{\scriptsize$\pm$0.000} & -0.001{\scriptsize$\pm$0.000} & \textbf{0.005{\scriptsize$\pm$0.002}} & -0.000{\scriptsize$\pm$0.000} & 0.000{\scriptsize$\pm$0.000} \\
++ & $Q$ & 0.507{\scriptsize$\pm$0.003} & \textbf{0.516{\scriptsize$\pm$0.003}} & 0.456{\scriptsize$\pm$0.001} & 0.014{\scriptsize$\pm$0.009} & 0.172{\scriptsize$\pm$0.009} & 0.320{\scriptsize$\pm$0.017} & 0.000{\scriptsize$\pm$0.000} \\
++ & $DBI$ & --- & --- & 4.431{\scriptsize$\pm$0.050} & 4.539{\scriptsize$\pm$0.089} & 1.211{\scriptsize$\pm$0.038} & \textbf{0.593{\scriptsize$\pm$0.084}} & --- \\
++ & $k$ & 36.2{\scriptsize$\pm$3.4} & 33.4{\scriptsize$\pm$5.7} & 5 & 5 & 5 & 2 & 1 \\
++\midrule
++\multirow{5}{*}{WikiCS} & $NMI$ & 0.459{\scriptsize$\pm$0.006} & \textbf{0.467{\scriptsize$\pm$0.005}} & 0.466{\scriptsize$\pm$0.009} & 0.270{\scriptsize$\pm$0.016} & 0.362{\scriptsize$\pm$0.022} & 0.407{\scriptsize$\pm$0.002} & 0.401{\scriptsize$\pm$0.009} \\
++ & $ARI$ & 0.406{\scriptsize$\pm$0.015} & \textbf{0.415{\scriptsize$\pm$0.009}} & 0.404{\scriptsize$\pm$0.009} & 0.130{\scriptsize$\pm$0.032} & 0.235{\scriptsize$\pm$0.026} & 0.361{\scriptsize$\pm$0.002} & 0.357{\scriptsize$\pm$0.007} \\
+  & $Q$ & 0.647{\scriptsize$\pm$0.003} & \textbf{0.651{\scriptsize$\pm$0.001}} & 0.542{\scriptsize$\pm$0.003} & 0.355{\scriptsize$\pm$0.017} & 0.551{\scriptsize$\pm$0.010} & 0.555{\scriptsize$\pm$0.001} & 0.552{\scriptsize$\pm$0.002} \\
+- & $DBI$ & --- & --- & 3.323{\scriptsize$\pm$0.072} & 1.433{\scriptsize$\pm$0.052} & 1.358{\scriptsize$\pm$0.022} & 0.509{\scriptsize$\pm$0.027} & \textbf{0.503{\scriptsize$\pm$0.068}} \\
++ & $DBI$ & --- & --- & 3.323{\scriptsize$\pm$0.072} & 1.433{\scriptsize$\pm$0.052} & 1.358{\scriptsize$\pm$0.022} & \textbf{0.554{\scriptsize$\pm$0.051}} & 0.566{\scriptsize$\pm$0.043} \\
++ & $k$ & 371.2{\scriptsize$\pm$0.8} & 371.2{\scriptsize$\pm$1.1} & 10 & 10 & 10 & 4 & 4 \\
+ \bottomrule
+ \end{tabular}}%
+ \end{table}
+@@ -83,27 +92,30 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
+ \begin{table}[H]
+ \centering
+ \renewcommand{\arraystretch}{1.25}
+-\mycaption[Resultados en grafos sintéticos SBM]{Resultados en grafos sintéticos \textsc{sbm} ($p_{in}=0.05$, $p_{out}=0.005$): media$\pm$desviación estándar sobre cinco semillas. Las columnas GCN emplean el filtro condicionado propuesto, con \textit{prior} de modularidad ($\gamma=1.0$) para GCN-Louvain y \textsc{cpm} para GCN-Leiden; con el filtro original de Wang estas corridas no son ejecutables (Sección~\ref{sec:estudio-recalibracion}). En \textsc{sbm}-10k el límite de resolución de la modularidad colapsa el \textit{prior} de Louvain.}
++\mycaption[Resultados en grafos sintéticos SBM]{Resultados en grafos sintéticos \textsc{sbm} ($p_{in}=0.05$, $p_{out}=0.005$): media$\pm$desviación estándar sobre cinco semillas, con el mismo criterio de reporte que la Tabla~\ref{tab:resultados-citas-coautoria}. GCN-Louvain usa \textit{prior} de modularidad ($\gamma=1.0$) con el filtro condicionado, sin el cual estas corridas no son ejecutables (Sección~\ref{sec:estudio-recalibracion}); en \textsc{sbm}-10k ese filtro reduce el \textit{prior} a una sola comunidad (Sección~\ref{subsec:recal-validacion}). GCN-Leiden usa \textsc{cpm} con $\gamma = (p_{in}+p_{out})/2$, tomado del generador, por lo que sus resultados no son estrictamente no supervisados; con \textsc{cpm} ambos filtros coinciden. Por esta diferencia de \textit{prior}, las dos columnas \textsc{gcn} no comparan Louvain con Leiden.}
+ \label{tab:resultados-sbm}
+ \resizebox{\textwidth}{!}{%
+ \begin{tabular}{@{}llccccccc@{}}
+ \toprule
+ \textbf{Red} & \textbf{Métrica} & Louvain & Leiden & DeepWalk & DGI & DMoN & GCN-Louvain & GCN-Leiden \\
+ \midrule
+-\multirow{4}{*}{SBM-1k} & $NMI$ & 0.983{\scriptsize$\pm$0.003} & 0.983{\scriptsize$\pm$0.003} & 0.947{\scriptsize$\pm$0.012} & 0.987{\scriptsize$\pm$0.003} & \textbf{0.991{\scriptsize$\pm$0.002}} & \textbf{0.991{\scriptsize$\pm$0.002}} & \textbf{0.991{\scriptsize$\pm$0.002}} \\
+- & $ARI$ & 0.989{\scriptsize$\pm$0.002} & 0.989{\scriptsize$\pm$0.002} & 0.964{\scriptsize$\pm$0.009} & 0.992{\scriptsize$\pm$0.002} & 0.994{\scriptsize$\pm$0.001} & \textbf{0.995{\scriptsize$\pm$0.001}} & \textbf{0.995{\scriptsize$\pm$0.001}} \\
+- & $Q$ & \textbf{0.518{\scriptsize$\pm$0.000}} & \textbf{0.518{\scriptsize$\pm$0.000}} & 0.514{\scriptsize$\pm$0.001} & 0.518{\scriptsize$\pm$0.000} & 0.518{\scriptsize$\pm$0.000} & 0.518{\scriptsize$\pm$0.000} & 0.518{\scriptsize$\pm$0.000} \\
+- & $DBI$ & --- & --- & 3.631{\scriptsize$\pm$0.030} & 0.482{\scriptsize$\pm$0.015} & 0.393{\scriptsize$\pm$0.004} & \textbf{0.317{\scriptsize$\pm$0.006}} & 0.318{\scriptsize$\pm$0.007} \\
++\multirow{5}{*}{SBM-1k} & $NMI$ & 0.983{\scriptsize$\pm$0.003} & 0.983{\scriptsize$\pm$0.003} & 0.947{\scriptsize$\pm$0.012} & 0.987{\scriptsize$\pm$0.003} & \textbf{0.991{\scriptsize$\pm$0.002}} & 0.988{\scriptsize$\pm$0.000} & 0.988{\scriptsize$\pm$0.000} \\
++ & $ARI$ & 0.989{\scriptsize$\pm$0.002} & 0.989{\scriptsize$\pm$0.002} & 0.964{\scriptsize$\pm$0.009} & 0.992{\scriptsize$\pm$0.002} & \textbf{0.994{\scriptsize$\pm$0.001}} & 0.993{\scriptsize$\pm$0.000} & 0.993{\scriptsize$\pm$0.000} \\
++ & $Q$ & \textbf{0.518{\scriptsize$\pm$0.000}} & \textbf{0.518{\scriptsize$\pm$0.000}} & 0.514{\scriptsize$\pm$0.001} & 0.518{\scriptsize$\pm$0.000} & 0.518{\scriptsize$\pm$0.000} & \textbf{0.518{\scriptsize$\pm$0.000}} & \textbf{0.518{\scriptsize$\pm$0.000}} \\
++ & $DBI$ & --- & --- & 3.631{\scriptsize$\pm$0.030} & 0.482{\scriptsize$\pm$0.015} & 0.393{\scriptsize$\pm$0.004} & \textbf{0.338{\scriptsize$\pm$0.007}} & 0.340{\scriptsize$\pm$0.007} \\
++ & $k$ & 5 & 5 & 5 & 5 & 5 & 5 & 5 \\
+ \midrule
+-\multirow{4}{*}{SBM-5k} & $NMI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.981{\scriptsize$\pm$0.004} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
++\multirow{5}{*}{SBM-5k} & $NMI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.981{\scriptsize$\pm$0.004} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+  & $ARI$ & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.986{\scriptsize$\pm$0.003} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+  & $Q$ & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} & 0.424{\scriptsize$\pm$0.001} & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} & \textbf{0.427{\scriptsize$\pm$0.000}} \\
+- & $DBI$ & --- & --- & 3.931{\scriptsize$\pm$0.021} & 0.439{\scriptsize$\pm$0.006} & 0.366{\scriptsize$\pm$0.001} & \textbf{0.352{\scriptsize$\pm$0.032}} & \textbf{0.352{\scriptsize$\pm$0.032}} \\
++ & $DBI$ & --- & --- & 3.931{\scriptsize$\pm$0.021} & 0.439{\scriptsize$\pm$0.006} & 0.366{\scriptsize$\pm$0.001} & 0.362{\scriptsize$\pm$0.023} & \textbf{0.361{\scriptsize$\pm$0.023}} \\
++ & $k$ & 10 & 10 & 10 & 10 & 10 & 10 & 10 \\
+ \midrule
+-\multirow{4}{*}{SBM-10k} & $NMI$ & 0.958{\scriptsize$\pm$0.025} & 0.970{\scriptsize$\pm$0.017} & 0.567{\scriptsize$\pm$0.010} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
++\multirow{5}{*}{SBM-10k} & $NMI$ & 0.958{\scriptsize$\pm$0.025} & 0.970{\scriptsize$\pm$0.017} & 0.567{\scriptsize$\pm$0.010} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+  & $ARI$ & 0.837{\scriptsize$\pm$0.091} & 0.881{\scriptsize$\pm$0.064} & 0.535{\scriptsize$\pm$0.012} & \textbf{1.000{\scriptsize$\pm$0.000}} & \textbf{1.000{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{1.000{\scriptsize$\pm$0.000}} \\
+  & $Q$ & 0.288{\scriptsize$\pm$0.004} & 0.290{\scriptsize$\pm$0.002} & 0.173{\scriptsize$\pm$0.004} & \textbf{0.294{\scriptsize$\pm$0.000}} & \textbf{0.294{\scriptsize$\pm$0.000}} & 0.000{\scriptsize$\pm$0.000} & \textbf{0.294{\scriptsize$\pm$0.000}} \\
+- & $DBI$ & --- & --- & 5.672{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.002} & 0.543{\scriptsize$\pm$0.003} & --- & \textbf{0.495{\scriptsize$\pm$0.004}} \\
++ & $DBI$ & --- & --- & 5.672{\scriptsize$\pm$0.012} & 0.617{\scriptsize$\pm$0.002} & 0.543{\scriptsize$\pm$0.003} & --- & \textbf{0.521{\scriptsize$\pm$0.005}} \\
++ & $k$ & 16.8{\scriptsize$\pm$1.8} & 17.6{\scriptsize$\pm$1.3} & 20 & 20 & 20 & 1 & 20 \\
+ \bottomrule
+ \end{tabular}}%
+ \end{table}
+@@ -111,63 +123,75 @@ Las Tablas~\ref{tab:resultados-citas-coautoria}, \ref{tab:resultados-compra-web}
+ \subsection{Calidad de partición}
+ \label{subsec:analisis-calidad}
+ 
+-En los grafos de citas, la propuesta GCN-Leiden alcanza el mejor $NMI$ y $ARI$ en Cora ($0.554 \pm 0.009$ y $0.492 \pm 0.020$) e iguala el $NMI$ de \textsc{dgi} ($0.553 \pm 0.016$) con una modularidad $Q$ muy superior ($0.771$ frente a $0.699$) y un $DBI$ un orden de magnitud menor ($0.45$ frente a $2.96$): el espacio latente que produce la \textsc{gcn} de una capa anclada al \textit{prior} es geométricamente más compacto que el del modelo contrastivo. En PubMed, GCN-Leiden supera a GCN-Louvain ($0.313 \pm 0.004$ frente a $0.291 \pm 0.014$) y a DMoN, aunque \textsc{dgi} retiene el mejor $NMI$. En los grafos de coautoría y de compra conjunta los siete métodos compiten en una franja estrecha; GCN-Leiden obtiene el mejor $ARI$ en Amazon Photo y Amazon Computers, y se mantiene a menos de una desviación estándar de GCN-Louvain en Coauthor CS. En los grafos sintéticos, con el filtro condicionado, ambas variantes \textsc{gcn} igualan la recuperación casi exacta de los mejores modelos profundos y obtienen el mejor $DBI$ (Tabla~\ref{tab:resultados-sbm}).
++En los grafos de citas, \textsc{dgi} obtiene el mejor $NMI$ y $ARI$ en Cora, CiteSeer y PubMed. En Cora, GCN-Leiden queda en segundo lugar ($NMI = 0.530 \pm 0.008$ y $ARI = 0.442 \pm 0.015$, frente a $0.553 \pm 0.016$ y $0.488 \pm 0.037$ de \textsc{dgi}), con una modularidad $Q$ mayor ($0.770$ frente a $0.699$). En PubMed, las dos variantes \textsc{gcn} superan a DMoN, pero quedan por debajo de \textsc{dgi} ($0.275 \pm 0.021$ y $0.265 \pm 0.021$ frente a $0.339 \pm 0.009$). En Coauthor CS, \textsc{dgi} y DMoN superan a ambas variantes \textsc{gcn}. En los grafos de compra conjunta, GCN-Louvain obtiene el mejor $NMI$ y $ARI$ en Amazon Computers ($0.529 \pm 0.016$ y $0.439 \pm 0.013$); en Amazon Photo y WikiCS, las heurísticas clásicas superan a todos los métodos entrenables. En los grafos sintéticos, ambas variantes \textsc{gcn} recuperan casi exactamente los bloques de \textsc{sbm}-1k y \textsc{sbm}-5k, igual que los modelos profundos (Tabla~\ref{tab:resultados-sbm}). En Coauthor Physics ($n = 34\,493$) las variantes \textsc{gcn} no completan, porque la implementación de $Q'$ materializa la matriz de modularidad $\mathbf{B} \in \mathbb{R}^{n \times n}$ densa en la \textsc{gpu} y excede los 24~\textsc{gb} de la L4.
+ 
+-Una \textsc{gcn} de una sola capa equipara así la calidad de partición de los modelos profundos contrastivos sin recibir $k$ como entrada, lo que responde la cuarta pregunta de investigación. El caso de \textsc{dgi} en Amazon Computers ilustra además la fragilidad contrastiva: su $NMI$ se desploma a $0.094 \pm 0.124$ (colapso en tres de cinco semillas), mientras que las arquitecturas con \textit{prior} estructural se mantienen estables, con desviaciones típicas de $\pm 0.01$.
++Una \textsc{gcn} de una sola capa resulta así competitiva, pero no superior, frente a los modelos profundos, sin recibir $k$ como entrada: se acerca a \textsc{dgi} en Cora e iguala o supera a los modelos profundos en los dos grafos de Amazon, pero queda por debajo de \textsc{dgi} en CiteSeer, PubMed y Coauthor CS. Esto responde la cuarta pregunta de investigación. La fila $k$ matiza la comparación. El $k$ que estima el \textit{prior} difiere del de referencia en casi todos los grafos: lo sobreestima en los de citas (Cora, $10$ frente a $7$; CiteSeer, $11$ frente a $6$) y lo subestima en Coauthor CS ($4$ frente a $15$), Amazon Computers ($5$ frente a $10$) y WikiCS ($4$ frente a $10$). Las heurísticas clásicas producen decenas o cientos de comunidades, lo que eleva su $NMI$ frente a su $ARI$ (por ejemplo, en CiteSeer, $NMI = 0.328$ con $ARI = 0.091$ y $k \approx 470$). Su ventaja está en la estabilidad frente al método contrastivo: \textsc{dgi} colapsa en Amazon Computers en cuatro de cinco semillas ($NMI = 0.094 \pm 0.124$) y en Amazon Photo en las cinco. Las variantes \textsc{gcn} no colapsan en estos grafos, aunque en Amazon Computers una semilla de GCN-Leiden termina en un \textit{checkpoint} degradado ($NMI = 0.374$, frente a $\approx 0.535$ en las otras cuatro), lo que explica su desviación de $\pm 0.072$.
+ 
+ \subsection{Comparación controlada del \textit{prior}}
+ \label{subsec:analisis-ablacion-prior}
+ 
+-La comparación directa entre GCN-Leiden y GCN-Louvain (idénticos en todo salvo el algoritmo del \textit{prior}) responde la primera pregunta de investigación con un resultado matizado. Leiden gana en Cora ($+0.013$ de $NMI$, consistente en las cinco semillas), PubMed ($+0.022$) y Coauthor CS ($+0.004$); empata en Amazon Computers y Amazon Photo; y pierde en CiteSeer ($0.388 \pm 0.012$ frente a $0.401 \pm 0.008$). El estudio de recalibración (Sección~\ref{sec:estudio-recalibracion}) confirma que la ventaja de Louvain en CiteSeer persiste en todo el rango del coeficiente $\beta$, por lo que se trata de un efecto genuino del conjunto de datos y no de una calibración desafortunada.
++La comparación directa entre GCN-Leiden y GCN-Louvain (idénticos en todo salvo el algoritmo del \textit{prior}) responde la primera pregunta de investigación. Como ambos brazos comparten la regla de reporte, esta sección usa el valor pico del protocolo de Wang et al. (Tabla~\ref{tab:prior-pico}).
+ 
+-La ventaja del \textit{prior} de Leiden es real pero dependiente de la red: domina cuando la partición inicial alimenta suficientes comunidades bien conectadas (Cora, PubMed) y resulta neutral o desfavorable cuando la estructura ya es benigna para Louvain. Ninguna de estas diferencias, del orden de una a tres desviaciones estándar, sería detectable bajo el protocolo de ejecución única de Wang et al.
++\begin{table}[H]
++\centering
++\renewcommand{\arraystretch}{1.25}
++\mycaption[Comparación controlada del \textit{prior} (valor pico)]{GCN-Louvain frente a GCN-Leiden con el valor pico del protocolo de Wang et al.: media$\pm$desviación estándar sobre cinco semillas.}
++\label{tab:prior-pico}
++\begin{tabular}{@{}lcccc@{}}
++\toprule
++ & \multicolumn{2}{c}{$NMI$} & \multicolumn{2}{c}{$ARI$} \\
++\cmidrule(lr){2-3}\cmidrule(lr){4-5}
++\textbf{Red} & GCN-Louvain & GCN-Leiden & GCN-Louvain & GCN-Leiden \\
++\midrule
++Cora & 0.541{\scriptsize$\pm$0.007} & 0.554{\scriptsize$\pm$0.009} & 0.480{\scriptsize$\pm$0.022} & 0.492{\scriptsize$\pm$0.020} \\
++CiteSeer & 0.401{\scriptsize$\pm$0.008} & 0.388{\scriptsize$\pm$0.012} & 0.391{\scriptsize$\pm$0.014} & 0.375{\scriptsize$\pm$0.020} \\
++PubMed & 0.291{\scriptsize$\pm$0.014} & 0.313{\scriptsize$\pm$0.004} & 0.250{\scriptsize$\pm$0.011} & 0.274{\scriptsize$\pm$0.005} \\
++Coauthor CS & 0.625{\scriptsize$\pm$0.008} & 0.629{\scriptsize$\pm$0.008} & 0.497{\scriptsize$\pm$0.005} & 0.500{\scriptsize$\pm$0.004} \\
++Amazon Computers & 0.543{\scriptsize$\pm$0.008} & 0.541{\scriptsize$\pm$0.003} & 0.494{\scriptsize$\pm$0.018} & 0.489{\scriptsize$\pm$0.008} \\
++Amazon Photo & 0.649{\scriptsize$\pm$0.002} & 0.653{\scriptsize$\pm$0.003} & 0.489{\scriptsize$\pm$0.002} & 0.492{\scriptsize$\pm$0.001} \\
++Actor & 0.007{\scriptsize$\pm$0.007} & 0.000{\scriptsize$\pm$0.000} & 0.009{\scriptsize$\pm$0.009} & 0.000{\scriptsize$\pm$0.000} \\
++WikiCS & 0.419{\scriptsize$\pm$0.001} & 0.410{\scriptsize$\pm$0.003} & 0.373{\scriptsize$\pm$0.004} & 0.369{\scriptsize$\pm$0.002} \\
++\bottomrule
++\end{tabular}
++\end{table}
+ 
+-\subsection{Heterofilia en Actor}
+-\label{subsec:analisis-film}
++Si se considera empate toda diferencia menor a una desviación estándar, Leiden gana en Cora ($+0.013$ de $NMI$, en cuatro de cinco semillas) y PubMed ($+0.022$), y por un margen mínimo en Amazon Photo ($+0.004$); empata en Coauthor CS ($+0.004$) y Amazon Computers ($-0.002$); y pierde en CiteSeer ($0.388 \pm 0.012$ frente a $0.401 \pm 0.008$), WikiCS ($0.410 \pm 0.003$ frente a $0.419 \pm 0.001$) y Actor, donde el filtro reduce el \textit{prior} de Leiden a una sola comunidad (Sección~\ref{subsec:analisis-film}). En CiteSeer, la desventaja de Leiden depende de $\beta$: aparece con $\beta \geq 0.25$, mientras que con $\beta \leq 0$ ambos empatan (Tabla~\ref{tab:recal-beta}).
+ 
+-En Actor, con la configuración de Wang ($\gamma=0.3$, $\beta=0.5$), el \textit{prior} de Leiden produce una distribución de tamaños cuyo filtrado retiene una sola comunidad ($k=1$): el \textit{pipeline} degenera y todas las métricas colapsan a cero en las cinco semillas, mientras que el \textit{prior} de Louvain sobrevive con $k=2$. Este es el primer caso de fallo del filtro dinámico que motiva el estudio de la Sección~\ref{sec:estudio-recalibracion}. Sin embargo, incluso con el \textit{pipeline} restaurado, \emph{ningún} método supera $NMI \approx 0.01$ en esta red, tampoco los \textit{baselines} profundos. Una explicación plausible es la heterofilia: las etiquetas de ocupación de Actor no parecen corresponderse con comunidades topológicas densas, por lo que el fallo apuntaría al supuesto de homofilia compartido por toda la familia de métodos evaluada y no a la arquitectura propuesta. Verificar esta hipótesis queda fuera del alcance de esta tesis y se retoma como trabajo futuro (Sección~\ref{sec:trabajo-futuro}).
++La ventaja del \textit{prior} de Leiden es, por tanto, dependiente de la red y no sistemática. Las diferencias son del orden de una a tres desviaciones estándar, por lo que no serían detectables bajo el protocolo de ejecución única de Wang et al.
++
++\subsection{Convergencia según el \textit{prior}}
++\label{subsec:analisis-convergencia}
+ 
+-\subsection{Telemetría de memoria}
+-\label{subsec:analisis-telemetria}
++La tercera pregunta se responde con las trayectorias de entrenamiento, que registran $Q'$ cada dos épocas. Para cada grafo se fija un nivel común de $Q'$, igual al 95\,\% del menor de los $Q'$ máximos medios de ambos \textit{priors}, y se mide la primera época en que cada corrida lo alcanza (Tabla~\ref{tab:convergencia-prior}). Actor se excluye porque el \textit{prior} de Leiden colapsa a $k=1$ y $Q'$ es nulo durante todo el entrenamiento.
+ 
+ \begin{table}[H]
+ \centering
+ \renewcommand{\arraystretch}{1.25}
+-\mycaption[Telemetría de memoria en los conjuntos grandes]{Memoria pico por método en los conjuntos ejecutados sobre \textsc{gpu} (NVIDIA L4): \textsc{ram} de proceso y \textsc{vram}, en \textsc{mb}, promediadas sobre cinco semillas.}
+-\label{tab:telemetria-memoria}
+-\begin{tabular}{@{}llrr@{}}
++\mycaption[Convergencia de $Q'$ según el \textit{prior}]{Épocas necesarias para alcanzar un nivel común de $Q'$ (95\,\% del menor de los $Q'$ máximos medios de ambos \textit{priors}): media$\pm$desviación estándar sobre cinco semillas. La evaluación se realiza cada dos épocas.}
++\label{tab:convergencia-prior}
++\begin{tabular}{@{}lccc@{}}
+ \toprule
+-\textbf{Red} & \textbf{Método} & \textsc{ram} (\textsc{mb}) & \textsc{vram} (\textsc{mb}) \\
+-\midrule
+-\multirow{5}{*}{Amazon Computers} & DeepWalk & 12713 & 87 \\
+- & DGI & 1830 & 2269 \\
+- & DMoN & 1824 & 2859 \\
+- & GCN-Louvain & 1966 & 3558 \\
+- & GCN-Leiden & 1877 & 3558 \\
+-\midrule
+-\multirow{5}{*}{PubMed} & DeepWalk & 17151 & 109 \\
+- & DGI & 1536 & 759 \\
+- & DMoN & 1533 & 2085 \\
+- & GCN-Louvain & 1564 & 6154 \\
+- & GCN-Leiden & 1524 & 6154 \\
+-\midrule
+-\multirow{5}{*}{Coauthor CS} & DeepWalk & 16672 & 105 \\
+- & DGI & 2153 & 1948 \\
+- & DMoN & 2129 & 2654 \\
+- & GCN-Louvain & 2182 & 5826 \\
+- & GCN-Leiden & 2155 & 5826 \\
+-\midrule
+-\multirow{5}{*}{Coauthor Physics} & DeepWalk & 31268 & 159 \\
+- & DGI & 4207 & 4789 \\
+- & DMoN & 4207 & 8021 \\
+- & GCN-Louvain & --- & --- \\
+- & GCN-Leiden & --- & --- \\
++\textbf{Red} & $Q'$ objetivo & GCN-Louvain & GCN-Leiden \\
++\midrule
++Cora & 0.724 & 64.8{\scriptsize$\pm$1.1} & 63.2{\scriptsize$\pm$1.8} \\
++CiteSeer & 0.740 & 42.4{\scriptsize$\pm$0.9} & 44.8{\scriptsize$\pm$1.1} \\
++PubMed & 0.616 & 100.0{\scriptsize$\pm$0.0} & 104.0{\scriptsize$\pm$5.5} \\
++Coauthor CS & 0.620 & 30.0{\scriptsize$\pm$0.0} & 30.0{\scriptsize$\pm$0.0} \\
++Amazon Computers & 0.519 & 58.0{\scriptsize$\pm$2.7} & 58.0{\scriptsize$\pm$2.7} \\
++Amazon Photo & 0.612 & 49.2{\scriptsize$\pm$1.1} & 49.2{\scriptsize$\pm$1.1} \\
++WikiCS & 0.522 & 79.0{\scriptsize$\pm$2.2} & 94.0{\scriptsize$\pm$4.2} \\
+ \bottomrule
+ \end{tabular}
+ \end{table}
+ 
+-La Tabla~\ref{tab:telemetria-memoria} muestra el consumo pico de memoria en los conjuntos ejecutados sobre \textsc{gpu}. En \textsc{ram} de proceso, la arquitectura propuesta opera en el mismo rango que \textsc{dgi} y DMoN ($1.5$--$2.2$~\textsc{gb}) y muy por debajo de DeepWalk (hasta $31$~\textsc{gb} en Coauthor Physics). En \textsc{vram}, sin embargo, el resultado contradice la expectativa: la implementación actual de la pérdida $Q'$ materializa la matriz de modularidad $\mathbf{B} \in \mathbb{R}^{n \times n}$ densa en memoria de \textsc{gpu}, lo que eleva el pico a $6.2$~\textsc{gb} en PubMed frente a $0.8$~\textsc{gb} de \textsc{dgi}; el pico es idéntico en ambas variantes \textsc{gcn} porque el \textit{prior} no altera los tensores de la pérdida. En Coauthor Physics ($n = 34\,493$) las matrices densas exceden la capacidad de la L4 y las corridas \textsc{gcn} no completan, mientras que \textsc{dgi} y DMoN sí lo hacen. La ligereza \emph{paramétrica} de la capa única (una sola matriz de pesos $\mathbf{W}$) no se traduce, en esta implementación, en ligereza de \emph{activaciones}: el término $\operatorname{tr}(\mathbf{P}^T \mathbf{B} \mathbf{P})$ domina el consumo. La descomposición $\mathbf{B} = \mathbf{A} - \mathbf{d}\mathbf{d}^T/2m$ evitaría materializar la matriz densa, ya que opera sobre la adyacencia dispersa y un producto de rango uno.
++El \textit{prior} de Leiden no acelera la optimización. En los 35 pares de corridas con la misma semilla (siete grafos y cinco semillas), Leiden alcanza el nivel antes en 3 pares, después en 11 y empata en 21 (prueba de Wilcoxon pareada sobre los pares no empatados, $p = 0.009$). El retraso se concentra en WikiCS. Al 99\,\% del nivel no hay diferencia ($p = 0.66$), y una medida relativa, las épocas hasta cubrir el 95\,\% de la mejora propia de cada corrida, tampoco muestra aceleración ($p = 0.053$). El \textit{prior} tampoco cambia los niveles de la optimización: ni el $Q'$ inicial ni el máximo difieren entre Leiden y Louvain ($p = 0.99$ y $p = 0.92$). Hay dos salvedades. La evaluación cada dos épocas produce muchos empates, y cada \textit{prior} fija un $k$ distinto, por lo que $Q'$ no es exactamente el mismo objetivo en ambos brazos; por eso se reportan las dos medidas. Además, en PubMed, Coauthor CS y WikiCS el $Q'$ máximo llega en promedio después de la época 225, cerca del límite de 300 épocas del protocolo.
++
++Las trayectorias muestran también que maximizar $Q'$ no equivale a recuperar las etiquetas. En 56 de 70 corridas el pico de $NMI$ precede al máximo de $Q'$, y la pérdida media de $NMI$ entre ambos puntos va de $0.003$ (Amazon Photo) a $0.054$ (CiteSeer). Esto explica por qué el valor pico del protocolo de Wang et al. es optimista frente al \textit{checkpoint} de pérdida mínima (Sección~\ref{subsec:lineas-base-protocolo}).
++
++\subsection{Heterofilia en Actor}
++\label{subsec:analisis-film}
+ 
++En Actor, con la configuración de Wang ($\gamma=0.3$, $\beta=0.5$), el \textit{prior} de Leiden produce una distribución de tamaños cuyo filtrado retiene una sola comunidad ($k=1$): el \textit{pipeline} degenera y todas las métricas colapsan a cero en las cinco semillas, mientras que el \textit{prior} de Louvain sobrevive con $k=2$. Este es el primer caso de fallo del filtro dinámico que motiva el estudio de la Sección~\ref{sec:estudio-recalibracion}. Sin embargo, incluso con el \textit{pipeline} restaurado, \emph{ningún} método supera $NMI \approx 0.01$ en esta red, tampoco los \textit{baselines} profundos. Una explicación plausible es la heterofilia: las etiquetas de ocupación de Actor no parecen corresponderse con comunidades topológicas densas, por lo que el fallo apuntaría al supuesto de homofilia compartido por toda la familia de métodos evaluada y no a la arquitectura propuesta. Verificar esta hipótesis queda fuera del alcance de esta tesis y se retoma como trabajo futuro (Sección~\ref{sec:trabajo-futuro}).
+ 
+ % -----------------------------------------------------------------------
+ \section{Recalibración del filtro dinámico}
+@@ -177,12 +201,12 @@ La Tabla~\ref{tab:telemetria-memoria} muestra el consumo pico de memoria en los
+ \subsection{Transferencia de $\beta$ en grafos reales}
+ \label{subsec:recal-redes-reales}
+ 
+-En el barrido de $\beta$ sobre Cora y CiteSeer (Tabla~\ref{tab:recal-beta}, Apéndice~\ref{app:recal-completo}), el $NMI$ crece con $\beta$. El valor original $\beta = 0.5$ también es óptimo para Leiden. En el extremo $\beta = -0.5$ el filtro se apaga y el $NMI$ y el $ARI$ caen en todos los casos. El filtro aporta valor en distribuciones sesgadas. Por eso, en grafos reales no hace falta recalibrar y $\beta = 0.5$ se transfiere de Louvain a Leiden. La ventaja de GCN-Leiden en Cora y la de Louvain en CiteSeer se sostienen en los cuatro valores de $\beta$.
++En el barrido de $\beta$ sobre Cora y CiteSeer (Tabla~\ref{tab:recal-beta}, Apéndice~\ref{app:recal-completo}), el $NMI$ crece con $\beta$. De los cuatro valores probados, $\beta = 0.5$ da el mejor $NMI$ también para Leiden, aunque es el extremo superior de la malla, por lo que no se descarta que valores mayores lo mejoren. En el extremo $\beta = -0.5$ el filtro se apaga y el $NMI$ cae en todos los casos. El filtro aporta valor en distribuciones sesgadas. En Cora y CiteSeer no hace falta recalibrar: $\beta = 0.5$ se transfiere de Louvain a Leiden. La ventaja de GCN-Leiden en Cora se sostiene en los cuatro valores de $\beta$; la de GCN-Louvain en CiteSeer, solo con $\beta \geq 0.25$.
+ 
+ \subsection{Tamaños uniformes en grafos SBM}
+ \label{subsec:recal-sbm}
+ 
+-En los grafos \textsc{sbm} el diagnóstico se invierte. Con $\gamma = 0.3$, Louvain y Leiden fusionan todos los bloques en una comunidad, y ningún $\beta$ lo rescata. Subir la resolución a $\gamma = 1.0$ recupera los bloques, pero crea otro problema. Como los bloques tienen tamaños idénticos, $\sigma_s \approx 0$ y el umbral coincide con la media. La desigualdad estricta del código ($|C_i| > T$) descarta entonces todas las comunidades (Sección~\ref{subsec:implementacion-paridad}). Así, ninguna corrida con \textit{prior} de modularidad se completa en \textsc{sbm}-5k, y en \textsc{sbm}-1k solo sobreviven $2$--$3$ de los $5$ bloques. La solución no pasa por $\beta$, sino por la función de calidad del \textit{prior}. Un \textit{prior} de Leiden con \textsc{cpm} (Definición~\ref{def:cpm}) \cite{Traag2019} y $\gamma = 0.0275$ alcanza $NMI = 1.000 \pm 0.000$ en \textsc{sbm}-5k y $0.991 \pm 0.002$ en \textsc{sbm}-1k, con el $k$ exacto (Tabla~\ref{tab:resultados-sbm}). \textsc{cpm} particiona en exceso un poco y restaura la distribución sesgada que el filtro necesita. El filtro elimina entonces solo los residuos.
++En los grafos \textsc{sbm} el diagnóstico se invierte. Con $\gamma = 0.3$, Louvain y Leiden fusionan todos los bloques en una comunidad, y ningún $\beta$ lo rescata. Subir la resolución a $\gamma = 1.0$ recupera los bloques, pero crea otro problema. Como los bloques tienen tamaños idénticos, $\sigma_s \approx 0$ y el umbral coincide con la media. La desigualdad estricta del código ($|C_i| > T$) descarta entonces todas las comunidades (Sección~\ref{subsec:implementacion-paridad}). Así, ninguna corrida con \textit{prior} de modularidad se completa en \textsc{sbm}-5k, y en \textsc{sbm}-1k solo sobreviven $2$--$3$ de los $5$ bloques. La solución no pasa por $\beta$, sino por la función de calidad del \textit{prior}. Un \textit{prior} de Leiden con \textsc{cpm} (Definición~\ref{def:cpm}) \cite{Traag2019} y $\gamma = 0.0275$ alcanza $NMI = 1.000 \pm 0.000$ en \textsc{sbm}-5k y $0.991 \pm 0.002$ en \textsc{sbm}-1k, con el $k$ exacto (Tabla~\ref{tab:recal-sbm}). Este valor de $\gamma$ es el punto medio de $p_{in}$ y $p_{out}$ del generador, por lo que su elección usa información que no estaría disponible en un grafo real. El resultado muestra que \textsc{cpm} \emph{puede} recuperar los bloques con una resolución adecuada, no que esa resolución se obtenga sin supervisión. \textsc{cpm} particiona en exceso un poco y restaura la distribución sesgada que el filtro necesita. El filtro elimina entonces solo los residuos.
+ 
+ \subsection{Resolución en Actor}
+ \label{subsec:recal-film}
+@@ -192,9 +216,9 @@ En Actor se evalúa el barrido completo sobre $\gamma \in \{0.3, 1.0\}$ y $\beta
+ \subsection{Validación del filtro condicionado}
+ \label{subsec:recal-validacion}
+ 
+-El criterio que activa el filtro condicionado es la dispersión relativa $\sigma_s/\mu_s$, con umbral $\tau = 0.25$ (Ecuación~\ref{eq:filtro-condicionado}). Separa los dos regímenes de forma casi binaria, con $\sim 10^{-2}$ en \textsc{sbm} y $\gtrsim 1$ en grafos reales. En grafos reales no hay regresión. El criterio nunca se activa y los resultados reproducen bit a bit la variante original. En los \textsc{sbm}, las corridas antes imposibles ahora se completan.
++El criterio que activa el filtro condicionado es la dispersión relativa $\sigma_s/\mu_s$, con umbral $\tau = 0.25$ (Ecuación~\ref{eq:filtro-condicionado}). En los \textit{priors} de esta tesis, $\sigma_s/\mu_s$ vale entre $1.2$ y $11.5$ en los grafos reales, entre $1.4$ y $1.8$ con \textsc{cpm} en los \textsc{sbm}, como máximo $0.007$ en los \textsc{sbm} cuyos bloques recupera la modularidad y entre $0.41$ y $0.45$ en \textsc{sbm}-10k con modularidad. Cualquier $\tau$ entre $0.01$ y $0.4$ produce, por tanto, las mismas decisiones. En grafos reales el filtro se aplica siempre, y en Cora y CiteSeer los resultados reproducen bit a bit la variante original. En \textsc{sbm}-1k y \textsc{sbm}-5k, las corridas antes imposibles ahora se completan.
+ 
+-En \textsc{sbm}-10k el problema es el límite de resolución (Definición~\ref{def:limite-resolucion}), no el filtro. Fusiona los bloques del \textit{prior} de modularidad, con $k=3$ en Leiden y $k=1$ en Louvain. Ahí el filtro condicionado es necesario pero no suficiente. El \textit{prior} \textsc{cpm}, libre de ese límite \cite{Traag2019}, recupera los $20$ bloques exactos con $NMI = 1.000 \pm 0.000$. Esto confirma \textsc{cpm} como la opción para grafos balanceados.
++\textsc{sbm}-10k muestra el límite del criterio. Con modularidad, el \textit{prior} produce $16$ comunidades con Leiden y $18$ con Louvain para $20$ bloques (Tabla~\ref{tab:recal-sbm}, $\beta = -0.5$). Esas pocas fusiones bastan para que la dispersión supere $\tau$, de modo que el filtro se activa y descarta bloques legítimos: el \textit{prior} queda con $k = 3$ en Leiden y $k = 1$ en Louvain. El problema no es el límite de resolución, pues las heurísticas clásicas alcanzan $NMI = 0.958$ y $0.970$ en este grafo (Tabla~\ref{tab:resultados-sbm}), sino que el filtro trata como ruido a comunidades de tamaño comparable. El \textit{prior} \textsc{cpm} recupera los $20$ bloques exactos con $NMI = 1.000 \pm 0.000$, pero con una resolución tomada del generador (Sección~\ref{subsec:recal-sbm}), por lo que este resultado no permite concluir que \textsc{cpm} sea la opción general para grafos balanceados.
+ 
+ 
+ \clearpage
+diff --git a/chapters/trabajos_relacionados/trabajos_relacionados.tex b/chapters/trabajos_relacionados/trabajos_relacionados.tex
+index edd9c17..e8fb4bc 100644
+--- a/chapters/trabajos_relacionados/trabajos_relacionados.tex
++++ b/chapters/trabajos_relacionados/trabajos_relacionados.tex
+@@ -113,7 +113,7 @@ El Open Graph Benchmark (\textsc{ogb}) evidencia problemas recurrentes de memori
+ \label{sec:trabajo-base-wang}
+ % -----------------------------------------------------------------------
+ 
+-Esta tesis parte del marco de Wang et al. (2025) \cite{Wang2025}. Es una \textsc{gcn} de una sola capa que optimiza la modularidad suave $Q'$ con Louvain como \textit{prior}. Así fija el número de comunidades sin conocerlo de antemano y sin contraste con \textit{data augmentation}. El método es competitivo y mucho más rápido que los modelos profundos. Pero hereda las debilidades de Louvain, que puede generar comunidades mal conectadas y sesgar los centroides \cite{Traag2019}. Su estudio tampoco mide la memoria. Esta tesis corrige ambos. Sustituye Louvain por Leiden, ajusta el filtro dinámico y mide \textsc{ram} y \textsc{vram}.
++Esta tesis parte del marco de Wang et al. (2025) \cite{Wang2025}. Es una \textsc{gcn} de una sola capa que optimiza la modularidad suave $Q'$ con Louvain como \textit{prior}. Así fija el número de comunidades sin conocerlo de antemano y sin contraste con \textit{data augmentation}. Según sus autores, el método es competitivo y más rápido que los modelos profundos con los que se compara. Pero hereda las debilidades de Louvain, que puede generar comunidades mal conectadas \cite{Traag2019} y, con ello, podría sesgar los centroides. Esta tesis sustituye Louvain por Leiden, estudia la calibración del filtro dinámico y evalúa la arquitectura con varias semillas.
+ 
+ % -----------------------------------------------------------------------
+ \section{Síntesis comparativa}
+@@ -150,11 +150,12 @@ MKWOA & Metaheurístico & Modularidad $Q$ & No & No & Baja & 2026 \\
+ Kohek et al. & Heurístico & Modularidad $Q$ & No & Sí & Media & 2026 \\
+ \textsc{lccf} & Híbrido (Leiden) & Factorización por bloques & No & No & Alta & 2026 \\
+ \hline
+-GCN-Louvain + $Q'$ (Wang et al.) & Neuronal (GNN) & Modularidad suave $Q'$ & No & Sí & Alta & 2025 \\
+-\textbf{GCN-Leiden + $Q'$ (esta tesis)} & \textbf{Neuronal (GNN)} & \textbf{Modularidad suave $Q'$} & \textbf{No} & \textbf{Sí} & \textbf{Alta} & \textbf{2026} \\
++GCN-Louvain + $Q'$ (Wang et al.) & Neuronal (GNN) & Modularidad suave $Q'$ & No & Sí & Media$^{*}$ & 2025 \\
++\textbf{GCN-Leiden + $Q'$ (esta tesis)} & \textbf{Neuronal (GNN)} & \textbf{Modularidad suave $Q'$} & \textbf{No} & \textbf{Sí} & \textbf{Media$^{*}$} & \textbf{2026} \\
+ \hline
+ \end{tabular}%
+ }
++\par\smallskip{\footnotesize $^{*}$La implementación materializa la matriz de modularidad $\mathbf{B}$ densa, por lo que su memoria crece como $O(n^2)$.}
+ \end{table}
+ 
+ \clearpage
+diff --git a/frontmatter/abstract.tex b/frontmatter/abstract.tex
+index ee3c9f1..5b52672 100644
+--- a/frontmatter/abstract.tex
++++ b/frontmatter/abstract.tex
+@@ -1,8 +1,8 @@
+ \chapter*{Abstract}
+ \addcontentsline{toc}{chapter}{Abstract}
+-\initial{C}ommunity detection in graphs is an \textsc{np}-hard problem, which is relevant not only for large-scale real-world graphs but also for its many applications. The problem imposes a trade-off between the topological quality of the resulting partitions and computational scalability. Deep neural models offer great expressive power, but at the cost of prohibitive memory consumption. This cost is worsened by rising hardware prices, driven by the computational demand for AI. Classical modularity-based heuristics, on the other hand, scale well but ignore node features.
++\initial{C}ommunity detection in graphs is an \textsc{np}-hard problem, which is relevant not only for large-scale real-world graphs but also for its many applications. The problem imposes a trade-off between the topological quality of the resulting partitions and computational scalability. Deep neural models integrate topology and node features, but most of them require the number of communities $k$ to be fixed in advance. Classical modularity-based heuristics, on the other hand, scale well but ignore node features.
+ 
+-This thesis proposes a single-layer \textit{Graph Convolutional Network} (\textsc{gcn}) that optimizes the Soft Modularity $Q'$ in an unsupervised manner. The architecture employs the Leiden algorithm as a structural prior to initialize centroids and attenuate spatial noise during message passing. A dynamic filter selects the partitions with the highest internal cohesion in order to anchor the latent vectors before maximizing $Q'$ via gradient ascent.
++This thesis proposes a single-layer \textit{Graph Convolutional Network} (\textsc{gcn}) that optimizes the Soft Modularity $Q'$ in an unsupervised manner. The architecture employs the Leiden algorithm as a structural prior to define the community centroids. A dynamic filter keeps the largest communities, which anchor the latent vectors before maximizing $Q'$ via gradient ascent.
+ 
+-This work evaluates the model with four metrics (\textsc{nmi}, \textsc{ari}, Modularity $Q$, and \textsc{dbi}). The data are nine real-world graphs from four domains (up to 34{,}493 nodes) and synthetic Stochastic Block Model graphs (up to 10{,}000 nodes). Performance is compared against Louvain, Leiden, DeepWalk, \textsc{dgi}, DMoN, and the base GCN-Louvain architecture, with five seeds per configuration. \textsc{ram} and \textsc{vram} consumption is quantified to test the central hypothesis. A single-layer architecture, guided by a high-quality modular prior, matches deep models in topological quality at a fraction of their memory footprint.
++This work evaluates the model with four metrics (\textsc{nmi}, \textsc{ari}, Modularity $Q$, and \textsc{dbi}). The data are nine real-world graphs from four domains and synthetic Stochastic Block Model graphs (up to 10{,}000 nodes). The proposal is evaluated on eight of the real-world graphs, since on Coauthor Physics (34{,}493 nodes) the dense modularity matrix exceeds the \textsc{gpu} memory. Performance is compared against Louvain, Leiden, DeepWalk, \textsc{dgi}, DMoN, and the base GCN-Louvain architecture, with five seeds per configuration. A single-layer architecture, guided by a modular prior, yields partitions of competitive quality with respect to deep models, although it does not outperform them, without receiving $k$ as input and with greater stability across seeds than \textsc{dgi}.
+ \clearpage
+diff --git a/frontmatter/resumen.tex b/frontmatter/resumen.tex
+index 70609c3..5cd99f5 100644
+--- a/frontmatter/resumen.tex
++++ b/frontmatter/resumen.tex
+@@ -1,11 +1,11 @@
+ \chapter*{Resumen}
+ \addcontentsline{toc}{chapter}{Resumen}
+ 
+-\initial{L}a detección de comunidades en grafos es un problema \textsc{np}-difícil, lo cual resulta relevante no solo para los grafos reales de gran escala, sino también para sus múltiples aplicaciones. El problema impone un compromiso entre la calidad topológica de las particiones y la escalabilidad computacional. Los modelos neuronales profundos ofrecen gran capacidad expresiva, pero a costa de un consumo de memoria prohibitivo. Este costo se agrava por el encarecimiento del \textit{hardware}, impulsado por la demanda computacional para \textsc{ia}. Por otra parte, las heurísticas clásicas basadas en modularidad escalan bien, pero no consideran las características de los nodos.
++\initial{L}a detección de comunidades en grafos es un problema \textsc{np}-difícil, lo cual resulta relevante no solo para los grafos reales de gran escala, sino también para sus múltiples aplicaciones. El problema impone un compromiso entre la calidad topológica de las particiones y la escalabilidad computacional. Los modelos neuronales profundos integran la topología y las características de los nodos, pero la mayoría requiere fijar de antemano el número de comunidades $k$. Por otra parte, las heurísticas clásicas basadas en modularidad escalan bien, pero no consideran las características de los nodos.
+ 
+ 
+-Esta tesis propone una \textit{red convolucional en grafos} (\textsc{gcn}) de una sola capa que optimiza la modularidad suave $Q'$ de forma no supervisada. La arquitectura emplea el algoritmo de Leiden como \textit{prior} estructural para inicializar centroides y atenuar el ruido espacial durante el paso de mensajes. Un filtro dinámico selecciona las particiones de mayor cohesión interna para anclar los vectores latentes antes de maximizar $Q'$ mediante el ascenso de gradiente.
++Esta tesis propone una \textit{red convolucional en grafos} (\textsc{gcn}) de una sola capa que optimiza la modularidad suave $Q'$ de forma no supervisada. La arquitectura emplea el algoritmo de Leiden como \textit{prior} estructural para definir los centroides de las comunidades. Un filtro dinámico conserva las comunidades de mayor tamaño, que anclan los vectores latentes antes de maximizar $Q'$ mediante el ascenso de gradiente.
+ 
+-Este trabajo evalúa el modelo con cuatro métricas (\textsc{nmi}, \textsc{ari}, modularidad $Q$ y \textsc{dbi}). Los datos son nueve grafos reales de cuatro dominios (hasta 34\,493 nodos) y grafos sintéticos \textit{Stochastic Block Model} (hasta 10\,000 nodos). El desempeño se contrasta frente a Louvain, Leiden, DeepWalk, \textsc{dgi}, DMoN y la arquitectura base GCN-Louvain, con cinco semillas por configuración. Se cuantifica el consumo de \textsc{ram} y \textsc{vram} para comprobar la hipótesis central. Una arquitectura de una sola capa, guiada por un \textit{prior} modular de alta calidad, obtiene particiones de calidad comparable a las de los modelos profundos con solo una fracción del costo espacial.
++Este trabajo evalúa el modelo con cuatro métricas (\textsc{nmi}, \textsc{ari}, modularidad $Q$ y \textsc{dbi}). Los datos son nueve grafos reales de cuatro dominios y grafos sintéticos \textit{Stochastic Block Model} (hasta 10\,000 nodos). La propuesta se evalúa en ocho de los grafos reales, ya que en Coauthor Physics (34\,493 nodos) la matriz de modularidad densa excede la memoria de la \textsc{gpu}. El desempeño se contrasta frente a Louvain, Leiden, DeepWalk, \textsc{dgi}, DMoN y la arquitectura base GCN-Louvain, con cinco semillas por configuración. Una arquitectura de una sola capa, guiada por un \textit{prior} modular, obtiene particiones de calidad competitiva con la de los modelos profundos, aunque no los supera, sin recibir $k$ como entrada y con mayor estabilidad entre semillas que \textsc{dgi}.
+ 
+ \clearpage

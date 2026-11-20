@@ -1,0 +1,421 @@
+table,line,ds,metric,col,thesis,bold,mine,status,src,raw_mean
+tab:resultados-citas-coautoria,22,cora,nmi,louvain,0.452±0.010,False,0.452±0.010,OK,runs_cora.csv method=louvain resolution=1.0,0.45199999999999996
+tab:resultados-citas-coautoria,22,cora,nmi,leiden,0.465±0.004,False,0.465±0.004,OK,runs_cora.csv method=leiden resolution=1.0,0.46506
+tab:resultados-citas-coautoria,22,cora,nmi,deepwalk,0.432±0.020,False,0.432±0.020,OK,runs_cora.csv method=deepwalk,0.43233999999999995
+tab:resultados-citas-coautoria,22,cora,nmi,dgi,0.553±0.016,True,0.553±0.016,OK,runs_cora.csv method=dgi,0.5529599999999999
+tab:resultados-citas-coautoria,22,cora,nmi,dmon,0.401±0.042,False,0.401±0.042,OK,runs_cora.csv method=dmon,0.40096
+tab:resultados-citas-coautoria,22,cora,nmi,gcn-louvain,0.521±0.028,False,0.521±0.028,OK,"runs_cora.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.5213800000000001
+tab:resultados-citas-coautoria,22,cora,nmi,gcn-leiden,0.530±0.008,False,0.530±0.008,OK,"runs_cora.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.5295799999999999
+tab:resultados-citas-coautoria,23,cora,ari,louvain,0.246±0.023,False,0.246±0.023,OK,runs_cora.csv method=louvain resolution=1.0,0.24636
+tab:resultados-citas-coautoria,23,cora,ari,leiden,0.258±0.005,False,0.258±0.005,OK,runs_cora.csv method=leiden resolution=1.0,0.2581
+tab:resultados-citas-coautoria,23,cora,ari,deepwalk,0.349±0.035,False,0.349±0.035,OK,runs_cora.csv method=deepwalk,0.34914
+tab:resultados-citas-coautoria,23,cora,ari,dgi,0.488±0.037,True,0.488±0.037,OK,runs_cora.csv method=dgi,0.48782
+tab:resultados-citas-coautoria,23,cora,ari,dmon,0.299±0.040,False,0.299±0.040,OK,runs_cora.csv method=dmon,0.29862
+tab:resultados-citas-coautoria,23,cora,ari,gcn-louvain,0.424±0.068,False,0.424±0.068,OK,"runs_cora.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.42367999999999995
+tab:resultados-citas-coautoria,23,cora,ari,gcn-leiden,0.442±0.015,False,0.442±0.015,OK,"runs_cora.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.44231999999999994
+tab:resultados-citas-coautoria,24,cora,q,louvain,0.815±0.001,False,0.815±0.001,OK,runs_cora.csv method=louvain resolution=1.0,0.81458
+tab:resultados-citas-coautoria,24,cora,q,leiden,0.821±0.001,True,0.821±0.001,OK,runs_cora.csv method=leiden resolution=1.0,0.8211
+tab:resultados-citas-coautoria,24,cora,q,deepwalk,0.710±0.006,False,0.710±0.006,OK,runs_cora.csv method=deepwalk,0.70998
+tab:resultados-citas-coautoria,24,cora,q,dgi,0.699±0.010,False,0.699±0.010,OK,runs_cora.csv method=dgi,0.69902
+tab:resultados-citas-coautoria,24,cora,q,dmon,0.704±0.010,False,0.704±0.010,OK,runs_cora.csv method=dmon,0.7044
+tab:resultados-citas-coautoria,24,cora,q,gcn-louvain,0.762±0.005,False,0.762±0.005,OK (BOUNDARY),"runs_cora.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.7625
+tab:resultados-citas-coautoria,24,cora,q,gcn-leiden,0.770±0.007,False,0.770±0.007,OK,"runs_cora.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.77014
+tab:resultados-citas-coautoria,25,cora,dbi,louvain,---,False,---,OK,runs_cora.csv method=louvain resolution=1.0,
+tab:resultados-citas-coautoria,25,cora,dbi,leiden,---,False,---,OK,runs_cora.csv method=leiden resolution=1.0,
+tab:resultados-citas-coautoria,25,cora,dbi,deepwalk,2.912±0.095,False,2.912±0.095,OK,runs_cora.csv method=deepwalk,2.91222
+tab:resultados-citas-coautoria,25,cora,dbi,dgi,2.960±0.302,False,2.960±0.302,OK,runs_cora.csv method=dgi,2.96
+tab:resultados-citas-coautoria,25,cora,dbi,dmon,0.923±0.027,False,0.923±0.027,OK (BOUNDARY),runs_cora.csv method=dmon,0.9235
+tab:resultados-citas-coautoria,25,cora,dbi,gcn-louvain,1.029±0.492,False,1.029±0.492,OK,"runs_cora.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",1.02946
+tab:resultados-citas-coautoria,25,cora,dbi,gcn-leiden,0.699±0.225,True,0.699±0.225,OK,"runs_cora.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.69938
+tab:resultados-citas-coautoria,26,cora,k,louvain,103.6±1.1,False,103.6±1.1,OK,runs_cora.csv method=louvain resolution=1.0,103.6
+tab:resultados-citas-coautoria,26,cora,k,leiden,107.2±1.3,False,107.2±1.3,OK,runs_cora.csv method=leiden resolution=1.0,107.2
+tab:resultados-citas-coautoria,26,cora,k,deepwalk,7,False,7,OK,runs_cora.csv method=deepwalk,7.0
+tab:resultados-citas-coautoria,26,cora,k,dgi,7,False,7,OK,runs_cora.csv method=dgi,7.0
+tab:resultados-citas-coautoria,26,cora,k,dmon,7,False,7,OK,runs_cora.csv method=dmon,7.0
+tab:resultados-citas-coautoria,26,cora,k,gcn-louvain,9,False,9,OK,"runs_cora.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",9.0
+tab:resultados-citas-coautoria,26,cora,k,gcn-leiden,10,False,10,OK,"runs_cora.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",10.0
+tab:resultados-citas-coautoria,28,citeseer,nmi,louvain,0.328±0.003,False,0.328±0.003,OK,runs_citeseer.csv method=louvain resolution=1.0,0.32775999999999994
+tab:resultados-citas-coautoria,28,citeseer,nmi,leiden,0.328±0.001,False,0.328±0.001,OK,runs_citeseer.csv method=leiden resolution=1.0,0.32775999999999994
+tab:resultados-citas-coautoria,28,citeseer,nmi,deepwalk,0.223±0.011,False,0.223±0.011,OK,runs_citeseer.csv method=deepwalk,0.22305999999999998
+tab:resultados-citas-coautoria,28,citeseer,nmi,dgi,0.377±0.056,True,0.377±0.056,OK,runs_citeseer.csv method=dgi,0.37692000000000003
+tab:resultados-citas-coautoria,28,citeseer,nmi,dmon,0.251±0.042,False,0.251±0.042,OK,runs_citeseer.csv method=dmon,0.25136000000000003
+tab:resultados-citas-coautoria,28,citeseer,nmi,gcn-louvain,0.342±0.013,False,0.342±0.013,OK,"runs_citeseer.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.34206
+tab:resultados-citas-coautoria,28,citeseer,nmi,gcn-leiden,0.338±0.022,False,0.338±0.022,OK,"runs_citeseer.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.33784000000000003
+tab:resultados-citas-coautoria,29,citeseer,ari,louvain,0.091±0.006,False,0.091±0.006,OK,runs_citeseer.csv method=louvain resolution=1.0,0.09072
+tab:resultados-citas-coautoria,29,citeseer,ari,leiden,0.087±0.007,False,0.087±0.007,OK,runs_citeseer.csv method=leiden resolution=1.0,0.08718000000000001
+tab:resultados-citas-coautoria,29,citeseer,ari,deepwalk,0.187±0.009,False,0.187±0.009,OK,runs_citeseer.csv method=deepwalk,0.18688
+tab:resultados-citas-coautoria,29,citeseer,ari,dgi,0.354±0.057,True,0.354±0.057,OK,runs_citeseer.csv method=dgi,0.3538
+tab:resultados-citas-coautoria,29,citeseer,ari,dmon,0.219±0.053,False,0.219±0.053,OK,runs_citeseer.csv method=dmon,0.21875999999999998
+tab:resultados-citas-coautoria,29,citeseer,ari,gcn-louvain,0.317±0.019,False,0.317±0.019,OK,"runs_citeseer.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.31748
+tab:resultados-citas-coautoria,29,citeseer,ari,gcn-leiden,0.315±0.025,False,0.315±0.025,OK,"runs_citeseer.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.31476
+tab:resultados-citas-coautoria,30,citeseer,q,louvain,0.889±0.001,False,0.889±0.001,OK,runs_citeseer.csv method=louvain resolution=1.0,0.8891600000000001
+tab:resultados-citas-coautoria,30,citeseer,q,leiden,0.891±0.001,True,0.891±0.001,OK,runs_citeseer.csv method=leiden resolution=1.0,0.8908400000000001
+tab:resultados-citas-coautoria,30,citeseer,q,deepwalk,0.725±0.002,False,0.725±0.002,OK,runs_citeseer.csv method=deepwalk,0.72506
+tab:resultados-citas-coautoria,30,citeseer,q,dgi,0.611±0.155,False,0.611±0.155,OK,runs_citeseer.csv method=dgi,0.61092
+tab:resultados-citas-coautoria,30,citeseer,q,dmon,0.740±0.005,False,0.740±0.005,OK,runs_citeseer.csv method=dmon,0.7404599999999999
+tab:resultados-citas-coautoria,30,citeseer,q,gcn-louvain,0.800±0.006,False,0.800±0.006,OK,"runs_citeseer.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.79992
+tab:resultados-citas-coautoria,30,citeseer,q,gcn-leiden,0.779±0.009,False,0.779±0.009,OK,"runs_citeseer.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.7792
+tab:resultados-citas-coautoria,31,citeseer,dbi,louvain,---,False,---,OK,runs_citeseer.csv method=louvain resolution=1.0,
+tab:resultados-citas-coautoria,31,citeseer,dbi,leiden,---,False,---,OK,runs_citeseer.csv method=leiden resolution=1.0,
+tab:resultados-citas-coautoria,31,citeseer,dbi,deepwalk,3.716±0.236,False,3.716±0.236,OK,runs_citeseer.csv method=deepwalk,3.7164200000000003
+tab:resultados-citas-coautoria,31,citeseer,dbi,dgi,4.932±1.367,False,4.932±1.367,OK,runs_citeseer.csv method=dgi,4.93194
+tab:resultados-citas-coautoria,31,citeseer,dbi,dmon,0.742±0.011,True,0.742±0.011,OK,runs_citeseer.csv method=dmon,0.74172
+tab:resultados-citas-coautoria,31,citeseer,dbi,gcn-louvain,0.757±0.052,False,0.757±0.052,OK,"runs_citeseer.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.7565799999999999
+tab:resultados-citas-coautoria,31,citeseer,dbi,gcn-leiden,1.002±0.547,False,1.002±0.547,OK,"runs_citeseer.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",1.0022199999999999
+tab:resultados-citas-coautoria,32,citeseer,k,louvain,470.4±1.1,False,470.4±1.1,OK,runs_citeseer.csv method=louvain resolution=1.0,470.4
+tab:resultados-citas-coautoria,32,citeseer,k,leiden,471.8±2.0,False,471.8±2.0,OK,runs_citeseer.csv method=leiden resolution=1.0,471.8
+tab:resultados-citas-coautoria,32,citeseer,k,deepwalk,6,False,6,OK,runs_citeseer.csv method=deepwalk,6.0
+tab:resultados-citas-coautoria,32,citeseer,k,dgi,6,False,6,OK,runs_citeseer.csv method=dgi,6.0
+tab:resultados-citas-coautoria,32,citeseer,k,dmon,6,False,6,OK,runs_citeseer.csv method=dmon,6.0
+tab:resultados-citas-coautoria,32,citeseer,k,gcn-louvain,11,False,11,OK,"runs_citeseer.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",11.0
+tab:resultados-citas-coautoria,32,citeseer,k,gcn-leiden,11,False,11,OK,"runs_citeseer.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",11.0
+tab:resultados-citas-coautoria,34,pubmed,nmi,louvain,0.202±0.002,False,0.202±0.002,OK,runs_pubmed.csv method=louvain resolution=1.0,0.2016
+tab:resultados-citas-coautoria,34,pubmed,nmi,leiden,0.204±0.004,False,0.204±0.004,OK,runs_pubmed.csv method=leiden resolution=1.0,0.20387999999999998
+tab:resultados-citas-coautoria,34,pubmed,nmi,deepwalk,0.267±0.008,False,0.267±0.008,OK,runs_pubmed.csv method=deepwalk,0.26662
+tab:resultados-citas-coautoria,34,pubmed,nmi,dgi,0.339±0.009,True,0.339±0.009,OK,runs_pubmed.csv method=dgi,0.339
+tab:resultados-citas-coautoria,34,pubmed,nmi,dmon,0.221±0.019,False,0.221±0.019,OK,runs_pubmed.csv method=dmon,0.22111999999999998
+tab:resultados-citas-coautoria,34,pubmed,nmi,gcn-louvain,0.265±0.021,False,0.265±0.021,OK,"runs_pubmed.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.26454000000000005
+tab:resultados-citas-coautoria,34,pubmed,nmi,gcn-leiden,0.275±0.021,False,0.275±0.021,OK,"runs_pubmed.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.27476
+tab:resultados-citas-coautoria,35,pubmed,ari,louvain,0.105±0.009,False,0.105±0.009,OK,runs_pubmed.csv method=louvain resolution=1.0,0.10525999999999999
+tab:resultados-citas-coautoria,35,pubmed,ari,leiden,0.110±0.008,False,0.110±0.008,OK,runs_pubmed.csv method=leiden resolution=1.0,0.10955999999999999
+tab:resultados-citas-coautoria,35,pubmed,ari,deepwalk,0.301±0.007,False,0.301±0.007,OK,runs_pubmed.csv method=deepwalk,0.30076
+tab:resultados-citas-coautoria,35,pubmed,ari,dgi,0.305±0.005,True,0.305±0.005,OK,runs_pubmed.csv method=dgi,0.30535999999999996
+tab:resultados-citas-coautoria,35,pubmed,ari,dmon,0.193±0.012,False,0.193±0.012,OK,runs_pubmed.csv method=dmon,0.19292
+tab:resultados-citas-coautoria,35,pubmed,ari,gcn-louvain,0.223±0.023,False,0.223±0.023,OK,"runs_pubmed.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.22318
+tab:resultados-citas-coautoria,35,pubmed,ari,gcn-leiden,0.234±0.026,False,0.234±0.026,OK,"runs_pubmed.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.23415999999999998
+tab:resultados-citas-coautoria,36,pubmed,q,louvain,0.767±0.004,False,0.767±0.004,OK,runs_pubmed.csv method=louvain resolution=1.0,0.76692
+tab:resultados-citas-coautoria,36,pubmed,q,leiden,0.776±0.002,True,0.776±0.002,OK,runs_pubmed.csv method=leiden resolution=1.0,0.7761
+tab:resultados-citas-coautoria,36,pubmed,q,deepwalk,0.537±0.006,False,0.537±0.006,OK,runs_pubmed.csv method=deepwalk,0.53728
+tab:resultados-citas-coautoria,36,pubmed,q,dgi,0.509±0.002,False,0.509±0.002,OK,runs_pubmed.csv method=dgi,0.50872
+tab:resultados-citas-coautoria,36,pubmed,q,dmon,0.540±0.021,False,0.540±0.021,OK,runs_pubmed.csv method=dmon,0.54018
+tab:resultados-citas-coautoria,36,pubmed,q,gcn-louvain,0.653±0.003,False,0.653±0.003,OK,"runs_pubmed.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.6526
+tab:resultados-citas-coautoria,36,pubmed,q,gcn-leiden,0.659±0.007,False,0.659±0.007,OK,"runs_pubmed.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.65866
+tab:resultados-citas-coautoria,37,pubmed,dbi,louvain,---,False,---,OK,runs_pubmed.csv method=louvain resolution=1.0,
+tab:resultados-citas-coautoria,37,pubmed,dbi,leiden,---,False,---,OK,runs_pubmed.csv method=leiden resolution=1.0,
+tab:resultados-citas-coautoria,37,pubmed,dbi,deepwalk,3.990±0.120,False,3.990±0.120,OK,runs_pubmed.csv method=deepwalk,3.98998
+tab:resultados-citas-coautoria,37,pubmed,dbi,dgi,1.910±0.020,False,1.910±0.020,OK,runs_pubmed.csv method=dgi,1.91002
+tab:resultados-citas-coautoria,37,pubmed,dbi,dmon,0.738±0.049,False,0.738±0.049,OK,runs_pubmed.csv method=dmon,0.73824
+tab:resultados-citas-coautoria,37,pubmed,dbi,gcn-louvain,0.577±0.017,True,0.577±0.017,OK,"runs_pubmed.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.57722
+tab:resultados-citas-coautoria,37,pubmed,dbi,gcn-leiden,0.609±0.018,False,0.609±0.018,OK,"runs_pubmed.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.6087999999999999
+tab:resultados-citas-coautoria,38,pubmed,k,louvain,39.0±3.9,False,39.0±3.9,OK,runs_pubmed.csv method=louvain resolution=1.0,39.0
+tab:resultados-citas-coautoria,38,pubmed,k,leiden,43.6±2.2,False,43.6±2.2,OK,runs_pubmed.csv method=leiden resolution=1.0,43.6
+tab:resultados-citas-coautoria,38,pubmed,k,deepwalk,3,False,3,OK,runs_pubmed.csv method=deepwalk,3.0
+tab:resultados-citas-coautoria,38,pubmed,k,dgi,3,False,3,OK,runs_pubmed.csv method=dgi,3.0
+tab:resultados-citas-coautoria,38,pubmed,k,dmon,3,False,3,OK,runs_pubmed.csv method=dmon,3.0
+tab:resultados-citas-coautoria,38,pubmed,k,gcn-louvain,4,False,4,OK,"runs_pubmed.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",4.0
+tab:resultados-citas-coautoria,38,pubmed,k,gcn-leiden,5,False,5,OK,"runs_pubmed.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",5.0
+tab:resultados-citas-coautoria,40,cocs,nmi,louvain,0.583±0.013,False,0.583±0.013,OK,runs_cocs.csv method=louvain resolution=1.0,0.5825199999999999
+tab:resultados-citas-coautoria,40,cocs,nmi,leiden,0.588±0.007,False,0.588±0.007,OK,runs_cocs.csv method=leiden resolution=1.0,0.5884600000000001
+tab:resultados-citas-coautoria,40,cocs,nmi,deepwalk,0.622±0.003,False,0.622±0.003,OK,runs_cocs.csv method=deepwalk,0.62224
+tab:resultados-citas-coautoria,40,cocs,nmi,dgi,0.693±0.059,True,0.693±0.059,OK,runs_cocs.csv method=dgi,0.6928400000000001
+tab:resultados-citas-coautoria,40,cocs,nmi,dmon,0.663±0.012,False,0.663±0.012,OK,runs_cocs.csv method=dmon,0.66326
+tab:resultados-citas-coautoria,40,cocs,nmi,gcn-louvain,0.617±0.009,False,0.617±0.009,OK,"runs_cocs.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.61734
+tab:resultados-citas-coautoria,40,cocs,nmi,gcn-leiden,0.623±0.009,False,0.623±0.009,OK,"runs_cocs.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.62294
+tab:resultados-citas-coautoria,41,cocs,ari,louvain,0.427±0.023,False,0.427±0.023,OK,runs_cocs.csv method=louvain resolution=1.0,0.42652
+tab:resultados-citas-coautoria,41,cocs,ari,leiden,0.420±0.016,False,0.420±0.016,OK,runs_cocs.csv method=leiden resolution=1.0,0.42000000000000004
+tab:resultados-citas-coautoria,41,cocs,ari,deepwalk,0.460±0.007,False,0.460±0.007,OK,runs_cocs.csv method=deepwalk,0.46019999999999994
+tab:resultados-citas-coautoria,41,cocs,ari,dgi,0.547±0.087,True,0.547±0.087,OK,runs_cocs.csv method=dgi,0.5467
+tab:resultados-citas-coautoria,41,cocs,ari,dmon,0.450±0.016,False,0.450±0.016,OK,runs_cocs.csv method=dmon,0.44998000000000005
+tab:resultados-citas-coautoria,41,cocs,ari,gcn-louvain,0.493±0.008,False,0.493±0.008,OK,"runs_cocs.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.49332000000000004
+tab:resultados-citas-coautoria,41,cocs,ari,gcn-leiden,0.494±0.007,False,0.494±0.007,OK,"runs_cocs.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.49406
+tab:resultados-citas-coautoria,42,cocs,q,louvain,0.738±0.002,False,0.738±0.002,OK,runs_cocs.csv method=louvain resolution=1.0,0.7379800000000001
+tab:resultados-citas-coautoria,42,cocs,q,leiden,0.746±0.002,True,0.746±0.002,OK,runs_cocs.csv method=leiden resolution=1.0,0.7461599999999999
+tab:resultados-citas-coautoria,42,cocs,q,deepwalk,0.706±0.001,False,0.706±0.001,OK,runs_cocs.csv method=deepwalk,0.7061000000000001
+tab:resultados-citas-coautoria,42,cocs,q,dgi,0.555±0.068,False,0.555±0.068,OK,runs_cocs.csv method=dgi,0.5550599999999999
+tab:resultados-citas-coautoria,42,cocs,q,dmon,0.695±0.007,False,0.695±0.007,OK,runs_cocs.csv method=dmon,0.69476
+tab:resultados-citas-coautoria,42,cocs,q,gcn-louvain,0.651±0.005,False,0.651±0.005,OK,"runs_cocs.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.65138
+tab:resultados-citas-coautoria,42,cocs,q,gcn-leiden,0.653±0.003,False,0.653±0.003,OK,"runs_cocs.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.65346
+tab:resultados-citas-coautoria,43,cocs,dbi,louvain,---,False,---,OK,runs_cocs.csv method=louvain resolution=1.0,
+tab:resultados-citas-coautoria,43,cocs,dbi,leiden,---,False,---,OK,runs_cocs.csv method=leiden resolution=1.0,
+tab:resultados-citas-coautoria,43,cocs,dbi,deepwalk,3.985±0.037,False,3.985±0.037,OK,runs_cocs.csv method=deepwalk,3.9848999999999997
+tab:resultados-citas-coautoria,43,cocs,dbi,dgi,1.619±0.408,False,1.619±0.408,OK,runs_cocs.csv method=dgi,1.6192
+tab:resultados-citas-coautoria,43,cocs,dbi,dmon,0.998±0.032,False,0.998±0.032,OK,runs_cocs.csv method=dmon,0.9975400000000001
+tab:resultados-citas-coautoria,43,cocs,dbi,gcn-louvain,0.500±0.068,False,0.500±0.068,OK,"runs_cocs.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.50008
+tab:resultados-citas-coautoria,43,cocs,dbi,gcn-leiden,0.392±0.091,True,0.392±0.091,OK,"runs_cocs.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.39208
+tab:resultados-citas-coautoria,44,cocs,k,louvain,26.8±1.8,False,26.8±1.8,OK,runs_cocs.csv method=louvain resolution=1.0,26.8
+tab:resultados-citas-coautoria,44,cocs,k,leiden,29.2±4.4,False,29.2±4.4,OK,runs_cocs.csv method=leiden resolution=1.0,29.2
+tab:resultados-citas-coautoria,44,cocs,k,deepwalk,15,False,15,OK,runs_cocs.csv method=deepwalk,15.0
+tab:resultados-citas-coautoria,44,cocs,k,dgi,15,False,15,OK,runs_cocs.csv method=dgi,15.0
+tab:resultados-citas-coautoria,44,cocs,k,dmon,15,False,15,OK,runs_cocs.csv method=dmon,15.0
+tab:resultados-citas-coautoria,44,cocs,k,gcn-louvain,4,False,4,OK,"runs_cocs.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",4.0
+tab:resultados-citas-coautoria,44,cocs,k,gcn-leiden,4,False,4,OK,"runs_cocs.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",4.0
+tab:resultados-citas-coautoria,46,cophysics,nmi,louvain,0.449±0.012,False,0.449±0.012,OK,runs_cophysics.csv method=louvain resolution=1.0,0.44882
+tab:resultados-citas-coautoria,46,cophysics,nmi,leiden,0.474±0.009,False,0.474±0.009,OK,runs_cophysics.csv method=leiden resolution=1.0,0.47366
+tab:resultados-citas-coautoria,46,cophysics,nmi,deepwalk,0.677±0.009,True,0.677±0.009,OK,runs_cophysics.csv method=deepwalk,0.67692
+tab:resultados-citas-coautoria,46,cophysics,nmi,dgi,0.674±0.015,False,0.674±0.015,OK,runs_cophysics.csv method=dgi,0.67408
+tab:resultados-citas-coautoria,46,cophysics,nmi,dmon,0.508±0.029,False,0.508±0.029,OK,runs_cophysics.csv method=dmon,0.50764
+tab:resultados-citas-coautoria,46,cophysics,nmi,gcn-louvain,---,False,---,OK,"runs_cophysics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,46,cophysics,nmi,gcn-leiden,---,False,---,OK,"runs_cophysics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,47,cophysics,ari,louvain,0.217±0.007,False,0.217±0.007,OK,runs_cophysics.csv method=louvain resolution=1.0,0.21738
+tab:resultados-citas-coautoria,47,cophysics,ari,leiden,0.232±0.013,False,0.232±0.013,OK,runs_cophysics.csv method=leiden resolution=1.0,0.23208
+tab:resultados-citas-coautoria,47,cophysics,ari,deepwalk,0.771±0.012,True,0.771±0.012,OK,runs_cophysics.csv method=deepwalk,0.7711600000000001
+tab:resultados-citas-coautoria,47,cophysics,ari,dgi,0.698±0.042,False,0.698±0.042,OK,runs_cophysics.csv method=dgi,0.69754
+tab:resultados-citas-coautoria,47,cophysics,ari,dmon,0.350±0.032,False,0.350±0.032,OK,runs_cophysics.csv method=dmon,0.34964000000000006
+tab:resultados-citas-coautoria,47,cophysics,ari,gcn-louvain,---,False,---,OK,"runs_cophysics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,47,cophysics,ari,gcn-leiden,---,False,---,OK,"runs_cophysics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,48,cophysics,q,louvain,0.667±0.003,False,0.667±0.003,OK,runs_cophysics.csv method=louvain resolution=1.0,0.66692
+tab:resultados-citas-coautoria,48,cophysics,q,leiden,0.683±0.003,True,0.683±0.003,OK,runs_cophysics.csv method=leiden resolution=1.0,0.6827799999999999
+tab:resultados-citas-coautoria,48,cophysics,q,deepwalk,0.474±0.001,False,0.474±0.001,OK (BOUNDARY),runs_cophysics.csv method=deepwalk,0.47350000000000003
+tab:resultados-citas-coautoria,48,cophysics,q,dgi,0.517±0.011,False,0.517±0.011,OK (BOUNDARY),runs_cophysics.csv method=dgi,0.5175
+tab:resultados-citas-coautoria,48,cophysics,q,dmon,0.615±0.007,False,0.615±0.007,OK,runs_cophysics.csv method=dmon,0.61528
+tab:resultados-citas-coautoria,48,cophysics,q,gcn-louvain,---,False,---,OK,"runs_cophysics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,48,cophysics,q,gcn-leiden,---,False,---,OK,"runs_cophysics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,49,cophysics,dbi,louvain,---,False,---,OK,runs_cophysics.csv method=louvain resolution=1.0,
+tab:resultados-citas-coautoria,49,cophysics,dbi,leiden,---,False,---,OK,runs_cophysics.csv method=leiden resolution=1.0,
+tab:resultados-citas-coautoria,49,cophysics,dbi,deepwalk,3.884±0.020,False,3.884±0.020,OK,runs_cophysics.csv method=deepwalk,3.8838
+tab:resultados-citas-coautoria,49,cophysics,dbi,dgi,1.523±0.037,False,1.523±0.037,OK,runs_cophysics.csv method=dgi,1.5234399999999997
+tab:resultados-citas-coautoria,49,cophysics,dbi,dmon,0.705±0.019,True,0.705±0.019,OK,runs_cophysics.csv method=dmon,0.7047599999999999
+tab:resultados-citas-coautoria,49,cophysics,dbi,gcn-louvain,---,False,---,OK,"runs_cophysics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,49,cophysics,dbi,gcn-leiden,---,False,---,OK,"runs_cophysics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,50,cophysics,k,louvain,23.6±0.5,False,23.6±0.5,OK,runs_cophysics.csv method=louvain resolution=1.0,23.6
+tab:resultados-citas-coautoria,50,cophysics,k,leiden,25.8±1.6,False,25.8±1.6,OK,runs_cophysics.csv method=leiden resolution=1.0,25.8
+tab:resultados-citas-coautoria,50,cophysics,k,deepwalk,5,False,5,OK,runs_cophysics.csv method=deepwalk,5.0
+tab:resultados-citas-coautoria,50,cophysics,k,dgi,5,False,5,OK,runs_cophysics.csv method=dgi,5.0
+tab:resultados-citas-coautoria,50,cophysics,k,dmon,5,False,5,OK,runs_cophysics.csv method=dmon,5.0
+tab:resultados-citas-coautoria,50,cophysics,k,gcn-louvain,---,False,---,OK,"runs_cophysics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",
+tab:resultados-citas-coautoria,50,cophysics,k,gcn-leiden,---,False,---,OK,"runs_cophysics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",
+tab:resultados-compra-web,65,amac,nmi,louvain,0.519±0.015,False,0.519±0.015,OK,runs_amac.csv method=louvain resolution=1.0,0.51922
+tab:resultados-compra-web,65,amac,nmi,leiden,0.524±0.014,False,0.524±0.014,OK,runs_amac.csv method=leiden resolution=1.0,0.52426
+tab:resultados-compra-web,65,amac,nmi,deepwalk,0.500±0.008,False,0.500±0.008,OK,runs_amac.csv method=deepwalk,0.49998
+tab:resultados-compra-web,65,amac,nmi,dgi,0.094±0.124,False,0.094±0.124,OK,runs_amac.csv method=dgi,0.09372000000000001
+tab:resultados-compra-web,65,amac,nmi,dmon,0.466±0.015,False,0.466±0.015,OK,runs_amac.csv method=dmon,0.46563999999999994
+tab:resultados-compra-web,65,amac,nmi,gcn-louvain,0.529±0.016,True,0.529±0.016,OK,"runs_amac.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.52856
+tab:resultados-compra-web,65,amac,nmi,gcn-leiden,0.503±0.072,False,0.503±0.072,OK,"runs_amac.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.5028400000000001
+tab:resultados-compra-web,66,amac,ari,louvain,0.300±0.029,False,0.300±0.029,OK,runs_amac.csv method=louvain resolution=1.0,0.30044
+tab:resultados-compra-web,66,amac,ari,leiden,0.290±0.012,False,0.290±0.012,OK,runs_amac.csv method=leiden resolution=1.0,0.29028
+tab:resultados-compra-web,66,amac,ari,deepwalk,0.378±0.010,False,0.378±0.010,OK,runs_amac.csv method=deepwalk,0.37784000000000006
+tab:resultados-compra-web,66,amac,ari,dgi,0.067±0.083,False,0.067±0.083,OK,runs_amac.csv method=dgi,0.06726000000000001
+tab:resultados-compra-web,66,amac,ari,dmon,0.254±0.019,False,0.254±0.019,OK,runs_amac.csv method=dmon,0.25439999999999996
+tab:resultados-compra-web,66,amac,ari,gcn-louvain,0.439±0.013,True,0.439±0.013,OK,"runs_amac.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.43938000000000005
+tab:resultados-compra-web,66,amac,ari,gcn-leiden,0.394±0.091,False,0.394±0.091,OK,"runs_amac.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.39394000000000007
+tab:resultados-compra-web,67,amac,q,louvain,0.637±0.001,False,0.637±0.001,OK,runs_amac.csv method=louvain resolution=1.0,0.63694
+tab:resultados-compra-web,67,amac,q,leiden,0.639±0.001,True,0.639±0.001,OK,runs_amac.csv method=leiden resolution=1.0,0.6389800000000001
+tab:resultados-compra-web,67,amac,q,deepwalk,0.590±0.009,False,0.590±0.009,OK,runs_amac.csv method=deepwalk,0.5904800000000001
+tab:resultados-compra-web,67,amac,q,dgi,0.053±0.092,False,0.053±0.092,OK,runs_amac.csv method=dgi,0.05284
+tab:resultados-compra-web,67,amac,q,dmon,0.555±0.015,False,0.555±0.015,OK,runs_amac.csv method=dmon,0.5553800000000001
+tab:resultados-compra-web,67,amac,q,gcn-louvain,0.550±0.002,False,0.550±0.002,OK,"runs_amac.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.54952
+tab:resultados-compra-web,67,amac,q,gcn-leiden,0.548±0.003,False,0.548±0.003,OK,"runs_amac.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.5482199999999999
+tab:resultados-compra-web,68,amac,dbi,louvain,---,False,---,OK,runs_amac.csv method=louvain resolution=1.0,
+tab:resultados-compra-web,68,amac,dbi,leiden,---,False,---,OK,runs_amac.csv method=leiden resolution=1.0,
+tab:resultados-compra-web,68,amac,dbi,deepwalk,3.199±0.142,False,3.199±0.142,OK,runs_amac.csv method=deepwalk,3.19918
+tab:resultados-compra-web,68,amac,dbi,dgi,1.146±0.506,False,1.146±0.506,OK,runs_amac.csv method=dgi,1.14642
+tab:resultados-compra-web,68,amac,dbi,dmon,1.531±0.092,False,1.531±0.092,OK,runs_amac.csv method=dmon,1.5310400000000002
+tab:resultados-compra-web,68,amac,dbi,gcn-louvain,0.783±0.252,True,0.783±0.252,OK,"runs_amac.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.7828799999999999
+tab:resultados-compra-web,68,amac,dbi,gcn-leiden,0.824±0.403,False,0.824±0.403,OK,"runs_amac.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.8243400000000001
+tab:resultados-compra-web,69,amac,k,louvain,330.8±1.3,False,330.8±1.3,OK,runs_amac.csv method=louvain resolution=1.0,330.8
+tab:resultados-compra-web,69,amac,k,leiden,330.0±1.2,False,330.0±1.2,OK,runs_amac.csv method=leiden resolution=1.0,330.0
+tab:resultados-compra-web,69,amac,k,deepwalk,10,False,10,OK,runs_amac.csv method=deepwalk,10.0
+tab:resultados-compra-web,69,amac,k,dgi,10,False,10,OK,runs_amac.csv method=dgi,10.0
+tab:resultados-compra-web,69,amac,k,dmon,10,False,10,OK,runs_amac.csv method=dmon,10.0
+tab:resultados-compra-web,69,amac,k,gcn-louvain,5,False,5,OK,"runs_amac.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",5.0
+tab:resultados-compra-web,69,amac,k,gcn-leiden,5,False,5,OK,"runs_amac.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",5.0
+tab:resultados-compra-web,71,amap,nmi,louvain,0.659±0.003,True,0.659±0.003,OK,runs_amap.csv method=louvain resolution=1.0,0.6589
+tab:resultados-compra-web,71,amap,nmi,leiden,0.655±0.005,False,0.655±0.005,OK,runs_amap.csv method=leiden resolution=1.0,0.65462
+tab:resultados-compra-web,71,amap,nmi,deepwalk,0.630±0.031,False,0.630±0.031,OK,runs_amap.csv method=deepwalk,0.6303599999999999
+tab:resultados-compra-web,71,amap,nmi,dgi,0.061±0.000,False,0.061±0.000,OK,runs_amap.csv method=dgi,0.061
+tab:resultados-compra-web,71,amap,nmi,dmon,0.569±0.036,False,0.569±0.036,OK,runs_amap.csv method=dmon,0.56932
+tab:resultados-compra-web,71,amap,nmi,gcn-louvain,0.648±0.002,False,0.648±0.002,OK,"runs_amap.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.6477
+tab:resultados-compra-web,71,amap,nmi,gcn-leiden,0.649±0.005,False,0.649±0.005,OK,"runs_amap.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.6488400000000001
+tab:resultados-compra-web,72,amap,ari,louvain,0.564±0.011,True,0.564±0.011,OK,runs_amap.csv method=louvain resolution=1.0,0.5642199999999999
+tab:resultados-compra-web,72,amap,ari,leiden,0.560±0.012,False,0.560±0.012,OK,runs_amap.csv method=leiden resolution=1.0,0.56032
+tab:resultados-compra-web,72,amap,ari,deepwalk,0.461±0.081,False,0.461±0.081,OK,runs_amap.csv method=deepwalk,0.46118
+tab:resultados-compra-web,72,amap,ari,dgi,0.025±0.000,False,0.025±0.000,OK,runs_amap.csv method=dgi,0.02546
+tab:resultados-compra-web,72,amap,ari,dmon,0.427±0.033,False,0.427±0.033,OK,runs_amap.csv method=dmon,0.4272
+tab:resultados-compra-web,72,amap,ari,gcn-louvain,0.487±0.003,False,0.487±0.003,OK,"runs_amap.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.48721999999999993
+tab:resultados-compra-web,72,amap,ari,gcn-leiden,0.485±0.007,False,0.485±0.007,OK,"runs_amap.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.48544
+tab:resultados-compra-web,73,amap,q,louvain,0.737±0.001,False,0.737±0.001,OK,runs_amap.csv method=louvain resolution=1.0,0.7371000000000001
+tab:resultados-compra-web,73,amap,q,leiden,0.739±0.001,True,0.739±0.001,OK,runs_amap.csv method=leiden resolution=1.0,0.73902
+tab:resultados-compra-web,73,amap,q,deepwalk,0.647±0.044,False,0.647±0.044,OK,runs_amap.csv method=deepwalk,0.647
+tab:resultados-compra-web,73,amap,q,dgi,0.044±0.000,False,0.044±0.000,OK,runs_amap.csv method=dgi,0.04409999999999999
+tab:resultados-compra-web,73,amap,q,dmon,0.652±0.019,False,0.652±0.019,OK,runs_amap.csv method=dmon,0.65234
+tab:resultados-compra-web,73,amap,q,gcn-louvain,0.646±0.001,False,0.646±0.001,OK,"runs_amap.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.6456
+tab:resultados-compra-web,73,amap,q,gcn-leiden,0.646±0.001,False,0.646±0.001,OK,"runs_amap.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.6455799999999999
+tab:resultados-compra-web,74,amap,dbi,louvain,---,False,---,OK,runs_amap.csv method=louvain resolution=1.0,
+tab:resultados-compra-web,74,amap,dbi,leiden,---,False,---,OK,runs_amap.csv method=leiden resolution=1.0,
+tab:resultados-compra-web,74,amap,dbi,deepwalk,2.374±0.184,False,2.374±0.184,OK,runs_amap.csv method=deepwalk,2.3743
+tab:resultados-compra-web,74,amap,dbi,dgi,0.812±0.009,False,0.812±0.009,OK,runs_amap.csv method=dgi,0.8124800000000001
+tab:resultados-compra-web,74,amap,dbi,dmon,1.250±0.056,False,1.250±0.056,OK (BOUNDARY),runs_amap.csv method=dmon,1.2495
+tab:resultados-compra-web,74,amap,dbi,gcn-louvain,0.987±0.040,False,0.987±0.040,OK,"runs_amap.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.9873199999999999
+tab:resultados-compra-web,74,amap,dbi,gcn-leiden,0.726±0.203,True,0.726±0.203,OK,"runs_amap.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.72566
+tab:resultados-compra-web,75,amap,k,louvain,150.2±0.4,False,150.2±0.4,OK,runs_amap.csv method=louvain resolution=1.0,150.2
+tab:resultados-compra-web,75,amap,k,leiden,149.6±0.5,False,149.6±0.5,OK,runs_amap.csv method=leiden resolution=1.0,149.6
+tab:resultados-compra-web,75,amap,k,deepwalk,8,False,8,OK,runs_amap.csv method=deepwalk,8.0
+tab:resultados-compra-web,75,amap,k,dgi,8,False,8,OK,runs_amap.csv method=dgi,8.0
+tab:resultados-compra-web,75,amap,k,dmon,8,False,8,OK,runs_amap.csv method=dmon,8.0
+tab:resultados-compra-web,75,amap,k,gcn-louvain,7,False,7,OK,"runs_amap.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",7.0
+tab:resultados-compra-web,75,amap,k,gcn-leiden,7,False,7,OK,"runs_amap.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",7.0
+tab:resultados-compra-web,77,film,nmi,louvain,0.005±0.001,False,0.005±0.001,OK,runs_film.csv method=louvain resolution=1.0,0.004919999999999999
+tab:resultados-compra-web,77,film,nmi,leiden,0.004±0.001,False,0.004±0.001,OK,runs_film.csv method=leiden resolution=1.0,0.0043
+tab:resultados-compra-web,77,film,nmi,deepwalk,0.001±0.000,False,0.001±0.000,OK,runs_film.csv method=deepwalk,0.0008200000000000001
+tab:resultados-compra-web,77,film,nmi,dgi,0.002±0.000,False,0.002±0.000,OK,runs_film.csv method=dgi,0.0021999999999999997
+tab:resultados-compra-web,77,film,nmi,dmon,0.007±0.002,True,0.007±0.002,OK,runs_film.csv method=dmon,0.00686
+tab:resultados-compra-web,77,film,nmi,gcn-louvain,0.000±0.000,False,0.000±0.000,OK,"runs_film.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.00024000000000000003
+tab:resultados-compra-web,77,film,nmi,gcn-leiden,0.000±0.000,False,0.000±0.000,OK,"runs_film.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.0
+tab:resultados-compra-web,78,film,ari,louvain,-0.000±0.000,False,-0.000±0.000,OK,runs_film.csv method=louvain resolution=1.0,-0.00032
+tab:resultados-compra-web,78,film,ari,leiden,-0.000±0.000,False,-0.000±0.000,OK,runs_film.csv method=leiden resolution=1.0,-0.00046
+tab:resultados-compra-web,78,film,ari,deepwalk,0.001±0.000,False,0.001±0.000,OK,runs_film.csv method=deepwalk,0.00104
+tab:resultados-compra-web,78,film,ari,dgi,-0.001±0.000,False,-0.001±0.000,OK,runs_film.csv method=dgi,-0.00146
+tab:resultados-compra-web,78,film,ari,dmon,0.005±0.002,True,0.005±0.002,OK,runs_film.csv method=dmon,0.0049
+tab:resultados-compra-web,78,film,ari,gcn-louvain,-0.000±0.000,False,-0.000±0.000,OK,"runs_film.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",-2e-05
+tab:resultados-compra-web,78,film,ari,gcn-leiden,0.000±0.000,False,0.000±0.000,OK,"runs_film.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.0
+tab:resultados-compra-web,79,film,q,louvain,0.507±0.003,False,0.507±0.003,OK,runs_film.csv method=louvain resolution=1.0,0.5065799999999999
+tab:resultados-compra-web,79,film,q,leiden,0.516±0.003,True,0.516±0.003,OK (BOUNDARY),runs_film.csv method=leiden resolution=1.0,0.5165
+tab:resultados-compra-web,79,film,q,deepwalk,0.456±0.001,False,0.456±0.001,OK,runs_film.csv method=deepwalk,0.45599999999999996
+tab:resultados-compra-web,79,film,q,dgi,0.014±0.009,False,0.014±0.009,OK,runs_film.csv method=dgi,0.014339999999999997
+tab:resultados-compra-web,79,film,q,dmon,0.172±0.009,False,0.172±0.009,OK,runs_film.csv method=dmon,0.17157999999999998
+tab:resultados-compra-web,79,film,q,gcn-louvain,0.320±0.017,False,0.320±0.017,OK,"runs_film.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.32009999999999994
+tab:resultados-compra-web,79,film,q,gcn-leiden,0.000±0.000,False,0.000±0.000,OK,"runs_film.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.0
+tab:resultados-compra-web,80,film,dbi,louvain,---,False,---,OK,runs_film.csv method=louvain resolution=1.0,
+tab:resultados-compra-web,80,film,dbi,leiden,---,False,---,OK,runs_film.csv method=leiden resolution=1.0,
+tab:resultados-compra-web,80,film,dbi,deepwalk,4.431±0.050,False,4.431±0.050,OK,runs_film.csv method=deepwalk,4.4306
+tab:resultados-compra-web,80,film,dbi,dgi,4.539±0.089,False,4.539±0.089,OK,runs_film.csv method=dgi,4.5392399999999995
+tab:resultados-compra-web,80,film,dbi,dmon,1.211±0.038,False,1.211±0.038,OK,runs_film.csv method=dmon,1.21102
+tab:resultados-compra-web,80,film,dbi,gcn-louvain,0.593±0.084,True,0.593±0.084,OK,"runs_film.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.59348
+tab:resultados-compra-web,80,film,dbi,gcn-leiden,---,False,---,OK,"runs_film.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",
+tab:resultados-compra-web,81,film,k,louvain,36.2±3.4,False,36.2±3.4,OK,runs_film.csv method=louvain resolution=1.0,36.2
+tab:resultados-compra-web,81,film,k,leiden,33.4±5.7,False,33.4±5.7,OK,runs_film.csv method=leiden resolution=1.0,33.4
+tab:resultados-compra-web,81,film,k,deepwalk,5,False,5,OK,runs_film.csv method=deepwalk,5.0
+tab:resultados-compra-web,81,film,k,dgi,5,False,5,OK,runs_film.csv method=dgi,5.0
+tab:resultados-compra-web,81,film,k,dmon,5,False,5,OK,runs_film.csv method=dmon,5.0
+tab:resultados-compra-web,81,film,k,gcn-louvain,2,False,2,OK,"runs_film.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",2.0
+tab:resultados-compra-web,81,film,k,gcn-leiden,1,False,1,OK,"runs_film.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",1.0
+tab:resultados-compra-web,83,wikics,nmi,louvain,0.459±0.006,False,0.459±0.006,OK,runs_wikics.csv method=louvain resolution=1.0,0.4589
+tab:resultados-compra-web,83,wikics,nmi,leiden,0.467±0.005,True,0.467±0.005,OK,runs_wikics.csv method=leiden resolution=1.0,0.46734
+tab:resultados-compra-web,83,wikics,nmi,deepwalk,0.466±0.009,False,0.466±0.009,OK,runs_wikics.csv method=deepwalk,0.46628
+tab:resultados-compra-web,83,wikics,nmi,dgi,0.270±0.016,False,0.270±0.016,OK,runs_wikics.csv method=dgi,0.26966
+tab:resultados-compra-web,83,wikics,nmi,dmon,0.362±0.022,False,0.362±0.022,OK,runs_wikics.csv method=dmon,0.36228000000000005
+tab:resultados-compra-web,83,wikics,nmi,gcn-louvain,0.407±0.002,False,0.407±0.002,OK,"runs_wikics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.40721999999999997
+tab:resultados-compra-web,83,wikics,nmi,gcn-leiden,0.401±0.009,False,0.401±0.009,OK,"runs_wikics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.40144
+tab:resultados-compra-web,84,wikics,ari,louvain,0.406±0.015,False,0.406±0.015,OK,runs_wikics.csv method=louvain resolution=1.0,0.4061199999999999
+tab:resultados-compra-web,84,wikics,ari,leiden,0.415±0.009,True,0.415±0.009,OK,runs_wikics.csv method=leiden resolution=1.0,0.41513999999999995
+tab:resultados-compra-web,84,wikics,ari,deepwalk,0.404±0.009,False,0.404±0.009,OK,runs_wikics.csv method=deepwalk,0.4039400000000001
+tab:resultados-compra-web,84,wikics,ari,dgi,0.130±0.032,False,0.130±0.032,OK,runs_wikics.csv method=dgi,0.13022
+tab:resultados-compra-web,84,wikics,ari,dmon,0.235±0.026,False,0.235±0.026,OK,runs_wikics.csv method=dmon,0.23528
+tab:resultados-compra-web,84,wikics,ari,gcn-louvain,0.361±0.002,False,0.361±0.002,OK,"runs_wikics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.36058
+tab:resultados-compra-web,84,wikics,ari,gcn-leiden,0.357±0.007,False,0.357±0.007,OK,"runs_wikics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.35744
+tab:resultados-compra-web,85,wikics,q,louvain,0.647±0.003,False,0.647±0.003,OK,runs_wikics.csv method=louvain resolution=1.0,0.6471
+tab:resultados-compra-web,85,wikics,q,leiden,0.651±0.001,True,0.651±0.001,OK,runs_wikics.csv method=leiden resolution=1.0,0.651
+tab:resultados-compra-web,85,wikics,q,deepwalk,0.542±0.003,False,0.542±0.003,OK,runs_wikics.csv method=deepwalk,0.54226
+tab:resultados-compra-web,85,wikics,q,dgi,0.355±0.017,False,0.355±0.017,OK,runs_wikics.csv method=dgi,0.355
+tab:resultados-compra-web,85,wikics,q,dmon,0.551±0.010,False,0.551±0.010,OK,runs_wikics.csv method=dmon,0.5506599999999999
+tab:resultados-compra-web,85,wikics,q,gcn-louvain,0.555±0.001,False,0.555±0.001,OK,"runs_wikics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.55464
+tab:resultados-compra-web,85,wikics,q,gcn-leiden,0.552±0.002,False,0.552±0.002,OK,"runs_wikics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.55184
+tab:resultados-compra-web,86,wikics,dbi,louvain,---,False,---,OK,runs_wikics.csv method=louvain resolution=1.0,
+tab:resultados-compra-web,86,wikics,dbi,leiden,---,False,---,OK,runs_wikics.csv method=leiden resolution=1.0,
+tab:resultados-compra-web,86,wikics,dbi,deepwalk,3.323±0.072,False,3.323±0.072,OK,runs_wikics.csv method=deepwalk,3.3227400000000005
+tab:resultados-compra-web,86,wikics,dbi,dgi,1.433±0.052,False,1.433±0.052,OK,runs_wikics.csv method=dgi,1.43282
+tab:resultados-compra-web,86,wikics,dbi,dmon,1.358±0.022,False,1.358±0.022,OK,runs_wikics.csv method=dmon,1.3579
+tab:resultados-compra-web,86,wikics,dbi,gcn-louvain,0.554±0.051,True,0.554±0.051,OK,"runs_wikics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",0.55366
+tab:resultados-compra-web,86,wikics,dbi,gcn-leiden,0.566±0.043,False,0.566±0.043,OK,"runs_wikics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",0.56574
+tab:resultados-compra-web,87,wikics,k,louvain,371.2±0.8,False,371.2±0.8,OK,runs_wikics.csv method=louvain resolution=1.0,371.2
+tab:resultados-compra-web,87,wikics,k,leiden,371.2±1.1,False,371.2±1.1,OK,runs_wikics.csv method=leiden resolution=1.0,371.2
+tab:resultados-compra-web,87,wikics,k,deepwalk,10,False,10,OK,runs_wikics.csv method=deepwalk,10.0
+tab:resultados-compra-web,87,wikics,k,dgi,10,False,10,OK,runs_wikics.csv method=dgi,10.0
+tab:resultados-compra-web,87,wikics,k,dmon,10,False,10,OK,runs_wikics.csv method=dmon,10.0
+tab:resultados-compra-web,87,wikics,k,gcn-louvain,4,False,4,OK,"runs_wikics.csv method=gcn-louvain (beta=0.5,res=0.3,modularity)",4.0
+tab:resultados-compra-web,87,wikics,k,gcn-leiden,4,False,4,OK,"runs_wikics.csv method=gcn-leiden (beta=0.5,res=0.3,modularity)",4.0
+tab:resultados-sbm,102,sbm_1000_5,nmi,louvain,0.983±0.003,False,0.983±0.003,OK,runs_sbm_1000_5.csv method=louvain resolution=1.0,0.9825200000000001
+tab:resultados-sbm,102,sbm_1000_5,nmi,leiden,0.983±0.003,False,0.983±0.003,OK,runs_sbm_1000_5.csv method=leiden resolution=1.0,0.9827
+tab:resultados-sbm,102,sbm_1000_5,nmi,deepwalk,0.947±0.012,False,0.947±0.012,OK,runs_sbm_1000_5.csv method=deepwalk,0.9467800000000001
+tab:resultados-sbm,102,sbm_1000_5,nmi,dgi,0.987±0.003,False,0.987±0.003,OK,runs_sbm_1000_5.csv method=dgi,0.98674
+tab:resultados-sbm,102,sbm_1000_5,nmi,dmon,0.991±0.002,True,0.991±0.002,OK,runs_sbm_1000_5.csv method=dmon,0.9906399999999997
+tab:resultados-sbm,102,sbm_1000_5,nmi,gcn-louvain,0.988±0.000,False,0.988±0.000,OK,runs_validate_sbm_1000_5.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.9883
+tab:resultados-sbm,102,sbm_1000_5,nmi,gcn-leiden,0.988±0.000,False,0.988±0.000,OK,runs_recal_sbm_1000_5.csv gcn-leiden cpm g=0.0275 b=0.5,0.9883
+tab:resultados-sbm,103,sbm_1000_5,ari,louvain,0.989±0.002,False,0.989±0.002,OK (BOUNDARY),runs_sbm_1000_5.csv method=louvain resolution=1.0,0.9885000000000002
+tab:resultados-sbm,103,sbm_1000_5,ari,leiden,0.989±0.002,False,0.988±0.002,MISMATCH (BOUNDARY),runs_sbm_1000_5.csv method=leiden resolution=1.0,0.9884999999999999
+tab:resultados-sbm,103,sbm_1000_5,ari,deepwalk,0.964±0.009,False,0.964±0.009,OK,runs_sbm_1000_5.csv method=deepwalk,0.9637600000000001
+tab:resultados-sbm,103,sbm_1000_5,ari,dgi,0.992±0.002,False,0.992±0.002,OK (BOUNDARY),runs_sbm_1000_5.csv method=dgi,0.9915
+tab:resultados-sbm,103,sbm_1000_5,ari,dmon,0.994±0.001,True,0.994±0.001,OK,runs_sbm_1000_5.csv method=dmon,0.994
+tab:resultados-sbm,103,sbm_1000_5,ari,gcn-louvain,0.993±0.000,False,0.993±0.000,OK (BOUNDARY),runs_validate_sbm_1000_5.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.9925
+tab:resultados-sbm,103,sbm_1000_5,ari,gcn-leiden,0.993±0.000,False,0.993±0.000,OK (BOUNDARY),runs_recal_sbm_1000_5.csv gcn-leiden cpm g=0.0275 b=0.5,0.9925
+tab:resultados-sbm,104,sbm_1000_5,q,louvain,0.518±0.000,True,0.518±0.000,OK,runs_sbm_1000_5.csv method=louvain resolution=1.0,0.5182
+tab:resultados-sbm,104,sbm_1000_5,q,leiden,0.518±0.000,True,0.518±0.000,OK,runs_sbm_1000_5.csv method=leiden resolution=1.0,0.5182
+tab:resultados-sbm,104,sbm_1000_5,q,deepwalk,0.514±0.001,False,0.514±0.001,OK,runs_sbm_1000_5.csv method=deepwalk,0.5144200000000001
+tab:resultados-sbm,104,sbm_1000_5,q,dgi,0.518±0.000,False,0.518±0.000,OK,runs_sbm_1000_5.csv method=dgi,0.51812
+tab:resultados-sbm,104,sbm_1000_5,q,dmon,0.518±0.000,False,0.518±0.000,OK,runs_sbm_1000_5.csv method=dmon,0.5180199999999999
+tab:resultados-sbm,104,sbm_1000_5,q,gcn-louvain,0.518±0.000,True,0.518±0.000,OK,runs_validate_sbm_1000_5.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.5182
+tab:resultados-sbm,104,sbm_1000_5,q,gcn-leiden,0.518±0.000,True,0.518±0.000,OK,runs_recal_sbm_1000_5.csv gcn-leiden cpm g=0.0275 b=0.5,0.5182
+tab:resultados-sbm,105,sbm_1000_5,dbi,louvain,---,False,---,OK,runs_sbm_1000_5.csv method=louvain resolution=1.0,
+tab:resultados-sbm,105,sbm_1000_5,dbi,leiden,---,False,---,OK,runs_sbm_1000_5.csv method=leiden resolution=1.0,
+tab:resultados-sbm,105,sbm_1000_5,dbi,deepwalk,3.631±0.030,False,3.631±0.030,OK,runs_sbm_1000_5.csv method=deepwalk,3.63114
+tab:resultados-sbm,105,sbm_1000_5,dbi,dgi,0.482±0.015,False,0.482±0.015,OK,runs_sbm_1000_5.csv method=dgi,0.48217999999999994
+tab:resultados-sbm,105,sbm_1000_5,dbi,dmon,0.393±0.004,False,0.393±0.004,OK,runs_sbm_1000_5.csv method=dmon,0.3933
+tab:resultados-sbm,105,sbm_1000_5,dbi,gcn-louvain,0.338±0.007,True,0.338±0.007,OK,runs_validate_sbm_1000_5.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.33799999999999997
+tab:resultados-sbm,105,sbm_1000_5,dbi,gcn-leiden,0.340±0.007,False,0.340±0.007,OK,runs_recal_sbm_1000_5.csv gcn-leiden cpm g=0.0275 b=0.5,0.33985999999999994
+tab:resultados-sbm,106,sbm_1000_5,k,louvain,5,False,5,OK,runs_sbm_1000_5.csv method=louvain resolution=1.0,5.0
+tab:resultados-sbm,106,sbm_1000_5,k,leiden,5,False,5,OK,runs_sbm_1000_5.csv method=leiden resolution=1.0,5.0
+tab:resultados-sbm,106,sbm_1000_5,k,deepwalk,5,False,5,OK,runs_sbm_1000_5.csv method=deepwalk,5.0
+tab:resultados-sbm,106,sbm_1000_5,k,dgi,5,False,5,OK,runs_sbm_1000_5.csv method=dgi,5.0
+tab:resultados-sbm,106,sbm_1000_5,k,dmon,5,False,5,OK,runs_sbm_1000_5.csv method=dmon,5.0
+tab:resultados-sbm,106,sbm_1000_5,k,gcn-louvain,5,False,5,OK,runs_validate_sbm_1000_5.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,5.0
+tab:resultados-sbm,106,sbm_1000_5,k,gcn-leiden,5,False,5,OK,runs_recal_sbm_1000_5.csv gcn-leiden cpm g=0.0275 b=0.5,5.0
+tab:resultados-sbm,108,sbm_5000_10,nmi,louvain,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=louvain resolution=1.0,1.0
+tab:resultados-sbm,108,sbm_5000_10,nmi,leiden,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=leiden resolution=1.0,1.0
+tab:resultados-sbm,108,sbm_5000_10,nmi,deepwalk,0.981±0.004,False,0.981±0.004,OK,runs_sbm_5000_10.csv method=deepwalk,0.98116
+tab:resultados-sbm,108,sbm_5000_10,nmi,dgi,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=dgi,1.0
+tab:resultados-sbm,108,sbm_5000_10,nmi,dmon,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=dmon,1.0
+tab:resultados-sbm,108,sbm_5000_10,nmi,gcn-louvain,1.000±0.000,True,1.000±0.000,OK,runs_validate_sbm_5000_10.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,1.0
+tab:resultados-sbm,108,sbm_5000_10,nmi,gcn-leiden,1.000±0.000,True,1.000±0.000,OK,runs_recal_sbm_5000_10.csv gcn-leiden cpm g=0.0275 b=0.5,1.0
+tab:resultados-sbm,109,sbm_5000_10,ari,louvain,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=louvain resolution=1.0,1.0
+tab:resultados-sbm,109,sbm_5000_10,ari,leiden,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=leiden resolution=1.0,1.0
+tab:resultados-sbm,109,sbm_5000_10,ari,deepwalk,0.986±0.003,False,0.986±0.003,OK,runs_sbm_5000_10.csv method=deepwalk,0.9862400000000001
+tab:resultados-sbm,109,sbm_5000_10,ari,dgi,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=dgi,1.0
+tab:resultados-sbm,109,sbm_5000_10,ari,dmon,1.000±0.000,True,1.000±0.000,OK,runs_sbm_5000_10.csv method=dmon,1.0
+tab:resultados-sbm,109,sbm_5000_10,ari,gcn-louvain,1.000±0.000,True,1.000±0.000,OK,runs_validate_sbm_5000_10.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,1.0
+tab:resultados-sbm,109,sbm_5000_10,ari,gcn-leiden,1.000±0.000,True,1.000±0.000,OK,runs_recal_sbm_5000_10.csv gcn-leiden cpm g=0.0275 b=0.5,1.0
+tab:resultados-sbm,110,sbm_5000_10,q,louvain,0.427±0.000,True,0.427±0.000,OK,runs_sbm_5000_10.csv method=louvain resolution=1.0,0.4269
+tab:resultados-sbm,110,sbm_5000_10,q,leiden,0.427±0.000,True,0.427±0.000,OK,runs_sbm_5000_10.csv method=leiden resolution=1.0,0.4269
+tab:resultados-sbm,110,sbm_5000_10,q,deepwalk,0.424±0.001,False,0.424±0.001,OK,runs_sbm_5000_10.csv method=deepwalk,0.42356
+tab:resultados-sbm,110,sbm_5000_10,q,dgi,0.427±0.000,True,0.427±0.000,OK,runs_sbm_5000_10.csv method=dgi,0.4269
+tab:resultados-sbm,110,sbm_5000_10,q,dmon,0.427±0.000,True,0.427±0.000,OK,runs_sbm_5000_10.csv method=dmon,0.4269
+tab:resultados-sbm,110,sbm_5000_10,q,gcn-louvain,0.427±0.000,True,0.427±0.000,OK,runs_validate_sbm_5000_10.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.4269
+tab:resultados-sbm,110,sbm_5000_10,q,gcn-leiden,0.427±0.000,True,0.427±0.000,OK,runs_recal_sbm_5000_10.csv gcn-leiden cpm g=0.0275 b=0.5,0.4269
+tab:resultados-sbm,111,sbm_5000_10,dbi,louvain,---,False,---,OK,runs_sbm_5000_10.csv method=louvain resolution=1.0,
+tab:resultados-sbm,111,sbm_5000_10,dbi,leiden,---,False,---,OK,runs_sbm_5000_10.csv method=leiden resolution=1.0,
+tab:resultados-sbm,111,sbm_5000_10,dbi,deepwalk,3.931±0.021,False,3.931±0.021,OK,runs_sbm_5000_10.csv method=deepwalk,3.9308
+tab:resultados-sbm,111,sbm_5000_10,dbi,dgi,0.439±0.006,False,0.439±0.006,OK,runs_sbm_5000_10.csv method=dgi,0.4394600000000001
+tab:resultados-sbm,111,sbm_5000_10,dbi,dmon,0.366±0.001,False,0.366±0.001,OK,runs_sbm_5000_10.csv method=dmon,0.36608
+tab:resultados-sbm,111,sbm_5000_10,dbi,gcn-louvain,0.362±0.023,False,0.362±0.023,OK,runs_validate_sbm_5000_10.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.36188
+tab:resultados-sbm,111,sbm_5000_10,dbi,gcn-leiden,0.361±0.023,True,0.361±0.023,OK,runs_recal_sbm_5000_10.csv gcn-leiden cpm g=0.0275 b=0.5,0.36147999999999997
+tab:resultados-sbm,112,sbm_5000_10,k,louvain,10,False,10,OK,runs_sbm_5000_10.csv method=louvain resolution=1.0,10.0
+tab:resultados-sbm,112,sbm_5000_10,k,leiden,10,False,10,OK,runs_sbm_5000_10.csv method=leiden resolution=1.0,10.0
+tab:resultados-sbm,112,sbm_5000_10,k,deepwalk,10,False,10,OK,runs_sbm_5000_10.csv method=deepwalk,10.0
+tab:resultados-sbm,112,sbm_5000_10,k,dgi,10,False,10,OK,runs_sbm_5000_10.csv method=dgi,10.0
+tab:resultados-sbm,112,sbm_5000_10,k,dmon,10,False,10,OK,runs_sbm_5000_10.csv method=dmon,10.0
+tab:resultados-sbm,112,sbm_5000_10,k,gcn-louvain,10,False,10,OK,runs_validate_sbm_5000_10.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,10.0
+tab:resultados-sbm,112,sbm_5000_10,k,gcn-leiden,10,False,10,OK,runs_recal_sbm_5000_10.csv gcn-leiden cpm g=0.0275 b=0.5,10.0
+tab:resultados-sbm,114,sbm_10000_20,nmi,louvain,0.958±0.025,False,0.958±0.025,OK,runs_sbm_10000_20.csv method=louvain resolution=1.0,0.95824
+tab:resultados-sbm,114,sbm_10000_20,nmi,leiden,0.970±0.017,False,0.970±0.017,OK,runs_sbm_10000_20.csv method=leiden resolution=1.0,0.97022
+tab:resultados-sbm,114,sbm_10000_20,nmi,deepwalk,0.567±0.010,False,0.567±0.010,OK,runs_sbm_10000_20.csv method=deepwalk,0.56726
+tab:resultados-sbm,114,sbm_10000_20,nmi,dgi,1.000±0.000,True,1.000±0.000,OK,runs_sbm_10000_20.csv method=dgi,1.0
+tab:resultados-sbm,114,sbm_10000_20,nmi,dmon,1.000±0.000,True,1.000±0.000,OK,runs_sbm_10000_20.csv method=dmon,1.0
+tab:resultados-sbm,114,sbm_10000_20,nmi,gcn-louvain,0.000±0.000,False,0.000±0.000,OK,runs_validate_sbm_10000_20.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.0
+tab:resultados-sbm,114,sbm_10000_20,nmi,gcn-leiden,1.000±0.000,True,1.000±0.000,OK,runs_recal_sbm_10000_20.csv gcn-leiden cpm g=0.0275 b=0.5,1.0
+tab:resultados-sbm,115,sbm_10000_20,ari,louvain,0.837±0.091,False,0.837±0.091,OK,runs_sbm_10000_20.csv method=louvain resolution=1.0,0.83718
+tab:resultados-sbm,115,sbm_10000_20,ari,leiden,0.881±0.064,False,0.881±0.064,OK,runs_sbm_10000_20.csv method=leiden resolution=1.0,0.88124
+tab:resultados-sbm,115,sbm_10000_20,ari,deepwalk,0.535±0.012,False,0.535±0.012,OK,runs_sbm_10000_20.csv method=deepwalk,0.5345199999999999
+tab:resultados-sbm,115,sbm_10000_20,ari,dgi,1.000±0.000,True,1.000±0.000,OK,runs_sbm_10000_20.csv method=dgi,1.0
+tab:resultados-sbm,115,sbm_10000_20,ari,dmon,1.000±0.000,True,1.000±0.000,OK,runs_sbm_10000_20.csv method=dmon,1.0
+tab:resultados-sbm,115,sbm_10000_20,ari,gcn-louvain,0.000±0.000,False,0.000±0.000,OK,runs_validate_sbm_10000_20.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.0
+tab:resultados-sbm,115,sbm_10000_20,ari,gcn-leiden,1.000±0.000,True,1.000±0.000,OK,runs_recal_sbm_10000_20.csv gcn-leiden cpm g=0.0275 b=0.5,1.0
+tab:resultados-sbm,116,sbm_10000_20,q,louvain,0.288±0.004,False,0.288±0.004,OK,runs_sbm_10000_20.csv method=louvain resolution=1.0,0.28837999999999997
+tab:resultados-sbm,116,sbm_10000_20,q,leiden,0.290±0.002,False,0.290±0.002,OK,runs_sbm_10000_20.csv method=leiden resolution=1.0,0.29012
+tab:resultados-sbm,116,sbm_10000_20,q,deepwalk,0.173±0.004,False,0.173±0.004,OK,runs_sbm_10000_20.csv method=deepwalk,0.17328000000000002
+tab:resultados-sbm,116,sbm_10000_20,q,dgi,0.294±0.000,True,0.294±0.000,OK,runs_sbm_10000_20.csv method=dgi,0.2941
+tab:resultados-sbm,116,sbm_10000_20,q,dmon,0.294±0.000,True,0.294±0.000,OK,runs_sbm_10000_20.csv method=dmon,0.2941
+tab:resultados-sbm,116,sbm_10000_20,q,gcn-louvain,0.000±0.000,False,0.000±0.000,OK,runs_validate_sbm_10000_20.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,0.0
+tab:resultados-sbm,116,sbm_10000_20,q,gcn-leiden,0.294±0.000,True,0.294±0.000,OK,runs_recal_sbm_10000_20.csv gcn-leiden cpm g=0.0275 b=0.5,0.2941
+tab:resultados-sbm,117,sbm_10000_20,dbi,louvain,---,False,---,OK,runs_sbm_10000_20.csv method=louvain resolution=1.0,
+tab:resultados-sbm,117,sbm_10000_20,dbi,leiden,---,False,---,OK,runs_sbm_10000_20.csv method=leiden resolution=1.0,
+tab:resultados-sbm,117,sbm_10000_20,dbi,deepwalk,5.672±0.012,False,5.672±0.012,OK,runs_sbm_10000_20.csv method=deepwalk,5.67176
+tab:resultados-sbm,117,sbm_10000_20,dbi,dgi,0.617±0.002,False,0.617±0.002,OK,runs_sbm_10000_20.csv method=dgi,0.61684
+tab:resultados-sbm,117,sbm_10000_20,dbi,dmon,0.543±0.003,False,0.543±0.003,OK,runs_sbm_10000_20.csv method=dmon,0.54328
+tab:resultados-sbm,117,sbm_10000_20,dbi,gcn-louvain,---,False,---,OK,runs_validate_sbm_10000_20.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,
+tab:resultados-sbm,117,sbm_10000_20,dbi,gcn-leiden,0.521±0.005,True,0.521±0.005,OK,runs_recal_sbm_10000_20.csv gcn-leiden cpm g=0.0275 b=0.5,0.5211
+tab:resultados-sbm,118,sbm_10000_20,k,louvain,16.8±1.8,False,16.8±1.8,OK,runs_sbm_10000_20.csv method=louvain resolution=1.0,16.8
+tab:resultados-sbm,118,sbm_10000_20,k,leiden,17.6±1.3,False,17.6±1.3,OK,runs_sbm_10000_20.csv method=leiden resolution=1.0,17.6
+tab:resultados-sbm,118,sbm_10000_20,k,deepwalk,20,False,20,OK,runs_sbm_10000_20.csv method=deepwalk,20.0
+tab:resultados-sbm,118,sbm_10000_20,k,dgi,20,False,20,OK,runs_sbm_10000_20.csv method=dgi,20.0
+tab:resultados-sbm,118,sbm_10000_20,k,dmon,20,False,20,OK,runs_sbm_10000_20.csv method=dmon,20.0
+tab:resultados-sbm,118,sbm_10000_20,k,gcn-louvain,1,False,1,OK,runs_validate_sbm_10000_20.csv method=gcn-louvain recalibrado mod g=1.0 b=0.5,1.0
+tab:resultados-sbm,118,sbm_10000_20,k,gcn-leiden,20,False,20,OK,runs_recal_sbm_10000_20.csv gcn-leiden cpm g=0.0275 b=0.5,20.0

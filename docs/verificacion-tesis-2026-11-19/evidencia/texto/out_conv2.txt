@@ -1,0 +1,15 @@
+{('cora', 'louvain', 0): 118, ('cora', 'louvain', 1): 86, ('cora', 'louvain', 2): 78, ('cora', 'louvain', 3): nan, ('cora', 'louvain', 4): 88, ('cora', 'leiden', 0): 76, ('cora', 'leiden', 1): 74, ('cora', 'leiden', 2): 68, ('cora', 'leiden', 3): 76, ('cora', 'leiden', 4): 84}
+drop 34 earlier 11 later 12 tie 11 p auto 0.6591 p exact 0.6869 pratt 0.7275
+300 35 earlier 12 later 12 tie 11 p auto 0.9203 p exact 0.9441 pratt 0.9535
+302 35 earlier 12 later 12 tie 11 p auto 0.9203 p exact 0.9441 pratt 0.9535
+310 35 earlier 12 later 12 tie 11 p auto 0.943 p exact 0.9664 pratt 0.9668
+1000 35 earlier 12 later 12 tie 11 p auto 0.943 p exact 0.9664 pratt 0.9668
+95 excl None later 11 earlier 3 p 0.0088 diffs [-4.0, -2.0, -2.0, 2.0, 2.0, 4.0, 4.0, 10.0, 10.0, 10.0, 10.0, 15.0, 20.0, 20.0]
+95 excl cora later 11 earlier 0 p 0.001 diffs [2.0, 2.0, 4.0, 4.0, 10.0, 10.0, 10.0, 10.0, 15.0, 20.0, 20.0]
+95 excl citeseer later 7 earlier 3 p 0.0234 diffs [-4.0, -2.0, -2.0, 10.0, 10.0, 10.0, 10.0, 15.0, 20.0, 20.0]
+95 excl pubmed later 9 earlier 3 p 0.0293 diffs [-4.0, -2.0, -2.0, 2.0, 2.0, 4.0, 4.0, 10.0, 10.0, 15.0, 20.0, 20.0]
+95 excl cocs later 11 earlier 3 p 0.0088 diffs [-4.0, -2.0, -2.0, 2.0, 2.0, 4.0, 4.0, 10.0, 10.0, 10.0, 10.0, 15.0, 20.0, 20.0]
+95 excl amac later 11 earlier 3 p 0.0088 diffs [-4.0, -2.0, -2.0, 2.0, 2.0, 4.0, 4.0, 10.0, 10.0, 10.0, 10.0, 15.0, 20.0, 20.0]
+95 excl amap later 11 earlier 3 p 0.0088 diffs [-4.0, -2.0, -2.0, 2.0, 2.0, 4.0, 4.0, 10.0, 10.0, 10.0, 10.0, 15.0, 20.0, 20.0]
+95 excl wikics later 6 earlier 3 p 0.2305 diffs [-4.0, -2.0, -2.0, 2.0, 2.0, 4.0, 4.0, 10.0, 10.0]
+[np.float64(0.7676), np.float64(0.7626), np.float64(0.7672), np.float64(0.7526), np.float64(0.7584)] 0.7540758453542367

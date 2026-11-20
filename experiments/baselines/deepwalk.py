@@ -4,7 +4,7 @@ Implemented without pyg-lib/torch-cluster (no macOS wheels for this torch
 version): walks are sampled with numpy over the adjacency lists and the
 skip-gram objective with negative sampling is optimized in plain torch.
 Embeddings are clustered with k-means using the ground-truth k
-(protocol of Wang et al. 2025; see baselines/__init__.py).
+(see baselines/__init__.py).
 """
 
 import numpy as np

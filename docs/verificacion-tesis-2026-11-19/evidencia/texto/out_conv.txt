@@ -1,0 +1,126 @@
+scipy 1.18.1
+                  step        nrec           last               q0            qmax          eqmax         
+                  mean  std   mean     std   mean      std    mean     std    mean     std   mean      std
+ds       prior                                                                                            
+amac     leiden    5.0  0.0   59.2  1.0954  296.0   5.4772  0.0473  0.0061  0.5460  0.0029  141.0  63.6789
+         louvain   5.0  0.0   59.8  0.4472  299.0   2.2361  0.0454  0.0060  0.5471  0.0019  138.0  66.1060
+amap     leiden    2.0  0.0  150.0  0.0000  300.0   0.0000  0.0889  0.0059  0.6451  0.0009  155.6  50.3071
+         louvain   2.0  0.0  150.0  0.0000  300.0   0.0000  0.0889  0.0059  0.6441  0.0006  108.8  11.8828
+citeseer leiden    2.0  0.0  147.2  6.2610  294.4  12.5220  0.1264  0.0056  0.7784  0.0091  191.6  97.2152
+         louvain   2.0  0.0  150.0  0.0000  300.0   0.0000  0.1343  0.0034  0.7993  0.0064  162.4  35.5359
+cocs     leiden   10.0  0.0   30.0  0.0000  300.0   0.0000  0.5273  0.0095  0.6535  0.0012  254.0  43.9318
+         louvain  10.0  0.0   30.0  0.0000  300.0   0.0000  0.5293  0.0090  0.6524  0.0015  198.0  74.6324
+cora     leiden    2.0  0.0  150.0  0.0000  300.0   0.0000  0.2022  0.0091  0.7701  0.0066  221.2  69.1462
+         louvain   2.0  0.0  147.8  4.9193  295.6   9.8387  0.1890  0.0080  0.7617  0.0063  139.2  61.2470
+pubmed   leiden   10.0  0.0   30.0  0.0000  300.0   0.0000  0.3879  0.0078  0.6540  0.0052  278.0  26.8328
+         louvain  10.0  0.0   30.0  0.0000  300.0   0.0000  0.3953  0.0076  0.6483  0.0030  268.0  16.4317
+wikics   leiden    5.0  0.0   60.0  0.0000  300.0   0.0000  0.0444  0.0046  0.5499  0.0024  248.0  36.3318
+         louvain   5.0  0.0   60.0  0.0000  300.0   0.0000  0.0392  0.0042  0.5534  0.0013  253.0  11.5109
+===== level frac=0.95
+         ds  level    mqL    mqD    Lou  Lou_sd    Lei  Lei_sd
+0      cora  0.724  0.762  0.770   64.8   1.095   63.2   1.789
+1  citeseer  0.740  0.799  0.778   42.4   0.894   44.8   1.095
+2    pubmed  0.616  0.648  0.654  100.0   0.000  104.0   5.477
+3      cocs  0.620  0.652  0.654   30.0   0.000   30.0   0.000
+4      amac  0.519  0.547  0.546   58.0   2.739   58.0   2.739
+5      amap  0.612  0.644  0.645   49.2   1.095   49.2   1.095
+6    wikics  0.522  0.553  0.550   79.0   2.236   94.0   4.183
+--- fixed 0.95: n=35 nan=0 earlier(Leiden)=3 later=11 tie=21
+per ds (earlier,later,tie): {'cora': (3, 0, 2), 'citeseer': (0, 4, 1), 'pubmed': (0, 2, 3), 'cocs': (0, 0, 5), 'amac': (0, 0, 5), 'amap': (0, 0, 5), 'wikics': (0, 5, 0)}
+  wilcoxon nonzero method=auto corr=False: stat=11.0 p=0.0088
+  wilcoxon nonzero method=exact corr=False: stat=11.0 p=0.0067
+  wilcoxon nonzero method=approx corr=False: stat=11.0 p=0.0088
+  wilcoxon nonzero method=approx corr=True: stat=11.0 p=0.0096
+  wilcoxon all35 zero_method=wilcox: p=0.0088
+  wilcoxon all35 zero_method=pratt: p=0.0197
+  wilcoxon all35 zero_method=zsplit: p=0.0347
+===== level frac=0.99
+         ds  level    mqL    mqD    Lou  Lou_sd    Lei  Lei_sd
+0      cora  0.754  0.762  0.770    NaN     NaN   75.6   5.727
+1  citeseer  0.771  0.799  0.778   50.4   1.673  128.0  87.715
+2    pubmed  0.642  0.648  0.654  206.0  48.270  166.0  32.094
+3      cocs  0.646  0.652  0.654  104.0  37.815   72.0   4.472
+4      amac  0.541  0.547  0.546   89.0   6.519   88.0   2.739
+5      amap  0.638  0.644  0.645   74.0   1.414   74.0   1.414
+6    wikics  0.544  0.553  0.550  120.0   3.536  175.0  50.744
+--- fixed 0.99: n=35 nan=1 earlier(Leiden)=11 later=12 tie=11
+per ds (earlier,later,tie): {'cora': (4, 0, 0), 'citeseer': (0, 5, 0), 'pubmed': (3, 1, 1), 'cocs': (3, 0, 2), 'amac': (1, 1, 3), 'amap': (0, 0, 5), 'wikics': (0, 5, 0)}
+  wilcoxon nonzero method=auto corr=False: stat=nan p=nan
+  wilcoxon nonzero method=exact corr=False: stat=nan p=nan
+  wilcoxon nonzero method=approx corr=False: stat=nan p=nan
+  wilcoxon nonzero method=approx corr=True: stat=nan p=nan
+  wilcoxon all35 zero_method=wilcox: p=nan
+  wilcoxon all35 zero_method=pratt: p=nan
+  wilcoxon all35 zero_method=zsplit: p=nan
+==== relative 95% own gain
+         ds  louvain  leiden
+0      cora     68.0    68.0
+1  citeseer     48.8    47.6
+2    pubmed    130.0   162.0
+3      cocs    110.0    98.0
+4      amac     60.0    60.0
+5      amap     51.6    52.4
+6    wikics     83.0    98.0
+--- relative 0.95: n=35 nan=0 earlier(Leiden)=6 later=15 tie=14
+per ds (earlier,later,tie): {'cora': (1, 1, 3), 'citeseer': (3, 1, 1), 'pubmed': (0, 5, 0), 'cocs': (2, 1, 2), 'amac': (0, 0, 5), 'amap': (0, 2, 3), 'wikics': (0, 5, 0)}
+  wilcoxon nonzero method=auto corr=False: stat=60.0 p=0.0532
+  wilcoxon nonzero method=exact corr=False: stat=60.0 p=0.0547
+  wilcoxon nonzero method=approx corr=False: stat=60.0 p=0.0532
+  wilcoxon nonzero method=approx corr=True: stat=60.0 p=0.0554
+  wilcoxon all35 zero_method=wilcox: p=0.0532
+  wilcoxon all35 zero_method=pratt: p=0.0443
+  wilcoxon all35 zero_method=zsplit: p=0.0504
+q0: wilcoxon p=0.9935; leiden>louvain in 18/35; mean diff 0.0004; ttest p=0.7315
+   per-ds mean diff: {'cora': np.float64(0.0132), 'citeseer': np.float64(-0.0079), 'pubmed': np.float64(-0.0074), 'cocs': np.float64(-0.002), 'amac': np.float64(0.0019), 'amap': np.float64(-0.0001), 'wikics': np.float64(0.0052)}
+qmax: wilcoxon p=0.9163; leiden>louvain in 18/35; mean diff -0.0013; ttest p=0.4352
+   per-ds mean diff: {'cora': np.float64(0.0085), 'citeseer': np.float64(-0.0208), 'pubmed': np.float64(0.0057), 'cocs': np.float64(0.0011), 'amac': np.float64(-0.0011), 'amap': np.float64(0.001), 'wikics': np.float64(-0.0035)}
+==== mean epoch of Qmax per ds (pooled 10 runs) and per prior
+ds
+amac        139.5
+amap        132.2
+citeseer    177.0
+cocs        226.0
+cora        180.2
+pubmed      273.0
+wikics      250.5
+ds        prior  
+amac      leiden     141.0
+          louvain    138.0
+amap      leiden     155.6
+          louvain    108.8
+citeseer  leiden     191.6
+          louvain    162.4
+cocs      leiden     254.0
+          louvain    198.0
+cora      leiden     221.2
+          louvain    139.2
+pubmed    leiden     278.0
+          louvain    268.0
+wikics    leiden     248.0
+          louvain    253.0
+NMI peak precedes Qmax: 56 / 70  same epoch: 5  after: 9
+          prec    loss
+ds                    
+amac         6  0.0245
+amap         5  0.0027
+citeseer     9  0.0544
+cocs         9  0.0062
+cora         8  0.0218
+pubmed      10  0.0326
+wikics       9  0.0077
+                    loss
+ds       prior          
+amac     leiden   0.0336
+         louvain  0.0153
+amap     leiden   0.0046
+         louvain  0.0008
+citeseer leiden   0.0498
+         louvain  0.0589
+cocs     leiden   0.0040
+         louvain  0.0083
+cora     leiden   0.0244
+         louvain  0.0192
+pubmed   leiden   0.0388
+         louvain  0.0265
+wikics   leiden   0.0069
+         louvain  0.0084

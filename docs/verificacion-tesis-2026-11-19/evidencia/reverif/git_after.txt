@@ -1,0 +1,8 @@
+ M chapters/chapter01/chap01.tex
+ M chapters/conclusiones/conclusiones.tex
+ M chapters/propuesta_solucion/propuesta_solucion.tex
+ M chapters/resultados/resultados.tex
+ M chapters/trabajos_relacionados/trabajos_relacionados.tex
+ M frontmatter/abstract.tex
+ M frontmatter/resumen.tex
+ M thesis.pdf

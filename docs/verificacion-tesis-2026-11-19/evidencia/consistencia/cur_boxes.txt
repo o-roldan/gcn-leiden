@@ -1,0 +1,36 @@
+1860:Overfull \hbox (1.80379pt too wide) in paragraph at lines 5--6
+1936:Overfull \hbox (5.77905pt too wide) in paragraph at lines 31--32
+1945:Overfull \hbox (19.15887pt too wide) in paragraph at lines 3--155
+1950:Overfull \hbox (2.15887pt too wide) in paragraph at lines 3--155
+1955:Underfull \hbox (badness 10000) in paragraph at lines 3--155
+2013:Overfull \hbox (1.74115pt too wide) detected at line 8
+2131:Underfull \hbox (badness 1960) in paragraph at lines 107--108
+2349:Underfull \hbox (badness 10000) in paragraph at lines 211--212
+2388:Underfull \hbox (badness 1533) in paragraph at lines 237--238
+3580:Overfull \hbox (3.63676pt too wide) in paragraph at lines 616--619
+4794:Underfull \hbox (badness 7740) in paragraph at lines 157--157
+4801:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4806:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4811:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4816:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4821:Overfull \hbox (13.6905pt too wide) in paragraph at lines 157--157
+4830:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4835:Overfull \hbox (0.62471pt too wide) in paragraph at lines 157--157
+4840:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4845:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4854:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4859:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4868:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4873:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4878:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4883:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4888:Underfull \hbox (badness 4168) in paragraph at lines 157--157
+4895:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4900:Overfull \hbox (7.07184pt too wide) in paragraph at lines 157--157
+4911:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4918:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4927:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+4934:Underfull \hbox (badness 10000) in paragraph at lines 157--157
+6824:Underfull \hbox (badness 2856) in paragraph at lines 95--95
+7442:Underfull \hbox (badness 1910) in paragraph at lines 22--23
+7682:Overfull \hbox (11.06575pt too wide) in paragraph at lines 106--117

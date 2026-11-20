@@ -1,0 +1,102 @@
+=== tab:prior-pico (peak_nmi / peak_ari from runs_<ds>.csv, gcn-*, seeds 0-4) ===
+L146 cora      peak_nmi gcn-louvain thesis=0.541±0.007 mine=0.541±0.007 raw=0.54112/0.00744 n=5 OK
+L146 cora      peak_nmi gcn-leiden  thesis=0.554±0.009 mine=0.554±0.009 raw=0.55360/0.00940 n=5 OK
+L146 cora      peak_ari gcn-louvain thesis=0.480±0.022 mine=0.480±0.022 raw=0.47970/0.02163 n=5 OK
+L146 cora      peak_ari gcn-leiden  thesis=0.492±0.020 mine=0.492±0.020 raw=0.49230/0.01968 n=5 OK
+L147 citeseer  peak_nmi gcn-louvain thesis=0.401±0.008 mine=0.401±0.008 raw=0.40082/0.00808 n=5 OK
+L147 citeseer  peak_nmi gcn-leiden  thesis=0.388±0.012 mine=0.388±0.012 raw=0.38776/0.01204 n=5 OK
+L147 citeseer  peak_ari gcn-louvain thesis=0.391±0.014 mine=0.391±0.014 raw=0.39072/0.01376 n=5 OK
+L147 citeseer  peak_ari gcn-leiden  thesis=0.375±0.020 mine=0.375±0.020 raw=0.37510/0.02046 n=5 OK
+L148 pubmed    peak_nmi gcn-louvain thesis=0.291±0.014 mine=0.291±0.014 raw=0.29090/0.01440 n=5 OK
+L148 pubmed    peak_nmi gcn-leiden  thesis=0.313±0.004 mine=0.313±0.004 raw=0.31280/0.00402 n=5 OK
+L148 pubmed    peak_ari gcn-louvain thesis=0.250±0.011 mine=0.250±0.011 raw=0.25026/0.01147 n=5 OK
+L148 pubmed    peak_ari gcn-leiden  thesis=0.274±0.005 mine=0.274±0.005 raw=0.27442/0.00485 n=5 OK
+L149 cocs      peak_nmi gcn-louvain thesis=0.625±0.008 mine=0.625±0.008 raw=0.62454/0.00787 n=5 OK
+L149 cocs      peak_nmi gcn-leiden  thesis=0.629±0.008 mine=0.629±0.008 raw=0.62894/0.00777 n=5 OK
+L149 cocs      peak_ari gcn-louvain thesis=0.497±0.005 mine=0.497±0.005 raw=0.49722/0.00470 n=5 OK
+L149 cocs      peak_ari gcn-leiden  thesis=0.500±0.004 mine=0.500±0.004 raw=0.49990/0.00427 n=5 OK
+L150 amac      peak_nmi gcn-louvain thesis=0.543±0.008 mine=0.543±0.008 raw=0.54296/0.00778 n=5 OK
+L150 amac      peak_nmi gcn-leiden  thesis=0.541±0.003 mine=0.541±0.003 raw=0.54058/0.00292 n=5 OK
+L150 amac      peak_ari gcn-louvain thesis=0.494±0.018 mine=0.494±0.018 raw=0.49436/0.01762 n=5 OK
+L150 amac      peak_ari gcn-leiden  thesis=0.489±0.008 mine=0.489±0.008 raw=0.48922/0.00848 n=5 OK
+L151 amap      peak_nmi gcn-louvain thesis=0.649±0.002 mine=0.649±0.002 raw=0.64856/0.00179 n=5 OK
+L151 amap      peak_nmi gcn-leiden  thesis=0.653±0.003 mine=0.653±0.003 raw=0.65350/0.00258 n=5 OK (BOUNDARY)
+L151 amap      peak_ari gcn-louvain thesis=0.489±0.002 mine=0.489±0.002 raw=0.48936/0.00171 n=5 OK
+L151 amap      peak_ari gcn-leiden  thesis=0.492±0.001 mine=0.492±0.001 raw=0.49176/0.00055 n=5 OK
+L152 film      peak_nmi gcn-louvain thesis=0.007±0.007 mine=0.007±0.007 raw=0.00712/0.00734 n=5 OK
+L152 film      peak_nmi gcn-leiden  thesis=0.000±0.000 mine=0.000±0.000 raw=0.00000/0.00000 n=5 OK
+L152 film      peak_ari gcn-louvain thesis=0.009±0.009 mine=0.009±0.009 raw=0.00868/0.00867 n=5 OK
+L152 film      peak_ari gcn-leiden  thesis=0.000±0.000 mine=0.000±0.000 raw=0.00000/0.00000 n=5 OK
+L153 wikics    peak_nmi gcn-louvain thesis=0.419±0.001 mine=0.419±0.001 raw=0.41938/0.00120 n=5 OK
+L153 wikics    peak_nmi gcn-leiden  thesis=0.410±0.003 mine=0.410±0.003 raw=0.40966/0.00333 n=5 OK
+L153 wikics    peak_ari gcn-louvain thesis=0.373±0.004 mine=0.373±0.004 raw=0.37278/0.00367 n=5 OK
+L153 wikics    peak_ari gcn-leiden  thesis=0.369±0.002 mine=0.369±0.002 raw=0.36852/0.00190 n=5 OK
+
+=== tab:recal-beta (runs_recal_<ds>.csv, peak_nmi, k) ===
+L110 cora     gcn-louvain beta=-0.5  thesis=0.516±0.020 (89) bold=False mine=0.516±0.020 k=[np.int64(89)] raw=0.51564 n=5 OK k:OK
+L110 cora     gcn-louvain beta=0.0   thesis=0.537±0.014 (10) bold=False mine=0.537±0.014 k=[np.int64(10)] raw=0.53680 n=5 OK k:OK
+L110 cora     gcn-louvain beta=0.25  thesis=0.541±0.007 (9) bold=True mine=0.541±0.007 k=[np.int64(9)] raw=0.54112 n=5 OK k:OK
+L110 cora     gcn-louvain beta=0.5   thesis=0.541±0.007 (9) bold=True mine=0.541±0.007 k=[np.int64(9)] raw=0.54112 n=5 OK k:OK
+    best-by-raw: ['0.25', '0.5']  best-by-display: ['0.25', '0.5']
+    checkpoint(nmi) view: {'-0.5': np.float64(0.5), '0.0': np.float64(0.528), '0.25': np.float64(0.521), '0.5': np.float64(0.521)}
+L111 cora     gcn-leiden  beta=-0.5  thesis=0.538±0.011 (90) bold=False mine=0.538±0.011 k=[np.int64(90)] raw=0.53800 n=5 OK k:OK
+L111 cora     gcn-leiden  beta=0.0   thesis=0.548±0.008 (11) bold=False mine=0.548±0.008 k=[np.int64(11)] raw=0.54798 n=5 OK k:OK
+L111 cora     gcn-leiden  beta=0.25  thesis=0.554±0.009 (10) bold=True mine=0.554±0.009 k=[np.int64(10)] raw=0.55360 n=5 OK k:OK
+L111 cora     gcn-leiden  beta=0.5   thesis=0.554±0.009 (10) bold=True mine=0.554±0.009 k=[np.int64(10)] raw=0.55360 n=5 OK k:OK
+    best-by-raw: ['0.25', '0.5']  best-by-display: ['0.25', '0.5']
+    checkpoint(nmi) view: {'-0.5': np.float64(0.53), '0.0': np.float64(0.534), '0.25': np.float64(0.53), '0.5': np.float64(0.53)}
+L113 citeseer gcn-louvain beta=-0.5  thesis=0.365±0.003 (452) bold=False mine=0.365±0.003 k=[np.int64(452)] raw=0.36490 n=5 OK k:OK
+L113 citeseer gcn-louvain beta=0.0   thesis=0.367±0.009 (32) bold=False mine=0.367±0.009 k=[np.int64(32)] raw=0.36740 n=5 OK k:OK
+L113 citeseer gcn-louvain beta=0.25  thesis=0.392±0.011 (13) bold=False mine=0.392±0.011 k=[np.int64(13)] raw=0.39152 n=5 OK k:OK
+L113 citeseer gcn-louvain beta=0.5   thesis=0.401±0.008 (11) bold=True mine=0.401±0.008 k=[np.int64(11)] raw=0.40082 n=5 OK k:OK
+    best-by-raw: ['0.5']  best-by-display: ['0.5']
+    checkpoint(nmi) view: {'-0.5': np.float64(0.356), '0.0': np.float64(0.345), '0.25': np.float64(0.33), '0.5': np.float64(0.342)}
+L114 citeseer gcn-leiden  beta=-0.5  thesis=0.363±0.003 (451) bold=False mine=0.363±0.003 k=[np.int64(451)] raw=0.36348 n=5 OK k:OK
+L114 citeseer gcn-leiden  beta=0.0   thesis=0.370±0.009 (31) bold=False mine=0.370±0.009 k=[np.int64(31)] raw=0.37038 n=5 OK k:OK
+L114 citeseer gcn-leiden  beta=0.25  thesis=0.378±0.012 (13) bold=False mine=0.378±0.012 k=[np.int64(13)] raw=0.37828 n=5 OK k:OK
+L114 citeseer gcn-leiden  beta=0.5   thesis=0.388±0.012 (11) bold=True mine=0.388±0.012 k=[np.int64(11)] raw=0.38776 n=5 OK k:OK
+    best-by-raw: ['0.5']  best-by-display: ['0.5']
+    checkpoint(nmi) view: {'-0.5': np.float64(0.352), '0.0': np.float64(0.328), '0.25': np.float64(0.322), '0.5': np.float64(0.338)}
+
+=== tab:recal-sbm (runs_recal_<ds>.csv, peak_nmi, k) ===
+L128 sbm_1000_5    gcn-leiden  cpm        g=0.0275 b=-0.5  thesis=0.986±0.002 k=13 | mine=0.986±0.002 raw=0.98554 k=[np.int64(13)] k0=['25'] n=5 OK k:OK
+L129 sbm_1000_5    gcn-leiden  cpm        g=0.0275 b=0.0   thesis=0.991±0.002 k=5 | mine=0.991±0.002 raw=0.99142 k=[np.int64(5)] k0=['25'] n=5 OK k:OK
+L130 sbm_1000_5    gcn-leiden  cpm        g=0.0275 b=0.25  thesis=0.991±0.002 k=5 | mine=0.991±0.002 raw=0.99142 k=[np.int64(5)] k0=['25'] n=5 OK k:OK
+L131 sbm_1000_5    gcn-leiden  cpm        g=0.0275 b=0.5   thesis=0.991±0.002 k=5 | mine=0.991±0.002 raw=0.99142 k=[np.int64(5)] k0=['25'] n=5 OK k:OK
+L132 sbm_1000_5    gcn-leiden  modularity g=1.0    b=-0.5  thesis=0.772±0.025 k=3 | mine=0.772±0.025 raw=0.77176 k=[np.int64(3)] k0=['5'] n=5 OK k:OK
+L133 sbm_1000_5    gcn-leiden  modularity g=1.0    b=0.0   thesis=0.575±0.005 k=2 | mine=0.575±0.005 raw=0.57522 k=[np.int64(2)] k0=['5'] n=5 OK k:OK
+L134 sbm_1000_5    gcn-leiden  modularity g=1.0    b=0.25  thesis=0.575±0.005 k=2 | mine=0.575±0.005 raw=0.57522 k=[np.int64(2)] k0=['5'] n=5 OK k:OK
+L135 sbm_1000_5    gcn-leiden  modularity g=1.0    b=0.5   thesis=0.575±0.005 k=2 | mine=0.575±0.005 raw=0.57522 k=[np.int64(2)] k0=['5'] n=5 OK k:OK
+L136 sbm_1000_5    gcn-louvain modularity g=1.0    b=-0.5  thesis=0.778±0.000 k=3 | mine=0.778±0.000 raw=0.77800 k=[np.int64(3)] k0=['5'] n=5 OK k:OK
+L137 sbm_1000_5    gcn-louvain modularity g=1.0    b=0.0   thesis=0.580±0.002 k=2 | mine=0.580±0.002 raw=0.58026 k=[np.int64(2)] k0=['5'] n=5 OK k:OK
+L138 sbm_1000_5    gcn-louvain modularity g=1.0    b=0.25  thesis=0.580±0.002 k=2 | mine=0.580±0.002 raw=0.58026 k=[np.int64(2)] k0=['5'] n=5 OK k:OK
+L139 sbm_1000_5    gcn-louvain modularity g=1.0    b=0.5   thesis=0.580±0.002 k=2 | mine=0.580±0.002 raw=0.58026 k=[np.int64(2)] k0=['5'] n=5 OK k:OK
+L141 sbm_5000_10   gcn-leiden  cpm        g=0.0275 b=-0.5  thesis=1.000±0.000 k=10 | mine=1.000±0.000 raw=1.00000 k=[np.int64(10)] k0=['40'] n=5 OK k:OK
+L142 sbm_5000_10   gcn-leiden  cpm        g=0.0275 b=0.0   thesis=1.000±0.000 k=10 | mine=1.000±0.000 raw=1.00000 k=[np.int64(10)] k0=['40'] n=5 OK k:OK
+L143 sbm_5000_10   gcn-leiden  cpm        g=0.0275 b=0.25  thesis=1.000±0.000 k=10 | mine=1.000±0.000 raw=1.00000 k=[np.int64(10)] k0=['40'] n=5 OK k:OK
+L144 sbm_5000_10   gcn-leiden  cpm        g=0.0275 b=0.5   thesis=1.000±0.000 k=10 | mine=1.000±0.000 raw=1.00000 k=[np.int64(10)] k0=['40'] n=5 OK k:OK
+L146 sbm_10000_20  gcn-leiden  cpm        g=0.0275 b=-0.5  thesis=1.000±0.000 k=20 | mine=1.000±0.000 raw=1.00000 k=[np.int64(20)] k0=['59'] n=5 OK k:OK
+L147 sbm_10000_20  gcn-leiden  cpm        g=0.0275 b=0.0   thesis=1.000±0.000 k=20 | mine=1.000±0.000 raw=1.00000 k=[np.int64(20)] k0=['59'] n=5 OK k:OK
+L148 sbm_10000_20  gcn-leiden  cpm        g=0.0275 b=0.25  thesis=1.000±0.000 k=20 | mine=1.000±0.000 raw=1.00000 k=[np.int64(20)] k0=['59'] n=5 OK k:OK
+L149 sbm_10000_20  gcn-leiden  cpm        g=0.0275 b=0.5   thesis=1.000±0.000 k=20 | mine=1.000±0.000 raw=1.00000 k=[np.int64(20)] k0=['59'] n=5 OK k:OK
+L150 sbm_10000_20  gcn-leiden  modularity g=1.0    b=-0.5  thesis=0.947±0.000 k=16 | mine=0.947±0.000 raw=0.94670 k=[np.int64(16)] k0=['16'] n=5 OK k:OK
+L151 sbm_10000_20  gcn-leiden  modularity g=1.0    b=0.0   thesis=0.527±0.004 k=3 | mine=0.527±0.004 raw=0.52742 k=[np.int64(3)] k0=['16'] n=5 OK k:OK
+L152 sbm_10000_20  gcn-leiden  modularity g=1.0    b=0.25  thesis=0.527±0.004 k=3 | mine=0.527±0.004 raw=0.52742 k=[np.int64(3)] k0=['16'] n=5 OK k:OK
+L153 sbm_10000_20  gcn-leiden  modularity g=1.0    b=0.5   thesis=0.527±0.004 k=3 | mine=0.527±0.004 raw=0.52742 k=[np.int64(3)] k0=['16'] n=5 OK k:OK
+L154 sbm_10000_20  gcn-louvain modularity g=1.0    b=-0.5  thesis=0.976±0.000 k=18 | mine=0.976±0.000 raw=0.97630 k=[np.int64(18)] k0=['18'] n=5 OK k:OK
+L155 sbm_10000_20  gcn-louvain modularity g=1.0    b=0.0   thesis=0.000±0.000 k=1 | mine=0.000±0.000 raw=0.00000 k=[np.int64(1)] k0=['18'] n=5 OK k:OK
+L156 sbm_10000_20  gcn-louvain modularity g=1.0    b=0.25  thesis=0.000±0.000 k=1 | mine=0.000±0.000 raw=0.00000 k=[np.int64(1)] k0=['18'] n=5 OK k:OK
+L157 sbm_10000_20  gcn-louvain modularity g=1.0    b=0.5   thesis=0.000±0.000 k=1 | mine=0.000±0.000 raw=0.00000 k=[np.int64(1)] k0=['18'] n=5 OK k:OK
+
+=== combos present in recal_sbm CSVs ===
+sbm_1000_5 [('gcn-leiden', 'cpm', '0.0275', '-0.5'), ('gcn-leiden', 'cpm', '0.0275', '0.0'), ('gcn-leiden', 'cpm', '0.0275', '0.25'), ('gcn-leiden', 'cpm', '0.0275', '0.5'), ('gcn-leiden', 'modularity', '1.0', '-0.5'), ('gcn-leiden', 'modularity', '1.0', '0.0'), ('gcn-leiden', 'modularity', '1.0', '0.25'), ('gcn-leiden', 'modularity', '1.0', '0.5'), ('gcn-louvain', 'modularity', '1.0', '-0.5'), ('gcn-louvain', 'modularity', '1.0', '0.0'), ('gcn-louvain', 'modularity', '1.0', '0.25'), ('gcn-louvain', 'modularity', '1.0', '0.5')]
+sbm_5000_10 [('gcn-leiden', 'cpm', '0.0275', '-0.5'), ('gcn-leiden', 'cpm', '0.0275', '0.0'), ('gcn-leiden', 'cpm', '0.0275', '0.25'), ('gcn-leiden', 'cpm', '0.0275', '0.5')]
+sbm_10000_20 [('gcn-leiden', 'cpm', '0.0275', '-0.5'), ('gcn-leiden', 'cpm', '0.0275', '0.0'), ('gcn-leiden', 'cpm', '0.0275', '0.25'), ('gcn-leiden', 'cpm', '0.0275', '0.5'), ('gcn-leiden', 'modularity', '1.0', '-0.5'), ('gcn-leiden', 'modularity', '1.0', '0.0'), ('gcn-leiden', 'modularity', '1.0', '0.25'), ('gcn-leiden', 'modularity', '1.0', '0.5'), ('gcn-louvain', 'modularity', '1.0', '-0.5'), ('gcn-louvain', 'modularity', '1.0', '0.0'), ('gcn-louvain', 'modularity', '1.0', '0.25'), ('gcn-louvain', 'modularity', '1.0', '0.5')]
+
+=== classical at gamma=0.3 on SBM (k per seed) ===
+sbm_1000_5 louvain k= [1, 1, 1, 1, 1] nmi= [0.0, 0.0, 0.0, 0.0, 0.0]
+sbm_1000_5 leiden k= [1, 1, 1, 1, 1] nmi= [0.0, 0.0, 0.0, 0.0, 0.0]
+sbm_5000_10 louvain k= [1, 1, 1, 1, 1] nmi= [0.0, 0.0, 0.0, 0.0, 0.0]
+sbm_5000_10 leiden k= [1, 1, 1, 1, 1] nmi= [0.0, 0.0, 0.0, 0.0, 0.0]
+sbm_10000_20 louvain k= [1, 1, 1, 1, 1] nmi= [0.0, 0.0, 0.0, 0.0, 0.0]
+sbm_10000_20 leiden k= [1, 1, 1, 1, 1] nmi= [0.0, 0.0, 0.0, 0.0, 0.0]
