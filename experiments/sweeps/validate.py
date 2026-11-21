@@ -24,6 +24,7 @@ from experiments.harness.sweep import (
     add_common_sweep_args,
     batch_dir,
     gcn_command,
+    gcn_flags,
     parse_seeds,
     run_sweep,
 )
@@ -47,7 +48,7 @@ def build_commands(args):
                 "--prior", prior, "--resolution", gamma,
                 "--beta", "0.5", "--filter-variant", "recalibrado",
                 "--seed", seed, "--device", args.device,
-                "--eval-every", args.eval_every,
+                "--eval-every", args.eval_every, *gcn_flags(args),
                 "--history-dir", history))
     return commands
 

@@ -17,7 +17,7 @@ import networkx as nx
 import numpy as np
 import torch
 
-from gcn_leiden.datasets import load_dataset
+from gcn_leiden.datasets import load_dataset, to_networkx
 from gcn_leiden.model import CommunityAffiliation, communities_to_index
 from gcn_leiden.prior import build_prior
 from gcn_leiden.trainer import TrainConfig, train
@@ -54,6 +54,10 @@ def parse_args():
     parser.add_argument("--patience", type=int, default=200)
     parser.add_argument("--seed", type=int, default=24)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument("--sparse", action="store_true",
+                        help="sparse path: no n x n matrices (sparse "
+                             "adjacency, B never built, row-wise L2 norm); "
+                             "not bit-identical to the reference code")
     parser.add_argument("--results", default="results/runs.csv")
     parser.add_argument("--history-dir", default="results/history",
                         help="where to dump per-run training history")
@@ -64,8 +68,8 @@ def main():
     args = parse_args()
     method = f"gcn-{args.prior}"
 
-    data = load_dataset(args.dataset)
-    graph = nx.from_numpy_array(data.adj)
+    data = load_dataset(args.dataset, dense=not args.sparse)
+    graph = to_networkx(data) if args.sparse else nx.from_numpy_array(data.adj)
     prior = build_prior(graph, method=args.prior, resolution=args.resolution,
                         beta=args.beta, seed=args.prior_seed,
                         objective=args.prior_objective,
@@ -78,13 +82,19 @@ def main():
     torch.manual_seed(args.seed)
 
     feat = torch.from_numpy(data.feat)
-    edge_index = torch.from_numpy(np.array(np.nonzero(data.adj)))
-    adj = torch.from_numpy(data.adj)
+    if args.sparse:
+        edge_index = torch.from_numpy(data.edge_index)
+        adj = torch.sparse_coo_tensor(
+            edge_index, torch.ones(edge_index.shape[1]),
+            (data.num_nodes, data.num_nodes))
+    else:
+        edge_index = torch.from_numpy(np.array(np.nonzero(data.adj)))
+        adj = torch.from_numpy(data.adj)
     community_index = communities_to_index(prior.communities)
 
     model = CommunityAffiliation(
         data.num_features, args.hidden, k=prior.k,
-        temperature=args.temperature)
+        temperature=args.temperature, row_normalize=args.sparse)
     cfg = TrainConfig(epochs=args.epochs, lr=args.lr,
                       weight_decay=args.weight_decay,
                       loss_scale=args.loss_scale, eval_every=args.eval_every,
@@ -103,7 +113,8 @@ def main():
         prior_seed=args.prior_seed, hidden=args.hidden,
         temperature=args.temperature, lr=args.lr,
         weight_decay=args.weight_decay, loss_scale=args.loss_scale,
-        k0=prior.initial_count, threshold=round(prior.threshold, 2))
+        k0=prior.initial_count, threshold=round(prior.threshold, 2),
+        sparse=args.sparse)
     append_result(
         args.results, method=method, dataset=args.dataset, seed=args.seed,
         k=prior.k, epochs=result.epochs_ran,

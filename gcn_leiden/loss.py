@@ -20,3 +20,16 @@ def soft_modularity_loss(p, mod_matrix, two_m):
     if two_m == 0:
         return torch.zeros((), device=p.device)
     return -(p.t() @ mod_matrix @ p).trace() / two_m
+
+
+def soft_modularity_loss_sparse(p, adj, degrees, two_m):
+    """Same -Q' without materializing B (sparse path).
+
+    Uses tr(P^T B P) = tr(P^T A P) - ||P^T d||^2 / 2m with A a sparse
+    adjacency without self-loops: memory O(E + n k) instead of O(n^2).
+    Equal to soft_modularity_loss up to floating-point summation order.
+    """
+    if two_m == 0:
+        return torch.zeros((), device=p.device)
+    pd = p.t() @ degrees
+    return -((p * torch.sparse.mm(adj, p)).sum() - (pd * pd).sum() / two_m) / two_m

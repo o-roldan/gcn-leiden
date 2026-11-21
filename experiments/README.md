@@ -32,6 +32,17 @@ uv run python -m experiments.runners.baseline --method dmon --dataset cora
 uv run python -m experiments.runners.baseline --method deepwalk --dataset cora
 ```
 
+**Sparse path** (`--sparse`, GCN runner and every sweep): no n x n matrices
+(sparse adjacency, the modularity matrix is never built, row-wise L2 norm), so
+memory grows with the number of edges instead of n². It computes the same loss
+(within ~1e-6 per step) but is not bit-identical to the reference code; the
+default dense path keeps bit parity. Baselines always use the dense path.
+
+```bash
+uv run python -m experiments.runners.gcn --dataset cophysics --prior leiden --sparse --eval-every 10
+uv run python -m experiments.sweeps.full --dataset pubmed --sparse --eval-every 10
+```
+
 Every run appends to `results/runs.csv` with one shared schema
 (method-specific hyperparameters in the `config` column); GCN runs also dump
 per-epoch history to `results/history/` for the convergence study.

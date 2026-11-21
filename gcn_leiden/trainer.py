@@ -14,7 +14,8 @@ from dataclasses import dataclass, field
 import torch
 
 from . import metrics
-from .loss import modularity_matrix, soft_modularity_loss
+from .loss import (modularity_matrix, soft_modularity_loss,
+                   soft_modularity_loss_sparse)
 
 
 @dataclass
@@ -50,8 +51,21 @@ def train(model, feat, edge_index, adj, graph, labels, community_index,
     adj = adj.to(device)
     community_index = [idx.to(device) for idx in community_index]
 
-    mod = modularity_matrix(adj)
-    two_m = (adj.sum() - adj.diagonal().sum()).item()
+    if adj.is_sparse:
+        # Sparse path: adj is a sparse adjacency without self-loops; B is
+        # never built.
+        adj = adj.coalesce()
+        degrees = torch.sparse.sum(adj, dim=1).to_dense()
+        two_m = degrees.sum().item()
+
+        def objective(p):
+            return soft_modularity_loss_sparse(p, adj, degrees, two_m)
+    else:
+        mod = modularity_matrix(adj)
+        two_m = (adj.sum() - adj.diagonal().sum()).item()
+
+        def objective(p):
+            return soft_modularity_loss(p, mod, two_m)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay)
 
@@ -68,7 +82,7 @@ def train(model, feat, edge_index, adj, graph, labels, community_index,
         model.train()
         optimizer.zero_grad()
         _, _, p = model(feat, edge_index, community_index)
-        loss = cfg.loss_scale * soft_modularity_loss(p, mod, two_m)
+        loss = cfg.loss_scale * objective(p)
         loss.backward()
         # Global L2 norm of the gradient (convergence diagnostic). max_norm=inf
         # makes the clip a no-op, so this only reads the norm — training is

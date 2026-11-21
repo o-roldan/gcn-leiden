@@ -323,9 +323,78 @@ Fuente: `experiments/harness/telemetry.py`.
 - **Por eso se quitó de la tesis.** En noviembre de 2026 se decidió eliminar la memoria de la tesis.
 - **Lo único sólido es el diagnóstico estructural:** la memoria crece con n² por las matrices densas. Las mediciones de VRAM lo confirman: el pico de PubMed (6 154 MiB) y el de CS equivalen a unas 4 matrices n × n más lo demás (`docs/verificacion-tesis-2026-11-19/informes/04_metodo.md`).
 
+### 6.5 Implementación dispersa (rama `perf/sparse-loss`)
+
+**Qué cambia.** Es una ruta opcional, que se activa con `--sparse` en `experiments/runners/gcn.py`. La ruta densa sigue siendo la de por defecto, así que los *baselines* y la paridad con Wang no cambian. La ruta dispersa no construye ninguna matriz n × n:
+- **Adyacencia:** `load_dataset(..., dense=False)` guarda solo `edge_index`, y `to_networkx` arma el grafo de networkx desde esa lista (`gcn_leiden/datasets.py`).
+- **Pérdida:** `soft_modularity_loss_sparse` calcula `tr(PᵀAP) − ‖Pᵀd‖²/2m` con A dispersa, sin construir B (`gcn_leiden/loss.py`; el *trainer* elige la ruta según si A es dispersa).
+- **Normalización L2:** `row_normalize=True` divide cada fila entre su norma, en lugar de usar `torch.diag` (`gcn_leiden/model.py`).
+
+**Paridad y equivalencia numérica.**
+- **La ruta densa de la rama es bit a bit idéntica a `main`.** Se comparó la pérdida época por época en Cora.
+- **La ruta dispersa calcula lo mismo, salvo redondeo.** En Cora y CiteSeer, ambas rutas usan las mismas aristas en el mismo orden, el mismo *prior*, las mismas anclas y la misma inicialización. La pérdida difiere como máximo 1.1·10⁻⁶ (relativo) en las primeras 15 épocas. Lo mismo vale en SBM-1k y SBM-5k (≤ 5.6·10⁻⁷), y la ruta densa de la rama es bit a bit idéntica a `main` en Cora y CiteSeer.
+- **Peculiaridad de la ruta densa en SBM (ya presente en `main`).** `nx.to_numpy_array` ordena las filas según el orden interno de networkx, que en el generador SBM difiere de los ids en el 20 % de las posiciones. Esos cambios ocurren siempre dentro del mismo bloque (en 0 % de las posiciones el nodo es de otro bloque), así que la estructura sigue alineada con etiquetas y características, y los resultados de SBM de la tesis no se ven afectados. La ruta dispersa usa ese mismo orden para coincidir exactamente con la densa.
+
+**Memoria.** Pico de RAM con 5 épocas, cada corrida en su propio proceso, en una Mac con Apple M4 y 24 GB:
+
+| Grafo | n | Densa | Dispersa | Reducción | Tiempo de 5 épocas |
+|---|---|---|---|---|---|
+| Cora | 2 708 | 584 MiB | 532 MiB | −9 % | 0.5 s → 0.8 s |
+| CiteSeer | 3 327 | 707 MiB | 615 MiB | −13 % | 1.8 s → 1.0 s |
+| Amazon Photo | 7 650 | 2 462 MiB | 1 607 MiB | −35 % | 4.0 s → 2.2 s |
+| PubMed | 19 717 | 7 091 MiB | 1 239 MiB | −83 % | 11.2 s → 2.1 s |
+
+En los grafos pequeños domina la base fija del proceso (Python, PyTorch y PyG, unos 500 MiB). Al crecer n, la ruta densa crece con n² y la dispersa con las aristas.
+
+**Coauthor Physics ya termina.** Corrida completa: ruta dispersa, 300 épocas, evaluación cada 10, semilla 0, solo CPU.
+- **Tiempo:** 8 min 10 s.
+- **Pico de RAM:** 4.4 GiB. Con la ruta densa harían falta unos 22 GiB solo en matrices n × n.
+- **Prior:** 15 comunidades → 3 anclas, frente a 5 clases de referencia.
+- **Métricas (una sola semilla, solo como referencia):** en el *checkpoint* de pérdida mínima, ARI 0.347, NMI 0.538 y Q 0.547; en el pico, ARI 0.683. Frente a los *baselines* de la tesis en Physics (`results/runs_cophysics.csv`, 5 semillas), el ARI del *checkpoint* queda al nivel de DMoN (0.350) y por debajo de Leiden con γ = 0.3 (0.536), DGI (0.698) y DeepWalk (0.771). La causa probable es que el filtro deja solo 3 anclas.
+
+**Prueba de equivalencia de métricas.** Cora y CiteSeer, 5 semillas por ruta, configuración de la tesis, misma máquina. El criterio se fijó antes de correr: la diferencia de medias menor que la mayor desviación estándar entre semillas.
+
+| Grafo | Métrica (*checkpoint*) | Densa | Dispersa | Δ | Banda | ¿Pasa? |
+|---|---|---|---|---|---|---|
+| Cora | ARI | 0.435 ± 0.031 | 0.437 ± 0.033 | +0.002 | 0.033 | Sí |
+| Cora | NMI | 0.535 ± 0.014 | 0.534 ± 0.009 | −0.001 | 0.014 | Sí |
+| Cora | Q | 0.773 ± 0.007 | 0.773 ± 0.006 | +0.000 | 0.007 | Sí |
+| CiteSeer | ARI | 0.312 ± 0.022 | 0.326 ± 0.029 | +0.014 | 0.029 | Sí |
+| CiteSeer | NMI | 0.326 ± 0.020 | 0.340 ± 0.025 | +0.014 | 0.025 | Sí |
+| CiteSeer | Q | 0.779 ± 0.005 | 0.786 ± 0.005 | +0.007 | 0.005 | No |
+
+- **Métricas pico:** pasan las cuatro (ARI y NMI en ambos grafos).
+- **Control contra la nube:** la ruta densa local reproduce los CSV de la tesis con una diferencia de 0.011 como máximo.
+- **Velocidad:** la ruta dispersa es más rápida (Cora: 45 → 31 s por corrida; CiteSeer: 52 → 42 s).
+- **El fallo de Q en CiteSeer no es un error de implementación.** La comprobación de la ruta completa descarta diferencias en datos, *prior* o pérdida. En 300 épocas, el redondeo de ~10⁻⁶ se acumula y cada ruta termina en un mínimo distinto.
+- **Con 10 semillas, CiteSeer pasa en todas las métricas.** Se añadieron las semillas 5–9 en ambas rutas:
+
+  | Métrica (CiteSeer, 10 semillas) | Densa | Dispersa | Δ | Banda | ¿Pasa? |
+  |---|---|---|---|---|---|
+  | ARI | 0.312 ± 0.030 | 0.324 ± 0.030 | +0.012 | 0.030 | Sí |
+  | NMI | 0.330 ± 0.026 | 0.345 ± 0.027 | +0.015 | 0.027 | Sí |
+  | Q | 0.785 ± 0.011 | 0.787 ± 0.006 | +0.002 | 0.011 | Sí |
+  | ARI pico | 0.373 ± 0.027 | 0.371 ± 0.027 | −0.002 | 0.027 | Sí |
+  | NMI pico | 0.389 ± 0.018 | 0.386 ± 0.018 | −0.002 | 0.018 | Sí |
+
+  El fallo de Q con 5 semillas era ruido. Por semilla, la ruta dispersa da valores algo mayores en 7 de 10, lo que no es significativo con 10 pares (prueba de signos, p ≈ 0.34).
+- **El criterio de signo es débil:** con 5 semillas, el ARI subía en ambos grafos (+0.002 y +0.014). Con dos grafos, coincidir en signo pasa por azar la mitad de las veces.
+- **Sin probar:** la ruta dispersa en GPU, porque no hay GPU local.
+
+**Cómo reportarlo sin inconsistencias.**
+- Las filas actuales de la tesis se quedan con la ruta densa.
+- Si se añaden grafos grandes como Physics, se indica que usan la ruta dispersa: numéricamente equivalente (≤ 10⁻⁶ por paso) pero no bit a bit idéntica, con esta prueba como respaldo.
+- Los resultados de la tesis están congelados: añadir filas nuevas es decisión del autor.
+
+**Cómo reproducirlo.** Desde la raíz del repo, en la rama `perf/sparse-loss`:
+- **Memoria:** `uv run python -m experiments.runners.gcn --dataset <grafo> --prior leiden [--sparse] --epochs 5 --eval-every 1000 --seed 0 --results <csv>`.
+- **Physics:** `uv run python -m experiments.runners.gcn --dataset cophysics --prior leiden --sparse --epochs 300 --eval-every 10 --seed 0 --results <csv>`.
+- **Equivalencia de métricas:** lo mismo con `--epochs 300 --eval-every 2` y semillas 0–4, en Cora y CiteSeer, con y sin `--sparse`.
+- **Equivalencia de la ruta completa:** `uv run python docs/hallazgos/equivalencia_dispersa.py citeseer` (y luego `cora`).
+
 ## 7. Qué haría falta para pasar a la práctica
 
-- **Corridas nuevas de la GCN** para Q′_γ y para la Etapa 1 del filtro. Cora y CiteSeer son baratos localmente. PubMed, CS, Computers y WikiCS son pesados con matrices densas y sin nube: requieren la forma dispersa (Sección 2.2) o una GPU.
+- **Corridas nuevas de la GCN** para Q′_γ y para la Etapa 1 del filtro. Cora y CiteSeer son baratos localmente. Para PubMed, CS, Computers, WikiCS y Physics, la ruta dispersa ya permite correr en CPU, sin nube (Sección 6.5).
 - **Etapa 2 del filtro:** hace falta otro criterio sin etiquetas. Evaluar un criterio es barato (minutos por grafo, sin entrenar la GCN), pero los grafos de diseño ya se usaron.
 - **Particiones finales.** `results/` solo guarda métricas (`runs_*.csv` y trayectorias con `epoch, loss, nmi, ari, q, dbi`). Medir P1 exige regenerarlas.
 - **Verificación pendiente:** si las clases de referencia son conexas dentro de la componente gigante. Si no lo son, imponer conectividad podría costar ARI.

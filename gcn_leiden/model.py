@@ -39,7 +39,8 @@ class CommunityAffiliation(nn.Module):
         p   (n, k)  soft affiliation matrix, rows on the simplex
     """
 
-    def __init__(self, in_channels, hidden_channels, k, temperature=30.0):
+    def __init__(self, in_channels, hidden_channels, k, temperature=30.0,
+                 row_normalize=False):
         super().__init__()
         self.encoder = OneLayerGCN(in_channels, hidden_channels)
         # The two attributes below are NOT used by the method. They replicate
@@ -53,12 +54,19 @@ class CommunityAffiliation(nn.Module):
         uniform(hidden_channels, self.weight)
         self.init = torch.rand(k, hidden_channels)
         self.temperature = temperature
+        # False (default): dense diagonal product of the reference code, kept
+        # for bit parity. True: same normalization row by row, O(n d) memory
+        # (sparse path). No parameters depend on it, so seeding is unchanged.
+        self.row_normalize = row_normalize
 
     def forward(self, x, edge_index, community_index):
         z = self.encoder(x, edge_index)
-        # Row-wise L2 normalization written exactly as in the reference
-        # implementation (dense diagonal product) to preserve parity.
-        z = torch.diag(1. / torch.norm(z, p=2, dim=1)) @ z
+        if self.row_normalize:
+            z = z / torch.norm(z, p=2, dim=1, keepdim=True)
+        else:
+            # Row-wise L2 normalization written exactly as in the reference
+            # implementation (dense diagonal product) to preserve parity.
+            z = torch.diag(1. / torch.norm(z, p=2, dim=1)) @ z
         mu = torch.stack([torch.mean(z.index_select(0, idx), dim=0)
                           for idx in community_index])
         similarity = z @ mu.t()

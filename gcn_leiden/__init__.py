@@ -31,8 +31,13 @@ from .datasets import (
     available_datasets,
     generate_sbm,
     load_dataset,
+    to_networkx,
 )
-from .loss import modularity_matrix, soft_modularity_loss
+from .loss import (
+    modularity_matrix,
+    soft_modularity_loss,
+    soft_modularity_loss_sparse,
+)
 from .metrics import evaluate_partition
 from .model import (
     CommunityAffiliation,
@@ -53,6 +58,7 @@ __all__ = [
     "available_datasets",
     "generate_sbm",
     "GraphData",
+    "to_networkx",
     # prior
     "build_prior",
     "detect_communities",
@@ -65,6 +71,7 @@ __all__ = [
     # loss
     "modularity_matrix",
     "soft_modularity_loss",
+    "soft_modularity_loss_sparse",
     # trainer
     "train",
     "TrainConfig",

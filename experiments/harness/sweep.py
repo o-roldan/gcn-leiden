@@ -53,7 +53,15 @@ def add_common_sweep_args(parser):
                              "results/<batch>/<sweep-specific name>)")
     parser.add_argument("--dry-run", action="store_true",
                         help="print the planned commands without running")
+    parser.add_argument("--sparse", action="store_true",
+                        help="GCN runs use the sparse path (no n x n "
+                             "matrices); baseline runs are unaffected")
     return parser
+
+
+def gcn_flags(args):
+    """Extra GCN-runner flags shared by every sweep (currently --sparse)."""
+    return ["--sparse"] if getattr(args, "sparse", False) else []
 
 
 def batch_dir(args):

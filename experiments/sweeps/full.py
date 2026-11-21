@@ -18,6 +18,7 @@ from experiments.harness.sweep import (
     batch_dir,
     baseline_command,
     gcn_command,
+    gcn_flags,
     parse_seeds,
     run_sweep,
 )
@@ -51,7 +52,7 @@ def build_commands(args):
                 commands.append(gcn_command(
                     *common, "--prior", method.removeprefix("gcn-"),
                     "--seed", seed, "--device", args.device,
-                    "--eval-every", args.eval_every,
+                    "--eval-every", args.eval_every, *gcn_flags(args),
                     "--history-dir", out / f"history_{args.dataset}"))
             elif method in ("louvain", "leiden"):
                 for resolution in CLASSICAL_RESOLUTIONS:
