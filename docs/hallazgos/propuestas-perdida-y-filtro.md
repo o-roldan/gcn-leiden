@@ -346,6 +346,21 @@ Fuente: `experiments/harness/telemetry.py`.
 
 En los grafos pequeños domina la base fija del proceso (Python, PyTorch y PyG, unos 500 MiB). Al crecer n, la ruta densa crece con n² y la dispersa con las aristas.
 
+**Resumen de la mejora.** Crece con el tamaño del grafo.
+
+| Medición | Densa → Dispersa | Mejora |
+|---|---|---|
+| RAM, Cora | 584 → 532 MiB | 9 % menos |
+| RAM, CiteSeer | 707 → 615 MiB | 13 % menos |
+| RAM, Amazon Photo | 2 462 → 1 607 MiB | 35 % menos |
+| RAM, PubMed | 7 091 → 1 239 MiB | 83 % menos (5.7×) |
+| RAM, Coauthor Physics | ~22 GiB estimados → 4.4 GiB medidos | ≥ 80 % menos (estimado) |
+| Tiempo, Cora (300 épocas) | 45 → 31 s | 31 % más rápido |
+| Tiempo, CiteSeer (300 épocas) | 52 → 42 s | 20 % más rápido |
+| Tiempo, PubMed (5 épocas) | 11.2 → 2.1 s | 81 % más rápido (5.3×) |
+
+En Physics, la cifra densa es solo lo que ocuparían las matrices n × n, porque esa ruta no corre ahí. En la práctica, Physics pasó de no completar a completar en 8 minutos en CPU. Las métricas no cambian: quedan dentro del ruido entre semillas.
+
 **Coauthor Physics ya termina.** Corrida completa: ruta dispersa, 300 épocas, evaluación cada 10, semilla 0, solo CPU.
 - **Tiempo:** 8 min 10 s.
 - **Pico de RAM:** 4.4 GiB. Con la ruta densa harían falta unos 22 GiB solo en matrices n × n.
